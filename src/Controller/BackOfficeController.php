@@ -7,8 +7,10 @@
  */
 
 namespace App\Controller;
+use App\DAL\AdminCrud;
 use App\DAL\AgencyCrud;
 use App\DAL\UserCrud;
+use App\Entity\Administrator;
 use App\Entity\Agency;
 use App\Entity\Agent;
 use App\Entity\User;
@@ -33,11 +35,13 @@ class BackOfficeController extends AbstractController
     private $AgentCrud;
     private $em;
     private $AgencyCrud;
+    private $AdminCrud;
     public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->UserCrud = new UserCrud($em);
         $this->AgentCrud = new AgentCrud($em);
         $this->AgencyCrud = new AgencyCrud($em);
+        $this->AdminCrud = new AdminCrud($em);
         $this->em = $em;
     }
 
@@ -57,6 +61,14 @@ class BackOfficeController extends AbstractController
         $form = $this->createForm(AddAgentForm::class,$user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
+            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+            $user->setPassword($password);
+            $user->setRoles(["ROLE_AGENT"]);
+            $agency = $form->get('agency')->getData();
+            $agent->setUser($user);
+            $agent->setAgency($agency);
+
+            $this->UserCrud->GetInscriptionData($user);
             $this->AgentCrud->GetInscriptionData($agent);
             return $this->redirectToRoute('backoffice');
         }
@@ -64,6 +76,8 @@ class BackOfficeController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    
 
     /**
      * @Route("/addAgency", name="addAgency")
@@ -81,20 +95,28 @@ class BackOfficeController extends AbstractController
         ]);
     }
 
-    /*
-    public function getAddAdmin(Request $request) {
-        $admin = new Admin();
-        $form = $this->createForm(AddAgencyForm::class,$agency);
+    /**
+     * @Route("/addAdmin", name="addAdmin")
+     */
+    public function getAddAdmin(Request $request, UserPasswordEncoderInterface $passwordEncoder) {
+        $admin = new Administrator();
+        $user = new User();
+        $form = $this->createForm(RegisterForm::class,$user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
-            $this->AgencyCrud->getInscriptionData($agency);
+            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+            $user->setPassword($password);
+            $user->setRoles(["ROLE_ADMIN"]);
+            $admin->setUser($user);
+            $this->UserCrud->getInscriptionData($user);
+            $this->AdminCrud->getInscriptionData($admin);
             return $this->redirectToRoute('backoffice');
         }
         return $this->render('backoffice/addAgency.html.twig', [
             'form' => $form->createView()
         ]);
     }
-    */
+
 
     /**
      * @Route("/GetListAgent", name="GetListAgent")

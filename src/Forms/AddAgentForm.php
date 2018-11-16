@@ -37,7 +37,7 @@ class AddAgentForm extends AbstractType
                 'first_options'  => array('label' => 'Password'),
                 'second_options' => array('label' => 'Repeat Password'),
             ))
-            ->add('agency',EntityType::class, array('class' => Agency::class, 'choice_label' => 'name'))
+            ->add('agency',EntityType::class, array('class' => Agency::class, 'choice_label' => 'name', 'mapped' => false))
         ;
     }
 }
