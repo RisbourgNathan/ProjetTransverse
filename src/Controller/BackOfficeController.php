@@ -54,7 +54,7 @@ class BackOfficeController extends AbstractController
     public function getAddAgent(Request $request, UserPasswordEncoderInterface $passwordEncoder) {
         $agent = new Agent();
         $user = new User();
-        $form = $this->createForm(AddAgentForm::class,$agent);
+        $form = $this->createForm(AddAgentForm::class,$user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
             $this->AgentCrud->GetInscriptionData($agent);
