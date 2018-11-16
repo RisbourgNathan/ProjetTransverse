@@ -81,10 +81,22 @@ class User implements UserInterface
      */
     private $plainPassword;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Administrator", mappedBy="user")
+     */
+    private $administrators;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\AgencyDirector", mappedBy="user")
+     */
+    private $agencyDirectors;
+
     public function __construct()
     {
         $this->agents = new ArrayCollection();
         $this->clients = new ArrayCollection();
+        $this->administrators = new ArrayCollection();
+        $this->agencyDirectors = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -302,6 +314,68 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($client->getUser() === $this) {
                 $client->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Administrator[]
+     */
+    public function getAdministrators(): Collection
+    {
+        return $this->administrators;
+    }
+
+    public function addAdministrator(Administrator $administrator): self
+    {
+        if (!$this->administrators->contains($administrator)) {
+            $this->administrators[] = $administrator;
+            $administrator->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdministrator(Administrator $administrator): self
+    {
+        if ($this->administrators->contains($administrator)) {
+            $this->administrators->removeElement($administrator);
+            // set the owning side to null (unless already changed)
+            if ($administrator->getUser() === $this) {
+                $administrator->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AgencyDirector[]
+     */
+    public function getAgencyDirectors(): Collection
+    {
+        return $this->agencyDirectors;
+    }
+
+    public function addAgencyDirector(AgencyDirector $agencyDirector): self
+    {
+        if (!$this->agencyDirectors->contains($agencyDirector)) {
+            $this->agencyDirectors[] = $agencyDirector;
+            $agencyDirector->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAgencyDirector(AgencyDirector $agencyDirector): self
+    {
+        if ($this->agencyDirectors->contains($agencyDirector)) {
+            $this->agencyDirectors->removeElement($agencyDirector);
+            // set the owning side to null (unless already changed)
+            if ($agencyDirector->getUser() === $this) {
+                $agencyDirector->setUser(null);
             }
         }
 

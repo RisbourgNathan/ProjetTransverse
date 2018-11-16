@@ -38,6 +38,11 @@ class Proposition
      */
     private $client;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Proposition", inversedBy="counterProposition", cascade={"persist", "remove"})
+     */
+    private $counterProposition;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -87,6 +92,18 @@ class Proposition
     public function setClient(?Client $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getCounterProposition(): ?self
+    {
+        return $this->counterProposition;
+    }
+
+    public function setCounterProposition(?self $counterProposition): self
+    {
+        $this->counterProposition = $counterProposition;
 
         return $this;
     }

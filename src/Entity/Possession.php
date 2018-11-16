@@ -96,15 +96,21 @@ class Possession
     private $proposition;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\ManyToMany(targetEntity="App\Entity\Client", mappedBy="favoritePossessions")
      */
-    private $photos;
+    private $clientsWithThisPossessionAsFavorite;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $picture_path;
 
     public function __construct()
     {
         $this->outBuildings = new ArrayCollection();
         $this->ownOutBuilding = new ArrayCollection();
         $this->proposition = new ArrayCollection();
+        $this->clientsWithThisPossessionAsFavorite = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -346,15 +352,42 @@ class Possession
         return $this;
     }
 
-    public function getPhotos(): ?string
+    /**
+     * @return Collection|Client[]
+     */
+    public function getClientsWithThisPossessionAsFavorite(): Collection
     {
-        return $this->photos;
+        return $this->clientsWithThisPossessionAsFavorite;
     }
 
-    public function setPhotos(?string $photos): self
+    public function addClientsWithThisPossessionAsFavorite(Client $clientsWithThisPossessionAsFavorite): self
     {
-        $this->photos = $photos;
+        if (!$this->clientsWithThisPossessionAsFavorite->contains($clientsWithThisPossessionAsFavorite)) {
+            $this->clientsWithThisPossessionAsFavorite[] = $clientsWithThisPossessionAsFavorite;
+            $clientsWithThisPossessionAsFavorite->addFavoritePossession($this);
+        }
 
+        return $this;
+    }
+
+    public function removeClientsWithThisPossessionAsFavorite(Client $clientsWithThisPossessionAsFavorite): self
+    {
+        if ($this->clientsWithThisPossessionAsFavorite->contains($clientsWithThisPossessionAsFavorite)) {
+            $this->clientsWithThisPossessionAsFavorite->removeElement($clientsWithThisPossessionAsFavorite);
+            $clientsWithThisPossessionAsFavorite->removeFavoritePossession($this);
+        }
+
+        return $this;
+    }
+
+    public function getPicturePath(): ?string
+    {
+        return $this->picture_path;
+    }
+
+    public function setPicturePath(string $picture_path): self
+    {
+        $this->picture_path = $picture_path;
         return $this;
     }
 }

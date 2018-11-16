@@ -53,9 +53,20 @@ class Agency
      */
     private $agents;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $picture_path;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\AgencyDirector", mappedBy="agency")
+     */
+    private $agencyDirectors;
+
     public function __construct()
     {
         $this->agents = new ArrayCollection();
+        $this->agencyDirectors = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -160,6 +171,49 @@ class Agency
             // set the owning side to null (unless already changed)
             if ($agent->getAgency() === $this) {
                 $agent->setAgency(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getPicturePath(): ?string
+    {
+        return $this->picture_path;
+    }
+
+    public function setPicturePath(?string $picture_path): self
+    {
+        $this->picture_path = $picture_path;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AgencyDirector[]
+     */
+    public function getAgencyDirectors(): Collection
+    {
+        return $this->agencyDirectors;
+    }
+
+    public function addAgencyDirector(AgencyDirector $agencyDirector): self
+    {
+        if (!$this->agencyDirectors->contains($agencyDirector)) {
+            $this->agencyDirectors[] = $agencyDirector;
+            $agencyDirector->setAgency($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAgencyDirector(AgencyDirector $agencyDirector): self
+    {
+        if ($this->agencyDirectors->contains($agencyDirector)) {
+            $this->agencyDirectors->removeElement($agencyDirector);
+            // set the owning side to null (unless already changed)
+            if ($agencyDirector->getAgency() === $this) {
+                $agencyDirector->setAgency(null);
             }
         }
 
