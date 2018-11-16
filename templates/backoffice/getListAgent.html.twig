@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Liste Agents{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+<h1>Fiche des Agents : </h1>
+Nombre d'agents : {{ ListAgent | length }}
+<ul>
+    {% for agent in ListAgent %}
+        <li>{{ agent.email }}</li>
+        {% endfor %}
+</ul>
+
+
+</body>
+</html>

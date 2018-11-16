@@ -3,6 +3,10 @@ security:
         App\Entity\User:
             algorithm: argon2i
 
+    role_hierarchy:
+            ROLE_AGENT:     ROLE_USER
+            ROLE_ADMIN:     [ROLE_AGENT, ROLE_ALLOWED_TO_SWITCH]
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         # used to reload user from session & other features (e.g. switch_user)
@@ -19,6 +23,9 @@ security:
             guard:
                 authenticators:
                     - App\Security\LoginFormAuthenticator
+            logout:
+                path: /logout
+                target: /
 
             # activate different ways to authenticate
 
@@ -31,5 +38,5 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/nothing, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }

@@ -95,6 +95,11 @@ class Possession
      */
     private $proposition;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $photos;
+
     public function __construct()
     {
         $this->outBuildings = new ArrayCollection();
@@ -337,6 +342,18 @@ class Possession
                 $proposition->setPossession(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPhotos(): ?string
+    {
+        return $this->photos;
+    }
+
+    public function setPhotos(?string $photos): self
+    {
+        $this->photos = $photos;
 
         return $this;
     }
