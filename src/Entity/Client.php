@@ -44,11 +44,17 @@ class Client
      */
     private $Proposition;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Possession", inversedBy="clientsWithThisPossessionAsFavorite")
+     */
+    private $favoritePossessions;
+
     public function __construct()
     {
         $this->sponsor = new ArrayCollection();
         $this->possessions = new ArrayCollection();
         $this->Proposition = new ArrayCollection();
+        $this->favoritePossessions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -172,6 +178,32 @@ class Client
             if ($proposition->getClient() === $this) {
                 $proposition->setClient(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Possession[]
+     */
+    public function getFavoritePossessions(): Collection
+    {
+        return $this->favoritePossessions;
+    }
+
+    public function addFavoritePossession(Possession $favoritePossession): self
+    {
+        if (!$this->favoritePossessions->contains($favoritePossession)) {
+            $this->favoritePossessions[] = $favoritePossession;
+        }
+
+        return $this;
+    }
+
+    public function removeFavoritePossession(Possession $favoritePossession): self
+    {
+        if ($this->favoritePossessions->contains($favoritePossession)) {
+            $this->favoritePossessions->removeElement($favoritePossession);
         }
 
         return $this;
