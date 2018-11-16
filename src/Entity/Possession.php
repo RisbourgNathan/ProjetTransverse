@@ -105,6 +105,11 @@ class Possession
      */
     private $picture_path;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $title;
+
     public function __construct()
     {
         $this->outBuildings = new ArrayCollection();
@@ -388,6 +393,18 @@ class Possession
     public function setPicturePath(string $picture_path): self
     {
         $this->picture_path = $picture_path;
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
         return $this;
     }
 }
