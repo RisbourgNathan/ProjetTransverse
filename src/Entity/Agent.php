@@ -20,7 +20,7 @@ class Agent
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Agency", inversedBy="agents")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $agency;
 

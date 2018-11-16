@@ -388,7 +388,6 @@ class Possession
     public function setPicturePath(string $picture_path): self
     {
         $this->picture_path = $picture_path;
-
         return $this;
     }
 }
