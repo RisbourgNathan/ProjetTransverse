@@ -29,17 +29,15 @@ class AgentCrud
         $this->em->flush();
     }
 
-    public function getListAgent(){
-        return $this->em->getRepository(Agent::class)->findAll();
 
-    }
-    public function getListUserAgent(){
-        $listAgent = $this->getListAgent();
-        $listUserAgent = array();
-        foreach ($listAgent as $agent)
-        {
-            array_push($listUserAgent,$agent->getUser());
-        }
-        return $listUserAgent;
+    public function removeAgent($idAgent)
+    {
+        $iduser = $this->em->getRepository(Agent::class)->find($idAgent)->getUser()->getId();
+        $agent = $this->em->getRepository(Agent::class)->find($idAgent);
+        $this->em->remove($agent);
+        $this->em->flush();
+        $user = $this->em->getRepository(User::class)->find($iduser);
+        $this->em->remove($user);
+        $this->em->flush();
     }
 }

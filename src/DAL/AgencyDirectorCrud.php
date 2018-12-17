@@ -2,19 +2,18 @@
 /**
  * Created by IntelliJ IDEA.
  * User: RAGOSTINI
- * Date: 16/11/2018
- * Time: 16:06
+ * Date: 17/12/2018
+ * Time: 16:57
  */
 
 namespace App\DAL;
 
-use App\Entity\Administrator;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Entity\Agent;
+use App\Entity\AgencyDirector;
 use Symfony\Component\HttpKernel\Tests\Controller;
 
-class AdminCrud
+class AgencyDirectorCrud
 {
     /*** @var EntityManagerInterface l'interface entity manager* nécessaire à la manipulation des opérations en base*/
     protected $em;
@@ -22,18 +21,19 @@ class AdminCrud
     {
         $this->em = $em;
     }
-    public function GetInscriptionData($user)
+
+    public function getInscriptionData($agencyDirector)
     {
-        $this->em->persist($user);
+        $this->em->persist($agencyDirector);
         $this->em->flush();
     }
 
 
-    public function removeAdmin($idAdmin)
+    public function removeAgencyDirector($idAgencyDirector)
     {
-        $iduser = $this->em->getRepository(Agent::class)->find($idAdmin)->getUser()->getId();
-        $admin = $this->em->getRepository(Administrator::class)->find($idAdmin);
-        $this->em->remove($admin);
+        $iduser = $this->em->getRepository(AgencyDirector::class)->find($idAgencyDirector)->getUser()->getId();
+        $agent = $this->em->getRepository(AgencyDirector::class)->find($idAgencyDirector);
+        $this->em->remove($agent);
         $this->em->flush();
         $user = $this->em->getRepository(User::class)->find($iduser);
         $this->em->remove($user);
