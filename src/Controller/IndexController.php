@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: RAGOSTINI
- * Date: 07/11/2018
- * Time: 13:57
- */
 
 namespace App\Controller;
 use App\Entity\User;
