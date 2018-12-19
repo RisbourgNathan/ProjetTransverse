@@ -6,8 +6,12 @@
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
-<br><h1>Bienvenue {% if app.user %}{{ app.user.username }}{% endif %}</h1>
 {% block body %}{% endblock %}
+    <h1>Bienvenue {% if app.user %}{{ app.user.username }}{% endif %}</h1>
+    <p><a href="{{ path('backoffice') }}">Backoffice</a></p>
+    <p><a href="{{ path('app_possession_createpossessionbyagent') }}">Create possession by agent</a></p>
+    <p><a href="{{ path('app_login') }}">login</a></p>
+    <p><a href="{{ path('logout') }}">logout</a></p>
 {% block javascripts %}{% endblock %}
 </body>
 </html>
