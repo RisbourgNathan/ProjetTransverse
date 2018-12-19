@@ -49,6 +49,11 @@ class Client
      */
     private $favoritePossessions;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Agency", inversedBy="clients")
+     */
+    private $agency;
+
     public function __construct()
     {
         $this->sponsor = new ArrayCollection();
@@ -205,6 +210,18 @@ class Client
         if ($this->favoritePossessions->contains($favoritePossession)) {
             $this->favoritePossessions->removeElement($favoritePossession);
         }
+
+        return $this;
+    }
+
+    public function getAgency(): ?Agency
+    {
+        return $this->agency;
+    }
+
+    public function setAgency(?Agency $agency): self
+    {
+        $this->agency = $agency;
 
         return $this;
     }

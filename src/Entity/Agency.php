@@ -63,10 +63,16 @@ class Agency
      */
     private $agencyDirectors;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Client", mappedBy="agency")
+     */
+    private $clients;
+
     public function __construct()
     {
         $this->agents = new ArrayCollection();
         $this->agencyDirectors = new ArrayCollection();
+        $this->clients = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -214,6 +220,37 @@ class Agency
             // set the owning side to null (unless already changed)
             if ($agencyDirector->getAgency() === $this) {
                 $agencyDirector->setAgency(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Client[]
+     */
+    public function getClients(): Collection
+    {
+        return $this->clients;
+    }
+
+    public function addClient(Client $client): self
+    {
+        if (!$this->clients->contains($client)) {
+            $this->clients[] = $client;
+            $client->setAgency($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClient(Client $client): self
+    {
+        if ($this->clients->contains($client)) {
+            $this->clients->removeElement($client);
+            // set the owning side to null (unless already changed)
+            if ($client->getAgency() === $this) {
+                $client->setAgency(null);
             }
         }
 
