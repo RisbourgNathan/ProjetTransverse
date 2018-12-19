@@ -87,7 +87,7 @@ class BackOfficeController extends AbstractController
             $agent->setUser($user);
             $agent->setAgency($agency);
 
-            $this->UserCrud->GetInscriptionData($user);
+            $this->UserCrud->createUser($user);
             $this->AgentCrud->GetInscriptionData($agent);
             return $this->redirectToRoute('backoffice');
         }
@@ -113,7 +113,7 @@ class BackOfficeController extends AbstractController
             $agent->setUser($user);
             $agent->setAgency($agency);
 
-            $this->UserCrud->GetInscriptionData($user);
+            $this->UserCrud->createUser($user);
             $this->AgencyDirectorCrud->GetInscriptionData($agent);
             return $this->redirectToRoute('backoffice');
         }
@@ -132,7 +132,7 @@ class BackOfficeController extends AbstractController
         $form = $this->createForm(AddAgencyForm::class,$agency);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
-            $this->AgencyCrud->getInscriptionData($agency);
+            $this->AgencyCrud->GetInscriptionData($agency);
             return $this->redirectToRoute('backoffice');
         }
         return $this->render('backoffice/addAgency.html.twig', [
@@ -153,7 +153,7 @@ class BackOfficeController extends AbstractController
             $user->setPassword($password);
             $user->setRoles(["ROLE_ADMIN"]);
             $admin->setUser($user);
-            $this->UserCrud->getInscriptionData($user);
+            $this->UserCrud->createUser($user);
             $this->AdminCrud->getInscriptionData($admin);
             return $this->redirectToRoute('backoffice');
         }

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Agent;
 use App\Entity\Possession;
 use App\Forms\addPossessionByAgentForm;
 use App\Forms\PossessionType;
@@ -33,7 +34,6 @@ class PossessionController extends AbstractController
     public function createPossession(Request $request)
     {
         $possession = new Possession();
-
         $form = $this->createForm(addPossessionByAgentForm::class, $possession);
 
 
