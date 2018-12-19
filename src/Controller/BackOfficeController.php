@@ -7,7 +7,11 @@
  */
 
 namespace App\Controller;
+use App\BL\AdminManager;
+use App\BL\AgencyDirectorManager;
+use App\BL\AgencyManager;
 use App\BL\AgentManager;
+use App\BL\UserManager;
 use App\DAL\AdminCrud;
 use App\DAL\AgencyCrud;
 use App\DAL\AgencyDirectorCrud;
@@ -35,20 +39,28 @@ use App\DAL\AgentCrud;
 class BackOfficeController extends AbstractController
 {
     private $UserCrud;
+    private $UserManager;
     private $AgentCrud;
     private $AgentManager;
     private $em;
     private $AgencyCrud;
+    private $AgencyManager;
     private $AgencyDirectorCrud;
+    private $AgencyDirectorManager;
     private $AdminCrud;
+    private $AdminManager;
     public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->UserCrud = new UserCrud($em);
+        $this->UserManager = new UserManager($em);
         $this->AgentCrud = new AgentCrud($em);
         $this->AgentManager = new AgentManager($em);
         $this->AgencyCrud = new AgencyCrud($em);
+        $this->AgencyManager = new AgencyManager($em);
         $this->AgencyDirectorCrud = new AgencyDirectorCrud($em);
+        $this->AgencyDirectorManager = new AgencyDirectorManager($em);
         $this->AdminCrud = new AdminCrud($em);
+        $this->AdminManager = new AdminManager($em);
         $this->em = $em;
     }
 
@@ -163,7 +175,7 @@ class BackOfficeController extends AbstractController
      * @Route("/GetListAgencyDirector", name="GetListAgencyDirector")
      */
     public function getAgencyDirectorList(){
-        $list =  $this->AgencyDirectorCrud->getListAgencyDirector();
+        $list =  $this->AgencyDirectorManager->getListAgencyDirector();
         return $this->render('backoffice/getListAgencyDirector.html.twig', ['ListAgencyDirector' => $list]);
     }
 
@@ -172,7 +184,7 @@ class BackOfficeController extends AbstractController
      * @Route("/GetListAgency", name="GetListAgency")
      */
     public function getAgencyList(){
-        $list =  $this->AgencyCrud->getListAgency();
+        $list =  $this->AgencyManager->getListAgency();
         return $this->render('backoffice/getListAgency.html.twig', ['ListAgency' => $list]);
     }
 
@@ -180,7 +192,7 @@ class BackOfficeController extends AbstractController
      * @Route("/GetListAdmin", name="GetListAdmin")
      */
     public function getAdminList(){
-        $list =  $this->AdminCrud->getListAdmin();
+        $list =  $this->AdminManager->getListAdmin();
         return $this->render('backoffice/getListAdmin.html.twig', ['ListAdmin' => $list]);
     }
 

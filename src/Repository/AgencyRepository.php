@@ -21,7 +21,7 @@ class AgencyRepository extends ServiceEntityRepository
 
     /**
      * @param $idAgency
-     */
+
     public function removeAgentFromAgency($idAgency){
         $conn = $this->getEntityManager()->getConnection();
         $sql = '
@@ -31,6 +31,7 @@ class AgencyRepository extends ServiceEntityRepository
         $stmt = $conn->prepare($sql);
         $stmt->execute(['agencyid' => $idAgency]);
     }
+     * */
     // /**
     //  * @return Agency[] Returns an array of Agency objects
     //  */

@@ -7,6 +7,7 @@
  */
 
 namespace App\DAL;
+use App\Entity\Agent;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Agency;
 use App\Entity\User;
@@ -31,9 +32,16 @@ class AgencyCrud
     public function removeAgency($idAgency)
     {
         $agency = $this->em->getRepository(Agency::class)->find($idAgency);
+        $agents = $this->em->getRepository(Agency::class)->find($idAgency)->getAgents();
+        foreach ($agents as $agent){
+            $user = $this->em->getRepository(Agent::class)->find($agent)->getUser();
+            $this->em->remove($agent);
+            $this->em->flush();
+            $this->em->remove($user);
+            $this->em->flush();
+        }
         $this->em->remove($agency);
         $this->em->flush();
-        $this->em->getRepository(Agency::class)->removeAgentFromAgency($idAgency);
     }
 }
 
