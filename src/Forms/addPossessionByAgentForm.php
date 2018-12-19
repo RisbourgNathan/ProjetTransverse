@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -17,7 +18,7 @@ class addPossessionByAgentForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('seller',EntityType::class, array('class' => Client::class, 'choice_label' => 'email'))
+            ->add('seller',EntityType::class, array('class' => Client::class, 'choice_label' => 'name'))
             ->add('surface', IntegerType::class)
             ->add('RoomNumber', IntegerType::class)
             ->add('floorNumber', IntegerType::class)
@@ -28,7 +29,8 @@ class addPossessionByAgentForm extends AbstractType
             ->add('zip_code', TextType::class)
             ->add('street', TextType::class)
             ->add('picture_path', TextType::class)
-            ->add('type',EntityType::class, array('class' => PossessionType::class, 'choice_label' => 'email'))
+            ->add('type',EntityType::class, array('class' => PossessionType::class, 'choice_label' => 'name'))
+            ->add('submit', SubmitType::class)
             ;
     }
 }

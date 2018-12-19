@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Show Outbuildings{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+
+    <body>
+        <h1>Show Outbuildings</h1>
+
+        {% for outbuilding in outbuildings %}
+            <p>{{ outbuilding.name }}</p>
+        {% endfor %}
+
+    </body>
+</html>

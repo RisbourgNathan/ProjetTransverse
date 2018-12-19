@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Add Outbuilding{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+
+    <body>
+        <h1>Add Outbuilding</h1>
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+
+    </body>
+</html>
