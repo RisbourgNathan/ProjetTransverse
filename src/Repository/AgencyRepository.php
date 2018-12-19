@@ -19,6 +19,19 @@ class AgencyRepository extends ServiceEntityRepository
         parent::__construct($registry, Agency::class);
     }
 
+    /**
+     * @param $idAgency
+
+    public function removeAgentFromAgency($idAgency){
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = '
+                DELETE * FROM agent a
+                WHERE a.agency_id = :agencyid
+               ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['agencyid' => $idAgency]);
+    }
+     * */
     // /**
     //  * @return Agency[] Returns an array of Agency objects
     //  */

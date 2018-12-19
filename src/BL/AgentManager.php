@@ -2,16 +2,17 @@
 /**
  * Created by IntelliJ IDEA.
  * User: RAGOSTINI
- * Date: 15/11/2018
- * Time: 14:42
+ * Date: 17/12/2018
+ * Time: 17:16
  */
 
-namespace App\DAL;
-
-use Doctrine\ORM\EntityManagerInterface;
+namespace App\BL;
 use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Agent;
 use Symfony\Component\HttpKernel\Tests\Controller;
-class UserCrud
+
+class AgentManager
 {
     /*** @var EntityManagerInterface l'interface entity manager* nécessaire à la manipulation des opérations en base*/
     protected $em;
@@ -19,10 +20,8 @@ class UserCrud
     {
         $this->em = $em;
     }
-    public function GetInscriptionData($user)
-    {
-        $this->em->persist($user);
-        $this->em->flush();
-    }
 
+    public function getListAgent(){
+        return $this->em->getRepository(Agent::class)->findAll();
+    }
 }

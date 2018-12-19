@@ -6,10 +6,13 @@
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
-    <a href="{{ path('addAgency') }}">Ajouter une agence</a>
+    <a href="{{ path('addAgency') }}">Ajouter une agence</a><br>
+    <a href="{{ path('addAgencyDirector')}}">Ajouter un directeur d'agence</a><br>
     <a href="{{ path('addAgent')}}">Ajouter un agent</a><br>
     <a href="{{ path('addAdmin') }}">Ajouter un admin</a><br>
+    <a href="{{ path('GetListAgency') }}">Liste agence</a><br>
+    <a href="{{ path('GetListAgencyDirector') }}">Liste directeur d'agence</a><br>
     <a href="{{ path('GetListAgent') }}">Liste agent</a><br>
-    <a href="#">Liste admins</a>
+    <a href="{{ path('GetListAdmin') }}">Liste admin</a>
 </body>
 </html>
