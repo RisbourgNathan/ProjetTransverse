@@ -19,7 +19,8 @@ class UserCrud
     {
         $this->em = $em;
     }
-    public function GetInscriptionData($user)
+
+    public function createUser($user)
     {
         $this->em->persist($user);
         $this->em->flush();
