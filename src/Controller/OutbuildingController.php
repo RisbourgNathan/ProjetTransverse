@@ -6,7 +6,10 @@ namespace App\Controller;
 use App\BL\OutbuildingManager;
 use App\DAL\OutbuildingCrud;
 use App\Entity\OutBuilding;
+use App\Entity\OwnOutBuilding;
+use App\Entity\Possession;
 use App\Forms\AddOutbuilding;
+use App\Forms\DependencyForm;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,5 +56,33 @@ class OutbuildingController extends AbstractController
     {
         $outbuildings = $this->outbuildingManager->getAllOutbuildings();
         return $this->render("outbuilding/showOutbuilding.html.twig", array("outbuildings" => $outbuildings));
+    }
+
+    /**
+     * @Route("/test", name="test")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function testOutbuildingForm(Request $request)
+    {
+
+        $own = new OwnOutBuilding();
+        $form = $this->createForm(DependencyForm::class, $own);
+//        $form = $this->createForm(DependencyForm::class, $own, array(
+//            'outb' =>
+//        ));
+        $data = array();
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $data = $form->getData();
+//            return $this->redirectToRoute("outbuilding_test");
+//            return $this->render("outbuilding/outbuildingTEST..html.twig", array("form" => $form->createView()));
+        }
+        dump($data);
+//        $pos = new Possession();
+//        $pos->getOutBuildings();
+        return $this->render("outbuilding/outbuildingTEST..html.twig", array("form" => $form->createView()));
     }
 }

@@ -5,11 +5,14 @@ namespace App\Forms;
 
 use App\Entity\Agent;
 use App\Entity\Client;
+use App\Entity\OutBuilding;
+use App\Entity\OwnOutBuilding;
 use App\Entity\PossessionType;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -44,6 +47,11 @@ class addPossessionByAgentForm extends AbstractType
             ->add('street', TextType::class)
             ->add('picture_path', TextType::class)
             ->add('type',EntityType::class, array('class' => PossessionType::class, 'choice_label' => 'name'))
+//            ->add('outbuildings', EntityType::class, array('class' => OutBuilding::class, 'multiple' => true, 'expanded' => true, 'choice_label' => 'name'))
+            ->add('ownoutbuilding', CollectionType::class, array(
+                'entry_type' => DependencyForm::class,
+                'allow_add' => true,
+            ))
             ->add('submit', SubmitType::class)
             ;
     }
