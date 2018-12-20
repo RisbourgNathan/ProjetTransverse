@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Liste Agents{% endblock %}</title>
@@ -8,11 +8,12 @@
 <body>
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}
+{% include 'account/infosAccount.html.twig' %}
 <h1>Fiche des Agents : </h1>
 Nombre d'agents : {{ ListAgent | length }}
 <ul>
     {% for agent in ListAgent %}
-        <li>{{ agent.user.email }} <a href="{{ path('removeAgent',{'idAgent' : agent.id })}}">Supprimer</a></li>
+        <li>{{ agent.user.email }}<a href="{{ path('modifyAgent',{'idAgent' : agent.id })}}">Modifier</a> <a href="{{ path('removeAgent',{'idAgent' : agent.id })}}">Supprimer</a></li>
         {% endfor %}
 </ul>
 

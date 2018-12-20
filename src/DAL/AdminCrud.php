@@ -28,6 +28,11 @@ class AdminCrud
         $this->em->flush();
     }
 
+    public function getUserAdminById($idAdmin)
+    {
+        $user = $this->em->getRepository(Administrator::class)->find($idAdmin)->getUser();
+        return $user;
+    }
 
     public function removeAdmin($idAdmin)
     {

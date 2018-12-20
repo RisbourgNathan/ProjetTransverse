@@ -8,11 +8,12 @@
 <body>
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}
+{% include 'account/infosAccount.html.twig' %}
 <h1>Fiche des Admin : </h1>
 Nombre d'admins : {{ ListAdmin | length }}
 <ul>
     {% for admin in ListAdmin %}
-        <li>{{ admin.user.email }} <a href="{{ path('removeAdmin',{'idAdmin' : admin.id })}}">Supprimer</a></li>
+        <li>{{ admin.user.email }} <a href="{{ path('modifyAdmin',{'idAdmin' : admin.id })}}">Modifier</a><a href="{{ path('removeAdmin',{'idAdmin' : admin.id })}}">Supprimer</a></li>
     {% endfor %}
 </ul>
 

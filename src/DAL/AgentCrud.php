@@ -29,6 +29,11 @@ class AgentCrud
         $this->em->flush();
     }
 
+    public function getUserAgentById($idAgent)
+    {
+        $user = $this->em->getRepository(Agent::class)->find($idAgent)->getUser();
+        return $user;
+    }
 
     public function removeAgent($idAgent)
     {

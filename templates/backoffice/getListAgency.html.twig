@@ -8,11 +8,12 @@
 <body>
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}
+{% include 'account/infosAccount.html.twig' %}
 <h1>Fiche des Agences : </h1>
 Nombre d'agences : {{ ListAgency | length }}
 <ul>
     {% for agency in ListAgency %}
-        <li>{{ agency.name }} | {{ agency.city }} <a href="{{ path('removeAgency',{'idAgency' : agency.id })}}">Supprimer</a></li>
+        <li>{{ agency.name }} | {{ agency.city }}  <a href="{{ path('modifyAgency',{'idAgency' : agency.id })}}">Modifier</a><a href="{{ path('removeAgency',{'idAgency' : agency.id })}}">Supprimer</a></li>
     {% endfor %}
 </ul>
 

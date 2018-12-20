@@ -23,6 +23,10 @@ use App\Entity\Agent;
 use App\Entity\User;
 use App\Forms\AddAgencyForm;
 use App\Forms\AddAgentForm;
+use App\Forms\modifyAdminForm;
+use App\Forms\modifyAgencyDirectorForm;
+use App\Forms\modifyAgencyForm;
+use App\Forms\modifyAgentForm;
 use App\Forms\RegisterForm;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Doctrine\ORM\EntityManagerInterface;
@@ -96,6 +100,24 @@ class BackOfficeController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/modifyAgent/{idAgent}", name="modifyAgent")
+     */
+    public function getModifyAgent($idAgent, Request $request, UserPasswordEncoderInterface $passwordEncoder){
+        $user = $this->AgentCrud->getUserAgentById($idAgent);
+        $form = $this->createForm(modifyAgentForm::class,$user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+            $user->setPassword($password);
+            $this->AgentCrud->GetInscriptionData($user);
+            return $this->redirectToRoute('backoffice');
+        }
+        return $this->render('backoffice/modifyAgent.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
 
     /**
      * @Route("/addAgencyDirector", name="addAgencyDirector")
@@ -122,6 +144,24 @@ class BackOfficeController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/modifyAgencyDirector/{idAgencyDirector}", name="modifyAgencyDirector")
+     */
+    public function getModifyAgencyDirector($idAgencyDirector, Request $request, UserPasswordEncoderInterface $passwordEncoder){
+        $user = $this->AgencyDirectorCrud->getUserAgencyDirectorById($idAgencyDirector);
+        $form = $this->createForm(modifyAgencyDirectorForm::class,$user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+            $user->setPassword($password);
+            $this->AdminCrud->GetInscriptionData($user);
+            return $this->redirectToRoute('backoffice');
+        }
+        return $this->render('backoffice/modifyAgencyDirector.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
     
 
     /**
@@ -136,6 +176,22 @@ class BackOfficeController extends AbstractController
             return $this->redirectToRoute('backoffice');
         }
         return $this->render('backoffice/addAgency.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/modifyAgency/{idAgency}", name="modifyAgency")
+     */
+    public function getModifyAgency($idAgency, Request $request, UserPasswordEncoderInterface $passwordEncoder){
+        $user = $this->AgencyCrud->getAgencyById($idAgency);
+        $form = $this->createForm(modifyAgencyForm::class,$user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+            $this->AdminCrud->GetInscriptionData($user);
+            return $this->redirectToRoute('backoffice');
+        }
+        return $this->render('backoffice/modifyAgency.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -162,6 +218,23 @@ class BackOfficeController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/modifyAdmin/{idAdmin}", name="modifyAdmin")
+     */
+    public function getModifyAdmin($idAdmin, Request $request, UserPasswordEncoderInterface $passwordEncoder){
+        $user = $this->AdminCrud->getUserAdminById($idAdmin);
+        $form = $this->createForm(modifyAdminForm::class,$user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+            $user->setPassword($password);
+            $this->AdminCrud->GetInscriptionData($user);
+            return $this->redirectToRoute('backoffice');
+        }
+        return $this->render('backoffice/modifyAdmin.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
 
     /**
      * @Route("/GetListAgent", name="GetListAgent")
