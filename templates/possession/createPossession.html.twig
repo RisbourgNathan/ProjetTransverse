@@ -2,35 +2,16 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <title>{% block title %}Create Possession{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
     </head>
 
     <body>
-        <div id="app">
             <h1>Create Possession</h1>
             {{ form_start(form) }}
             {% for out_building in form.out_buildings %}
                     {{ form_row(out_building) }} <br>
             {% endfor %}
             {{ form_end(form) }}
-             ${ greeting }
-            <template v-if="checked === true">
-                <label>Superficie</label>
-                <input placeholder="Entrez la superficie">
-            </template>
-        </div>
-        <script>
-            new Vue({
-                delimiters: ['${', '}'],
-                el: '#app',
-                data: {
-                    checked: '',
-                    search: 'null',
-                    greeting: "Hello world"
-                }
-            });
-        </script>
     </body>
 </html>
