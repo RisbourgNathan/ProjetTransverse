@@ -7,6 +7,7 @@ use App\Entity\Agent;
 use App\Entity\Client;
 use App\Entity\OutBuilding;
 use App\Entity\OwnOutBuilding;
+use App\Entity\Possession;
 use App\Entity\PossessionType;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
@@ -36,6 +37,7 @@ class addPossessionByAgentForm extends AbstractType
                     $user = $client->getUser();
                     return $user->getLastname() . " " . $user->getFirstname();
                 }))
+            ->add('title', TextType::class)
             ->add('surface', IntegerType::class)
             ->add('RoomNumber', IntegerType::class)
             ->add('floorNumber', IntegerType::class)
@@ -47,17 +49,23 @@ class addPossessionByAgentForm extends AbstractType
             ->add('street', TextType::class)
             ->add('picture_path', TextType::class)
             ->add('type',EntityType::class, array('class' => PossessionType::class, 'choice_label' => 'name'))
-//            ->add('outbuildings', EntityType::class, array('class' => OutBuilding::class, 'multiple' => true, 'expanded' => true, 'choice_label' => 'name'))
-            ->add('ownoutbuilding', CollectionType::class, array(
-                'entry_type' => DependencyForm::class,
-                'allow_add' => true,
-            ))
             ->add('submit', SubmitType::class)
             ;
+
+        $builder
+            ->add('ownoutbuilding', CollectionType::class, array(
+                'entry_type' => DependencyForm::class,
+                'entry_options' => array('label' => false),
+                'allow_add' => true,
+//                'by_reference' => false,
+        ));
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired('clients');
+//        $resolver->setDefaults(array(
+//            'data_class' => Possession::class,
+//        ));
     }
 }

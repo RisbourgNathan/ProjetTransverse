@@ -8,6 +8,7 @@
 
 namespace App\Forms;
 use App\Entity\OutBuilding;
+use App\Entity\OwnOutBuilding;
 use App\Entity\PossessionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -23,21 +24,16 @@ class DependencyForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-//        $outb = $options['outb'];
         $builder
             ->add('outbuilding', EntityType::class, array('class' => OutBuilding::class, 'choice_label' => 'name'))
-//            ->add('outbuilding', EntityType::class, array('class' => OutBuilding::class, 'multiple' => true, 'expanded' => true, 'choice_label' => 'name'))
-//            ->add('outbuilding', EntityType::class, array(
-//                'class' => OutBuilding::class,
-//                'choices' => $outb
-//            ))
             ->add('surface', TextType::class)
             ->add('description', TextType::class);
-//            ->add('submit', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-//        $resolver->setRequired('outb');
+        $resolver->setDefaults(array(
+            'data_class' => OwnOutBuilding::class,
+        ));
     }
 }

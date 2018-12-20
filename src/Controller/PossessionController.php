@@ -27,6 +27,7 @@ class PossessionController extends AbstractController
 
     /**
      * PossessionController constructor.
+     * @param EntityManagerInterface $entityManager
      * @param Security $security
      */
     public function __construct(EntityManagerInterface $entityManager, Security $security)
@@ -51,9 +52,7 @@ class PossessionController extends AbstractController
         {
             if (count($agent->getClients()))
             {
-
                 $clients = $agent->getClients();
-                dump($clients);
             }
             else {
                 return $this->redirectToRoute('agent_hasNoClientError');
@@ -66,13 +65,38 @@ class PossessionController extends AbstractController
 
 
 
-        $possession = new Possession();
+        $possession = new Possession($this->entityManager);
 
         $form = $this->createForm(addPossessionByAgentForm::class, $possession, array(
             'clients' => $clients,
         ));
 
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $ownoutbuildings = $possession->getOwnOutBuilding();
+            foreach ($ownoutbuildings as $elem)
+            {
+                $elem->setPossession($possession);
+                $this->entityManager->persist($elem);
+            }
+            $this->entityManager->persist($possession);
+            $this->entityManager->flush();
+
+        }
+        dump($form->getData());
         return $this->render("possession/createPossession.html.twig", array("form" => $form->createView(), "test" => $userAgent->getId()));
+    }
+
+    /**
+     * @Route("/show/{id}", name="show")
+     */
+    public function showPossession($id)
+    {
+        $possession = $this->entityManager->getRepository(Possession::class)->find($id);
+        $possessionOutbuildings = $possession->getOwnOutbuilding();
+
+        return $this->render("possession/showPossession.html.twig", array("possession" => $possession, "possOwnOutbuilding" => $possessionOutbuildings));
     }
 
 }
