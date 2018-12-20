@@ -6,6 +6,7 @@
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
+{% include 'account/infosAccount.html.twig' %}
     <a href="{{ path('addAgency') }}">Ajouter une agence</a><br>
     <a href="{{ path('addAgencyDirector')}}">Ajouter un directeur d'agence</a><br>
     <a href="{{ path('addAgent')}}">Ajouter un agent</a><br>

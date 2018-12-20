@@ -8,6 +8,7 @@
 <body>
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}
+{% include 'account/infosAccount.html.twig' %}
 <h1>Fiche des Agences : </h1>
 Nombre d'agences : {{ ListAgency | length }}
 <ul>

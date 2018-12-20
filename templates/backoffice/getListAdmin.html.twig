@@ -8,6 +8,7 @@
 <body>
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}
+{% include 'account/infosAccount.html.twig' %}
 <h1>Fiche des Admin : </h1>
 Nombre d'admins : {{ ListAdmin | length }}
 <ul>
