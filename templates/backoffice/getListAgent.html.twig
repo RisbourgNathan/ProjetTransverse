@@ -12,7 +12,7 @@
 Nombre d'agents : {{ ListAgent | length }}
 <ul>
     {% for agent in ListAgent %}
-        <li>{{ agent.user.email }} <a href="{{ path('removeAgent',{'idAgent' : agent.id })}}">Supprimer</a></li>
+        <li>{{ agent.user.email }}<a href="{{ path('modifyAgent',{'idAgent' : agent.id })}}">Modifier</a> <a href="{{ path('removeAgent',{'idAgent' : agent.id })}}">Supprimer</a></li>
         {% endfor %}
 </ul>
 

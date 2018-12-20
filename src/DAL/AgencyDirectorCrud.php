@@ -28,6 +28,11 @@ class AgencyDirectorCrud
         $this->em->flush();
     }
 
+    public function getUserAgencyDirectorById($idAgencyDirector)
+    {
+        $user = $this->em->getRepository(AgencyDirector::class)->find($idAgencyDirector)->getUser();
+        return $user;
+    }
 
     public function removeAgencyDirector($idAgencyDirector)
     {
