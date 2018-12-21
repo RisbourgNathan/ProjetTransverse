@@ -16,17 +16,24 @@ class IndexController extends AbstractController
     private $UserCrud;
     private $UserManager;
     private $em;
+    private $security;
     public function __construct(EntityManagerInterface $em, Security $security)
     {
         $this->UserCrud = new UserCrud($em);
         $this->UserManager = new UserManager($em,$security);
         $this->em = $em;
+        $this->security = $security;
     }
     /**
      * @Route("/", name="index")
      */
     public function getIndex() {
-        $client = $this->UserManager->GetClientIdbyUser();
-        return $this->render('index/index.html.twig',['client' => $client]);
+        if($this->security->getUser() != null) {
+            $client = $this->UserManager->GetClientIdbyUser();
+            return $this->render('index/index.html.twig', ['client' => $client]);
+        }
+        else{
+            return $this->render('index/index.html.twig');
+        }
     }
 }

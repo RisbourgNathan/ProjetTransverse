@@ -8,7 +8,9 @@
 
 namespace App\Controller;
 use App\BL\ClientManager;
+use App\DAL\ClientCrud;
 use App\Entity\User;
+use App\Forms\modifyClientForm;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,27 +24,29 @@ class ProfileController extends AbstractController
 {
     private $UserManager;
     private $ClientManager;
+    private $ClientCrud;
     private $em;
     public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder, Security $security)
     {
         $this->UserManager = new UserManager($em, $security);
         $this->ClientManager = new ClientManager($em);
+        $this->ClientCrud = new ClientCrud($em);
         $this->em = $em;
     }
+
+
     /**
      * @Route("/account/{idClient}", name="account")
      */
     public function showProfile($idClient)
     {
-        $agency = $this->ClientManager->GetClientAgencyById($idClient);
-        $agent = $this->ClientManager->GetClientAgentById($idClient);
         $client = $this->ClientManager->GetClientById($idClient);
-        return $this->render('account/yourProfile.html.twig', ['client' => $client, 'agent' => $agent, 'agency' => $agency]);
+        return $this->render('account/yourProfile.html.twig', ['client' => $client]);
     }
      /**
      * @Route("/account/modifyProfile/{idClient}", name="modifyProfile")
      */
-    public function modifyProfile($idClient)
+    public function modifyProfile($idClient, Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         $user = $this->ClientManager->GetClientUserById($idClient);
         $form = $this->createForm(modifyClientForm::class,$user);
@@ -50,10 +54,10 @@ class ProfileController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
-            $this->AdminCrud->GetInscriptionData($user);
-            return $this->redirectToRoute('backoffice');
+            $this->ClientCrud->GetInscriptionData($user);
+            return $this->redirectToRoute('index');
         }
-        return $this->render('backoffice/modifyAgencyDirector.html.twig', [
+        return $this->render('account/modifyClient.html.twig', [
             'form' => $form->createView()
         ]);
     }
