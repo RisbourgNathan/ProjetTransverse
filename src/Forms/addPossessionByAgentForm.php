@@ -57,6 +57,7 @@ class addPossessionByAgentForm extends AbstractType
                 'entry_type' => DependencyForm::class,
                 'entry_options' => array('label' => false),
                 'allow_add' => true,
+                'allow_delete' => true,
 //                'by_reference' => false,
         ));
     }

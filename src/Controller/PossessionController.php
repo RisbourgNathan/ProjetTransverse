@@ -8,6 +8,7 @@ use App\Entity\Possession;
 use App\Entity\User;
 use App\Forms\addPossessionByAgentForm;
 use App\Forms\PossessionType;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use http\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -65,7 +66,14 @@ class PossessionController extends AbstractController
 
 
 
-        $possession = new Possession($this->entityManager);
+//        $possession = new Possession($this->entityManager);
+        $possession = $this->entityManager->getRepository(Possession::class)->find(7);
+
+        $originalOwnout = new ArrayCollection();
+        foreach ($possession->getOwnoutbuilding() as $ownout)
+        {
+            $originalOwnout->add($ownout);
+        }
 
         $form = $this->createForm(addPossessionByAgentForm::class, $possession, array(
             'clients' => $clients,
@@ -74,9 +82,19 @@ class PossessionController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
+            foreach ($originalOwnout as $ownout)
+            {
+                if (false === $possession->getOwnoutbuilding()->contains($ownout))
+                {
+                    $ownout->setPossession(null);
+                    $this->entityManager->remove($ownout);
+                }
+            }
+
             $ownoutbuildings = $possession->getOwnOutBuilding();
             foreach ($ownoutbuildings as $elem)
             {
+
                 $elem->setPossession($possession);
                 $this->entityManager->persist($elem);
             }
