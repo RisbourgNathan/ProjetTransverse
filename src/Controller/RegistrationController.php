@@ -53,6 +53,7 @@ class RegistrationController extends AbstractController
             // 3) Encode the password (you could also do this via Doctrine listener)
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
+            $user->setRoles(["ROLE_CLIENT"]);
             // 4) save the User and Client!
             $this->userCrud->createUser($user);
             $this->clientCrud->createClient($client, $user);

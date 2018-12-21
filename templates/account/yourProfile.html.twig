@@ -1,0 +1,10 @@
+Infos : <br>
+Nom : {{ app.user.lastname }} <br>
+Prénom : {{ app.user.firstname }} <br>
+E-mail : {{ app.user.email }} <br>
+Ville : {{ app.user.city }} <br>
+Code postal : {{ app.user.zipcode }} <br>
+Numéro de téléphone : 0{{ app.user.phone }}<br>
+Agence : {{ agency.name }}<br>
+Agent : {{ agent.firstname }}
+<a href="{{ path('modifyProfile',{'idClient': client.id}) }}"></a>

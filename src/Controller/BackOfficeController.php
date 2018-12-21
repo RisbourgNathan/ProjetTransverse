@@ -35,6 +35,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\DAL\AgentCrud;
+use Symfony\Component\Security\Core\Security;
+
 /**
  * Class BackOfficeController
  * @package App\Controller
@@ -53,10 +55,10 @@ class BackOfficeController extends AbstractController
     private $AgencyDirectorManager;
     private $AdminCrud;
     private $AdminManager;
-    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder)
+    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder, Security $security)
     {
         $this->UserCrud = new UserCrud($em);
-        $this->UserManager = new UserManager($em);
+        $this->UserManager = new UserManager($em,$security);
         $this->AgentCrud = new AgentCrud($em);
         $this->AgentManager = new AgentManager($em);
         $this->AgencyCrud = new AgencyCrud($em);
