@@ -111,15 +111,12 @@ class Possession
      */
     private $title;
 
-    private $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct()
     {
         $this->outBuildings = new ArrayCollection();
         $this->ownOutBuilding = new ArrayCollection();
         $this->proposition = new ArrayCollection();
         $this->clientsWithThisPossessionAsFavorite = new ArrayCollection();
-        $this->entityManager = $entityManager;
     }
 
     public function getId(): ?int
