@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\Security;
 /**
  * Class PossessionController
  * @package App\Controller
- * @Route("/possession")
+ * @Route("/possession", name="possession_")
  */
 class PossessionController extends AbstractController
 {
@@ -63,11 +63,7 @@ class PossessionController extends AbstractController
             return $this->redirectToRoute('index');
         }
 
-
-
-
-//        $possession = new Possession($this->entityManager);
-        $possession = $this->entityManager->getRepository(Possession::class)->find(7);
+        $possession = new Possession($this->entityManager);
 
         $originalOwnout = new ArrayCollection();
         foreach ($possession->getOwnoutbuilding() as $ownout)
@@ -94,16 +90,16 @@ class PossessionController extends AbstractController
             $ownoutbuildings = $possession->getOwnOutBuilding();
             foreach ($ownoutbuildings as $elem)
             {
-
                 $elem->setPossession($possession);
                 $this->entityManager->persist($elem);
             }
             $this->entityManager->persist($possession);
             $this->entityManager->flush();
 
+            return $this->redirectToRoute("possession_show", array("id" => $possession->getId()));
         }
-        dump($form->getData());
-        return $this->render("possession/createPossession.html.twig", array("form" => $form->createView(), "test" => $userAgent->getId()));
+
+        return $this->render("possession/createPossession.html.twig", array("form" => $form->createView()));
     }
 
     /**

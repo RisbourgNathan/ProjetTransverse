@@ -54,19 +54,15 @@ class addPossessionByAgentForm extends AbstractType
 
         $builder
             ->add('ownoutbuilding', CollectionType::class, array(
-                'entry_type' => DependencyForm::class,
+                'entry_type' => AddOwnOutbuildingForm::class,
                 'entry_options' => array('label' => false),
                 'allow_add' => true,
                 'allow_delete' => true,
-//                'by_reference' => false,
         ));
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired('clients');
-//        $resolver->setDefaults(array(
-//            'data_class' => Possession::class,
-//        ));
     }
 }
