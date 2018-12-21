@@ -6,7 +6,10 @@ namespace App\Controller;
 use App\BL\OutbuildingManager;
 use App\DAL\OutbuildingCrud;
 use App\Entity\OutBuilding;
+use App\Entity\OwnOutBuilding;
+use App\Entity\Possession;
 use App\Forms\AddOutbuilding;
+use App\Forms\DependencyForm;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,6 +33,8 @@ class OutbuildingController extends AbstractController
 
     /**
      * @Route("/add", name="add")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function addOutbuilding(Request $request)
     {

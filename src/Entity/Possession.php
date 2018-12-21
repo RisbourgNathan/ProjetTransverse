@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -86,7 +87,7 @@ class Possession
     private $outBuildings;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\OwnOutBuilding", mappedBy="possession")
+     * @ORM\OneToMany(targetEntity="App\Entity\OwnOutBuilding", mappedBy="possession", cascade={"persist"})
      */
     private $ownOutBuilding;
 
@@ -110,12 +111,15 @@ class Possession
      */
     private $title;
 
-    public function __construct()
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
     {
         $this->outBuildings = new ArrayCollection();
         $this->ownOutBuilding = new ArrayCollection();
         $this->proposition = new ArrayCollection();
         $this->clientsWithThisPossessionAsFavorite = new ArrayCollection();
+        $this->entityManager = $entityManager;
     }
 
     public function getId(): ?int
@@ -303,6 +307,10 @@ class Possession
         return $this->ownOutBuilding;
     }
 
+    /**
+     * @param OwnOutBuilding $ownOutBuilding
+     * @return Possession
+     */
     public function addOwnOutBuilding(OwnOutBuilding $ownOutBuilding): self
     {
         if (!$this->ownOutBuilding->contains($ownOutBuilding)) {
