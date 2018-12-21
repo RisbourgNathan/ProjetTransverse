@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Create Possession{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <script
+                src="https://code.jquery.com/jquery-3.3.1.js"
+                integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+                crossorigin="anonymous">
+
+        </script>
+    </head>
+
+    <body>
+        <h1>Show possession: {{ possession.title }}</h1>
+
+        {% for ownOutbuilding in possOwnOutbuilding %}
+            <div>
+                <p>Dependence : {{ ownOutbuilding.outbuilding.name }}</p>
+                <p>Surface : {{ ownOutbuilding.surface }}</p>
+                <p>Description : {{ ownOutbuilding.description }}</p>
+            </div>
+        {% endfor %}
+    </body>
+</html>

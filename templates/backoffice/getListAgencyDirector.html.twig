@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,4 +20,26 @@ Nombre d'agents : {{ ListAgencyDirector | length }}
 
 
 </body>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Liste Directeur d'Agence{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+<h1>Fiche des Agents : </h1>
+Nombre d'agents : {{ ListAgencyDirector | length }}
+<ul>
+    {% for agent in ListAgencyDirector %}
+        <li>{{ agent.user.email }} <a href="{{ path('removeAgent',{'idAgent' : agent.id })}}">Supprimer</a></li>
+    {% endfor %}
+</ul>
+
+
+</body>
+>>>>>>> PossessionOutbuildingForm
 </html>
