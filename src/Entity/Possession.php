@@ -111,6 +111,11 @@ class Possession
      */
     private $title;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Agent", inversedBy="possessions")
+     */
+    private $agent;
+
     public function __construct()
     {
         $this->outBuildings = new ArrayCollection();
@@ -409,6 +414,18 @@ class Possession
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getAgent(): ?Agent
+    {
+        return $this->agent;
+    }
+
+    public function setAgent(?Agent $agent): self
+    {
+        $this->agent = $agent;
 
         return $this;
     }

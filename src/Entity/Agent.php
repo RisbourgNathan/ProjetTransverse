@@ -31,13 +31,13 @@ class Agent
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Client", mappedBy="agent")
+     * @ORM\OneToMany(targetEntity="App\Entity\Possession", mappedBy="agent")
      */
-    private $clients;
+    private $possessions;
 
     public function __construct()
     {
-        $this->clients = new ArrayCollection();
+        $this->possessions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -70,30 +70,30 @@ class Agent
     }
 
     /**
-     * @return Collection|Client[]
+     * @return Collection|Possession[]
      */
-    public function getClients(): Collection
+    public function getPossessions(): Collection
     {
-        return $this->clients;
+        return $this->possessions;
     }
 
-    public function addClient(Client $client): self
+    public function addPossession(Possession $possession): self
     {
-        if (!$this->clients->contains($client)) {
-            $this->clients[] = $client;
-            $client->setAgent($this);
+        if (!$this->possessions->contains($possession)) {
+            $this->possessions[] = $possession;
+            $possession->setAgent($this);
         }
 
         return $this;
     }
 
-    public function removeClient(Client $client): self
+    public function removePossession(Possession $possession): self
     {
-        if ($this->clients->contains($client)) {
-            $this->clients->removeElement($client);
+        if ($this->possessions->contains($possession)) {
+            $this->possessions->removeElement($possession);
             // set the owning side to null (unless already changed)
-            if ($client->getAgent() === $this) {
-                $client->setAgent(null);
+            if ($possession->getAgent() === $this) {
+                $possession->setAgent(null);
             }
         }
 

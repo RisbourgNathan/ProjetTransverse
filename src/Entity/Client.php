@@ -25,11 +25,6 @@ class Client
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Agent", inversedBy="clients")
-     */
-    private $agent;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="sponsor")
      */
     private $sponsor;
@@ -48,11 +43,6 @@ class Client
      * @ORM\ManyToMany(targetEntity="App\Entity\Possession", inversedBy="clientsWithThisPossessionAsFavorite")
      */
     private $favoritePossessions;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Agency", inversedBy="clients")
-     */
-    private $agency;
 
     public function __construct()
     {
@@ -75,18 +65,6 @@ class Client
     public function setUser(?User $user): self
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    public function getAgent(): ?Agent
-    {
-        return $this->agent;
-    }
-
-    public function setAgent(?Agent $agent): self
-    {
-        $this->agent = $agent;
 
         return $this;
     }
@@ -210,18 +188,6 @@ class Client
         if ($this->favoritePossessions->contains($favoritePossession)) {
             $this->favoritePossessions->removeElement($favoritePossession);
         }
-
-        return $this;
-    }
-
-    public function getAgency(): ?Agency
-    {
-        return $this->agency;
-    }
-
-    public function setAgency(?Agency $agency): self
-    {
-        $this->agency = $agency;
 
         return $this;
     }
