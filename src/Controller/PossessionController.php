@@ -139,13 +139,4 @@ class PossessionController extends AbstractController
 
         return $this->render("possession/showPossession.html.twig", array("possession" => $possession, "possOwnOutbuilding" => $possessionOutbuildings));
     }
-
-    /**
-     * @Route("/myPossessions", name="myPossessions")
-     */
-    public function showMyPossession()
-    {
-
-    }
-
 }

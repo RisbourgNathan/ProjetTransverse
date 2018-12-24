@@ -41,7 +41,9 @@ class ProfileController extends AbstractController
     public function showProfile($idClient)
     {
         $client = $this->ClientManager->GetClientById($idClient);
-        return $this->render('account/yourProfile.html.twig', ['client' => $client]);
+        $clientPossessions = $client->getPossessions();
+
+        return $this->render('account/yourProfile.html.twig', ['client' => $client, 'clientPossessions' => $clientPossessions]);
     }
      /**
      * @Route("/account/modifyProfile/{idClient}", name="modifyProfile")

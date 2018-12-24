@@ -7,4 +7,22 @@ Ville : {{ app.user.city }} <br>
 Code postal : {{ app.user.zipcode }} <br>
 Numéro de téléphone : 0{{ app.user.phone }}<br>
 
+<br/>
+<hr>
+<br/>
+<div>
+    <h2>Mes annonces</h2>
+    {% if clientPossessions.count != 0 %}
+        {% for possession in clientPossessions %}
+            <div>
+                <p><a href="{{ path('possession_show', {'id': possession.id}) }}">{{ possession.title }}</a></p>
+                <p>{{ possession.description }}</p>
+            </div>
+            <br/>
+        {% endfor %}
+    {% else %}
+        <p>Vous n'avez publie aucune annonce</p>
+    {% endif %}
+</div>
+
 <a href="{{ path('modifyProfile',{'idClient': client.id}) }}">Modifier le profil</a>
