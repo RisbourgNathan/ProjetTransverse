@@ -29,6 +29,7 @@ class PossessionController extends AbstractController
     private $entityManager;
     private $possessionManager;
     private $possessionTypeManager;
+    private $clientManager;
 
     /**
      * PossessionController constructor.
@@ -88,20 +89,6 @@ class PossessionController extends AbstractController
         $userAgent = $this->entityManager->getRepository(User::class)->find($this->security->getUser());
         $agent = $this->entityManager->getRepository(Agent::class)->findOneBy(array('user' => $userAgent->getId()));
 
-        if ($agent != null)
-        {
-            if (count($agent->getClients()))
-            {
-                $clients = $agent->getClients();
-            }
-            else {
-                return $this->redirectToRoute('agent_hasNoClientError');
-            }
-        }
-        else {
-            return $this->redirectToRoute('index');
-        }
-
         $possession = new Possession($this->entityManager);
 
         $originalOwnout = new ArrayCollection();
@@ -110,13 +97,14 @@ class PossessionController extends AbstractController
             $originalOwnout->add($ownout);
         }
 
-        $form = $this->createForm(addPossessionByAgentForm::class, $possession, array(
-            'clients' => $clients,
-        ));
+        $form = $this->createForm(addPossessionByAgentForm::class, $possession);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
+
+            $possession->setAgent($agent);
+
             foreach ($originalOwnout as $ownout)
             {
                 if (false === $possession->getOwnoutbuilding()->contains($ownout))
@@ -150,6 +138,14 @@ class PossessionController extends AbstractController
         $possessionOutbuildings = $possession->getOwnOutbuilding();
 
         return $this->render("possession/showPossession.html.twig", array("possession" => $possession, "possOwnOutbuilding" => $possessionOutbuildings));
+    }
+
+    /**
+     * @Route("/myPossessions", name="myPossessions")
+     */
+    public function showMyPossession()
+    {
+
     }
 
 }
