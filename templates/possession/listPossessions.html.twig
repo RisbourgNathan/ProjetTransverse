@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% block body %}
+            <div class="possessionTypeListForm">
+                <form action="{{ path("possession_list") }}" method="post">
+                    <select name="possessionTypeSelect">
+                        <option value="">Tous</option>
+                        {% for possessionType in possessionTypes %}
+                            <option value="{{ possessionType.id }}">{{ possessionType.name | upper }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <input type="submit" value="Valider"/>
+                </form>
+            </div>
+
+            {% if possessions %}
+                {% for possession in possessions %}
+                    <div>
+                        <p>{{ possession.title }} - {{ possession.type.name }}</p>
+                        <p>Description : {{ possession.description }}</p>
+                    </div>
+                    <br/>
+                    <br/>
+                {% endfor %}
+            {% else %}
+                <div>
+                    <p>Aucune annonce ne correspond a vos criteres de recherche</p>
+                </div>
+            {% endif %}
+        {% endblock %}
+
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
