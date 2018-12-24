@@ -11,6 +11,8 @@ use App\BL\ClientManager;
 use App\DAL\ClientCrud;
 use App\Entity\User;
 use App\Forms\modifyClientForm;
+use App\Forms\modifyUserForm;
+use App\Forms\RegisterForm;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -51,7 +53,7 @@ class ProfileController extends AbstractController
     public function modifyProfile($idClient, Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         $user = $this->ClientManager->GetClientUserById($idClient);
-        $form = $this->createForm(modifyClientForm::class,$user);
+        $form = $this->createForm(modifyUserForm::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
