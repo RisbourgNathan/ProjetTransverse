@@ -6,8 +6,5 @@ E-mail : {{ app.user.email }} <br>
 Ville : {{ app.user.city }} <br>
 Code postal : {{ app.user.zipcode }} <br>
 Numéro de téléphone : 0{{ app.user.phone }}<br>
-{% if client.agent %}
-Agence : {{ client.agent.agency.name }}<br>
-Agent : {{ client.agent.user.firstname }}<br>
-{% endif %}
+
 <a href="{{ path('modifyProfile',{'idClient': client.id}) }}">Modifier le profil</a>
