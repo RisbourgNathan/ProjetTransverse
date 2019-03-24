@@ -29,6 +29,12 @@ class ClientCrud
         $this->entityManager = $entityManager;
     }
 
+    public function getInscriptionData($agent)
+    {
+        $this->entityManager->persist($agent);
+        $this->entityManager->flush();
+    }
+
     public function createClient(Client $client, User $user)
     {
         $client->setUser($user);

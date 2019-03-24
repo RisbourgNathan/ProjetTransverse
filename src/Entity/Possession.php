@@ -111,15 +111,17 @@ class Possession
      */
     private $title;
 
-    private $entityManager;
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Agent", inversedBy="possessions")
+     */
+    private $agent;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct()
     {
         $this->outBuildings = new ArrayCollection();
         $this->ownOutBuilding = new ArrayCollection();
         $this->proposition = new ArrayCollection();
         $this->clientsWithThisPossessionAsFavorite = new ArrayCollection();
-        $this->entityManager = $entityManager;
     }
 
     public function getId(): ?int
@@ -412,6 +414,18 @@ class Possession
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getAgent(): ?Agent
+    {
+        return $this->agent;
+    }
+
+    public function setAgent(?Agent $agent): self
+    {
+        $this->agent = $agent;
 
         return $this;
     }

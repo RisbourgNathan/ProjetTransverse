@@ -7,20 +7,25 @@
  */
 
 namespace App\BL;
+use App\Entity\Client;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpKernel\Tests\Controller;
+use Symfony\Component\Security\Core\Security;
 
 class UserManager
 {
     /*** @var EntityManagerInterface l'interface entity manager* nécessaire à la manipulation des opérations en base*/
     protected $em;
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, Security $security)
     {
         $this->em = $em;
+        $this->security = $security;
     }
 
-    public function GetListUser(){
-        return $this->em->getRepository(User::class)->findAll();
+    public function GetClientIdbyUser(){
+        $userClient = $this->em->getRepository(User::class)->find($this->security->getUser());
+        $client = $this->em->getRepository(Client::class)->findOneBy(array('user' => $userClient->getId()));
+        return $client;
     }
 }

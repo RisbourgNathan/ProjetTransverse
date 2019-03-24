@@ -27,16 +27,11 @@ class addPossessionByAgentForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $clients = $options['clients'];
-
         $builder
-            ->add('seller',EntityType::class, array(
+            ->add('seller', EntityType::class, array(
                 'class' => Client::class,
-                'choices' => $clients,
-                'choice_label'  => function(Client $client) {
-                    $user = $client->getUser();
-                    return $user->getLastname() . " " . $user->getFirstname();
-                }))
+                'choice_label' => 'user.firstName'
+            ))
             ->add('title', TextType::class)
             ->add('surface', IntegerType::class)
             ->add('RoomNumber', IntegerType::class)
@@ -63,6 +58,6 @@ class addPossessionByAgentForm extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setRequired('clients');
+
     }
 }

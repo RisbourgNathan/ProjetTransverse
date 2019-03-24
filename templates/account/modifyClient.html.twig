@@ -1,4 +1,14 @@
-{{ form_start(form) }}
-{{ form_widget(form) }}
-<button type="submit">Modifier</button>
-{{ form_end(form) }}
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Create Possession{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        <h1>Change your information</h1>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </body>
+</html>
