@@ -116,12 +116,18 @@ class Possession
      */
     private $agent;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\PossessionImage", mappedBy="possession")
+     */
+    private $possessionImages;
+
     public function __construct()
     {
         $this->outBuildings = new ArrayCollection();
         $this->ownOutBuilding = new ArrayCollection();
         $this->proposition = new ArrayCollection();
         $this->clientsWithThisPossessionAsFavorite = new ArrayCollection();
+        $this->possessionImages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -426,6 +432,37 @@ class Possession
     public function setAgent(?Agent $agent): self
     {
         $this->agent = $agent;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PossessionImage[]
+     */
+    public function getPossessionImage(): Collection
+    {
+        return $this->possessionImages;
+    }
+
+    public function addPossessionImage(PossessionImage $possessionImage): self
+    {
+        if (!$this->possessionImages->contains($possessionImage)) {
+            $this->possessionImages[] = $possessionImage;
+            $possessionImage->setPossession($this);
+        }
+
+        return $this;
+    }
+
+    public function removePossessionImage(PossessionImage $possessionImage): self
+    {
+        if ($this->possessionImages->contains($possessionImage)) {
+            $this->possessionImages->removeElement($possessionImage);
+            // set the owning side to null (unless already changed)
+            if ($possessionImage->getPossession() === $this) {
+                $possessionImage->setPossession(null);
+            }
+        }
 
         return $this;
     }

@@ -46,6 +46,11 @@ class PossessionImage
      */
     private $updatedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Possession", inversedBy="possessionImages")
+     */
+    private $possession;
+
     public function setImageFile(?File $imageFile = null)
     {
         $this->imageFile = $imageFile;
@@ -98,6 +103,18 @@ class PossessionImage
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getPossession(): ?Possession
+    {
+        return $this->possession;
+    }
+
+    public function setPossession(?Possession $possession): self
+    {
+        $this->possession = $possession;
 
         return $this;
     }
