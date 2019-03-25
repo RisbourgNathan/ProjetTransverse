@@ -10,9 +10,11 @@ use App\Entity\Possession;
 use App\Entity\User;
 use App\Forms\addPossessionByAgentForm;
 use App\Forms\PossessionType;
+use App\Forms\SearchForm;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use http\Exception;
+use phpDocumentor\Reflection\DocBlock\Description;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -51,10 +53,12 @@ class PossessionController extends AbstractController
      */
     public function list(Request $request)
     {
-
+        $form = $this->createForm(SearchForm::class);
+        $form->handleRequest($request);
         $possessionTypes = $this->possessionTypeManager->getAllPossessionTypes();
 
         $selectedPossessionType = $request->get('possessionTypeSelect');
+        $selectedPossessionCity = $request->get('possessionCitySearch');
 
         if ($selectedPossessionType == null)
         {
@@ -67,14 +71,14 @@ class PossessionController extends AbstractController
         if (count($possessions) == 0)
         {
             $possessions = null;
-        }
-
+        };
         dump($possessions);
-
         return $this->render("possession/listPossessions.html.twig", array(
             "possessions" => $possessions,
-            "possessionTypes" => $possessionTypes
+            "possessionTypes" => $possessionTypes,
+            'form' => $form->createView()
         ));
+
     }
 
     /**
