@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Possession;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\DBALException;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -19,32 +20,19 @@ class PossessionRepository extends ServiceEntityRepository
         parent::__construct($registry, Possession::class);
     }
 
-    // /**
-    //  * @return Possession[] Returns an array of Possession objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findBySearch($city, $price, $array_id): array
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $entityManager = $this->getEntityManager();
 
-    /*
-    public function findOneBySomeField($value): ?Possession
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $query = $entityManager->createQuery('
+        SELECT p FROM App\Entity\Possession p
+        WHERE p.sellingPrice < :price
+        AND p.city LIKE :city
+        AND p.type IN (:type_id)
+        ')
+        ->setParameter('price', $price)
+        ->setParameter('city', "%$city%")
+        ->setParameter('type_id', $array_id);
+        return $query->execute();
     }
-    */
 }

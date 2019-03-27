@@ -8,7 +8,13 @@
 
 namespace App\Forms;
 use App\Entity\Possession;
+use App\Entity\PossessionType;
+use App\Repository\PossessionTypeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,7 +29,28 @@ class SearchForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('city', TextType::class)
+            ->add('type_id',EntityType::class,[
+                'class' => PossessionType::class,
+                'choice_label' => 'name',
+                'choice_value' => 'id',
+                'multiple'=> true,
+                'expanded'=> true,
+                'label' => 'Type d\'annonce'
+            ])
+            ->add('city', TextType::class,[
+                'label' => 'Ville',
+                'required' => false
+            ])
+            ->add('price', ChoiceType::class,[
+                'choices' => [
+                    'Annonce < 100000' => 100000,
+                    '100000 < Annonce < 250000' => 250000,
+                    'Annonce > 250000' => 1000000,
+                ],
+                'multiple' => true,
+                'expanded' => true,
+                'label' => 'Prix'
+            ])
             ->add('valider', SubmitType::class);
     }
 }
