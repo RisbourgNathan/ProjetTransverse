@@ -15,6 +15,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -29,28 +30,26 @@ class SearchForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('type_id',EntityType::class,[
+            ->add('type',EntityType::class,[
                 'class' => PossessionType::class,
                 'choice_label' => 'name',
                 'choice_value' => 'id',
                 'multiple'=> true,
                 'expanded'=> true,
-                'label' => 'Type d\'annonce'
+                'label' => 'Type d\'annonce : '
             ])
             ->add('city', TextType::class,[
-                'label' => 'Ville',
+                'label' => 'Ville : ',
                 'required' => false
             ])
-            ->add('price', ChoiceType::class,[
-                'choices' => [
-                    'Annonce < 100000' => 100000,
-                    '100000 < Annonce < 250000' => 250000,
-                    'Annonce > 250000' => 1000000,
+            ->add('price', RangeType::class,[
+                'attr' => [
+                    'min' => 0,
+                    'max' => 500000,
+                    'class' => "priceSlider"
                 ],
-                'multiple' => true,
-                'expanded' => true,
-                'label' => 'Prix'
+                'label' => "Prix : "
             ])
-            ->add('valider', SubmitType::class);
+            ->add('Valider', SubmitType::class);
     }
 }

@@ -3,33 +3,61 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}<link href="{{ asset('css/main.css') }}" type="text/css" rel="stylesheet"> {% endblock %}
     </head>
     <body>
         {% block body %}
-            {{ form_start(form) }}
-            {{ form_row(form.city) }}
-            {{ form_row(form.type_id) }}
-            {{ form_row(form.price) }}
-            {{ form_end(form) }}
+            <div class="title">
+            <h1>ImmoConceptPlus<br>Une maison, une idée un concept</h1>
+            </div>
+            <div class="searchContainer">
+                <div class="searchTitle">
+                 <h2>Rechercher</h2>
+                </div>
+                <div class="formSearch">
+                    <div class="formSearchTitle">
+                        <h3>Filtres</h3>
+                    </div>
+                    {{ form_start(form) }}
+                    {{ form_row(form.city) }}<br>
+                    {{ form_label(form.type) }}<br>
+                    {{ form_widget(form.type) }}<br>
+                    {{ form_label(form.price) }}<span id="output"></span><br>
+                    {{ form_widget(form.price) }}
+                    <div class="submitSearch">
+                    {{ form_row(form.Valider) }}
+                    </div>
+                    {{ form_end(form) }}
+                </div>
                 {% if possessions %}
+                    <div class="flexbox">
                     {% for possession in possessions %}
-                            <div>
-                                <a href="{{ path('possession_show',{'id': possession.id}) }}"> <p>{{ possession.title }} - {{ possession.type.name }}</p></a>
+                            <div class="searchResults">
+                                <a href="{{ path('possession_show',{'id': possession.id}) }}"><div class="contentResult"><p>{{ possession.title }} - {{ possession.type.name }}</p>
                                 <p>Description : {{ possession.description }}</p>
-                                <p>{{ possession.floorNumber }}</p>
-                                <p>{{ possession.sellingPrice }}</p>
+                                <p>{{ possession.city }}</p>
+                                <p>{{ possession.floorNumber }} étage(s)</p>
+                                <p>{{ possession.sellingPrice }} €</p></div></a>
                             </div>
-                            <br/>
-                            <br/>
                     {% endfor %}
+                    </div>
                 {% else %}
-                    <div>
-                        <p>Aucune annonce ne correspond a vos criteres de recherche</p>
+                    <div class="noResults">
+                        <p>Aucune annonce ne correspond à vos critères de recherche</p>
                     </div>
                 {% endif %}
+            </div>
         {% endblock %}
 
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <script>
+                var slider = document.getElementById("search_form_price");
+                var output = document.getElementById("output");
+                output.innerHTML = " < "+ slider.value + " €";
+                slider.oninput = function () {
+                    output.innerHTML = " < "+this.value + " €";
+                }
+            </script>
+        {% endblock %}
     </body>
 </html>

@@ -45,7 +45,7 @@ class PossessionManager
     public function getPossessionsBySearch($city, $price, $type_id)
     {
          $repository = new PossessionRepository($this->registry);
-         return $repository->findBySearch($city,$price,$type_id);
+         return $repository->findBySearch($city, $price, $type_id);
     }
 
 }

@@ -55,20 +55,22 @@ class PossessionController extends AbstractController
      */
     public function list(Request $request)
     {
-        $possessions = $this->possessionManager->getAllPossessions();
-        $form = $this->createForm(SearchForm::class,$possessions);
+        $form = $this->createForm(SearchForm::class);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $city = $form->get('city')->getData();
-            $price = max($form->get('price')->getData());
-            $type_id = $form->get('type_id')->getData();
+
+            $price = $form->get('price')->getData();
+
+            $type_id = $form->get('type')->getData();
+
             $array_id = array();
             foreach ($type_id as $type)
             {
                 array_push($array_id,$type->getId());
             }
-            $id_final = implode(',', $array_id);
-            $possessions = $this->possessionManager->getPossessionsBySearch($city, $price, $id_final);
+            $possessions = $this->possessionManager->getPossessionsBySearch($city, $price, $array_id);
         }
         else{
             $possessions = $this->possessionManager->getAllPossessions();

@@ -20,7 +20,7 @@ class PossessionRepository extends ServiceEntityRepository
         parent::__construct($registry, Possession::class);
     }
 
-    public function findBySearch($city, $price, $array_id): array
+    public function findBySearch($city, $price, $array_id)
     {
         $entityManager = $this->getEntityManager();
 
