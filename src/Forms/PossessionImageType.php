@@ -23,6 +23,11 @@ class PossessionImageType extends AbstractType
         $builder
             ->add('imageName', TextType::class, [
                 'required' => false,
+                'label' => 'Image Name: '
+            ])
+            ->add('description', TextType::class, [
+                'required' => false,
+                'label' => 'Description: '
             ])
             ->add('imageFile', FileType::class);
     }

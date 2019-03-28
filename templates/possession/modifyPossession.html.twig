@@ -132,6 +132,8 @@
             {% for image in possessionImages %}
                 <div>
                     <p>{{ image.imageName }}</p>
+                    <img src="{{ asset(vich_uploader_asset(image, 'imageFile', 'App\\Entity\\PossessionImage')) }}" alt="{{ image.imageName }}" style="width: 200px;" />
+                    <p>Description: {{ image.description }}</p>
                     <a href="{{ path('possImage_remove', {'id': image.id}) }}">Remove</a>
                 </div>
             {% endfor %}
