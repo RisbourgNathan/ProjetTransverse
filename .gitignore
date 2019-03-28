@@ -100,3 +100,8 @@ yarn-error.log
 public/images/*
 /public/images/*
 
+/composer.lock
+composer.lock
+
+symfony.lock
+/symfony.lock
