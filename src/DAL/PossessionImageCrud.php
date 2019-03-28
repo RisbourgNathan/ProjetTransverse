@@ -23,9 +23,7 @@ class PossessionImageCrud
 
     public function remove(PossessionImage $possessionImage)
     {
-        var_dump($possessionImage->getImageName());
         $possessionImage->setPossession(null);
-//        $possessionImage->setImageName(null);
         $this->entityManager->remove($possessionImage);
         $this->entityManager->flush();
     }

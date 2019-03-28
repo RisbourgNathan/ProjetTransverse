@@ -21,10 +21,6 @@ class PossessionImageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-//            ->add('imageName', TextType::class, [
-//                'required' => false,
-//                'label' => 'Image Name: '
-//            ])
             ->add('description', TextType::class, [
                 'required' => false,
                 'label' => 'Description: '
