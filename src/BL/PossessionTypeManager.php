@@ -3,8 +3,10 @@
 namespace App\BL;
 
 
+use App\Entity\Possession;
 use App\Entity\PossessionType;
 use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\Types\This;
 
 class PossessionTypeManager
 {

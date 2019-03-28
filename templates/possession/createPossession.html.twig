@@ -15,8 +15,8 @@
     <body>
         <script>
             // setup an "add a tag" link
-            var $addOwnBuilding = $('<a href="#" class="add_tag_link">Add a tag</a>');
-            var $addPossessionImage = $('<a href="#" class="add_possessionImage_link">Add a tag</a>');
+            var $addOwnBuilding = $('<a href="#" class="add_tag_link">Add an outbuilding</a>');
+            var $addPossessionImage = $('<a href="#" class="add_possessionImage_link">Add a photo</a>');
             var $newLinkLi = $('<li></li>').append($addOwnBuilding);
             var $newLinkLiPossIm = $('<li></li>').append($addPossessionImage);
 
@@ -126,8 +126,6 @@
             <ul class="possessionImage" data-prototype="{{ form_widget(form.possessionImage.vars.prototype)|e('html_attr') }}">
                 {% for image in form.possessionImage %}
                     <li>{{ form_row(image) }}</li>
-                    <li>{{ form_row(image.description) }}</li>
-                    <li>{{ form_row(image.surface) }}</li>
                 {% endfor %}
             </ul>
             {{ form_end(form) }}

@@ -22,5 +22,9 @@
                 <p>Description : {{ ownOutbuilding.description }}</p>
             </div>
         {% endfor %}
+
+        {% for image in images %}
+            <img src="{{ asset(vich_uploader_asset(image, 'imageFile', 'App\\Entity\\PossessionImage')) }}" alt="{{ image.imageName }}" />
+        {% endfor %}
     </body>
 </html>

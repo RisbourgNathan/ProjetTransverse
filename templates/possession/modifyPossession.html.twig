@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Create Possession{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous">
+
+    </script>
+</head>
+
+<body>
+<script>
+    // setup an "add a tag" link
+    var $addOwnBuilding = $('<a href="#" class="add_tag_link">Add an outbuilding</a>');
+    var $addPossessionImage = $('<a href="#" class="add_possessionImage_link">Add a photo</a>');
+    var $newLinkLi = $('<li></li>').append($addOwnBuilding);
+    var $newLinkLiPossIm = $('<li></li>').append($addPossessionImage);
+
+    jQuery(document).ready(function() {
+        // Get the ul that holds the collection of tags
+        var $collectionHolder = $('ul.ownoutbuilding');
+
+        var $possessionImageHolder = $('ul.possessionImage');
+
+        // add a delete link to all of the existing tag form li elements
+        $collectionHolder.find('li').each(function() {
+            addTagFormDeleteLink($(this));
+        });
+
+        $possessionImageHolder.find('li').each(function() {
+            addTagFormDeleteLink($(this));
+        });
+
+        // add the "add a tag" anchor and li to the tags ul
+        $collectionHolder.append($newLinkLi);
+
+        $possessionImageHolder.append($newLinkLiPossIm);
+
+        // count the current form inputs we have (e.g. 2), use that as the new
+        // index when inserting a new item (e.g. 2)
+        $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+        $possessionImageHolder.data('index', $possessionImageHolder.find(':input').length);
+
+        $addOwnBuilding.on('click', function(e) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+
+            // add a new tag form (see code block below)
+            addTagForm($collectionHolder, $newLinkLi);
+        });
+
+        $addPossessionImage.on('click', function (e) {
+            e.preventDefault();
+
+            // add a new tag form (see code block below)
+            addTagForm($possessionImageHolder, $newLinkLiPossIm);
+        });
+
+
+    });
+
+    function addTagForm($collectionHolder, $newLinkLi) {
+        // Get the data-prototype explained earlier
+        var prototype = $collectionHolder.data('prototype');
+
+        // get the new index
+        var index = $collectionHolder.data('index');
+
+        // Replace '$$name$$' in the prototype's HTML to
+        // instead be a number based on how many items we have
+        var newForm = prototype.replace(/__name__/g, index);
+
+        // increase the index with one for the next item
+        $collectionHolder.data('index', index + 1);
+
+        // Display the form in the page in an li, before the "Add a tag" link li
+        var $newFormLi = $('<li></li>').append(newForm);
+
+        // also add a remove button, just for this example
+        $newFormLi.append('<a href="#" class="remove-tag">x</a>');
+
+        $newLinkLi.before($newFormLi);
+
+        // handle the removal, just for this example
+        $('.remove-tag').click(function(e) {
+            e.preventDefault();
+
+            $(this).parent().remove();
+
+            return false;
+        });
+
+        // add a delete link to the new form
+        addTagFormDeleteLink($newFormLi);
+    }
+
+    function addTagFormDeleteLink($tagFormLi) {
+        var $removeFormButton = $('<button type="button">Delete this tag</button>');
+        $tagFormLi.append($removeFormButton);
+
+        $removeFormButton.on('click', function(e) {
+            // remove the li for the tag form
+            $tagFormLi.remove();
+        });
+    }
+</script>
+
+<h1>Create Possession</h1>
+{{ form_start(form) }}
+{# render the task's only field: description #}
+
+<ul class="ownoutbuilding" data-prototype="{{ form_widget(form.ownoutbuilding.vars.prototype)|e('html_attr') }}">
+    {#iterate over each existing tag and render its only field: name#}
+    {% for own in form.ownoutbuilding %}
+        <li>{{ form_row(own) }}</li>
+    {% endfor %}
+</ul>
+
+<ul class="possessionImage" data-prototype="{{ form_widget(form.possessionImage.vars.prototype)|e('html_attr') }}">
+    {% for image in form.possessionImage %}
+        <li>{{ form_row(image) }}</li>
+    {% endfor %}
+</ul>
+{{ form_end(form) }}
+
+    {% if possessionImages %}
+            {% for image in possessionImages %}
+                <div>
+                    <p>{{ image.imageName }}</p>
+                    <a href="{{ path('possImage_remove', {'id': image.id}) }}">Remove</a>
+                </div>
+            {% endfor %}
+    {% endif %}
+
+</body>
+</html>

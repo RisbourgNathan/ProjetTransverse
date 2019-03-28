@@ -8,6 +8,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PossessionImageRepository")
+ * @Vich\Uploadable
  */
 class PossessionImage
 {
@@ -20,7 +21,6 @@ class PossessionImage
 
     /**
      * @Vich\UploadableField(mapping="possession_image", fileNameProperty="imageName", size="imageSize")
-     *
      * @var File
      */
     private $imageFile;
@@ -51,6 +51,11 @@ class PossessionImage
      */
     private $possession;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $description;
+
     public function setImageFile(?File $imageFile = null)
     {
         $this->imageFile = $imageFile;
@@ -76,7 +81,7 @@ class PossessionImage
         return $this->imageName;
     }
 
-    public function setImageName(string $imageName): self
+    public function setImageName(?string $imageName): self
     {
         $this->imageName = $imageName;
 
@@ -115,6 +120,18 @@ class PossessionImage
     public function setPossession(?Possession $possession): self
     {
         $this->possession = $possession;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

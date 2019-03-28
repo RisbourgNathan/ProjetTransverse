@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -117,7 +116,7 @@ class Possession
     private $agent;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PossessionImage", mappedBy="possession")
+     * @ORM\OneToMany(targetEntity="App\Entity\PossessionImage", mappedBy="possession", orphanRemoval=true)
      */
     private $possessionImages;
 
@@ -465,5 +464,10 @@ class Possession
         }
 
         return $this;
+    }
+
+    public function setPossessionImages($value)
+    {
+        $this->possessionImages = $value;
     }
 }

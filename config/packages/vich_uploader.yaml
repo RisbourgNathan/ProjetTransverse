@@ -5,4 +5,7 @@ vich_uploader:
         possession_image:
             uri_prefix: /images/possessions
             upload_destination: '%kernel.project_dir%/public/images/possessions'
-            namer: Vich\UploaderBundle\Naming\OrignameNamer
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
+            delete_on_remove: true
+            delete_on_update: true
+            inject_on_load: true

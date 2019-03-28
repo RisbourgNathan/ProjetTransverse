@@ -48,4 +48,8 @@ class PossessionManager
          return $repository->findBySearch($city, $price, $type_id);
     }
 
+    public function getPossessionById($id): Possession
+    {
+        return $this->entityManager->getRepository(Possession::class)->find($id);
+    }
 }
