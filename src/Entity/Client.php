@@ -13,8 +13,9 @@ class Client
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="uuid")
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
 
@@ -52,10 +53,7 @@ class Client
         $this->favoritePossessions = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+
 
     public function getUser(): ?User
     {
@@ -190,5 +188,10 @@ class Client
         }
 
         return $this;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 }
