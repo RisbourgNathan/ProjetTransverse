@@ -9,10 +9,12 @@ use App\Entity\Client;
 use App\Entity\Possession;
 use App\Entity\User;
 use App\Forms\addPossessionByAgentForm;
-use App\Forms\PossessionType;
+use App\Forms\SearchForm;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use http\Exception;
+use phpDocumentor\Reflection\DocBlock\Description;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,17 +32,19 @@ class PossessionController extends AbstractController
     private $possessionManager;
     private $possessionTypeManager;
     private $clientManager;
+    private $registry;
 
     /**
      * PossessionController constructor.
      * @param EntityManagerInterface $entityManager
      * @param Security $security
      */
-    public function __construct(EntityManagerInterface $entityManager, Security $security)
+    public function __construct(EntityManagerInterface $entityManager, Security $security, RegistryInterface $registry)
     {
         $this->entityManager = $entityManager;
         $this->security = $security;
-        $this->possessionManager = new PossessionManager($entityManager);
+        $this->registry = $registry;
+        $this->possessionManager = new PossessionManager($entityManager, $registry);
         $this->possessionTypeManager = new PossessionTypeManager($entityManager);
     }
 
@@ -51,30 +55,37 @@ class PossessionController extends AbstractController
      */
     public function list(Request $request)
     {
-
-        $possessionTypes = $this->possessionTypeManager->getAllPossessionTypes();
-
-        $selectedPossessionType = $request->get('possessionTypeSelect');
-
-        if ($selectedPossessionType == null)
+        $form = $this->createForm(SearchForm::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
         {
-            $possessions = $this->possessionManager->getAllPossessions();
+            $city = $form->get('city')->getData();
+
+            $price = $form->get('price')->getData();
+
+            $type_id = $form->get('type')->getData();
+
+            $array_id = array();
+            foreach ($type_id as $type)
+            {
+                array_push($array_id,$type->getId());
+            }
+            $possessions = $this->possessionManager->getPossessionsBySearch($city, $price, $array_id);
         }
-        else {
-            $possessions = $this->possessionManager->getPossessionsFromTypeId($selectedPossessionType);
+        else{
+            $possessions = $this->possessionManager->getAllPossessions();
         }
 
         if (count($possessions) == 0)
         {
             $possessions = null;
-        }
-
+        };
         dump($possessions);
-
         return $this->render("possession/listPossessions.html.twig", array(
             "possessions" => $possessions,
-            "possessionTypes" => $possessionTypes
+            'form' => $form->createView()
         ));
+
     }
 
     /**
