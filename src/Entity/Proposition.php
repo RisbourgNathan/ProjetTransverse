@@ -44,7 +44,7 @@ class Proposition
      */
     private $counterProposition;
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }

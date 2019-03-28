@@ -53,8 +53,6 @@ class Client
         $this->favoritePossessions = new ArrayCollection();
     }
 
-
-
     public function getUser(): ?User
     {
         return $this->user;

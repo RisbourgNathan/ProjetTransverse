@@ -130,7 +130,7 @@ class Possession
         $this->possessionImages = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
@@ -315,10 +315,6 @@ class Possession
         return $this->ownOutBuilding;
     }
 
-    /**
-     * @param OwnOutBuilding $ownOutBuilding
-     * @return Possession
-     */
     public function addOwnOutBuilding(OwnOutBuilding $ownOutBuilding): self
     {
         if (!$this->ownOutBuilding->contains($ownOutBuilding)) {
@@ -409,6 +405,7 @@ class Possession
     public function setPicturePath(string $picture_path): self
     {
         $this->picture_path = $picture_path;
+
         return $this;
     }
 

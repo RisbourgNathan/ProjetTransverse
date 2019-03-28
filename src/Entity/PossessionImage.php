@@ -72,7 +72,7 @@ class PossessionImage
         return $this->imageFile;
     }
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
@@ -82,7 +82,7 @@ class PossessionImage
         return $this->imageName;
     }
 
-    public function setImageName(?string $imageName): self
+    public function setImageName(string $imageName): self
     {
         $this->imageName = $imageName;
 
