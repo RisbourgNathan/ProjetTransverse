@@ -186,9 +186,8 @@ class BackOfficeController extends AbstractController
             if ($isMainAgency)
             {
                 $agency->setIsMainAgency(true);
-            }
-            else {
-                $agency->setIsMainAgency(false);
+            } else {
+                $agency->setIsMainAgency(null);
             }
 
             $this->AgencyCrud->GetInscriptionData($agency);

@@ -5,9 +5,11 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AgencyRepository")
+ * @UniqueEntity(fields={"is_main_agency"}, ignoreNull=true, message="There already is a main agency")
  */
 class Agency
 {
@@ -40,7 +42,7 @@ class Agency
     private $street;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $is_main_agency;
 
@@ -127,7 +129,7 @@ class Agency
         return $this->is_main_agency;
     }
 
-    public function setIsMainAgency(bool $is_main_agency): self
+    public function setIsMainAgency(?bool $is_main_agency): self
     {
         $this->is_main_agency = $is_main_agency;
 
