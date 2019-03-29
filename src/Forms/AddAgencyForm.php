@@ -31,7 +31,9 @@ class AddAgencyForm extends AbstractType
             ->add('zip_code', NumberType::class)
             ->add('phone', NumberType::class)
             ->add('street', TextType::class)
-            ->add('is_main_agency', CheckboxType::class)
+            ->add('is_main_agency', CheckboxType::class, [
+                'required' => false,
+            ])
             ->add('agency_cost', NumberType::class)
         ;
     }

@@ -180,6 +180,17 @@ class BackOfficeController extends AbstractController
         $form = $this->createForm(AddAgencyForm::class,$agency);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
+
+            $isMainAgency = $form['is_main_agency']->getData();
+
+            if ($isMainAgency)
+            {
+                $agency->setIsMainAgency(true);
+            }
+            else {
+                $agency->setIsMainAgency(false);
+            }
+
             $this->AgencyCrud->GetInscriptionData($agency);
             return $this->redirectToRoute('backoffice');
         }
