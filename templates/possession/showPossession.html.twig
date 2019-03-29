@@ -1,30 +1,147 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Create Possession{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <script
-                src="https://code.jquery.com/jquery-3.3.1.js"
-                integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-                crossorigin="anonymous">
-
-        </script>
+        <title>{% block title %}Show Possession{% endblock %}</title>
+        {% block stylesheets %}<link href="{{ asset('css/offer_and_search.css') }}" type="text/css" rel="stylesheet"> {% endblock %}
     </head>
-
     <body>
-        <h1>Show possession: {{ possession.title }}</h1>
+        {% block body %}
+        {% include 'account/infosAccount.html.twig' %}
+        <div class="title">
+            <h1>{{ possession.title }}</h1>
+        </div>
 
-        {% for ownOutbuilding in possOwnOutbuilding %}
-            <div>
-                <p>Dependence : {{ ownOutbuilding.outbuilding.name }}</p>
-                <p>Surface : {{ ownOutbuilding.surface }}</p>
-                <p>Description : {{ ownOutbuilding.description }}</p>
+                <div class="divImgPossession">
+                    <div class="arrowRight">
+                        <img id="carouselArrowRight" src="{{ asset('images/design/arrow_left.png') }}" alt="arrow_right">
+                    </div>
+                    <div class="littleImgLeftDiv">
+                        <img id="littleImgLeft" src="" alt="img_left">
+                    </div>
+                    <div class="imgDiv">
+                        <div id="numberOfImg"></div>
+                        <img id="imgPossession" src="" alt="{{ possession.possessionImage.first.imageName }}" /><br>
+                        <div id="imgDescription"></div>
+                    </div>
+                    <div class="littleImgRightDiv">
+                        <img id="littleImgRight" src="" alt="img_right">
+                    </div>
+                    <div class="arrowLeft">
+                        <img id="carouselArrowLeft" src="{{ asset('images/design/arrow_left.png') }}" alt="arrow_left">
+                    </div>
+                </div>
+                <div class="detailsPossessionContainer">
+                    <h2>{{ possession.type.name }}</h2>
+                    <div class="detailsPossession">
+                        {{ possession.floorNumber }} étages
+                    </div>
+                    <div class="detailsPossession">
+                        {{ possession.roomNumber }} pièces
+                    </div>
+                    <div class="detailsPossession">
+                        {{ possession.surface }} M²
+                    </div>
+                </div>
+            <div class="infosPossession">
+                <div class="infosPossessionDescription">
+                    <h3>Description</h3>
+                    <p>{{ possession.description }}</p>
+                </div>
+                <div class="infosPossessionPlus">
+                <h3>Les plus</h3>
+                <ul>
+                    {% if possession.orientation and possession.orientation is same as ("Sud") or possession.orientation is same as ("sud") %}
+                    <li>
+                        Orientation {{ possession.orientation }}
+                    </li>
+                    {% endif %}
+                    {% for ownOutbuilding in possOwnOutbuilding %}
+                       <li>{{ ownOutbuilding.outbuilding.name }} ({{ ownOutbuilding.surface }}m²)</li>
+                    {% endfor %}
+                </ul>
+                </div>
+                <div class="infosPossessionGeneral">
+                    <h3>Général</h3>
+                    <ul>
+                        <li>Surface de {{ possession.surface }} m²</li>
+                        <li>Construit en {{ possession.constructionDate }}</li>
+                        <li>{{ possession.roomNumber }} pièces</li>
+                    </ul>
+                </div>
+                <div class="agencyInfos">
+                    <h3>Contacter l'agence</h3>
+                    {{ agency.name }}<br>
+                    <p>0{{ agency.phone }}</p>
+                    <p>Adresse : {{ agency.street }}<br>
+                    {{ agency.city }} - {{ agency.zipCode }}</p>
+                </div>
             </div>
-        {% endfor %}
+        {% endblock %}
 
-        {% for image in images %}
-            <img src="{{ asset(vich_uploader_asset(image, 'imageFile', 'App\\Entity\\PossessionImage')) }}" alt="{{ image.imageName }}" />
-        {% endfor %}
+        {% block myJavascript %}
+            <script type="application/javascript">
+                var arraysrc = [];
+                var arraydesc = [];
+                {% for image in images %}
+                    arraysrc.push("{{ asset(vich_uploader_asset(image, 'imageFile', 'App\\Entity\\PossessionImage')) }}");
+                    arraydesc.push("{{ image.description }}");
+                {% endfor %}
+                var arrowRight = document.getElementById("carouselArrowLeft");
+                var arrowLeft = document.getElementById("carouselArrowRight");
+                var img = document.getElementById("imgPossession");
+                var imgleft = document.getElementById("littleImgLeft");
+                var imgright = document.getElementById("littleImgRight");
+                var desc = document.getElementById("imgDescription");
+                var nbOfPhotos = document.getElementById("numberOfImg");
+                var i = 0;
+                imgleft.src = arraysrc[(arraysrc.length - 1)];
+                imgright.src = arraysrc[i+1];
+                img.src = arraysrc[i];
+                desc.innerHTML = arraydesc[i];
+                nbOfPhotos.innerHTML = (i+1)+"/"+arraysrc.length;
+
+                arrowLeft.onclick = function () {
+                    i = i-1;
+                    if(arraysrc[i] === undefined){
+                        i = arraysrc.length - 1;
+                        imgleft.src = arraysrc[arraysrc.length-2];
+                        imgright.src = arraysrc[0];
+                    }
+                    else if(arraysrc[i-1] === undefined){
+                        imgleft.src = arraysrc[arraysrc.length-1];
+                        imgright.src = arraysrc[i+1];
+                    }
+                    else{
+                        imgleft.src = arraysrc[i-1];
+                        imgright.src = arraysrc[i+1];
+                    }
+                    img.src = arraysrc[i];
+                    desc.innerHTML = arraydesc[i];
+                    nbOfPhotos.innerHTML = (i+1)+"/"+arraysrc.length;
+                };
+                arrowRight.onclick = function () {
+                    i = i+1;
+                    if(arraysrc[i] === undefined){
+                        i = 0;
+                        imgleft.src = arraysrc[arraysrc.length-1];
+                        imgright.src = arraysrc[i+1];
+                    }
+                    else if(arraysrc[i+1] === undefined){
+                        imgright.src = arraysrc[0];
+                        imgleft.src = arraysrc[i-1];
+                    }
+                    else{
+                        imgleft.src = arraysrc[i-1];
+                        imgright.src = arraysrc[i+1];
+                    }
+                    img.src = arraysrc[i];
+                    desc.innerHTML = arraydesc[i];
+                    nbOfPhotos.innerHTML = (i+1)+"/"+arraysrc.length;
+                };
+
+            </script>
+        {% endblock %}
+
     </body>
 </html>

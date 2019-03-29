@@ -59,6 +59,11 @@ class Agency
      */
     private $picture_path;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $phone;
+
     public function __construct()
     {
         $this->agents = new ArrayCollection();
@@ -180,6 +185,18 @@ class Agency
     public function setPicturePath(?string $picture_path): self
     {
         $this->picture_path = $picture_path;
+
+        return $this;
+    }
+
+    public function getPhone(): ?int
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?int $phone): self
+    {
+        $this->phone = $phone;
 
         return $this;
     }

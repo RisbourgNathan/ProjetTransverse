@@ -11,6 +11,7 @@ use App\BL\AdminManager;
 use App\BL\AgencyDirectorManager;
 use App\BL\AgencyManager;
 use App\BL\AgentManager;
+use App\BL\PossessionManager;
 use App\BL\UserManager;
 use App\DAL\AdminCrud;
 use App\DAL\AgencyCrud;
@@ -28,6 +29,7 @@ use App\Forms\modifyAgencyDirectorForm;
 use App\Forms\modifyAgencyForm;
 use App\Forms\modifyAgentForm;
 use App\Forms\RegisterForm;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -55,7 +57,9 @@ class BackOfficeController extends AbstractController
     private $AgencyDirectorManager;
     private $AdminCrud;
     private $AdminManager;
-    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder, Security $security)
+    private $possessionManager;
+    private $registry;
+    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder, Security $security, RegistryInterface $registry)
     {
         $this->UserCrud = new UserCrud($em);
         $this->UserManager = new UserManager($em,$security);
@@ -67,6 +71,8 @@ class BackOfficeController extends AbstractController
         $this->AgencyDirectorManager = new AgencyDirectorManager($em);
         $this->AdminCrud = new AdminCrud($em);
         $this->AdminManager = new AdminManager($em);
+        $this->possessionManager = new PossessionManager($em,$registry);
+        $this->registry = $registry;
         $this->em = $em;
     }
 
@@ -269,6 +275,14 @@ class BackOfficeController extends AbstractController
     public function getAdminList(){
         $list =  $this->AdminManager->getListAdmin();
         return $this->render('backoffice/getListAdmin.html.twig', ['ListAdmin' => $list]);
+    }
+
+    /**
+     * @Route("/showPossessionList", name="showPossessionList")
+     */
+    public function showPossessionList(){
+        $list = $this->possessionManager->getAllPossessions();
+        return $this->render('backoffice/showPossessionList.html.twig', ['listPossession' => $list]);
     }
 
     /**

@@ -7,6 +7,7 @@
  */
 
 namespace App\Controller;
+use App\BL\UuidService;
 use App\DAL\ClientCrud;
 use App\DAL\UserCrud;
 use App\Entity\Client;
@@ -18,22 +19,25 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Security\Core\Security;
 
 class RegistrationController extends AbstractController
 {
     private $entityManager;
     private $userCrud;
     private $clientCrud;
+    private $uuidService;
 
     /**
      * RegistrationController constructor.
      * @param EntityManagerInterface $entityManager
      */
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager, Security $security)
     {
         $this->entityManager = $entityManager;
         $this->userCrud = new UserCrud($entityManager);
         $this->clientCrud = new ClientCrud($entityManager);
+        $this->uuidService = new UuidService($entityManager, $security);
     }
 
     /**
@@ -44,6 +48,7 @@ class RegistrationController extends AbstractController
         // 1) build the form, set the future user and client
         $user = new User();
         $client = new Client();
+        $client->setSponsor(null);
         $form = $this->createForm(RegisterForm::class, $user);
 
         // 2) handle the submit (will only happen on POST)
@@ -54,6 +59,34 @@ class RegistrationController extends AbstractController
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
             $user->setRoles(["ROLE_CLIENT"]);
+
+            try {
+                $this->uuidService->setUserSponsorship($user);
+            } catch (\Exception $e) {
+                return $this->render(
+                    'registration/register.html.twig',
+                    array('form' => $form->createView())
+                );
+            }
+
+            $sponsorsCode = $form['sponsorCode']->getData();
+            $sponsor = $this->uuidService->getSponsorFromCode($sponsorsCode);
+
+            if ($sponsorsCode)
+            {
+                if ($sponsor)
+                {
+                    $sponsor->setSponsorshipCodeState(true);
+                    $client->setSponsor($sponsor->getClients()->first());
+                }
+                else {
+                    return $this->render(
+                        'registration/register.html.twig',
+                        array('form' => $form->createView())
+                    );
+                }
+            }
+
             // 4) save the User and Client!
             $this->userCrud->createUser($user);
             $this->clientCrud->createClient($client, $user);

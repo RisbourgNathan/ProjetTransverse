@@ -22,6 +22,7 @@ class modifyAgencyForm extends AbstractType
             ->add('name', TextType::class)
             ->add('city', TextType::class)
             ->add('zip_code', NumberType::class)
+            ->add('phone',NumberType::class)
             ->add('street', TextType::class)
             ->add('is_main_agency', CheckboxType::class)
             ->add('agency_cost', NumberType::class)

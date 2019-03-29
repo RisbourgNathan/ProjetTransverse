@@ -94,6 +94,16 @@ class User implements UserInterface
      */
     private $agencyDirectors;
 
+    /**
+     * @ORM\Column(type="uuid", nullable=true)
+     */
+    private $sponsorshipCode;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $sponsorshipCodeState;
+
     public function __construct()
     {
         $this->agents = new ArrayCollection();
@@ -371,6 +381,30 @@ class User implements UserInterface
                 $agencyDirector->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSponsorshipCode()
+    {
+        return $this->sponsorshipCode;
+    }
+
+    public function setSponsorshipCode($sponsorshipCode): self
+    {
+        $this->sponsorshipCode = $sponsorshipCode;
+
+        return $this;
+    }
+
+    public function getSponsorshipCodeState(): ?bool
+    {
+        return $this->sponsorshipCodeState;
+    }
+
+    public function setSponsorshipCodeState(?bool $sponsorshipCodeState): self
+    {
+        $this->sponsorshipCodeState = $sponsorshipCodeState;
 
         return $this;
     }

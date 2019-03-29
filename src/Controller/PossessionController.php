@@ -238,11 +238,12 @@ class PossessionController extends AbstractController
     {
         $possession = $this->entityManager->getRepository(Possession::class)->find($id);
         $possessionOutbuildings = $possession->getOwnOutbuilding();
-
         $images = $possession->getPossessionImage();
+        $agency = $possession->getAgent()->getAgency();
 
         return $this->render("possession/showPossession.html.twig", array("possession" => $possession,
             "possOwnOutbuilding" => $possessionOutbuildings,
-            "images" => $images));
+            "images" => $images,
+            "agency" => $agency));
     }
 }

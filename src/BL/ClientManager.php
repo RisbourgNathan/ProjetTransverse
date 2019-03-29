@@ -9,6 +9,7 @@
 namespace App\BL;
 use App\Entity\User;
 use App\Entity\Client;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpKernel\Tests\Controller;
 
@@ -22,8 +23,9 @@ class ClientManager
     }
 
 
-    public function GetListClient(){
-    return $this->em->getRepository(Client::class)->findAll();
+    public function GetListClient()
+    {
+        return $this->em->getRepository(Client::class)->findAll();
     }
 
     public function GetClientById($idClient){
