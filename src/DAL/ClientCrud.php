@@ -38,7 +38,6 @@ class ClientCrud
     public function createClient(Client $client, User $user)
     {
         $client->setUser($user);
-        $client->setSponsor(null);
         $this->entityManager->persist($client);
         $this->entityManager->flush();
     }

@@ -35,6 +35,11 @@ class RegisterForm extends AbstractType
                 'first_options'  => array('label' => 'Password'),
                 'second_options' => array('label' => 'Repeat Password'),
             ))
+            ->add('sponsorCode', TextType::class, [
+                'label' => 'Sponsor\'s code',
+                'required' => false,
+                'mapped' => false
+            ])
         ;
     }
 
