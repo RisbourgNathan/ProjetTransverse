@@ -24,7 +24,7 @@ body{
     left: 1vw;
 }
 .flexbox{
-    top: -10vw;
+    top: -1vw;
     left: 1vw;
     position: relative;
     display: inline-flex;
@@ -82,4 +82,51 @@ button{
     top: -5vw;
     font-size: 1.2vw;
     width: 50%;
+}
+.imgSearchPossession{
+    position: relative;
+    width: 15vw;
+    height: 10vw;
+}
+.divImgPossession{
+    text-align: center;
+    width: 30vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+#carouselArrowLeft{
+    position: absolute;
+    width: 5vw;
+    top: 25%;
+    left: 65%;
+    z-index: 1;
+    cursor: pointer;
+}
+#carouselArrowRight{
+    position: absolute;
+    width: 2vw;
+    top: 25%;
+    left: 25%;
+    z-index: 1;
+    cursor: pointer;
+}
+#imgPossession{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30vw;
+    height: 20vw;
+}
+.detailsPossessionContainer{
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    width: 30vw;
+}
+.detailsPossession{
+    position: relative;
+    display: inline-block;
+    background-color: white;
+    width: 3vw;
+    text-align: center;
 }

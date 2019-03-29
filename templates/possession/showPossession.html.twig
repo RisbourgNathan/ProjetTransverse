@@ -1,20 +1,34 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Create Possession{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <script
-                src="https://code.jquery.com/jquery-3.3.1.js"
-                integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-                crossorigin="anonymous">
-
-        </script>
+        <title>{% block title %}Show Possession{% endblock %}</title>
+        {% block stylesheets %}<link href="{{ asset('css/main.css') }}" type="text/css" rel="stylesheet"> {% endblock %}
     </head>
-
     <body>
-        <h1>Show possession: {{ possession.title }}</h1>
+        {% block body %}
+        <div class="title">
+            <h1>{{ possession.title }}</h1>
+        </div>
 
+                <div class="divImgPossession">
+                    <img id="carouselArrowRight" src="{{ asset('images/design/arrow_right.png') }}" alt="arrow_right">
+                    <img id="carouselArrowLeft" src="{{ asset('images/design/arrow_left.png') }}" alt="arrow_left">
+                    <img id="imgPossession" src="" alt="{{ possession.possessionImage.first.imageName }}" /><br>
+                    <span id="imgDescription"></span>
+                </div>
+                <div class="detailsPossessionContainer">
+                    {{ possession.type.name }}<br>
+                    <div class="detailsPossession">
+                        {{ possession.floorNumber }} étages
+                    </div>
+                    <div class="detailsPossession">
+                        {{ possession.roomNumber }} pièces
+                    </div>
+                    <div class="detailsPossession">
+                        {{ possession.surface }} M²
+                    </div>
+                </div>
         {% for ownOutbuilding in possOwnOutbuilding %}
             <div>
                 <p>Dependence : {{ ownOutbuilding.outbuilding.name }}</p>
@@ -22,9 +36,36 @@
                 <p>Description : {{ ownOutbuilding.description }}</p>
             </div>
         {% endfor %}
+        {% endblock %}
 
-        {% for image in images %}
-            <img src="{{ asset(vich_uploader_asset(image, 'imageFile', 'App\\Entity\\PossessionImage')) }}" alt="{{ image.imageName }}" />
-        {% endfor %}
+        {% block myJavascript %}
+            <script type="application/javascript">
+                var arraysrc = [];
+                var arraydesc = [];
+                {% for image in images %}
+                    arraysrc.push("{{ asset(vich_uploader_asset(image, 'imageFile', 'App\\Entity\\PossessionImage')) }}");
+                    arraydesc.push("{{ image.description }}");
+                {% endfor %}
+                var arrowLeft = document.getElementById("carouselArrowLeft");
+                var arrowRight = document.getElementById("carouselArrowRight");
+                var img = document.getElementById("imgPossession");
+                var desc = document.getElementById("imgDescription");
+                var i = 0;
+                img.src = arraysrc[i];
+                desc.innerHTML = arraydesc[i];
+                arrowLeft.onclick = function () {
+                    i = i+1;
+                    img.src = arraysrc[i];
+                    desc.innerHTML = arraydesc[i];
+                };
+                arrowRight.onclick = function () {
+                    i = i-1;
+                    img.src = arraysrc[i];
+                    desc.innerHTML = arraydesc[i];
+                };
+
+            </script>
+        {% endblock %}
+
     </body>
 </html>
