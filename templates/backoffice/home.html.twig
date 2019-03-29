@@ -3,17 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>BackOffice - Accueil</title>
-    {% block stylesheets %}{% endblock %}
+    {% block stylesheets %}<link href="{{ asset('css/main.css')}}" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">{% endblock %}
 </head>
-<body>
+<div>
+    <ul class="navbartest">
+        <li><a href="#">Lien1</a></li>
+        <li><a href="{{ path('possession_app_possession_createpossessionbyagent') }}">Create possession by agent</a></li>
+        <li><a href="{{ path('possession_list') }}">Search possession</a> </li>
+        <li><a href="{{ path('app_login') }}">login</a></li>
+        <li><a href="{{ path('logout') }}">logout</a></li>
+    </ul>
+
 {% include 'account/infosAccount.html.twig' %}
-    <a href="{{ path('addAgency') }}">Ajouter une agence</a><br>
-    <a href="{{ path('addAgencyDirector')}}">Ajouter un directeur d'agence</a><br>
-    <a href="{{ path('addAgent')}}">Ajouter un agent</a><br>
-    <a href="{{ path('addAdmin') }}">Ajouter un admin</a><br>
-    <a href="{{ path('GetListAgency') }}">Liste agence</a><br>
-    <a href="{{ path('GetListAgencyDirector') }}">Liste directeur d'agence</a><br>
-    <a href="{{ path('GetListAgent') }}">Liste agent</a><br>
-    <a href="{{ path('GetListAdmin') }}">Liste admin</a>
+    <h1>ImmoConceptPlus<br>Une maison, une idée, un concept</h1>
+    <h2>Le backoffice</h2>
+
+<div class="container testrouge">
+    <div class="row">
+  <div class="col-sm-4 testbleu"> <a href="{{ path('addAgency') }}">Ajouter une agence</a></div>
+   <div class="col-sm-4 testbleu"> <a href="{{ path('addAgencyDirector')}}">Ajouter un directeur d'agence</a></div>
+   <div class="col-sm-4 testbleu"> <a href="{{ path('addAgent')}}">Ajouter un agent</a></div>
+   <div class="col-sm-4 testbleu"> <a href="{{ path('addAdmin') }}">Ajouter un admin</a></div>
+   <div class="col-sm-4 testbleu"> <a href="{{ path('GetListAgency') }}">Liste agence</a></div>
+   <div class="col-sm-4 testbleu"> <a href="{{ path('GetListAgencyDirector') }}">Liste directeur d'agence</a></div>
+    <div class="col-sm-4 testbleu"><a href="{{ path('GetListAgent') }}">Liste agent</a></div>
+   <div class="col-sm-4 testbleu"> <a href="{{ path('GetListAdmin') }}">Liste admin</a></div>
+    </div>
+</div>
+</div>
 </body>
 </html>
