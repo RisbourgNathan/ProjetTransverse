@@ -83,3 +83,37 @@ button{
     font-size: 1.2vw;
     width: 50%;
 }
+
+
+.navbar{
+    background-color: #313131;
+    overflow: hidden;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    text-align: center;
+}
+
+.navbar li{
+    display: inline;
+}
+
+.navbar a{
+    text-decoration: none;
+    color: white;
+    padding: 14px 16px;
+    font-size: 20px;
+    position: relative;
+    top: 5px;
+}
+
+.navbar a:hover{
+    background-color: black;
+}
+
+h1{
+    text-align: center;
+}
+
+
