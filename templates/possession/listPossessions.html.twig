@@ -3,10 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}<link href="{{ asset('css/main.css') }}" type="text/css" rel="stylesheet"> {% endblock %}
+        {% block stylesheets %}<link href="{{ asset('css/offer_and_search.css') }}" type="text/css" rel="stylesheet"> {% endblock %}
     </head>
     <body>
         {% block body %}
+            {% include 'account/infosAccount.html.twig' %}
             <div class="title">
             <h1>ImmoConceptPlus<br>Une maison, une idée un concept</h1>
             </div>
