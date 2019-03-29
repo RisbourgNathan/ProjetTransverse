@@ -14,8 +14,9 @@ class PossessionImage
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="uuid")
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
 
@@ -71,7 +72,7 @@ class PossessionImage
         return $this->imageFile;
     }
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
@@ -81,7 +82,7 @@ class PossessionImage
         return $this->imageName;
     }
 
-    public function setImageName(?string $imageName): self
+    public function setImageName(string $imageName): self
     {
         $this->imageName = $imageName;
 
