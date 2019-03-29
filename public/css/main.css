@@ -1,5 +1,5 @@
 body{
-    background-color: beige;
+    background-color: whitesmoke;
 }
 .title{
     text-align: center;
@@ -90,30 +90,63 @@ button{
 }
 .divImgPossession{
     text-align: center;
-    width: 30vw;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
-#carouselArrowLeft{
-    position: absolute;
+.arrowRight{
     width: 5vw;
-    top: 25%;
-    left: 65%;
+    top: -8vw;
+    display: inline-block;
+    position: relative;
+}
+.arrowLeft{
+    width: 5vw;
+    top: -8vw;
+    display: inline-block;
+    position: relative;
+}
+.littleImgLeftDiv{
+    width: 10vw;
+    top: -7vw;
+    display: inline-block;
+    position: relative;
+}
+.littleImgRightDiv{
+    width: 10vw;
+    top: -7vw;
+    position: relative;
+    display: inline-block;
+}
+.imgDiv{
+    display: inline-block;
+    position: relative;
+}
+#carouselArrowLeft{
+    width: 5vw;
     z-index: 1;
     cursor: pointer;
 }
 #carouselArrowRight{
-    position: absolute;
-    width: 2vw;
-    top: 25%;
-    left: 25%;
+    -ms-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    width: 5vw;
     z-index: 1;
     cursor: pointer;
 }
+#littleImgLeft{
+    position: relative;
+    width: 10vw;
+    height: 7vw;
+}
+#littleImgRight{
+    position: relative;
+    width: 10vw;
+    height: 7vw;
+}
 #imgPossession{
     position: relative;
-    margin-left: auto;
-    margin-right: auto;
     width: 30vw;
     height: 20vw;
 }
@@ -122,11 +155,86 @@ button{
     margin-right: auto;
     margin-left: auto;
     width: 30vw;
+    font-size: 0.8vw;
 }
 .detailsPossession{
     position: relative;
     display: inline-block;
     background-color: white;
-    width: 3vw;
+    width: 4vw;
     text-align: center;
+}
+.infosPossession{
+    background-color: white;
+    position: relative;
+    width: 50%;
+    height: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1vw;
+}
+.infosPossessionDescription{
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    border-bottom: black 1px solid;
+}
+.infosPossessionDescription > h3{
+    position: relative;
+    text-decoration: underline;
+    top: 1vw;
+}
+.infosPossessionDescription > p{
+    position: relative;
+    padding-top: 2vw;
+}
+.infosPossessionPlus{
+    width: 100%;
+    position: relative;
+    top: 4vw;
+    height: fit-content;
+    border-bottom: 1px solid black;
+}
+.infosPossessionPlus > h3{
+    position: relative;
+    text-decoration: underline;
+}
+.infosPossessionGeneral{
+    position: relative;
+    width: 100%;
+    top: 8vw;
+    height: fit-content;
+    border-bottom: 1px solid black;
+}
+.infosPossessionGeneral > h3{
+    position: relative;
+    text-decoration: underline;
+}
+.infosPossessionPlus > ul, .infosPossessionGeneral > ul{
+    list-style-type: none;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+    position: relative;
+}
+.infosPossessionPlus > li, .infosPossessionGeneral > li{
+    list-style-type: none;
+    position: relative;
+    display: inline-block;
+}
+.infosPossessionPlus > ul > li, .infosPossessionGeneral > ul > li{
+    margin-left: 5vw;
+    position: relative;
+    display: inline-block;
+    list-style-type: none;
+}
+.agencyInfos{
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    padding-top: 11vw;
+    text-align: center;
+}
+.agencyInfos > h3{
+    text-decoration: underline;
+    position: relative;
 }

@@ -60,7 +60,7 @@ class Possession
     private $sellingPrice;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
@@ -120,6 +120,17 @@ class Possession
      * @ORM\OneToMany(targetEntity="App\Entity\PossessionImage", mappedBy="possession", orphanRemoval=true)
      */
     private $possessionImages;
+
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $orientation;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $constructionDate;
 
     public function __construct()
     {
@@ -475,5 +486,29 @@ class Possession
     public function getPossessionImages(): Collection
     {
         return $this->possessionImages;
+    }
+
+    public function getOrientation(): ?string
+    {
+        return $this->orientation;
+    }
+
+    public function setOrientation(string $Orientation): self
+    {
+        $this->orientation = $Orientation;
+
+        return $this;
+    }
+
+    public function getConstructionDate(): ?int
+    {
+        return $this->constructionDate;
+    }
+
+    public function setConstructionDate(?int $constructionDate): self
+    {
+        $this->constructionDate = $constructionDate;
+
+        return $this;
     }
 }
