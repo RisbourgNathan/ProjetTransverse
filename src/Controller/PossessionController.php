@@ -23,6 +23,7 @@ use phpDocumentor\Reflection\Types\Array_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\Security;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
@@ -105,6 +106,10 @@ class PossessionController extends AbstractController
      */
     public function createPossessionByAgent(Request $request)
     {
+        if ($this->isGranted('ROLE_ADMIN'))
+        {
+            throw  new AccessDeniedException("Only agents can create possessions");
+        }
 
         $userAgent = $this->entityManager->getRepository(User::class)->find($this->security->getUser());
         $agent = $this->entityManager->getRepository(Agent::class)->findOneBy(array('user' => $userAgent->getId()));
