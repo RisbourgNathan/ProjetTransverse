@@ -104,11 +104,6 @@ class Possession
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $picture_path;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $title;
 
     /**
@@ -404,18 +399,6 @@ class Possession
             $this->clientsWithThisPossessionAsFavorite->removeElement($clientsWithThisPossessionAsFavorite);
             $clientsWithThisPossessionAsFavorite->removeFavoritePossession($this);
         }
-
-        return $this;
-    }
-
-    public function getPicturePath(): ?string
-    {
-        return $this->picture_path;
-    }
-
-    public function setPicturePath(string $picture_path): self
-    {
-        $this->picture_path = $picture_path;
 
         return $this;
     }

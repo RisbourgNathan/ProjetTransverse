@@ -44,7 +44,6 @@ class addPossessionByAgentForm extends AbstractType
             ->add('street', TextType::class)
             ->add('orientation', TextType::class)
             ->add('constructionDate', NumberType::class)
-            ->add('picture_path', TextType::class)
             ->add('type',EntityType::class, array('class' => PossessionType::class, 'choice_label' => 'name'))
             ->add('submit', SubmitType::class)
             ;
