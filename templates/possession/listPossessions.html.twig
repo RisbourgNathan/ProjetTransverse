@@ -48,6 +48,9 @@
                         <p>Aucune annonce ne correspond à vos critères de recherche</p>
                     </div>
                 {% endif %}
+                <div class="navigation">
+                    {{ knp_pagination_render(possessions) }}
+                </div>
             </div>
         {% endblock %}
 

@@ -11,6 +11,9 @@ use App\Entity\PossessionImage;
 use App\Entity\User;
 use App\Forms\addPossessionByAgentForm;
 use App\Forms\SearchForm;
+use Knp\Bundle\PaginatorBundle\KnpPaginatorBundle;
+use Knp\Component\Pager\Paginator;
+use Knp\Component\Pager\PaginatorInterface;
 use phpDocumentor\Reflection\DocBlock\Description;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use App\Forms\modifyPossessionType;
@@ -41,6 +44,7 @@ class PossessionController extends AbstractController
     private $clientManager;
     private $registry;
     private $uploaderHelper;
+    private $knp;
 
     /**
      * PossessionController constructor.
@@ -48,7 +52,7 @@ class PossessionController extends AbstractController
      * @param Security $security
      * @param UploaderHelper $uploaderHelper
      */
-    public function __construct(EntityManagerInterface $entityManager, Security $security, RegistryInterface $registry, UploaderHelper $uploaderHelper)
+    public function __construct(EntityManagerInterface $entityManager, Security $security, RegistryInterface $registry, UploaderHelper $uploaderHelper, PaginatorInterface $knp)
     {
         $this->entityManager = $entityManager;
         $this->security = $security;
@@ -56,6 +60,7 @@ class PossessionController extends AbstractController
         $this->possessionManager = new PossessionManager($entityManager, $registry);
         $this->possessionTypeManager = new PossessionTypeManager($entityManager);
         $this->uploaderHelper = $uploaderHelper;
+        $this->knp = $knp;
     }
 
     /**
@@ -65,6 +70,7 @@ class PossessionController extends AbstractController
      */
     public function list(Request $request)
     {
+
         $form = $this->createForm(SearchForm::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
@@ -83,7 +89,13 @@ class PossessionController extends AbstractController
             $possessions = $this->possessionManager->getPossessionsBySearch($city, $price, $array_id);
         }
         else{
-            $possessions = $this->possessionManager->getAllPossessions();
+            $dql   = "SELECT p FROM App\Entity\Possession p";
+            $query = $this->entityManager->createQuery($dql);
+            $possessions = $this->knp->paginate(
+                $query, /* query NOT result */
+                $request->query->getInt('page', 1), /*page number*/
+                9 /*limit per page*/
+            );
         }
 
         if (count($possessions) == 0)
