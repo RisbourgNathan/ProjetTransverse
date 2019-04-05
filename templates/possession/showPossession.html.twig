@@ -33,12 +33,15 @@
                 </div>
                 <div class="detailsPossessionContainer">
                     <h2>{{ possession.type.name }}</h2>
+                    {% if possession.type.name is same as ("Terrain") %}
+                    {% else %}
                     <div class="detailsPossession">
                         {{ possession.floorNumber }} étages
                     </div>
                     <div class="detailsPossession">
                         {{ possession.roomNumber }} pièces
                     </div>
+                    {% endif %}
                     <div class="detailsPossession">
                         {{ possession.surface }} M²
                     </div>
@@ -65,8 +68,11 @@
                     <h3>Général</h3>
                     <ul>
                         <li>Surface de {{ possession.surface }} m²</li>
+                        {% if possession.type.name is same as ("Terrain") %}
+                        {% else %}
                         <li>Construit en {{ possession.constructionDate }}</li>
                         <li>{{ possession.roomNumber }} pièces</li>
+                        {% endif %}
                     </ul>
                 </div>
                 <div class="agencyInfos">

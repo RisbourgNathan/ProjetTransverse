@@ -11,6 +11,9 @@ use App\Entity\PossessionImage;
 use App\Entity\User;
 use App\Forms\addPossessionByAgentForm;
 use App\Forms\SearchForm;
+use Knp\Bundle\PaginatorBundle\KnpPaginatorBundle;
+use Knp\Component\Pager\Paginator;
+use Knp\Component\Pager\PaginatorInterface;
 use phpDocumentor\Reflection\DocBlock\Description;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use App\Forms\modifyPossessionType;
@@ -41,6 +44,7 @@ class PossessionController extends AbstractController
     private $clientManager;
     private $registry;
     private $uploaderHelper;
+    private $knp;
 
     /**
      * PossessionController constructor.
@@ -48,14 +52,15 @@ class PossessionController extends AbstractController
      * @param Security $security
      * @param UploaderHelper $uploaderHelper
      */
-    public function __construct(EntityManagerInterface $entityManager, Security $security, RegistryInterface $registry, UploaderHelper $uploaderHelper)
+    public function __construct(EntityManagerInterface $entityManager, Security $security, RegistryInterface $registry, UploaderHelper $uploaderHelper, PaginatorInterface $knp)
     {
         $this->entityManager = $entityManager;
         $this->security = $security;
         $this->registry = $registry;
-        $this->possessionManager = new PossessionManager($entityManager, $registry);
+        $this->possessionManager = new PossessionManager($entityManager, $registry, $knp);
         $this->possessionTypeManager = new PossessionTypeManager($entityManager);
         $this->uploaderHelper = $uploaderHelper;
+        $this->knp = $knp;
     }
 
     /**
@@ -65,6 +70,7 @@ class PossessionController extends AbstractController
      */
     public function list(Request $request)
     {
+
         $form = $this->createForm(SearchForm::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
@@ -80,10 +86,10 @@ class PossessionController extends AbstractController
             {
                 array_push($array_id,$type->getId());
             }
-            $possessions = $this->possessionManager->getPossessionsBySearch($city, $price, $array_id);
+            $possessions = $this->possessionManager->getPossessionsBySearch($city, $price, $array_id, $request);
         }
         else{
-            $possessions = $this->possessionManager->getAllPossessions();
+            $possessions = $this->possessionManager->getAllPossessions($request);
         }
 
         if (count($possessions) == 0)

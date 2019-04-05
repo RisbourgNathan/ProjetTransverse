@@ -38,7 +38,7 @@ body{
     border: black 1px solid;
     margin-left: 0.5vw;
     margin-top: 1vw;
-    background-color: #aacd4e;
+    background-color: lightgrey;
 }
 .searchResults:hover{
     border: black 3px solid;
@@ -249,4 +249,16 @@ button{
 .agencyInfos > h3{
     text-decoration: underline;
     position: relative;
+}
+.pagination{
+    text-align: center;
+}
+.pagination > * > a{
+    text-decoration: none;
+    color: black;
+}
+.pagination >span{
+    background-color: lightgrey;
+    border: solid 1px white;
+    font-size: 1.5vw;
 }
