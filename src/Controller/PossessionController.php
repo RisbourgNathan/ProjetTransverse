@@ -57,7 +57,7 @@ class PossessionController extends AbstractController
         $this->entityManager = $entityManager;
         $this->security = $security;
         $this->registry = $registry;
-        $this->possessionManager = new PossessionManager($entityManager, $registry);
+        $this->possessionManager = new PossessionManager($entityManager, $registry, $knp);
         $this->possessionTypeManager = new PossessionTypeManager($entityManager);
         $this->uploaderHelper = $uploaderHelper;
         $this->knp = $knp;
@@ -86,16 +86,10 @@ class PossessionController extends AbstractController
             {
                 array_push($array_id,$type->getId());
             }
-            $possessions = $this->possessionManager->getPossessionsBySearch($city, $price, $array_id);
+            $possessions = $this->possessionManager->getPossessionsBySearch($city, $price, $array_id, $request);
         }
         else{
-            $dql   = "SELECT p FROM App\Entity\Possession p";
-            $query = $this->entityManager->createQuery($dql);
-            $possessions = $this->knp->paginate(
-                $query, /* query NOT result */
-                $request->query->getInt('page', 1), /*page number*/
-                9 /*limit per page*/
-            );
+            $possessions = $this->possessionManager->getAllPossessions($request);
         }
 
         if (count($possessions) == 0)

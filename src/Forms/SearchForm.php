@@ -36,7 +36,8 @@ class SearchForm extends AbstractType
                 'choice_value' => 'id',
                 'multiple'=> true,
                 'expanded'=> true,
-                'label' => 'Type d\'annonce : '
+                'label' => 'Type d\'annonce : ',
+                'mapped' => true
             ])
             ->add('city', TextType::class,[
                 'label' => 'Ville : ',

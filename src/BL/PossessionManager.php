@@ -13,25 +13,31 @@ use App\Entity\Possession;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\PossessionRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class PossessionManager
 {
     private $entityManager;
     private $registry;
+    private $knp;
 
-    public function __construct(EntityManagerInterface $entityManager, RegistryInterface $registry)
+    public function __construct(EntityManagerInterface $entityManager, RegistryInterface $registry, PaginatorInterface $knp)
     {
         $this->entityManager = $entityManager;
         $this->registry = $registry;
+        $this->knp = $knp;
     }
 
     /**
      * @return Possession[]|object[]
      */
-    public function getAllPossessions()
+    public function getAllPossessions(Request $request)
     {
-        return $this->entityManager->getRepository(Possession::class)->findAll();
+        $repository = new PossessionRepository($this->registry, $this->knp, $this->entityManager);
+        $possessions = $repository->findAllPossessions($request);
+        return $possessions;
     }
 
     public function getPossessionsFromTypeId($possessionType)
@@ -42,11 +48,11 @@ class PossessionManager
     {
         return $this->entityManager->getRepository(Possession::class)->findBy(array('city' => $city));
     }
-    public function getPossessionsBySearch($city, $price, $type_id)
+    public function getPossessionsBySearch($city, $price, $type_id, Request $request)
     {
-         $repository = new PossessionRepository($this->registry);
-         $query = $repository->findBySearch($city, $price, $type_id);
-         return $query;
+         $repository = new PossessionRepository($this->registry, $this->knp, $this->entityManager);
+         $possessions = $repository->findBySearch($city, $price, $type_id, $request);
+         return $possessions;
     }
 
     public function getPossessionById($id): Possession

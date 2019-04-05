@@ -5,7 +5,10 @@ namespace App\Repository;
 use App\Entity\Possession;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\DBALException;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @method Possession|null find($id, $lockMode = null, $lockVersion = null)
@@ -15,24 +18,40 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class PossessionRepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    private $knp;
+    private $em;
+    public function __construct(RegistryInterface $registry, PaginatorInterface $knp, EntityManagerInterface $em)
     {
         parent::__construct($registry, Possession::class);
+        $this->knp = $knp;
+        $this->em = $em;
     }
 
-    public function findBySearch($city, $price, $array_id)
+    public function findBySearch($city, $price, $array_id, Request $request)
     {
-        $entityManager = $this->getEntityManager();
-
-        $query = $entityManager->createQuery('
-        SELECT p FROM App\Entity\Possession p
-        WHERE p.sellingPrice < :price
-        AND p.city LIKE :city
-        AND p.type IN (:type_id)
-        ')
-        ->setParameter('price', $price)
-        ->setParameter('city', "%$city%")
-        ->setParameter('type_id', $array_id);
-        return $query->execute();
+        $dql   = "SELECT p FROM App\Entity\Possession p
+                      WHERE p.sellingPrice < :price
+                      AND p.city LIKE :city
+                      AND p.type IN (:type_id)";
+        $query = $this->em->createQuery($dql)
+            ->setParameter('price', $price)
+            ->setParameter('city', "%$city%")
+            ->setParameter('type_id', $array_id);
+        $possessions = $this->knp->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            9 /*limit per page*/
+        );
+        return $possessions;
+    }
+    public function findAllPossessions(Request $request){
+        $dql   = "SELECT p FROM App\Entity\Possession p";
+        $query = $this->em->createQuery($dql);
+        $possessions = $this->knp->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            9 /*limit per page*/
+        );
+        return $possessions;
     }
 }
