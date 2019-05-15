@@ -15,8 +15,11 @@
     <li><a href="{{ path('backoffice') }}">Backoffice</a></li>
     <li><a href="{{ path('possession_app_possession_createpossessionbyagent') }}">Create possession by agent</a></li>
     <li><a href="{{ path('possession_list') }}">Search possession</a> </li>
-    <li><a href="{{ path('app_login') }}">login</a></li>
+    {% if app.user %}
     <li><a href="{{ path('logout') }}">logout</a></li>
+    {% else %}
+    <li><a href="{{ path('app_login') }}">login</a></li>
+    {% endif %}
 </ul>
 {% include 'account/infosAccount.html.twig' %}
 <h1>ImmoConceptPlus<br>Une maison, une idée, un concept</h1>
@@ -27,9 +30,14 @@
 <div class="row">
     <div class="col-sm-1"></div>
 <div class=" col-sm-10 principale">
-    <h2>Les offres du moment</h2>
+    <h2>Les offres du moment</h2><br>
+    {% for possession in possessions %}
+        <img class="imgSearchPossession" src="{{ asset(vich_uploader_asset(possession.possessionImage.first, 'imageFile', 'App\\Entity\\PossessionImage')) }}" alt="possessionImage"><br>
+        {{ possession.title }}
+    {% endfor %}
 </div>
-    <div class="col-sm-1"></div>
+    <div class="col-sm-1">
+    </div>
 </div>
 
 

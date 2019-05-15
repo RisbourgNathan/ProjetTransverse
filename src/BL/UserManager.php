@@ -10,13 +10,13 @@ namespace App\BL;
 use App\Entity\Client;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpKernel\Tests\Controller;
 use Symfony\Component\Security\Core\Security;
 
 class UserManager
 {
 
     private $clientManager;
+    private $security;
 
     /*** @var EntityManagerInterface l'interface entity manager* nécessaire à la manipulation des opérations en base*/
     protected $em;

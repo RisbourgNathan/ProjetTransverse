@@ -29,7 +29,10 @@ use App\Forms\modifyAgencyDirectorForm;
 use App\Forms\modifyAgencyForm;
 use App\Forms\modifyAgentForm;
 use App\Forms\RegisterForm;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -59,7 +62,7 @@ class BackOfficeController extends AbstractController
     private $AdminManager;
     private $possessionManager;
     private $registry;
-    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder, Security $security, RegistryInterface $registry)
+    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder, Security $security, RegistryInterface $registry, PaginatorInterface $knp)
     {
         $this->UserCrud = new UserCrud($em);
         $this->UserManager = new UserManager($em,$security);
@@ -71,7 +74,7 @@ class BackOfficeController extends AbstractController
         $this->AgencyDirectorManager = new AgencyDirectorManager($em);
         $this->AdminCrud = new AdminCrud($em);
         $this->AdminManager = new AdminManager($em);
-        $this->possessionManager = new PossessionManager($em,$registry);
+        $this->possessionManager = new PossessionManager($em,$registry,$knp);
         $this->registry = $registry;
         $this->em = $em;
     }
@@ -85,6 +88,9 @@ class BackOfficeController extends AbstractController
 
     /**
      * @Route("/addAgent", name="addAgent")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return RedirectResponse|Response
      */
     public function getAddAgent(Request $request, UserPasswordEncoderInterface $passwordEncoder) {
         $agent = new Agent();
@@ -110,6 +116,10 @@ class BackOfficeController extends AbstractController
 
     /**
      * @Route("/modifyAgent/{idAgent}", name="modifyAgent")
+     * @param $idAgent
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return RedirectResponse|Response
      */
     public function getModifyAgent($idAgent, Request $request, UserPasswordEncoderInterface $passwordEncoder){
         $user = $this->AgentCrud->getUserAgentById($idAgent);
@@ -129,6 +139,9 @@ class BackOfficeController extends AbstractController
 
     /**
      * @Route("/addAgencyDirector", name="addAgencyDirector")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return RedirectResponse|Response
      */
     public function getAddAgencyDirector(Request $request, UserPasswordEncoderInterface $passwordEncoder) {
         $agent = new AgencyDirector();
@@ -154,6 +167,10 @@ class BackOfficeController extends AbstractController
 
     /**
      * @Route("/modifyAgencyDirector/{idAgencyDirector}", name="modifyAgencyDirector")
+     * @param $idAgencyDirector
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return RedirectResponse|Response
      */
     public function getModifyAgencyDirector($idAgencyDirector, Request $request, UserPasswordEncoderInterface $passwordEncoder){
         $user = $this->AgencyDirectorCrud->getUserAgencyDirectorById($idAgencyDirector);
@@ -170,10 +187,11 @@ class BackOfficeController extends AbstractController
         ]);
     }
 
-    
 
     /**
      * @Route("/addAgency", name="addAgency")
+     * @param Request $request
+     * @return RedirectResponse|Response
      */
     public function getAddAgency(Request $request) {
         $agency = new Agency();
@@ -200,6 +218,10 @@ class BackOfficeController extends AbstractController
 
     /**
      * @Route("/modifyAgency/{idAgency}", name="modifyAgency")
+     * @param $idAgency
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return RedirectResponse|Response
      */
     public function getModifyAgency($idAgency, Request $request, UserPasswordEncoderInterface $passwordEncoder){
         $user = $this->AgencyCrud->getAgencyById($idAgency);
@@ -216,6 +238,9 @@ class BackOfficeController extends AbstractController
 
     /**
      * @Route("/addAdmin", name="addAdmin")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return RedirectResponse|Response
      */
     public function getAddAdmin(Request $request, UserPasswordEncoderInterface $passwordEncoder) {
         $admin = new Administrator();
@@ -238,6 +263,10 @@ class BackOfficeController extends AbstractController
 
     /**
      * @Route("/modifyAdmin/{idAdmin}", name="modifyAdmin")
+     * @param $idAdmin
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return RedirectResponse|Response
      */
     public function getModifyAdmin($idAdmin, Request $request, UserPasswordEncoderInterface $passwordEncoder){
         $user = $this->AdminCrud->getUserAdminById($idAdmin);
@@ -289,14 +318,18 @@ class BackOfficeController extends AbstractController
 
     /**
      * @Route("/showPossessionList", name="showPossessionList")
+     * @param $request
+     * @return Response
      */
-    public function showPossessionList(){
-        $list = $this->possessionManager->getAllPossessions();
+    public function showPossessionList($request){
+        $list = $this->possessionManager->getAllPossessions($request);
         return $this->render('backoffice/showPossessionList.html.twig', ['listPossession' => $list]);
     }
 
     /**
      * @Route("/removeAgent/{idAgent}",name="removeAgent")
+     * @param $idAgent
+     * @return RedirectResponse
      */
     public function removeAgent($idAgent)
     {
@@ -306,6 +339,8 @@ class BackOfficeController extends AbstractController
 
     /**
      * @Route("/removeAgencyDirector/{idAgencyDirector}",name="removeAgencyDirector")
+     * @param $idAgencyDirector
+     * @return RedirectResponse
      */
     public function removeAgencyDirector($idAgencyDirector)
     {
@@ -315,6 +350,8 @@ class BackOfficeController extends AbstractController
 
     /**
      * @Route("/removeAgency/{idAgency}",name="removeAgency")
+     * @param $idAgency
+     * @return RedirectResponse
      */
     public function removeAgency($idAgency)
     {
@@ -324,6 +361,8 @@ class BackOfficeController extends AbstractController
 
     /**
      * @Route("/removeAdmin/{idAdmin}",name="removeAdmin")
+     * @param $idAdmin
+     * @return RedirectResponse
      */
     public function removeAdmin($idAdmin)
     {

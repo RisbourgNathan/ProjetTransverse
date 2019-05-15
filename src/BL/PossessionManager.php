@@ -59,4 +59,8 @@ class PossessionManager
     {
         return $this->entityManager->getRepository(Possession::class)->find($id);
     }
+
+    public function getLatestPossessions(){
+        return $this->entityManager->getRepository(Possession::class)->findBy(array(), array('createdAt' => 'ASC'), 3);
+    }
 }

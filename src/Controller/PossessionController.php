@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\BL\PossessionManager;
 use App\BL\PossessionTypeManager;
+use App\BL\UserManager;
 use App\Entity\Agent;
 use App\Entity\Client;
 use App\Entity\Possession;
@@ -42,6 +43,7 @@ class PossessionController extends AbstractController
     private $possessionManager;
     private $possessionTypeManager;
     private $clientManager;
+    private $userManager;
     private $registry;
     private $uploaderHelper;
     private $knp;
@@ -58,6 +60,7 @@ class PossessionController extends AbstractController
         $this->security = $security;
         $this->registry = $registry;
         $this->possessionManager = new PossessionManager($entityManager, $registry, $knp);
+        $this->userManager = new UserManager($entityManager, $security);
         $this->possessionTypeManager = new PossessionTypeManager($entityManager);
         $this->uploaderHelper = $uploaderHelper;
         $this->knp = $knp;
@@ -96,10 +99,17 @@ class PossessionController extends AbstractController
         {
             $possessions = null;
         };
+
+        $client = NULL;
+
+        if($this->security->getUser() != null){
+            $client = $this->userManager->GetClientIdbyUser();
+        }
         dump($possessions);
         return $this->render("possession/listPossessions.html.twig", array(
             "possessions" => $possessions,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'client' => $client
         ));
 
     }
@@ -140,6 +150,7 @@ class PossessionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid())
         {
             $possession->setAgent($agent);
+            $possession->setCreatedAt(new \DateTime('now'));
 
             foreach ($originalOwnout as $ownout)
             {

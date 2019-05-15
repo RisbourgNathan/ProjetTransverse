@@ -13,6 +13,8 @@ use App\Entity\User;
 use App\Forms\modifyClientForm;
 use App\Forms\modifyUserForm;
 use App\Forms\RegisterForm;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,6 +41,8 @@ class ProfileController extends AbstractController
 
     /**
      * @Route("/account/{idClient}", name="account")
+     * @param $idClient
+     * @return Response
      */
     public function showProfile($idClient)
     {
@@ -47,8 +51,13 @@ class ProfileController extends AbstractController
 
         return $this->render('account/yourProfile.html.twig', ['client' => $client, 'clientPossessions' => $clientPossessions]);
     }
-     /**
+
+    /**
      * @Route("/account/modifyProfile/{idClient}", name="modifyProfile")
+     * @param $idClient
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return RedirectResponse|Response
      */
     public function modifyProfile($idClient, Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
