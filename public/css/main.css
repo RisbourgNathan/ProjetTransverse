@@ -71,14 +71,6 @@ input[type=text]:focus {
     display: block;
 }
 
-button{
-    position: relative;
-    color: white;
-    background-color: green;
-    cursor: pointer;
-    border: none;
-    padding: 8px 16px;
-}
 .noResults{
     position: relative;
     display: inline-block;

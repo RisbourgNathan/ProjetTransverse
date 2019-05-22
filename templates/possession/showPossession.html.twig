@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Show Possession{% endblock %}</title>
-        {% block stylesheets %}<link href="{{ asset('css/offer_and_search.css') }}" type="text/css" rel="stylesheet"> {% endblock %}
-    </head>
+{% include 'includes/header.html.twig' %}
     <body>
         {% block body %}
-        {% include 'account/infosAccount.html.twig' %}
         <div class="title">
             <h1>{{ possession.title }}</h1>
         </div>

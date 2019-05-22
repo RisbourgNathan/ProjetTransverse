@@ -251,12 +251,12 @@ class PossessionController extends AbstractController
     }
 
     /**
-     * @Route("/manage/{agentId}", name="manage")
-     * @param $agentId
+     * @Route("/manage", name="manage")
      * @return Response
      */
-    public function managePossession($agentId){
-        $agent = $this->agentManager->getAgentById($agentId);
+    public function managePossession(){
+        $user = $this->getUser();
+        $agent = $this->agentManager->getAgentByUser($user);
         $possessions = $agent->getPossessions();
         return $this->render('possession/managePossessions.html.twig', ['possessions' => $possessions]);
     }
