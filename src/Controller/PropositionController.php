@@ -57,7 +57,7 @@ class PropositionController extends AbstractController
         $proposition->setPossession($possession);
 
         $usr = $this->getUser();
-        $client = $this->clientManager->GetClientById($usr->getId());
+        $client = $this->clientManager->getClientByUser($usr);
         $proposition->setClient($client);
 
         $form  = $this->createForm(PropositionForm::class, $proposition);
@@ -79,5 +79,22 @@ class PropositionController extends AbstractController
     public function createCounterProposition($id)
     {
         $proposition = new Proposition();
+    }
+
+    /**
+     * @param $idPossession
+     * @Route("/showPropositions/{idPossession}", name="showPropositions")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function showPropositionsForPossession($idPossession)
+    {
+//        $usr = $this->getUser();
+//        $client = $this->clientManager->getClientByUser($usr);
+
+        $possession = $this->possessionManager->getPossessionById($idPossession);
+
+        return $this->render('proposition/showPossessionProposition.html.twig', array(
+            "possession" => $possession,
+        ));
     }
 }

@@ -1,0 +1,9 @@
+{% include 'account/infosAccount.html.twig' %}
+
+{% for proposition in possession.proposition %}
+    <div class="possessionPropositionDiv">
+        <p>{{ possession.title }}</p>
+        <button><a href="#">Faire une contre-proposition</a></button>
+        <button><a href="#">Accepter cette offre</a></button>
+    </div>
+{% endfor %}

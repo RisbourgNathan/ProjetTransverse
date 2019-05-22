@@ -18,6 +18,9 @@ Numéro de téléphone : 0{{ app.user.phone }}<br>
             <div>
                 <p><a href="{{ path('possession_show', {'id': possession.id}) }}">{{ possession.title }}</a></p>
                 <p>{{ possession.description }}</p>
+                {#{% for proposition in possession.proposition %}#}
+                    {#<p>{{ proposition.price }}</p>#}
+                {#{% endfor %}#}
             </div>
             <br/>
         {% endfor %}
