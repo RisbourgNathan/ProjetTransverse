@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+use App\BL\AgentManager;
 use App\BL\PossessionManager;
 use App\BL\UserManager;
 use App\DAL\UserCrud;
@@ -21,6 +22,7 @@ class IndexController extends AbstractController
     private $em;
     private $security;
     private $possessionManager;
+    private $agentManager;
     public function __construct(EntityManagerInterface $em, Security $security, PaginatorInterface $knp, RegistryInterface $registry)
     {
         $this->UserCrud = new UserCrud($em);
@@ -28,6 +30,7 @@ class IndexController extends AbstractController
         $this->em = $em;
         $this->security = $security;
         $this->possessionManager = new PossessionManager($em, $registry ,$knp);
+        $this->agentManager = new AgentManager($em);
     }
     /**
      * @Route("/", name="index")
@@ -36,10 +39,11 @@ class IndexController extends AbstractController
         $possessions = $this->possessionManager->getLatestPossessions();
         if($this->security->getUser() != null) {
             $client = $this->UserManager->GetClientIdbyUser();
-            return $this->render('index/index.html.twig', ['client' => $client, 'possessions' => $possessions]);
+            $agent = $this->agentManager->getAgentByUser($this->getUser());
+            return $this->render('index/index.html.twig', ['client' => $client, 'possessions' => $possessions, 'agent' => $agent]);
         }
         else{
-            return $this->render('index/index.html.twig');
+            return $this->render('index/index.html.twig', ['possessions' => $possessions]);
         }
     }
 }

@@ -2,30 +2,24 @@
 
 namespace App\Controller;
 
+use App\BL\AgentManager;
 use App\BL\PossessionManager;
 use App\BL\PossessionTypeManager;
 use App\BL\UserManager;
 use App\Entity\Agent;
-use App\Entity\Client;
 use App\Entity\Possession;
-use App\Entity\PossessionImage;
 use App\Entity\User;
 use App\Forms\addPossessionByAgentForm;
 use App\Forms\SearchForm;
-use Knp\Bundle\PaginatorBundle\KnpPaginatorBundle;
-use Knp\Component\Pager\Paginator;
 use Knp\Component\Pager\PaginatorInterface;
-use phpDocumentor\Reflection\DocBlock\Description;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use App\Forms\modifyPossessionType;
-use App\Entity\PossessionType;
-use App\Forms\removePossessionImageType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
-use http\Exception;
-use phpDocumentor\Reflection\Types\Array_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\Security;
@@ -47,6 +41,7 @@ class PossessionController extends AbstractController
     private $registry;
     private $uploaderHelper;
     private $knp;
+    private $agentManager;
 
     /**
      * PossessionController constructor.
@@ -64,12 +59,13 @@ class PossessionController extends AbstractController
         $this->possessionTypeManager = new PossessionTypeManager($entityManager);
         $this->uploaderHelper = $uploaderHelper;
         $this->knp = $knp;
+        $this->agentManager = new AgentManager($entityManager);
     }
 
     /**
      * @Route("/list", name="list")
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function list(Request $request)
     {
@@ -118,7 +114,8 @@ class PossessionController extends AbstractController
      * @Route("/createByAgent")
      * @\Sensio\Bundle\FrameworkExtraBundle\Configuration\Security("has_role('ROLE_AGENT')")
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
+     * @throws \Exception
      */
     public function createPossessionByAgent(Request $request)
     {
@@ -197,7 +194,7 @@ class PossessionController extends AbstractController
      * @Route("/modify/{id}", name="modify")
      * @param $id
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return RedirectResponse|Response
      */
     public function modifyPossession($id, Request $request)
     {
@@ -254,7 +251,20 @@ class PossessionController extends AbstractController
     }
 
     /**
+     * @Route("/manage/{agentId}", name="manage")
+     * @param $agentId
+     * @return Response
+     */
+    public function managePossession($agentId){
+        $agent = $this->agentManager->getAgentById($agentId);
+        $possessions = $agent->getPossessions();
+        return $this->render('possession/managePossessions.html.twig', ['possessions' => $possessions]);
+    }
+
+    /**
      * @Route("/show/{id}", name="show")
+     * @param $id
+     * @return Response
      */
     public function showPossession($id)
     {

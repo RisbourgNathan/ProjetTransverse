@@ -31,6 +31,7 @@ class PossessionManager
     }
 
     /**
+     * @param Request $request
      * @return Possession[]|object[]
      */
     public function getAllPossessions(Request $request)

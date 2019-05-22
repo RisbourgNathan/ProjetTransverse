@@ -1,0 +1,3 @@
+{% for possession in possessions %}
+    <a href="{{ path('possession_show',{'id': possession.id}) }}">{{ possession.title }}</a> - Vendeur : {{ possession.seller.user.firstname }} {{ possession.seller.user.lastname }}<a href="{{ path('possession_modify', {'id': possession.id}) }}"><button>Modifier</button></a><br>
+{% endfor %}
