@@ -74,7 +74,7 @@ class BackOfficeController extends AbstractController
         $this->AgencyDirectorManager = new AgencyDirectorManager($em);
         $this->AdminCrud = new AdminCrud($em);
         $this->AdminManager = new AdminManager($em);
-        $this->possessionManager = new PossessionManager($em,$registry,$knp);
+        $this->possessionManager = new PossessionManager($em,$registry, $knp);
         $this->registry = $registry;
         $this->em = $em;
     }
