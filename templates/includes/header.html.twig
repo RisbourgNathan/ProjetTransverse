@@ -16,6 +16,7 @@
 <header>
 {% block javascripts %}{% endblock %}
 <ul class="navbartest">
+    <li><a href="{{ path('index') }}">Accueil</a></li>
     {% if is_granted('ROLE_ADMIN') %}
         <li><a href="{{ path('backoffice') }}">Backoffice</a></li>
     {% endif %}

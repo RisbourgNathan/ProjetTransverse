@@ -28,6 +28,10 @@ class ClientManager
         return $this->em->getRepository(Client::class)->findAll();
     }
 
+    public function getClientByUser($idUser){
+        return $this->em->getRepository(Client::class)->findOneBy(array('user' => $idUser));
+    }
+
     public function GetClientById($idClient){
         return $this->em->getRepository(Client::class)->find($idClient);
     }
