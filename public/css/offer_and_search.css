@@ -24,8 +24,8 @@ body{
     left: 1vw;
 }
 .flexbox{
-    top: -1vw;
-    left: 1vw;
+    top: -8vw;
+    left: -5vw;
     position: relative;
     display: inline-flex;
     flex-wrap: wrap;
@@ -65,15 +65,6 @@ input[type=text]:focus {
 }
 .priceFilter > input{
     display: block;
-}
-
-button{
-    position: relative;
-    color: white;
-    background-color: green;
-    cursor: pointer;
-    border: none;
-    padding: 8px 16px;
 }
 .noResults{
     position: relative;
@@ -249,6 +240,9 @@ button{
 .agencyInfos > h3{
     text-decoration: underline;
     position: relative;
+}
+.navigation{
+    text-align: center;
 }
 .pagination{
     text-align: center;

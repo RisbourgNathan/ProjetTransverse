@@ -39,8 +39,7 @@ class IndexController extends AbstractController
         $possessions = $this->possessionManager->getLatestPossessions();
         if($this->security->getUser() != null) {
             $client = $this->UserManager->GetClientIdbyUser();
-            $agent = $this->agentManager->getAgentByUser($this->getUser());
-            return $this->render('index/index.html.twig', ['client' => $client, 'possessions' => $possessions, 'agent' => $agent]);
+            return $this->render('index/index.html.twig', ['client' => $client, 'possessions' => $possessions]);
         }
         else{
             return $this->render('index/index.html.twig', ['possessions' => $possessions]);

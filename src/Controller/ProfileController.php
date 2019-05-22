@@ -40,13 +40,13 @@ class ProfileController extends AbstractController
 
 
     /**
-     * @Route("/account/{idClient}", name="account")
-     * @param $idClient
+     * @Route("/account", name="account")
      * @return Response
      */
-    public function showProfile($idClient)
+    public function showProfile()
     {
-        $client = $this->ClientManager->GetClientById($idClient);
+        $user = $this->getUser();
+        $client = $this->ClientManager->getClientByUser($user);
         $clientPossessions = $client->getPossessions();
 
         return $this->render('account/yourProfile.html.twig', ['client' => $client, 'clientPossessions' => $clientPossessions]);
