@@ -29,6 +29,7 @@ use App\Forms\modifyAgencyDirectorForm;
 use App\Forms\modifyAgencyForm;
 use App\Forms\modifyAgentForm;
 use App\Forms\RegisterForm;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Doctrine\ORM\EntityManagerInterface;
@@ -59,7 +60,7 @@ class BackOfficeController extends AbstractController
     private $AdminManager;
     private $possessionManager;
     private $registry;
-    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder, Security $security, RegistryInterface $registry)
+    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder, Security $security, RegistryInterface $registry, PaginatorInterface $knp)
     {
         $this->UserCrud = new UserCrud($em);
         $this->UserManager = new UserManager($em,$security);
@@ -71,7 +72,7 @@ class BackOfficeController extends AbstractController
         $this->AgencyDirectorManager = new AgencyDirectorManager($em);
         $this->AdminCrud = new AdminCrud($em);
         $this->AdminManager = new AdminManager($em);
-        $this->possessionManager = new PossessionManager($em,$registry);
+        $this->possessionManager = new PossessionManager($em,$registry, $knp);
         $this->registry = $registry;
         $this->em = $em;
     }
