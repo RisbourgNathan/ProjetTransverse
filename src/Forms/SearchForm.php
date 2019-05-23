@@ -51,6 +51,7 @@ class SearchForm extends AbstractType
                 ],
                 'label' => "Prix : "
             ])
-            ->add('Valider', SubmitType::class);
+            ->add('Valider', SubmitType::class)
+            ->setMethod('GET');
     }
 }

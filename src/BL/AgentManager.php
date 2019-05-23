@@ -24,4 +24,11 @@ class AgentManager
     public function getListAgent(){
         return $this->em->getRepository(Agent::class)->findAll();
     }
+
+    public function getAgentByUser(User $user){
+        return $this->em->getRepository(Agent::class)->findOneBy(array('user' => $user));
+    }
+    public function getAgentById($agentId){
+        return $this->em->getRepository(Agent::class)->find($agentId);
+    }
 }

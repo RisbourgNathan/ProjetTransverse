@@ -76,14 +76,6 @@ input[type=text]:focus {
     display: block;
 }
 
-button{
-    position: relative;
-    color: white;
-    background-color: green;
-    cursor: pointer;
-    border: none;
-    padding: 8px 16px;
-}
 .noResults{
     position: relative;
     display: inline-block;
@@ -124,7 +116,26 @@ button{
 }
 
 .divindex{
-background: rgba(255, 255, 255, 0.60);
+
+}
+
+h1{
+    text-align: center;
+}
+
+.imgSearchPossession{
+    position: relative;
+    width: 15vw;
+    height: 10vw;
+}
+.lastOffer{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.principale{
+    background: rgba(255, 255, 255, 0.60);
     border-radius: 5px;
     text-align: center;
     position: relative;
@@ -133,6 +144,15 @@ background: rgba(255, 255, 255, 0.60);
 }
 
 .divhome{
+
+}
+
+h2{
+    text-align: center;
+    position: relative;
+}
+
+.testrouge{
     background: rgba(255, 255, 255, 0.60);
     border-radius: 5px;
     position: relative;

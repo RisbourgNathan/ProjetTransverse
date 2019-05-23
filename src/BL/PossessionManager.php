@@ -31,6 +31,7 @@ class PossessionManager
     }
 
     /**
+     * @param Request $request
      * @return Possession[]|object[]
      */
     public function getAllPossessions(Request $request)
@@ -58,5 +59,9 @@ class PossessionManager
     public function getPossessionById($id): Possession
     {
         return $this->entityManager->getRepository(Possession::class)->find($id);
+    }
+
+    public function getLatestPossessions(){
+        return $this->entityManager->getRepository(Possession::class)->findBy(array(), array('createdAt' => 'ASC'), 3);
     }
 }

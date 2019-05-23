@@ -1,9 +1,10 @@
+
 {% if app.user %}
     Bonjour {{ app.user.lastname }}  {{ app.user.firstname }}
     <br>
 
     {% if app.user.roles[0] == "ROLE_CLIENT" %}
-        <a href="{{ path('account',{'idClient': client.id})}}">Profil</a>
+        <a href="{{ path('account')}}">Profil</a>
     {% endif %}
 
     <a href="{{ path('logout') }}">Déconnexion</a><br>
