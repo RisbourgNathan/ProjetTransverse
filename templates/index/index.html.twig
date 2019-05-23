@@ -11,23 +11,29 @@
 {% block body %}
 {% endblock %}
 {% block javascripts %}{% endblock %}
-<ul class="navbartest">
+
+<ul class="navbarindex">
+    <li><a href="{{ path('index') }}">Accueil</a></li>
     <li><a href="{{ path('backoffice') }}">Backoffice</a></li>
     <li><a href="{{ path('possession_app_possession_createpossessionbyagent') }}">Create possession by agent</a></li>
     <li><a href="{{ path('possession_list') }}">Chercher un bien</a> </li>
+    {% if not app.user %}
     <li><a href="{{ path('app_login') }}">Connexion</a></li>
+    {% else %}
     <li><a href="{{ path('logout') }}">Déconnexion</a></li>
+    {% endif %}
 </ul>
 {% include 'account/infosAccount.html.twig' %}
-<h1>ImmoConceptPlus<br>Une maison, une idée, un concept</h1>
-
+<div class="text-center">
+<h1><span>ImmoConceptPlus<br>Une maison, une idée, un concept</span></h1>
+</div>
 
 
 
 <div class="row">
     <div class="col-sm-1"></div>
-<div class=" col-sm-10 principale">
-    <h2>Les offres du moment</h2>
+<div class=" col-sm-10 divindex">
+    <h2 class="h3 mb-3 font-weight-normal"><span>Les offres du moment</span></h2>
 </div>
     <div class="col-sm-1"></div>
 </div>
