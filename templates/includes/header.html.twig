@@ -20,16 +20,21 @@
     {% if is_granted('ROLE_ADMIN') %}
         <li><a href="{{ path('backoffice') }}">Backoffice</a></li>
     {% endif %}
-    {% if is_granted('ROLE_AGENT') %}
-        <li><a href="{{ path('possession_manage')}}">Manage Possessions</a></li>
+    {% if is_granted('ROLE_AGENT') and is_granted('ROLE_ADMIN') == false %}
+        <li><a href="{{ path('possession_manage')}}">Controller les annonces</a></li>
     {% endif %}
-    <li><a href="{{ path('possession_app_possession_createpossessionbyagent') }}">Create possession by agent</a></li>
-    <li><a href="{{ path('possession_list') }}">Search possession</a> </li>
-    {% if app.user %}
+    {% if is_granted('ROLE_AGENT') and is_granted('ROLE_ADMIN') == false %}
+    <li><a href="{{ path('possession_app_possession_createpossessionbyagent') }}">Créer une annonce</a></li>
+    {% endif %}
+    <li><a href="{{ path('possession_list') }}">Recherche</a> </li>
+    {% if app.user and is_granted('ROLE_ADMIN') == false %}
         <li><a href="{{ path('account') }}">Profil</a></li>
-        <li><a href="{{ path('logout') }}">logout</a></li>
+        <li><a href="{{ path('logout') }}">Se déconnecter</a></li>
+    {% elseif app.user and is_granted('ROLE_ADMIN') == true %}
+        <li><a href="{{ path('logout') }}">Se déconnecter</a></li>
     {% else %}
-        <li><a href="{{ path('app_login') }}">login</a></li>
+        <li><a href="{{ path('app_login') }}">Connexion</a></li>
+        <li><a href="{{ path('user_registration') }}">Inscription</a></li>
     {% endif %}
 </ul>
 </header>

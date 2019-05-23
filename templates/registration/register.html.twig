@@ -1,5 +1,7 @@
 {% include 'includes/header.html.twig' %}
 <body>
+<h1 class="title registerTitle">Inscription</h1>
+<div class="registerForm form">
 {{ form_start(form) }}
 {{ form_row(form.firstname) }}
 {{ form_row(form.lastname) }}
@@ -10,7 +12,9 @@
 {{ form_row(form.phone) }}
 {{ form_row(form.plainPassword.first) }}
 {{ form_row(form.plainPassword.second) }}
-<button type="submit">Inscription</button>
+{{ form_row(form.sponsorCode) }}
+<button class="btn btn-primary" type="submit">Inscription</button>
 {{ form_end(form) }}
+</div>
 </body>
 </html>

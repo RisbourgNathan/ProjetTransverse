@@ -3,6 +3,11 @@
 <h1>ImmoConceptPlus<br>Une maison, une idée, un concept</h1>
 
 <div class="principale">
+    <div class="form HomeSearchForm">
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+    </div>
     <h2>Les offres du moment</h2><br>
     {% if possessions %}
     {% for possession in possessions %}
@@ -10,7 +15,7 @@
         {% if possession.possessionImage.first %}
         <img class="imgSearchPossession" src="{{ asset(vich_uploader_asset(possession.possessionImage.first, 'imageFile', 'App\\Entity\\PossessionImage')) }}" alt="possessionImage"><br>
         {% endif %}
-        {{ possession.title }}
+        {{ possession.title }} - {{ possession.city }}
         </div></a>
     {% endfor %}
     {% endif %}

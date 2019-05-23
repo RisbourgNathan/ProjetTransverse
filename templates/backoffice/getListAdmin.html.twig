@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Liste Admin{% endblock %}</title>
-    {% block stylesheets %}{% endblock %}
-</head>
-<body>
-{% block body %}{% endblock %}
-{% block javascripts %}{% endblock %}
-{% include 'account/infosAccount.html.twig' %}
+{% include 'includes/header.html.twig' %}
 <h1>Fiche des Admin : </h1>
 Nombre d'admins : {{ ListAdmin | length }}
 <ul>

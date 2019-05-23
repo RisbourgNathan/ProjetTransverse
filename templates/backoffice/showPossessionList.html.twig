@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Liste Possession{% endblock %}</title>
-    {% block stylesheets %}{% endblock %}
-</head>
-<body>
-{% block body %}{% endblock %}
-{% block javascripts %}{% endblock %}
-{% include 'account/infosAccount.html.twig' %}
+{% include 'includes/header.html.twig' %}
     <h1>Fiche des possessions : </h1>
         Nombre de possessions : {{ listPossession | length }}
     <ul>
