@@ -26,6 +26,7 @@
                 </div>
                 <div class="detailsPossessionContainer">
                     <h2>{{ possession.type.name }}</h2>
+
                     {% if possession.type.name is same as ("Terrain") %}
                     {% else %}
                     <div class="detailsPossession">
@@ -53,6 +54,8 @@
                     {% endif %}
 
                 </div>
+            <h2>Carte</h2>
+            <div id="map"></div>
             <div class="infosPossession">
                 <div class="infosPossessionDescription">
                     <h3>Description</h3>
@@ -90,6 +93,19 @@
                     {{ agency.city }} - {{ agency.zipCode }}</p>
                 </div>
             </div>
+            <script>
+                function initMap() {
+                    // The location of Uluru
+                    var uluru = {lat: 43.523357, lng: 5.43265};
+                    // The map, centered at Uluru
+                    var map = new google.maps.Map(
+                        document.getElementById('map'), {zoom: 14, center: uluru});
+                    // The marker, positioned at Uluru
+                    var marker = new google.maps.Marker({position: uluru, map: map});
+                }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhQd_OqySckHoHuLuvXkn0fPfNK8PzZ88&callback=initMap"
+                    async defer></script>
         {% endblock %}
 
         {% block myJavascript %}

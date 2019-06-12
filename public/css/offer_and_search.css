@@ -28,7 +28,7 @@ body{
     left: 1vw;
 }
 .flexbox{
-    top: -8vw;
+    top: -15vw;
     left: 7vw;
     position: relative;
     display: inline-flex;
@@ -186,10 +186,19 @@ input[type=text]:focus {
     color: white !important;
     text-decoration: none !important;
 }
+
+#map {
+    margin-right: auto;
+    margin-left: auto;
+    height: 30%;
+    width: 30%;
+}
+
 .infosPossession{
     background-color: white;
     position: relative;
     width: 50%;
+    top: 2vw;
     height: fit-content;
     margin-left: auto;
     margin-right: auto;
