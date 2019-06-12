@@ -1,70 +1,63 @@
 {% include 'includes/header.html.twig' %}
 <body>
 {% block body %}
-    <ul class="navbarindex">
-        <li><a href="{{ path('index') }}">Accueil</a></li>
-        <li><a href="{{ path('backoffice') }}">Backoffice</a></li>
-        <li><a href="{{ path('possession_app_possession_createpossessionbyagent') }}">Create possession by agent</a></li>
-        <li><a href="{{ path('possession_list') }}">Chercher un bien</a> </li>
-        {% if not app.user %}
-            <li><a href="{{ path('app_login') }}">Connexion</a></li>
-        {% else %}
-            <li><a href="{{ path('logout') }}">Déconnexion</a></li>
+
+
+    <form method="post">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
-    </ul>
-
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-    <div class="text-center">
-        <h1><span>ImmoConceptPlus<br>Une maison, une idée, un concept</span></h1>
-    </div>
-    <div class="text-center">
-    <h2 class="h3 mb-3 font-weight-normal"><span>Veuillez vous connecter s'il vous plaît</span></h2>
-    </div>
-    <div class="container">
-    <div class="row">
-        <div class="col-sm-2"></div>
-    <div class="divhome col-sm-8 align-self-center">
-    <div class="connex" >
-    <div class="form-group">
-        Email
-    <label for="inputEmail" class="sr-only">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control col-sm-6" placeholder="Email" required autofocus>
-    </div>
-    <div class="form-group">
-        Mot de passe
-    <label for="inputPassword" class="sr-only">Mot de passe</label>
-    <input type="password" name="password" id="inputPassword" class="form-control col-sm-6" placeholder="Password" required>
-    </div>
 
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+        <div class="container ">
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="divhome col-sm-8 ">
+                    <div class="connex principale">
+                        <div>
+                            <h2 class="h3 mb-3 font-weight-normal"><span>Veuillez vous connecter s'il vous plaît</span>
+                            </h2>
+                        </div>
+                        <div class="form-group ">
+                            Addrese mail
+                            <label for="inputEmail" class="sr-only">Email</label>
+                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
+                                   class="form-control  col-sm-6" placeholder="Email" required autofocus>
+                        </div>
+                        <div class="form-group">
+                            Mot de passe
+                            <label for="inputPassword" class="sr-only">Mot de passe</label>
+                            <input type="password" name="password" id="inputPassword" class="form-control col-sm-6"
+                                   placeholder="Password" required>
+                        </div>
 
 
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
+                        <input type="hidden" name="_csrf_token"
+                               value="{{ csrf_token('authenticate') }}"
+                        >
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
+
+                        {#
+                            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                            See https://symfony.com/doc/current/security/remember_me.html
+
+                            <div class="checkbox mb-3">
+                                <label>
+                                    <input type="checkbox" name="_remember_me"> Remember me
+                                </label>
+                            </div>
+                        #}
+                        <div>
+                            <button class="btn btn-lg btn-primary" type="submit">
+                                Connexion
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
         </div>
-    #}
-<div class="text-center">
-    <button class="btn btn-lg btn-primary" type="submit">
-        Connexion
-    </button></div>
-    </div>
-    </div>
-        <div class="col-sm-2"></div>
-    </div>
-    </div>
-</form>
+    </form>
 {% endblock %}
 </body>
 </html>

@@ -7,6 +7,7 @@
  */
 
 namespace App\Forms;
+
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -32,15 +33,14 @@ class RegisterForm extends AbstractType
             ->add('phone', NumberType::class)
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
-                'first_options'  => array('label' => 'Password'),
+                'first_options' => array('label' => 'Password'),
                 'second_options' => array('label' => 'Repeat Password'),
             ))
             ->add('sponsorCode', TextType::class, [
                 'label' => 'Sponsor\'s code',
                 'required' => false,
                 'mapped' => false
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

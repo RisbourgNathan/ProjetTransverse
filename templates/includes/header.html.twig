@@ -3,33 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
-    {% block stylesheets %}<link href="{{ asset('css/main.css')}}" rel="stylesheet">
-        <link href="{{ asset('css/offer_and_search.css')}}" rel="stylesheet">
+    {% block stylesheets %}
+        <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/offer_and_search.css') }}" rel="stylesheet">
         <script
                 src="https://code.jquery.com/jquery-3.3.1.js"
                 integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
                 crossorigin="anonymous">
 
         </script>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">{% endblock %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+              crossorigin="anonymous">{% endblock %}
 </head>
 <header>
-{% block javascripts %}{% endblock %}
-<ul class="navbartest">
-    <li><a href="{{ path('index') }}">Accueil</a></li>
-    {% if is_granted('ROLE_ADMIN') %}
-        <li><a href="{{ path('backoffice') }}">Backoffice</a></li>
-    {% endif %}
-    {% if is_granted('ROLE_AGENT') %}
-        <li><a href="{{ path('possession_manage')}}">Manage Possessions</a></li>
-    {% endif %}
-    <li><a href="{{ path('possession_app_possession_createpossessionbyagent') }}">Create possession by agent</a></li>
-    <li><a href="{{ path('possession_list') }}">Search possession</a> </li>
-    {% if app.user %}
-        <li><a href="{{ path('account') }}">Profil</a></li>
-        <li><a href="{{ path('logout') }}">logout</a></li>
-    {% else %}
-        <li><a href="{{ path('app_login') }}">login</a></li>
-    {% endif %}
-</ul>
+    {% block javascripts %}{% endblock %}
+    <ul class="navbarindex">
+        <li><a href="{{ path('index') }}">Accueil</a></li>
+        {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ path('backoffice') }}">Backoffice</a></li>
+        {% endif %}
+        {% if is_granted('ROLE_AGENT') %}
+            <li><a href="{{ path('possession_manage') }}">Manage Possessions</a></li>
+        {% endif %}
+        <li><a href="{{ path('possession_app_possession_createpossessionbyagent') }}">Create possession by agent</a>
+        </li>
+        <li><a href="{{ path('possession_list') }}">Search possession</a></li>
+        {% if app.user %}
+            <li><a href="{{ path('account') }}">Profil</a></li>
+            <li><a href="{{ path('logout') }}">logout</a></li>
+        {% else %}
+            <li><a href="{{ path('app_login') }}">login</a></li>
+        {% endif %}
+    </ul>
 </header>
+<div class="text-center">
+    <h1><span>ImmoConceptPlus<br>Une maison, une idée, un concept</span></h1>
+</div>

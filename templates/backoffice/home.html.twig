@@ -3,41 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>BackOffice - Accueil</title>
-    {% block stylesheets %}<link href="{{ asset('css/main.css')}}" rel="stylesheet">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    {% block stylesheets %}
+        <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+              crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                crossorigin="anonymous"></script>
     {% endblock %}
 </head>
 <div>
 
     <ul class="navbartest">
         <li><a href="{{ path('index') }}">Accueil</a></li>
-        <li><a href="{{ path('possession_app_possession_createpossessionbyagent') }}">Create possession by agent</a></li>
-        <li><a href="{{ path('possession_list') }}">Chercher un bien</a> </li>
+        <li><a href="{{ path('possession_app_possession_createpossessionbyagent') }}">Create possession by agent</a>
+        </li>
+        <li><a href="{{ path('possession_list') }}">Chercher un bien</a></li>
         <li><a href="{{ path('app_login') }}">Connexion</a></li>
         <li><a href="{{ path('logout') }}">Déconnexion</a></li>
     </ul>
 
-{% include 'account/infosAccount.html.twig' %}
-    <div class="text-center">
-    <h1>ImmoConceptPlus<br>Une maison, une idée, un concept</h1>
-    <h2>Le backoffice</h2>
-    </div>
+    {% include 'account/infosAccount.html.twig' %}
 
-<div class="container divhome">
-    <div class="row">
-  <div class="col-sm-4 divhomedescription"> <a href="{{ path('addAgency') }}">Ajouter une agence</a></div>
-   <div class="col-sm-4 divhomedescription"> <a href="{{ path('addAgencyDirector')}}">Ajouter un directeur d'agence</a></div>
-   <div class="col-sm-4 divhomedescription"> <a href="{{ path('addAgent')}}">Ajouter un agent</a></div>
-   <div class="col-sm-4 divhomedescription"> <a href="{{ path('addAdmin') }}">Ajouter un admin</a></div>
-   <div class="col-sm-4 divhomedescription"> <a href="{{ path('GetListAgency') }}">Liste agence</a></div>
-   <div class="col-sm-4 divhomedescription"> <a href="{{ path('GetListAgencyDirector') }}">Liste directeur d'agence</a></div>
-    <div class="col-sm-4 divhomedescription"><a href="{{ path('GetListAgent') }}">Liste agent</a></div>
-   <div class="col-sm-4 divhomedescription"> <a href="{{ path('GetListAdmin') }}">Liste admin</a></div>
+
+    <div class="container divhome">
+        <div class="text-center">
+            <h2>Le backoffice</h2>
+        </div>
+        <div class="row principale">
+            <div class="col-sm-4 divhomedescription"><a href="{{ path('addAgency') }}">Ajouter une agence</a></div>
+            <div class="col-sm-4 divhomedescription"><a href="{{ path('addAgencyDirector') }}">Ajouter un directeur
+                    d'agence</a></div>
+            <div class="col-sm-4 divhomedescription"><a href="{{ path('addAgent') }}">Ajouter un agent</a></div>
+            <div class="col-sm-4 divhomedescription"><a href="{{ path('addAdmin') }}">Ajouter un admin</a></div>
+            <div class="col-sm-4 divhomedescription"><a href="{{ path('GetListAgency') }}">Liste agence</a></div>
+            <div class="col-sm-4 divhomedescription"><a href="{{ path('GetListAgencyDirector') }}">Liste directeur
+                    d'agence</a></div>
+            <div class="col-sm-4 divhomedescription"><a href="{{ path('GetListAgent') }}">Liste agent</a></div>
+            <div class="col-sm-4 divhomedescription"><a href="{{ path('GetListAdmin') }}">Liste admin</a></div>
+        </div>
     </div>
-</div>
 </div>
 </body>
 </html>
