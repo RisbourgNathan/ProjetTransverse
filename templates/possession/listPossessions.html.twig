@@ -8,21 +8,20 @@
                 <div class="searchTitle">
                  <h2>Rechercher</h2>
                 </div>
-                <div class="formSearch">
+                <form class="formSearch">
                     <div class="formSearchTitle">
                         <h3>Filtres</h3>
                     </div>
                     {{ form_start(form) }}
-                    {{ form_row(form.city) }}<br>
-                    {{ form_label(form.type) }}<br>
-                    {{ form_widget(form.type) }}<br>
+                    <span class="formCity">{{ form_row(form.city) }}</span><br>
+                    {{ form_row(form.type) }}<br><br>
                     {{ form_label(form.price) }}<span id="output"></span><br>
                     {{ form_widget(form.price) }}
                     <div class="submitSearch">
                     {{ form_row(form.Valider) }}
                     </div>
                     {{ form_end(form) }}
-                </div>
+                </form>
                 {% if possessions %}
                     <div class="flexbox">
                     {% for possession in possessions %}
@@ -42,7 +41,9 @@
                     </div>
                 {% endif %}
                 <div class="navigation">
+                    {% if possessions %}
                     {{ knp_pagination_render(possessions) }}
+                    {% endif %}
                 </div>
             </div>
         {% endblock %}

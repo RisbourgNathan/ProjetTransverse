@@ -45,23 +45,24 @@ class ProfileController extends AbstractController
      */
     public function showProfile()
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
         $client = $this->ClientManager->getClientByUser($user);
         $clientPossessions = $client->getPossessions();
+        $favorites = $client->getFavorites();
 
-        return $this->render('account/yourProfile.html.twig', ['client' => $client, 'clientPossessions' => $clientPossessions]);
+        return $this->render('account/yourProfile.html.twig', ['client' => $client, 'clientPossessions' => $clientPossessions, 'favorites' => $favorites]);
     }
 
     /**
-     * @Route("/account/modifyProfile/{idClient}", name="modifyProfile")
-     * @param $idClient
+     * @Route("/account/modifyProfile", name="modifyProfile")
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @return RedirectResponse|Response
      */
-    public function modifyProfile($idClient, Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function modifyProfile(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
-        $user = $this->ClientManager->GetClientUserById($idClient);
+        $user = $this->getUser();
         $form = $this->createForm(modifyUserForm::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){

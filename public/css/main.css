@@ -1,24 +1,36 @@
 /*
 !important permet de surpasser le bootstrap
 */
-body{
-   /* background-color: beige !important;*/
+body {
+    /* background-color: beige !important;*/
     background-image: url("/../images/possessions/kitchen.jpg");
 }
-.title{
+
+span {
+    position: relative;
+    top: 5vh;
+}
+
+a{
+}
+
+.title {
     text-align: center;
 }
-.searchContainer{
-    border: black solid 2px;
+
+.searchContainer {
+
     position: relative;
     width: 100%;
     height: 100%;
     background-color: #999999;
 }
-.searchTitle{
+
+.searchTitle {
     text-align: center;
 }
-.formSearch{
+
+.formSearch {
     display: inline-block;
     position: relative;
     width: 25%;
@@ -27,7 +39,8 @@ body{
     top: -2vw;
     left: 1vw;
 }
-.flexbox{
+
+.flexbox {
     top: -10vw;
     left: 1vw;
     position: relative;
@@ -35,51 +48,72 @@ body{
     flex-wrap: wrap;
     width: 70%;
 }
-.searchResults{
+
+.searchResults {
     text-align: center;
     position: relative;
     width: 32%;
-    border: black 1px solid;
+
     margin-left: 0.5vw;
     margin-top: 1vw;
     background-color: #aacd4e;
 }
-.searchResults:hover{
-    border: black 3px solid;
+
+.searchResults:hover {
+
 }
-.searchResults > a{
+
+.searchResults > a {
     text-decoration: none;
     color: black;
 }
-.contentResult{
+
+.contentResult {
     display: block;
 }
-.formSearchTitle{
+
+.formSearchTitle {
     position: relative;
 }
-.submitSearch{
+
+.submitSearch {
     top: 2vw;
     position: relative;
 }
-.priceFilter{
+
+.priceFilter {
     position: relative;
 }
+
 input[type=text]:focus {
     border: 3px solid #555;
 }
-.priceFilter > input{
+
+.priceFilter > input {
     display: block;
 }
 
-.noResults{
+body{
+   /* background-color: beige !important;*/
+    background-color: darkgrey !important;
+    background-image: url("/../images/possessions/kitchen.jpg");
+}
+.form{
+    top: 1vw;
     position: relative;
-    display: inline-block;
+    width: 40vw;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
-    top: -5vw;
-    font-size: 1.2vw;
-    width: 50%;
 }
 
+.HomeSearchForm{
+    top: 0 !important;
+}
+.title{
+    position: relative;
+    text-align: center;
+}
 
 .navbartest{
     background-color: #313131;
@@ -92,11 +126,11 @@ input[type=text]:focus {
     color: white;
 }
 
-.navbartest li{
+.navbartest li {
     display: inline;
 }
 
-.navbartest a{
+.navbartest a {
     text-decoration: none !important;
     color: white !important;
     padding: 1vw 1vw;
@@ -105,77 +139,101 @@ input[type=text]:focus {
     top: 1vh;
 }
 
-.navbartest li :hover{
+.navbartest li :hover {
     color: white !important;
     background-color: royalblue;
 }
 
+.divindex {
 
-h1{
+}
+
+h1 {
     text-align: center;
 }
 
-.imgSearchPossession{
+.imgSearchPossession {
     position: relative;
     width: 15vw;
     height: 10vw;
 }
-.lastOffer{
+
+.lastOffer {
     position: relative;
     display: inline-block;
     text-align: center;
 }
 
+
 .principale{
-background: rgba(255, 255, 255, 0.60);
     border-radius: 5px;
-    text-align: center;
+ /*   text-align: center;*/
+    padding-top: 5vh;
+    padding-left: 10vh;
+    padding-right: 10vh;
+    padding-bottom: 5vh;
     position: relative;
     top: 15vh;
-    height: 40vh;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    background-color:rgba(255,255,255,0.5);
+    /* height: 40vh;*/
 }
 
-h2{
+
+h2 {
     text-align: center;
     position: relative;
+    padding-bottom: 7vh;
 }
 
-.testrouge{
-    background: rgba(255, 255, 255, 0.60);
-    border-radius: 5px;
-    position: relative;
-    top: 15vh;
-}
-.testbleu{
+
+.divhomedescription {
     text-align: center;
-    background-color: lightblue;
+    background-color: gray;
+    color: white;
     border-radius: 1vh;
     height: 5vh;
     margin: 2vh;
     position: relative;
     left: 10vw;
 }
+.divhomedescription a{
+    color: white !important;
+    text-decoration:none !important;
+}
 
-.testbleu a{
+.divhomedescription a {
     position: relative;
     top: 1vh;
     display: block;
     width: 100%;
     height: 100%;
+    color: white;
 }
 
-.testbleu a:hover{
-    color: black !important;
+.divhomedescription:hover {
+    background-color: white;
+    color: gray;
     text-decoration: none;
-}
-.testbleu:hover{
-    background-color: royalblue;
+    font-weight: bold;
 
 }
-.testbleu:hover a{
-    color: black;
 
+
+
+.divdescription{
+    background-color:rgba(255,255,255,0.5);
+    border-radius: 5px;
 }
+/*.connex{
+    position: relative;
+    top: 20vh;
+    left: 50vh;
+}
+*/
+
 
 
 
