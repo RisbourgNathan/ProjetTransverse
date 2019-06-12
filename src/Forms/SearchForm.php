@@ -37,21 +37,27 @@ class SearchForm extends AbstractType
                 'multiple'=> true,
                 'expanded'=> true,
                 'label' => 'Type d\'annonce : ',
-                'mapped' => true
+                'mapped' => true,
+                'attr' => ['class' => 'form-check-input checkboxType']
             ])
             ->add('city', TextType::class,[
-                'label' => 'Ville : ',
-                'required' => false
+                'required' => false,
+                'label' => 'Ville',
+                'label_attr' => ['class' => 'sr-only', 'for' => 'inputCity'],
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Ville', 'id' => 'inputCity'],
             ])
             ->add('price', RangeType::class,[
                 'attr' => [
                     'min' => 0,
                     'max' => 500000,
-                    'class' => "priceSlider"
+                    'class' => "priceSlider custom-range"
                 ],
                 'label' => "Prix : "
             ])
-            ->add('Valider', SubmitType::class)
+            ->add('Valider', SubmitType::class, [
+                'label' => 'Valider',
+                'attr' => ['class' => 'btn btn-primary']
+            ])
             ->setMethod('GET');
     }
 }

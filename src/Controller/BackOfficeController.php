@@ -256,7 +256,7 @@ class BackOfficeController extends AbstractController
             $this->AdminCrud->getInscriptionData($admin);
             return $this->redirectToRoute('backoffice');
         }
-        return $this->render('backoffice/addAgency.html.twig', [
+        return $this->render('backoffice/addAdmin.html.twig', [
             'form' => $form->createView()
         ]);
     }

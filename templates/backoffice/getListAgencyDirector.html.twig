@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Liste Directeur d'Agence{% endblock %}</title>
-    {% block stylesheets %}{% endblock %}
-</head>
-<body>
-{% block body %}{% endblock %}
-{% block javascripts %}{% endblock %}
-{% include 'account/infosAccount.html.twig' %}
-<h1>Fiche des Agents : </h1>
+{% include 'includes/header.html.twig' %}
+<div class="principale">
+<h1>Fiche des directeurs d'agences : </h1>
 Nombre d'agents : {{ ListAgencyDirector | length }}
 <ul>
     {% for agent in ListAgencyDirector %}
@@ -17,6 +8,6 @@ Nombre d'agents : {{ ListAgencyDirector | length }}
     {% endfor %}
 </ul>
 
-
+</div>
 </body>
 </html>

@@ -11,12 +11,15 @@ span {
     top: 5vh;
 }
 
+a{
+}
+
 .title {
     text-align: center;
 }
 
 .searchContainer {
-    border: black solid 2px;
+
     position: relative;
     width: 100%;
     height: 100%;
@@ -50,14 +53,14 @@ span {
     text-align: center;
     position: relative;
     width: 32%;
-    border: black 1px solid;
+
     margin-left: 0.5vw;
     margin-top: 1vw;
     background-color: #aacd4e;
 }
 
 .searchResults:hover {
-    border: black 3px solid;
+
 }
 
 .searchResults > a {
@@ -90,17 +93,29 @@ input[type=text]:focus {
     display: block;
 }
 
-.noResults {
+body{
+   /* background-color: beige !important;*/
+    background-color: darkgrey !important;
+    background-image: url("/../images/possessions/kitchen.jpg");
+}
+.form{
+    top: 1vw;
     position: relative;
-    display: inline-block;
+    width: 40vw;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
-    top: -5vw;
-    font-size: 1.2vw;
-    width: 50%;
 }
 
+.HomeSearchForm{
+    top: 0 !important;
+}
+.title{
+    position: relative;
+    text-align: center;
+}
 
-.navbarindex {
+.navbartest{
     background-color: #313131;
     overflow: hidden;
     list-style-type: none;
@@ -111,11 +126,11 @@ input[type=text]:focus {
     color: white;
 }
 
-.navbarindex li {
+.navbartest li {
     display: inline;
 }
 
-.navbarindex a {
+.navbartest a {
     text-decoration: none !important;
     color: white !important;
     padding: 1vw 1vw;
@@ -124,7 +139,7 @@ input[type=text]:focus {
     top: 1vh;
 }
 
-.navbarindex li :hover {
+.navbartest li :hover {
     color: white !important;
     background-color: royalblue;
 }
@@ -149,15 +164,20 @@ h1 {
     text-align: center;
 }
 
-.principale {
-    background: rgba(255, 255, 255, 0.60);
+
+.principale{
     border-radius: 5px;
  /*   text-align: center;*/
     padding-top: 5vh;
-    padding-left: 1vh;
+    padding-left: 10vh;
+    padding-right: 10vh;
     padding-bottom: 5vh;
     position: relative;
     top: 15vh;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    background-color:rgba(255,255,255,0.5);
     /* height: 40vh;*/
 }
 
@@ -171,12 +191,17 @@ h2 {
 
 .divhomedescription {
     text-align: center;
-    background-color: lightblue;
+    background-color: gray;
+    color: white;
     border-radius: 1vh;
     height: 5vh;
     margin: 2vh;
     position: relative;
     left: 10vw;
+}
+.divhomedescription a{
+    color: white !important;
+    text-decoration:none !important;
 }
 
 .divhomedescription a {
@@ -185,24 +210,23 @@ h2 {
     display: block;
     width: 100%;
     height: 100%;
-}
-
-.divhomedescription a:hover {
-    color: black !important;
-    text-decoration: none;
+    color: white;
 }
 
 .divhomedescription:hover {
-    background-color: royalblue;
+    background-color: white;
+    color: gray;
+    text-decoration: none;
+    font-weight: bold;
 
 }
 
-.divhomedescription:hover a {
-    color: black;
 
+
+.divdescription{
+    background-color:rgba(255,255,255,0.5);
+    border-radius: 5px;
 }
-
-
 /*.connex{
     position: relative;
     top: 20vh;

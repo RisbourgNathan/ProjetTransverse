@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Liste Agents{% endblock %}</title>
-    {% block stylesheets %}{% endblock %}
-</head>
-<body>
-{% block body %}{% endblock %}
-{% block javascripts %}{% endblock %}
-{% include 'account/infosAccount.html.twig' %}
+{% include 'includes/header.html.twig' %}
+<div class="principale">
 <h1>Fiche des Agents : </h1>
 Nombre d'agents : {{ ListAgent | length }}
 <ul>
@@ -17,6 +8,6 @@ Nombre d'agents : {{ ListAgent | length }}
         {% endfor %}
 </ul>
 
-
+</div>
 </body>
 </html>

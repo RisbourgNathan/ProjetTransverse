@@ -1,56 +1,23 @@
 {% include 'includes/header.html.twig' %}
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 <body>
-
-
-<div class="container ">
-    <div class="row">
-        <div class="col-sm-2"></div>
-
-        <div class=" col-sm-8 align-self-center">
-            <div class="connex principale">
-                <div class="text-center">
-                    <h2 class="h3 mb-3 font-weight-normal"><span>Inscription</span></h2>
-                </div>
-                {{ form_start(form) }}
-                <div class="form-group col-sm-8">
-                    {{ form_row(form.firstname, { 'label': 'Votre prénom' ,'attr': {'placeholder': 'Prénom'}}) }}
-                </div>
-                <div class="form-group col-sm-8">
-                    {{ form_row(form.lastname, { 'label': 'Votre nom' ,'attr': {'placeholder': 'Nom de famille'}}) }}
-                </div>
-                <div class="form-group col-sm-8">
-                    {{ form_row(form.email, { 'label': 'Votre email' ,'attr': {'placeholder': 'Adresse mail'}}) }}
-                </div>
-                <div class="form-group col-sm-8">
-                    {{ form_row(form.city, { 'label': 'Votre ville' ,'attr': {'placeholder': 'Ville'}}) }}
-                </div>
-                <div class="form-group col-sm-8">
-                    {{ form_row(form.zipcode, { 'label': 'Votre code postal' ,'attr': {'placeholder': 'code postal'}}) }}
-                </div>
-                <div class="form-group col-sm-8">
-                    {{ form_row(form.street, { 'label': 'Votre nom de rue et numéro' ,'attr': {'placeholder': 'Rue et numéro'}}) }}
-                </div>
-                <div class="form-group col-sm-8">
-                    {{ form_row(form.phone, { 'label': 'Votre téléphone' ,'attr': {'placeholder': 'Numéro de téléphone'}}) }}
-                </div>
-                <div class="form-group col-sm-8">
-                    {{ form_row(form.plainPassword.first, { 'label': 'Votre mot de passe' ,'attr': {'placeholder': 'Mot de passe'}}) }}
-                </div>
-                <div class="form-group col-sm-8">
-                    {{ form_row(form.plainPassword.second, { 'label': 'Confirmation mot de passe' ,'attr': {'placeholder': 'Confirmation'}}) }}
-                </div>
-
-                <button class="btn btn-lg btn-primary" type="submit">Inscription</button>
-                <div class="form-group col-sm-8">
-                    {{ form_row(form.sponsorCode, { 'label': 'Entrez votre code sponsor' ,'attr': {'placeholder': 'Code sponsor'}}) }}
-                </div>
-                {{ form_end(form) }}
-
-            </div>
-        </div>
-        <div class="col-sm-2"></div>
-    </div>
+<div class="principale">
+<h1 class="title registerTitle">Inscription</h1>
+<div class="registerForm form">
+{{ form_start(form) }}
+{{ form_row(form.firstname) }}
+{{ form_row(form.lastname) }}
+{{ form_row(form.email) }}
+{{ form_row(form.city) }}
+{{ form_row(form.zipcode) }}
+{{ form_row(form.street) }}
+{{ form_row(form.phone) }}
+{{ form_row(form.plainPassword.first) }}
+{{ form_row(form.plainPassword.second) }}
+{{ form_row(form.sponsorCode) }}
+<button class="btn btn-primary" type="submit">Inscription</button>
+{{ form_end(form) }}
+</div>
 </div>
 </body>
 </html>

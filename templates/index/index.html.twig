@@ -7,25 +7,22 @@
 
 
 <div class="principale">
-    <div class="text-center">
-        <h2 class="h3 mb-3 font-weight-normal"><span>Les offres du moment</span></h2>
+    <div class="form HomeSearchForm">
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
     </div>
+    <h2>Les offres du moment</h2><br>
     {% if possessions %}
-        {% for possession in possessions %}
-            <a href="{{ path('possession_show', {'id': possession.id}) }}">
-                <div class="lastOffer">
-                    {% if possession.possessionImage.first %}
-                        <img class="imgSearchPossession"
-                             src="{{ asset(vich_uploader_asset(possession.possessionImage.first, 'imageFile', 'App\\Entity\\PossessionImage')) }}"
-                             alt="possessionImage"><br>
-                    {% endif %}
-                    {{ possession.title }}
-                </div>
-            </a>
-        {% endfor %}
+    {% for possession in possessions %}
+        <a href="{{ path('possession_show', {'id': possession.id}) }}"><div class="lastOffer">
+        {% if possession.possessionImage.first %}
+        <img class="imgSearchPossession" src="{{ asset(vich_uploader_asset(possession.possessionImage.first, 'imageFile', 'App\\Entity\\PossessionImage')) }}" alt="possessionImage"><br>
+        {% endif %}
+        {{ possession.title }} - {{ possession.city }}
+        </div></a>
+    {% endfor %}
     {% endif %}
 </div>
-
-
 </body>
 </html>
