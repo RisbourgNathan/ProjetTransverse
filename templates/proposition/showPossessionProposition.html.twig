@@ -1,9 +1,14 @@
 {% include 'account/infosAccount.html.twig' %}
 
-{% for proposition in possession.proposition %}
-    <div class="possessionPropositionDiv">
-        <p>{{ possession.title }}</p>
-        <button><a href="#">Faire une contre-proposition</a></button>
-        <button><a href="#">Accepter cette offre</a></button>
-    </div>
-{% endfor %}
+{% if possession.proposition.count > 0 %}
+    {% for proposition in possession.proposition %}
+        <div class="possessionPropositionDiv">
+            <p>{{ possession.title }} : {{ proposition.getPrice() }} euros.</p>
+            <button><a href="{{ path('proposition_createCounter', {'id': proposition.id}) }}">Faire une contre-proposition</a></button>
+            <button><a href="{{ path('proposition_accept', {'id': proposition.id}) }}">Accepter cette offre</a></button>
+            <button><a href="{{ path('proposition_deny', {'id': proposition.id}) }}">Refuser</a></button>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Il n'y a pas de proposition pour cette annonce !</p>
+{% endif %}

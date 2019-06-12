@@ -1,0 +1,22 @@
+{% include 'account/infosAccount.html.twig' %}
+
+{% if propositions.count > 0 %}
+    {% for proposition in propositions %}
+        {% if proposition.state == "PROPOSITION" %}
+        <div class="myPropositionsDiv">
+            <p>{{ proposition.possession.title }} : {{ proposition.getPrice() }} euros.</p>
+            <button><a href="{{ path('proposition_createCounter', {'id': proposition.id}) }}">Faire une contre-proposition</a></button>
+            <button><a href="{{ path('proposition_accept', {'id': proposition.id}) }}">Accepter cette offre</a></button>
+            <button><a href="{{ path('proposition_deny', {'id': proposition.id}) }}">Refuser</a></button>
+        </div>
+
+        {% else if proposition.state == "COUNTEROFFER" %}
+            
+        {% else if proposition.state == "ACCEPTED" %}
+
+        {% else if proposition.state == "DENIED" %}
+
+    {% endfor %}
+{% else %}
+    <p>Vous n'avez fait aucune offre !</p>
+{% endif %}

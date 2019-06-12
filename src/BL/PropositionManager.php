@@ -27,4 +27,9 @@ class PropositionManager
         $this->entityManager->persist($proposition);
         $this->entityManager->flush();
     }
+
+    public function getPropositionById($id)
+    {
+       return $this->entityManager->getRepository(Proposition::class)->find($id);
+    }
 }

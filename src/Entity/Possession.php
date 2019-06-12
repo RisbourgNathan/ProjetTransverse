@@ -11,6 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Possession
 {
+    public static $STATE_SOLD = "SOLD";
+    public static $STATE_SELL = "SELL";
+
     /**
      * @ORM\Id()
      * @ORM\Column(type="uuid")
