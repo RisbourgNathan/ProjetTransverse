@@ -25,12 +25,4 @@ class HomeSearchForm extends AbstractType
                 'attr' => ['class' => 'btn btn-primary']
             ]);
     }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'csrf_protection' => false,
-        ]);
-
-    }
 }
