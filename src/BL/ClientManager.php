@@ -7,6 +7,8 @@
  */
 
 namespace App\BL;
+use App\Entity\Favorite;
+use App\Entity\Possession;
 use App\Entity\User;
 use App\Entity\Client;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -45,5 +47,18 @@ class ClientManager
 
     public function GetClientUserById($idClient){
         return $this->em->getRepository(Client::class)->find($idClient)->getUser();
+    }
+
+    public function addToFavorites(Possession $possession, User $user){
+        $favorite = new Favorite();
+        $favorite->setClient($this->getClientByUser($user));
+        $favorite->setPossession($possession);
+        $this->em->persist($favorite);
+        $this->em->flush();
+    }
+    public function removeFromFavorites(Possession $possession, User $user){
+        $favorite = $this->em->getRepository(Favorite::class)->findOneBy(array('possession' => $possession, 'client' => $this->getClientByUser($user)));
+        $this->em->remove($favorite);
+        $this->em->flush();
     }
 }

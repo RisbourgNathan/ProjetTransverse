@@ -44,6 +44,20 @@ class PossessionRepository extends ServiceEntityRepository
         );
         return $possessions;
     }
+
+    public function findByCity(Request $request, $city){
+        $dql   = "SELECT p FROM App\Entity\Possession p
+                      WHERE p.city LIKE :city";
+        $query = $this->em->createQuery($dql)
+            ->setParameter('city', "%$city%");
+        $possessions = $this->knp->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            9 /*limit per page*/
+        );
+        return $possessions;
+    }
+
     public function findAllPossessions(Request $request){
         $dql   = "SELECT p FROM App\Entity\Possession p";
         $query = $this->em->createQuery($dql);

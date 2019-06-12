@@ -6,12 +6,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\Index;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @ORM\Table(name="useracc")
+ * @ORM\Table(name="useracc", indexes={@Index(name="email_idx", columns={"email"})})
  */
 class User implements UserInterface
 {

@@ -60,4 +60,11 @@ class SearchForm extends AbstractType
             ])
             ->setMethod('GET');
     }
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'csrf_protection' => false,
+        ]);
+
+    }
 }

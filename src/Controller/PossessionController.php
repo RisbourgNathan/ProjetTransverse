@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\BL\AgentManager;
+use App\BL\ClientManager;
+use App\BL\FavoriteManager;
 use App\BL\PossessionManager;
 use App\BL\PossessionTypeManager;
 use App\BL\UserManager;
@@ -42,12 +44,15 @@ class PossessionController extends AbstractController
     private $uploaderHelper;
     private $knp;
     private $agentManager;
+    private $favoriteManager;
 
     /**
      * PossessionController constructor.
      * @param EntityManagerInterface $entityManager
      * @param Security $security
+     * @param RegistryInterface $registry
      * @param UploaderHelper $uploaderHelper
+     * @param PaginatorInterface $knp
      */
     public function __construct(EntityManagerInterface $entityManager, Security $security, RegistryInterface $registry, UploaderHelper $uploaderHelper, PaginatorInterface $knp)
     {
@@ -60,6 +65,8 @@ class PossessionController extends AbstractController
         $this->uploaderHelper = $uploaderHelper;
         $this->knp = $knp;
         $this->agentManager = new AgentManager($entityManager);
+        $this->clientManager = new ClientManager($entityManager);
+        $this->favoriteManager = new FavoriteManager($entityManager);
     }
 
     /**
@@ -69,7 +76,6 @@ class PossessionController extends AbstractController
      */
     public function list(Request $request)
     {
-
         $form = $this->createForm(SearchForm::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
@@ -269,13 +275,49 @@ class PossessionController extends AbstractController
     public function showPossession($id)
     {
         $possession = $this->entityManager->getRepository(Possession::class)->find($id);
+
+        $client = $this->clientManager->getClientByUser($this->getUser());
+
+        if($this->favoriteManager->getFavorite($possession, $client) == null){
+            $isFavorite = false;
+        }
+        else{
+            $isFavorite = true;
+        }
         $possessionOutbuildings = $possession->getOwnOutbuilding();
+
         $images = $possession->getPossessionImage();
+
         $agency = $possession->getAgent()->getAgency();
 
         return $this->render("possession/showPossession.html.twig", array("possession" => $possession,
             "possOwnOutbuilding" => $possessionOutbuildings,
+            "isFavorite" => $isFavorite,
             "images" => $images,
             "agency" => $agency));
+    }
+
+    /**
+     * @Route("/addToFavorite/{id}", name="addToFavorites")
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function addToFavorites($id){
+        $possession = $this->possessionManager->getPossessionById($id);
+        $this->clientManager->addToFavorites($possession, $this->getUser());
+        $this->addFlash('success','Favori ajouté');
+        return $this->redirectToRoute('possession_show', array("id" => $id));
+    }
+
+    /**
+     * @Route("/removeFromFavorites/{id}", name="removeFromFavorites")
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function removeFromFavorites($id){
+        $possession = $this->possessionManager->getPossessionById($id);
+        $this->clientManager->removeFromFavorites($possession, $this->getUser());
+        $this->addFlash('success','Favori supprimé');
+        return $this->redirectToRoute('possession_show', array("id" => $id));
     }
 }

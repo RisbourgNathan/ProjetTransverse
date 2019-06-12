@@ -171,6 +171,20 @@ input[type=text]:focus {
     width: 4vw;
     text-align: center;
 }
+.favorite{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 10vw;
+    height: 2vw;
+    line-height: 2vw;
+    background-color: green;
+    left: 7vw;
+}
+.detailsPossessionContainer a{
+    color: white !important;
+    text-decoration: none !important;
+}
 .infosPossession{
     background-color: white;
     position: relative;

@@ -17,7 +17,6 @@ Numéro de téléphone : 0{{ app.user.phone }}<br>
         {% for possession in clientPossessions %}
             <div>
                 <p><a href="{{ path('possession_show', {'id': possession.id}) }}">{{ possession.title }}</a></p>
-                <p>{{ possession.description }}</p>
             </div>
             <br/>
         {% endfor %}
@@ -25,6 +24,18 @@ Numéro de téléphone : 0{{ app.user.phone }}<br>
         <p>Vous n'avez publie aucune annonce</p>
     {% endif %}
 </div>
+<div>
 
-<a href="{{ path('modifyProfile',{'idClient': client.id}) }}">Modifier le profil</a>
+    <h2>Favoris</h2>
+    {% if favorites.count != 0 %}
+     {% for favorite in favorites %}
+
+           <div>
+               <p><a href="{{ path('possession_show', {'id': favorite.possession.id} )}}">{{ favorite.possession.title }}</a></p>
+           </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+<a href="{{ path('modifyProfile') }}">Modifier le profil</a>
 </body>
