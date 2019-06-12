@@ -7,6 +7,7 @@
  */
 
 namespace App\Forms;
+
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

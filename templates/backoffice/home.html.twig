@@ -1,17 +1,21 @@
 {% include 'includes/header.html.twig' %}
     <h1>ImmoConceptPlus<br>Une maison, une idée, un concept</h1>
-    <h2>Le backoffice</h2>
 
-<div class="container testrouge">
-    <div class="row">
-  <div class="col-sm-4 testbleu"> <a href="{{ path('addAgency') }}">Ajouter une agence</a></div>
-   <div class="col-sm-4 testbleu"> <a href="{{ path('addAgencyDirector')}}">Ajouter un directeur d'agence</a></div>
-   <div class="col-sm-4 testbleu"> <a href="{{ path('addAgent')}}">Ajouter un agent</a></div>
-   <div class="col-sm-4 testbleu"> <a href="{{ path('addAdmin') }}">Ajouter un admin</a></div>
-   <div class="col-sm-4 testbleu"> <a href="{{ path('GetListAgency') }}">Liste agence</a></div>
-   <div class="col-sm-4 testbleu"> <a href="{{ path('GetListAgencyDirector') }}">Liste directeur d'agence</a></div>
-    <div class="col-sm-4 testbleu"><a href="{{ path('GetListAgent') }}">Liste agent</a></div>
-   <div class="col-sm-4 testbleu"> <a href="{{ path('GetListAdmin') }}">Liste admin</a></div>
+
+    <div class="container divhome">
+        <div class="text-center">
+            <h2>Le backoffice</h2>
+        </div>
+        <div class="row divdescription">
+            <a href="{{ path('addAgency') }}" class="col-sm-4 divhomedescription">  <div >Ajouter une agence</div></a>
+            <a href="{{ path('addAgencyDirector') }}" class="col-sm-4 divhomedescription"> <div >Ajouter un directeur d'agence</div></a>
+            <a href="{{ path('addAgent') }}" class="col-sm-4 divhomedescription"> <div >Ajouter un agent</div></a>
+            <a href="{{ path('addAdmin') }}"class="col-sm-4 divhomedescription"> <div >Ajouter un admin</div></a>
+            <a href="{{ path('GetListAgency') }}" class="col-sm-4 divhomedescription">  <div >Liste agence</div></a>
+            <a href="{{ path('GetListAgencyDirector') }}"class="col-sm-4 divhomedescription"><div>Liste directeur d'agence</div></a>
+            <a href="{{ path('GetListAgent') }}" class="col-sm-4 divhomedescription"> <div >Liste agent</div></a>
+            <a href="{{ path('GetListAdmin') }}"class="col-sm-4 divhomedescription"><div >Liste admin</div></a>
+        </div>
     </div>
 </div>
 </body>

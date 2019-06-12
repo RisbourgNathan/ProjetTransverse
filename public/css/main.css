@@ -1,19 +1,112 @@
 /*
 !important permet de surpasser le bootstrap
 */
+body {
+    /* background-color: beige !important;*/
+    background-image: url("/../images/possessions/kitchen.jpg");
+}
+
+span {
+    position: relative;
+    top: 5vh;
+}
+
+a{
+}
+
+.title {
+    text-align: center;
+}
+
+.searchContainer {
+
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #999999;
+}
+
+.searchTitle {
+    text-align: center;
+}
+
+.formSearch {
+    display: inline-block;
+    position: relative;
+    width: 25%;
+    height: 20vw;
+    text-align: left;
+    top: -2vw;
+    left: 1vw;
+}
+
+.flexbox {
+    top: -10vw;
+    left: 1vw;
+    position: relative;
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 70%;
+}
+
+.searchResults {
+    text-align: center;
+    position: relative;
+    width: 32%;
+
+    margin-left: 0.5vw;
+    margin-top: 1vw;
+    background-color: #aacd4e;
+}
+
+.searchResults:hover {
+
+}
+
+.searchResults > a {
+    text-decoration: none;
+    color: black;
+}
+
+.contentResult {
+    display: block;
+}
+
+.formSearchTitle {
+    position: relative;
+}
+
+.submitSearch {
+    top: 2vw;
+    position: relative;
+}
+
+.priceFilter {
+    position: relative;
+}
+
+input[type=text]:focus {
+    border: 3px solid #555;
+}
+
+.priceFilter > input {
+    display: block;
+}
+
 body{
    /* background-color: beige !important;*/
     background-color: darkgrey !important;
     background-image: url("/../images/possessions/kitchen.jpg");
 }
 .form{
-    top: 10vw;
+    top: 1vw;
     position: relative;
     width: 40vw;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
 }
+
 .HomeSearchForm{
     top: 0 !important;
 }
@@ -21,9 +114,7 @@ body{
     position: relative;
     text-align: center;
 }
-.registerTitle, .loginTitle{
-    top: 5vw;
-}
+
 .navbartest{
     background-color: #313131;
     overflow: hidden;
@@ -35,11 +126,11 @@ body{
     color: white;
 }
 
-.navbartest li{
+.navbartest li {
     display: inline;
 }
 
-.navbartest a{
+.navbartest a {
     text-decoration: none !important;
     color: white !important;
     padding: 1vw 1vw;
@@ -48,71 +139,101 @@ body{
     top: 1vh;
 }
 
-.navbartest li :hover{
+.navbartest li :hover {
     color: white !important;
     background-color: royalblue;
 }
 
+.divindex {
 
-h1{
+}
+
+h1 {
     text-align: center;
 }
 
-.lastOffer{
+.imgSearchPossession {
+    position: relative;
+    width: 15vw;
+    height: 10vw;
+}
+
+.lastOffer {
     position: relative;
     display: inline-block;
     text-align: center;
 }
 
+
 .principale{
     border-radius: 5px;
-    text-align: center;
+ /*   text-align: center;*/
+    padding-top: 5vh;
+    padding-left: 10vh;
+    padding-right: 10vh;
+    padding-bottom: 5vh;
     position: relative;
     top: 15vh;
-    height: 40vh;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    background-color:rgba(255,255,255,0.5);
+    /* height: 40vh;*/
 }
 
-h2{
+
+h2 {
     text-align: center;
     position: relative;
+    padding-bottom: 7vh;
 }
 
-.testrouge{
-    background: rgba(255, 255, 255, 0.60);
-    border-radius: 5px;
-    position: relative;
-    top: 15vh;
-}
-.testbleu{
+
+.divhomedescription {
     text-align: center;
-    background-color: lightblue;
+    background-color: gray;
+    color: white;
     border-radius: 1vh;
     height: 5vh;
     margin: 2vh;
     position: relative;
     left: 10vw;
 }
+.divhomedescription a{
+    color: white !important;
+    text-decoration:none !important;
+}
 
-.testbleu a{
+.divhomedescription a {
     position: relative;
     top: 1vh;
     display: block;
     width: 100%;
     height: 100%;
+    color: white;
 }
 
-.testbleu a:hover{
-    color: black !important;
+.divhomedescription:hover {
+    background-color: white;
+    color: gray;
     text-decoration: none;
-}
-.testbleu:hover{
-    background-color: royalblue;
+    font-weight: bold;
 
 }
-.testbleu:hover a{
-    color: black;
 
+
+
+.divdescription{
+    background-color:rgba(255,255,255,0.5);
+    border-radius: 5px;
 }
+/*.connex{
+    position: relative;
+    top: 20vh;
+    left: 50vh;
+}
+*/
+
 
 
 

@@ -1,6 +1,10 @@
 {% include 'includes/header.html.twig' %}
 <body>
-<h1>ImmoConceptPlus<br>Une maison, une idée, un concept</h1>
+
+{% block body %}
+{% endblock %}
+{% block javascripts %}{% endblock %}
+
 
 <div class="principale">
     <div class="form HomeSearchForm">
@@ -20,9 +24,5 @@
     {% endfor %}
     {% endif %}
 </div>
-
-
-
-
 </body>
 </html>
