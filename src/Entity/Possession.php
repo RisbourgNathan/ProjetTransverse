@@ -134,6 +134,11 @@ class Possession
      */
     private $createdAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Favorite", mappedBy="possession", orphanRemoval=true)
+     */
+    private $favorites;
+
     public function __construct()
     {
         $this->outBuildings = new ArrayCollection();
@@ -141,6 +146,7 @@ class Possession
         $this->proposition = new ArrayCollection();
         $this->clientsWithThisPossessionAsFavorite = new ArrayCollection();
         $this->possessionImages = new ArrayCollection();
+        $this->favorites = new ArrayCollection();
     }
 
     public function getId()
@@ -510,6 +516,37 @@ class Possession
     public function setCreatedAt(?\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Favorite[]
+     */
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
+
+    public function addFavorite(Favorite $favorite): self
+    {
+        if (!$this->favorites->contains($favorite)) {
+            $this->favorites[] = $favorite;
+            $favorite->setPossession($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Favorite $favorite): self
+    {
+        if ($this->favorites->contains($favorite)) {
+            $this->favorites->removeElement($favorite);
+            // set the owning side to null (unless already changed)
+            if ($favorite->getPossession() === $this) {
+                $favorite->setPossession(null);
+            }
+        }
 
         return $this;
     }

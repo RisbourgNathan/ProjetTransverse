@@ -38,6 +38,20 @@
                     <div class="detailsPossession">
                         {{ possession.surface }} M²
                     </div>
+                    {% if app.user and is_granted('ROLE_AGENT') == false and isFavorite is same as (false) %}
+                    <a href="{{ path('possession_addToFavorites', {'id': possession.id}) }}">
+                        <div class="favorite">
+                            Ajouter aux favoris
+                        </div>
+                    </a>
+                    {% elseif app.user and is_granted('ROLE_AGENT') == false and isFavorite is same as (true) %}
+                        <a href="{{ path('possession_removeFromFavorites', {'id': possession.id}) }}">
+                         <div class="favorite">
+                            Favori
+                         </div>
+                        </a>
+                    {% endif %}
+
                 </div>
             <div class="infosPossession">
                 <div class="infosPossessionDescription">
