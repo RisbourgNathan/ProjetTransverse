@@ -23,7 +23,5 @@ class FavoriteManager
         return $this->em->getRepository(Favorite::class)->findOneBy(array('possession' => $possession, 'client' => $client));
     }
 
-    public function removeFromFavorites(Possession $possession, User $user){
 
-    }
 }

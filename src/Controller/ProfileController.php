@@ -48,8 +48,9 @@ class ProfileController extends AbstractController
         $user = $this->getUser();
         $client = $this->ClientManager->getClientByUser($user);
         $clientPossessions = $client->getPossessions();
+        $favorites = $client->getFavorites();
 
-        return $this->render('account/yourProfile.html.twig', ['client' => $client, 'clientPossessions' => $clientPossessions]);
+        return $this->render('account/yourProfile.html.twig', ['client' => $client, 'clientPossessions' => $clientPossessions, 'favorites' => $favorites]);
     }
 
     /**

@@ -181,6 +181,10 @@ input[type=text]:focus {
     background-color: green;
     left: 7vw;
 }
+.detailsPossessionContainer a{
+    color: white !important;
+    text-decoration: none !important;
+}
 .infosPossession{
     background-color: white;
     position: relative;
