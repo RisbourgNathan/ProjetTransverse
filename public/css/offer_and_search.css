@@ -18,8 +18,8 @@ body{
 .formSearch{
     display: inline-block;
     position: relative;
-    width: 18%;
-    height: 20vw;
+    width: 20%;
+    height: 30vw;
     text-align: left;
     top: -2vw;
     left: 1vw;
@@ -28,7 +28,7 @@ body{
     left: 1vw;
 }
 .flexbox{
-    top: -8vw;
+    top: -9vw;
     left: 7vw;
     position: relative;
     display: inline-flex;
@@ -71,12 +71,14 @@ input[type=text]:focus {
     display: block;
 }
 .noResults{
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
     display: inline-block;
     text-align: center;
-    top: -5vw;
+    top: -15vw;
     font-size: 1.2vw;
-    width: 50%;
+    width: 50vw;
 }
 .imgSearchPossession{
     position: relative;
@@ -186,10 +188,18 @@ input[type=text]:focus {
     color: white !important;
     text-decoration: none !important;
 }
+#map {
+    margin-right: auto;
+    margin-left: auto;
+    height: 30%;
+    width: 30%;
+}
+
 .infosPossession{
     background-color: white;
     position: relative;
     width: 50%;
+    top: 2vw;
     height: fit-content;
     margin-left: auto;
     margin-right: auto;
