@@ -36,7 +36,10 @@ Numéro de téléphone : 0{{ app.user.phone }}<br>
         {% for proposition in propositions %}
             {% if proposition.state == "PROPOSITION" %}
                 <div class="">
-                    <p>En attente d'une reponse du proprietaire...</p>
+                    <p>{{ proposition.possession.title }} : {{ proposition.possession.sellingPrice }} euros.</p>
+                    <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
+                    <p>Votre proposition actuelle : {{ proposition.price }}
+                    <p>Etat : En attente d'une reponse du proprietaire...</p>
                 </div>
 
             {% elseif proposition.state == "COUNTERPROPOSITION" %}
