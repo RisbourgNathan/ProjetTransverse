@@ -1,22 +1,9 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Create Possession{% endblock %}</title>
-    {% block stylesheets %}{% endblock %}
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.js"
-            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-            crossorigin="anonymous">
-
-    </script>
-</head>
-
+{% include 'includes/header.html.twig' %}
 <body>
 <script>
     // setup an "add a tag" link
-    var $addOwnBuilding = $('<a href="#" class="add_tag_link">Add an outbuilding</a>');
-    var $addPossessionImage = $('<a href="#" class="add_possessionImage_link">Add a photo</a>');
+    var $addOwnBuilding = $('<a href="#" class="add_tag_link">Ajouter une dépendance</a>');
+    var $addPossessionImage = $('<a href="#" class="add_possessionImage_link">Ajouter une photo</a>');
     var $newLinkLi = $('<li></li>').append($addOwnBuilding);
     var $newLinkLiPossIm = $('<li></li>').append($addPossessionImage);
 
@@ -100,7 +87,7 @@
     }
 
     function addTagFormDeleteLink($tagFormLi) {
-        var $removeFormButton = $('<button type="button">Delete this tag</button>');
+        var $removeFormButton = $('<button type="button">Supprimer ce paramètre</button>');
         $tagFormLi.append($removeFormButton);
 
         $removeFormButton.on('click', function(e) {
@@ -110,7 +97,7 @@
     }
 </script>
 
-<h1>Create Possession</h1>
+<h1>Modifier une annonce</h1>
 {{ form_start(form) }}
 {# render the task's only field: description #}
 
@@ -134,7 +121,7 @@
                     <p>{{ image.imageName }}</p>
                     <img src="{{ asset(vich_uploader_asset(image, 'imageFile', 'App\\Entity\\PossessionImage')) }}" alt="{{ image.imageName }}" style="width: 200px;" />
                     <p>Description: {{ image.description }}</p>
-                    <a href="{{ path('possImage_remove', {'id': image.id}) }}">Remove</a>
+                    <a href="{{ path('possImage_remove', {'id': image.id}) }}">Supprimer</a>
                 </div>
             {% endfor %}
     {% endif %}

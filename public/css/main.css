@@ -43,7 +43,6 @@ span {
     text-align: center;
     position: relative;
     width: 32%;
-
     margin-left: 0.5vw;
     margin-top: 1vw;
     background-color: #aacd4e;
@@ -173,7 +172,11 @@ h2 {
     position: relative;
 }
 
-
+.streetPossession{
+    position: relative;
+    font-size: 150%;
+    text-align: center;
+}
 .divhomedescription {
     text-align: center;
     background-color: gray;

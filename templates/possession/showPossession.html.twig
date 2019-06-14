@@ -3,7 +3,6 @@
         {% block body %}
         <div class="title">
             <h1>{{ possession.title }}</h1>
-            <button><a href="{{ path('proposition_create', {'idPossession': possession.id}) }}">Faire une proposition</a></button>
         </div>
 
                 <div class="divImgPossession">
@@ -53,7 +52,8 @@
                          </div>
                         </a>
                     {% endif %}
-
+                <p class="streetPossession">Adresse : {{ possession.street }}</p><br>
+                <button class="btn btn-primary"><a href="{{ path('proposition_create', {'idPossession': possession.id}) }}">Faire une proposition</a></button>
                 </div>
             <h2>Carte</h2>
             <div id="map"></div>
@@ -95,14 +95,30 @@
                 </div>
             </div>
             <script>
+                var street = "{{ possession.street }}";
+                street = street.replace(/\s/g, '');
+                street = street.replace(',', '');
+                street = street.replace('é', 'e');
+                const Http = new XMLHttpRequest();
+                const url='https://maps.googleapis.com/maps/api/geocode/json?address='+street+'&key=AIzaSyDhQd_OqySckHoHuLuvXkn0fPfNK8PzZ88';
+                var lat;
+                var lng;
+                Http.open("GET", url);
+                Http.send();
+                Http.onreadystatechange = (e) => {
+                    console.log(street);
+                    var json = JSON.parse(Http.responseText);
+                    lat = json.results[0].geometry.location.lat;
+                    lng = json.results[0].geometry.location.lng;
+                };
                 function initMap() {
                     // The location of Uluru
-                    var uluru = {lat: 43.523357, lng: 5.43265};
+                    var center = {lat: lat, lng: lng};
                     // The map, centered at Uluru
                     var map = new google.maps.Map(
-                        document.getElementById('map'), {zoom: 14, center: uluru});
+                        document.getElementById('map'), {zoom: 14, center: center});
                     // The marker, positioned at Uluru
-                    var marker = new google.maps.Marker({position: uluru, map: map});
+                    var marker = new google.maps.Marker({position: center, map: map});
                 }
             </script>
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhQd_OqySckHoHuLuvXkn0fPfNK8PzZ88&callback=initMap"

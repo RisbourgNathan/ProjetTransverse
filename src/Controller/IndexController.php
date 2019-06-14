@@ -45,7 +45,7 @@ class IndexController extends AbstractController
         $form = $this->createForm(HomeSearchForm::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
-           return $this->redirect('/possession/list?search_form%5Bcity%5D='.$form->get('city')->getData().'&search_form%5Btype%5D%5B%5D=091bf11d-88e1-4315-811d-860350412d2c&search_form%5Btype%5D%5B%5D=f51396cb-d9d6-4f82-aef0-2411de128755&search_form%5Btype%5D%5B%5D=1041a093-8b0c-4c59-a8de-160b4845e6bc&search_form%5Btype%5D%5B%5D=23a4d5f5-4fb4-4d4e-a0be-d94b32d8db44&search_form%5Bprice%5D=500000&search_form%5BValider%5D=');
+           return $this->redirect('http://127.0.0.1:8000/possession/list?search_form%5Bcity%5D='.$form->get('city')->getData().'&search_form%5Btype%5D%5B%5D=babb353d-6b95-412a-a21b-7d88de06e8f6&search_form%5Btype%5D%5B%5D=8e3738ac-48e7-4388-8a2c-269fcd58f238&search_form%5Btype%5D%5B%5D=2028a9f7-3041-41ff-8a72-8855632fb817&search_form%5Btype%5D%5B%5D=89a9e33f-9d48-4871-b67d-749b8bb03274&search_form%5Bprice%5D=500000&search_form%5BValider%5D=');
         }
         if($this->security->getUser() != null) {
             $client = $this->UserManager->GetClientIdbyUser();
