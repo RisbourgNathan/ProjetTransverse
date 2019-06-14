@@ -94,6 +94,12 @@ class PropositionController extends AbstractController
     public function createCounterProposition($id, Request $request)
     {
         $proposition = $this->propositionManager->getPropositionById($id);
+
+        if ($this->denyAccessToProposition($proposition)) //DENY IF NEEDED
+        {
+            return $this->redirectToRoute("account");
+        }
+
         $mockProposition = new Proposition();
 
         $form  = $this->createForm(PropositionForm::class, $mockProposition);
@@ -123,6 +129,12 @@ class PropositionController extends AbstractController
     public function acceptProposition($id)
     {
         $proposition = $this->propositionManager->getPropositionById($id);
+
+        if ($this->denyAccessToProposition($proposition)) //DENY IF NEEDED
+        {
+            return $this->redirectToRoute("account");
+        }
+
         $proposition->setState(Proposition::$STATE_ACCEPTED);
         $proposition->getPossession()->setValidationState(Possession::$STATE_SOLD);
         $this->propositionManager->saveProposition($proposition);
@@ -138,7 +150,14 @@ class PropositionController extends AbstractController
     public function denyProposition($id)
     {
         $proposition = $this->propositionManager->getPropositionById($id);
+
+        if ($this->denyAccessToProposition($proposition)) //DENY IF NEEDED
+        {
+            return $this->redirectToRoute("account");
+        }
+
         $proposition->setState(Proposition::$STATE_DENIED);
+        $this->propositionManager->saveProposition($proposition);
 
         return $this->redirectToRoute("account");
     }
@@ -174,5 +193,43 @@ class PropositionController extends AbstractController
         return $this->render("proposition/showMyPropositions.html.twig", array(
             "propositions" => $propositions
         ));
+    }
+
+    private function denyAccessToProposition(Proposition $proposition)
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        $client = $this->clientManager->getClientByUser($this->security->getUser());
+        $clientId = $client->getId();
+
+        switch ($proposition->getState())
+        {
+            case Proposition::$STATE_ACCEPTED:
+                return true;
+                break;
+
+            case Proposition::$STATE_DENIED:
+                return true;
+                break;
+
+            case Proposition::$STATE_PROPOSITION:
+                if ($clientId == $proposition->getClient()->getId())
+                {
+                    return true;
+                }
+                break;
+
+            case Proposition::$STATE_COUNTER_PROPOSITION:
+                if ($clientId == $proposition->getPossession()->getSeller()->getId())
+                {
+                    return true;
+                }
+                break;
+
+            default:
+                return true;
+        }
+
+        return false;
     }
 }
