@@ -103,6 +103,7 @@ class Possession
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Client", mappedBy="favoritePossessions")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $clientsWithThisPossessionAsFavorite;
 
