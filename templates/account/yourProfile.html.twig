@@ -12,7 +12,7 @@ Numéro de téléphone : 0{{ app.user.phone }}<br>
 <hr>
 <br/>
 <div>
-    <h2>Mes annonces</h2>
+    <h2>Mes annonces {{ notifications }}</h2>
     {% if clientPossessions.count != 0 %}
         {% for possession in clientPossessions %}
             <div>

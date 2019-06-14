@@ -52,10 +52,13 @@ class ProfileController extends AbstractController
         $favorites = $client->getFavorites();
         $propositions = $client->getProposition();
 
+        $notifications = $client->getUser()->getNotifications();
+
         return $this->render('account/yourProfile.html.twig', ['client' => $client,
             'clientPossessions' => $clientPossessions,
             'favorites' => $favorites,
-            'propositions' => $propositions]);
+            'propositions' => $propositions,
+            'notifications' => $notifications]);
     }
 
     /**

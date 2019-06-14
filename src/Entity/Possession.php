@@ -2,19 +2,29 @@
 
 namespace App\Entity;
 
+use App\BL\UserManager;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Persistence\Mapping\ClassMetadata;
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Persistence\ObjectManagerAware;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Index;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PossessionRepository")
  * @ORM\Table(name="possession", indexes={@Index(name="title_idx",columns={"title"})})
+ * @ORM\HasLifecycleCallbacks()
  */
-class Possession
+class Possession implements ObjectManagerAware
 {
     public static $STATE_SOLD = "SOLD";
     public static $STATE_SELL = "SELL";
+    private $entityManager;
+    private $security;
 
     /**
      * @ORM\Id()
@@ -151,6 +161,7 @@ class Possession
         $this->clientsWithThisPossessionAsFavorite = new ArrayCollection();
         $this->possessionImages = new ArrayCollection();
         $this->favorites = new ArrayCollection();
+
     }
 
     public function getId()
@@ -553,5 +564,23 @@ class Possession
         }
 
         return $this;
+    }
+
+    /**
+     * @ORM\PostPersist()
+     */
+    public function sendNotifications()
+    {
+        $clients = $this->getClientsWithThisPossessionAsFavorite();
+
+        $userManager = new UserManager($this->entityManager, $this->security);
+
+        foreach ($clients as $client)
+        {
+            $user = $client->getUser();
+            $userManager->increaseNotification($user);
+            $this->entityManager->persist($user);
+        }
+        $this->entityManager->flush();
     }
 }

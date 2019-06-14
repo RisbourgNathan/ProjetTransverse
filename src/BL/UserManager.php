@@ -44,4 +44,23 @@ class UserManager
 
         return $usersArray;
     }
+
+    public function increaseNotification(User $user)
+    {
+        $newNotifNumber = $user->getNotifications() + 1;
+        $user->setNotifications($newNotifNumber);
+//        $this->saveUser($user);
+    }
+
+    public function clearNotifications(User $user)
+    {
+        $user->setNotifications(0);
+//        $this->saveUser($user);
+    }
+
+    public function saveUser($user)
+    {
+        $this->em->persist($user);
+        $this->em->flush();
+    }
 }
