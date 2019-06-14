@@ -61,7 +61,7 @@ class RegisterForm extends AbstractType
             ])
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
-                'first_options'  => array('label' => 'Mot de passe', 'label_attr' => ['class' => 'sr-only', 'for' => 'inputFirstPassword'], 'attr' => ['class' => 'form-control', 'placeholder' => 'Mot de passe', 'id' => 'inputFirstPassword']),
+                'first_options'  => array('label' => 'Mot de passe', 'label_attr' => ['class' => 'sr-only', 'for' => 'password'], 'attr' => ['class' => 'form-control', 'placeholder' => 'Mot de passe', 'id' => 'password']),
                 'second_options' => array('label' => 'Répéter le mot de passe', 'label_attr' => ['class' => 'sr-only', 'for' => 'inputSecondPassword'], 'attr' => ['class' => 'form-control', 'placeholder' => 'Répéter le mot de passe', 'id' => 'inputSecondPassword']),
             ))
             ->add('sponsorCode', TextType::class, [
