@@ -180,6 +180,7 @@ h2 {
     color: white;
     border-radius: 1vh;
     height: 5vh;
+    line-height: 5vh;
     margin: 2vh;
     position: relative;
     left: 10vw;
