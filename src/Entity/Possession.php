@@ -13,6 +13,9 @@ use Doctrine\ORM\Mapping\Index;
  */
 class Possession
 {
+    public static $STATE_SOLD = "SOLD";
+    public static $STATE_SELL = "SELL";
+
     /**
      * @ORM\Id()
      * @ORM\Column(type="uuid")

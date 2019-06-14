@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Agent error{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+</head>
+
+<body>
+<h1>Vous ne pouvez pas faire d'offre pour votre propre annonce, un peu de bon sens voyons !</h1>
+
+<p><a href="{{ path('index') }}">Retour a l'accueil</a></p>
+
+</body>
+</html>

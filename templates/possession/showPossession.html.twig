@@ -3,6 +3,7 @@
         {% block body %}
         <div class="title">
             <h1>{{ possession.title }}</h1>
+            <button><a href="{{ path('proposition_create', {'idPossession': possession.id}) }}">Faire une proposition</a></button>
         </div>
 
                 <div class="divImgPossession">
