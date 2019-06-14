@@ -29,8 +29,45 @@ Numéro de téléphone : 0{{ app.user.phone }}<br>
         <p>Vous n'avez publie aucune annonce</p>
     {% endif %}
 </div>
-<div>
 
+<div>
+    <h2>Mes Propositions d'achat</h2>
+
+    {% if propositions.count > 0 %}
+        {% for proposition in propositions %}
+            {% if proposition.state == "PROPOSITION" %}
+                <div class="">
+                    <p>En attente d'une reponse du proprietaire...</p>
+                </div>
+
+            {% elseif proposition.state == "COUNTERPROPOSITION" %}
+                <div class="myPropositionsDiv">
+                    <p>{{ proposition.possession.title }} : {{ proposition.getPrice() }} euros.</p>
+                    <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
+                    <p>Proposition actuelle : {{ proposition.price }} | Proposition originale : {{ proposition.oldPrice }}</p>
+                    <button><a href="{{ path('proposition_accept', {'id': proposition.id}) }}">Accepter cette offre</a></button>
+                    <button><a href="{{ path('proposition_deny', {'id': proposition.id}) }}">Refuser</a></button>
+                </div>
+            {% elseif proposition.state == "ACCEPTED" %}
+                <div class="myPropositionsDiv">
+                    <p>{{ proposition.possession.title }} : {{ proposition.getPrice() }} euros.</p>
+                    <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
+                    <p>Proposition Acceptee : {{ proposition.price }}</p>
+                </div>
+            {% elseif proposition.state == "DENIED" %}
+                <div class="myPropositionsDiv">
+                    <p>{{ proposition.possession.title }} : {{ proposition.getPrice() }} euros.</p>
+                    <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
+                    <p>Proposition Refusee : {{ proposition.price }}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <p>Vous n'avez fait aucune offre !</p>
+    {% endif %}
+</div>
+
+<div>
     <h2>Favoris</h2>
     {% if favorites.count != 0 %}
      {% for favorite in favorites %}

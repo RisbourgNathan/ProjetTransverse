@@ -162,11 +162,17 @@ class PropositionController extends AbstractController
         ));
     }
 
+    /**
+     * @Route("/my", name="my")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function showMyPropositions()
     {
         $client = $this->clientManager->getClientByUser($this->security->getUser());
         $propositions = $client->getProposition();
 
-        return $this->render("")
+        return $this->render("proposition/showMyPropositions.html.twig", array(
+            "propositions" => $propositions
+        ));
     }
 }
