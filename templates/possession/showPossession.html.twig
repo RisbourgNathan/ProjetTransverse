@@ -53,7 +53,7 @@
                         </a>
                     {% endif %}
                 <p class="streetPossession">Adresse : {{ possession.street }}</p><br>
-                <button class="btn btn-primary"><a href="{{ path('proposition_create', {'idPossession': possession.id}) }}">Faire une proposition</a></button>
+                <button class="btn btn-primary btnProposition"><a href="{{ path('proposition_create', {'idPossession': possession.id}) }}">Faire une proposition</a></button>
                 </div>
             <h2>Carte</h2>
             <div id="map"></div>
@@ -106,7 +106,6 @@
                 Http.open("GET", url);
                 Http.send();
                 Http.onreadystatechange = (e) => {
-                    console.log(street);
                     var json = JSON.parse(Http.responseText);
                     lat = json.results[0].geometry.location.lat;
                     lng = json.results[0].geometry.location.lng;

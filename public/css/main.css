@@ -1,12 +1,22 @@
 /*
 !important permet de surpasser le bootstrap
 */
+meter {
+
+    margin: 0 auto 1em;
+    width: 100%;
+    height: 0.5em;
+
+    /* Applicable only to Firefox */
+}
+
+meter::-webkit-meter-bar {
+}
 span {
     position: relative;
 }
 
 a{
->>>>>>> master
 }
 
 .title {

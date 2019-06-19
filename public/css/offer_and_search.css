@@ -194,7 +194,11 @@ input[type=text]:focus {
     height: 30%;
     width: 30%;
 }
-
+.btnProposition{
+    margin-left: auto;
+    margin-right: auto;
+    width: 30vw;
+}
 .infosPossession{
     background-color: white;
     position: relative;
