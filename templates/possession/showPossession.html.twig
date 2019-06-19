@@ -45,15 +45,16 @@
                             Ajouter aux favoris
                         </div>
                     </a>
+                    <button class="btn btn-primary btnProposition"><a href="{{ path('proposition_create', {'idPossession': possession.id}) }}">Faire une proposition</a></button>
                     {% elseif app.user and is_granted('ROLE_AGENT') == false and is_granted('ROLE_CLIENT') == true and isFavorite is same as (true) %}
                         <a href="{{ path('possession_removeFromFavorites', {'id': possession.id}) }}">
                          <div class="favorite">
                             Favori
                          </div>
                         </a>
+                        <button class="btn btn-primary btnProposition"><a href="{{ path('proposition_create', {'idPossession': possession.id}) }}">Faire une proposition</a></button>
                     {% endif %}
                 <p class="streetPossession">Adresse : {{ possession.street }}</p><br>
-                <button class="btn btn-primary btnProposition"><a href="{{ path('proposition_create', {'idPossession': possession.id}) }}">Faire une proposition</a></button>
                 </div>
             <h2>Carte</h2>
             <div id="map"></div>
@@ -95,7 +96,7 @@
                 </div>
             </div>
             <script>
-                var street = "{{ possession.street }}";
+                var street = "{{ possession.street }}{{ possession.city }}";
                 street = street.replace(/\s/g, '');
                 street = street.replace(',', '');
                 street = street.replace('é', 'e');
@@ -106,6 +107,7 @@
                 Http.open("GET", url);
                 Http.send();
                 Http.onreadystatechange = (e) => {
+                    console.log(street);
                     var json = JSON.parse(Http.responseText);
                     lat = json.results[0].geometry.location.lat;
                     lng = json.results[0].geometry.location.lng;

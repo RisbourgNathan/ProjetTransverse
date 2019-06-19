@@ -276,7 +276,7 @@ class PossessionController extends AbstractController
      */
     public function showPossession($id)
     {
-        if($this->getUser()->getRoles() == ["ROLE_CLIENT"]) {
+        if($this->getUser() != null && $this->getUser()->getRoles() == ["ROLE_CLIENT"]) {
             $possession = $this->entityManager->getRepository(Possession::class)->find($id);
 
             $client = $this->clientManager->getClientByUser($this->getUser());
