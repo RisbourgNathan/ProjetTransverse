@@ -246,6 +246,8 @@ class PossessionController extends AbstractController
                 $possession->addPossessionImage($image);
             }
 
+            $this->notifyFavClients($possession);
+
             $this->entityManager->persist($possession);
             $this->entityManager->flush();
 
@@ -309,7 +311,7 @@ class PossessionController extends AbstractController
                 "images" => $images,
                 "agency" => $agency));
         }
-        }
+    }
 
 
 
@@ -335,5 +337,22 @@ class PossessionController extends AbstractController
         $this->clientManager->removeFromFavorites($possession, $this->getUser());
         $this->addFlash('success','Favori supprimé');
         return $this->redirectToRoute('possession_show', array("id" => $id));
+    }
+
+    public function notifyFavClients(Possession $possession)
+    {
+        $userManager = new UserManager($this->entityManager, $this->security);
+        $clientManager = new ClientManager($this->entityManager);
+
+        $clients = $clientManager->getClientsWithPossessionAsFavorite($possession);
+
+        foreach ($clients as $client) {
+            $user = $client->getUser();
+            $userManager->increaseNotification($user);
+            $this->entityManager->persist($user);
+//            $this->entityManager->flush();
+
+        }
+        $this->entityManager->flush();
     }
 }

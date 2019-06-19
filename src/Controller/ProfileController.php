@@ -38,7 +38,6 @@ class ProfileController extends AbstractController
         $this->em = $em;
     }
 
-
     /**
      * @Route("/account", name="account")
      * @return Response

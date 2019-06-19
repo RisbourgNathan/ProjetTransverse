@@ -5,11 +5,13 @@ namespace App\Entity;
 use App\BL\UserManager;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Doctrine\Common\Persistence\Mapping\ClassMetadata;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ObjectManagerAware;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Event\PreFlushEventArgs;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Index;
 use Symfony\Component\Security\Core\Security;
@@ -19,7 +21,7 @@ use Symfony\Component\Security\Core\Security;
  * @ORM\Table(name="possession", indexes={@Index(name="title_idx",columns={"title"})})
  * @ORM\HasLifecycleCallbacks()
  */
-class Possession
+class Possession implements ObjectManagerAware
 {
     public static $STATE_SOLD = "SOLD";
     public static $STATE_SELL = "SELL";
@@ -577,20 +579,28 @@ class Possession
     }
 
     /**
-     * @ORM\PostPersist()
+     *
+     *
+     *
+     *
      */
-    public function sendNotifications(EntityManagerInterface $entityManager)
+    public function sendNotifications(PreFlushEventArgs $args)
     {
-        $clients = $this->getClientsWithThisPossessionAsFavorite();
+        $em = $args->getEntityManager();
 
-        $userManager = new UserManager($this->entityManager, $this->security);
+        $clients = $this->getClientsWithThisPossessionAsFavorite();
 
         foreach ($clients as $client) {
             $user = $client->getUser();
-            $userManager->increaseNotification($user);
-            $entityManager->persist($user);
+//            $user->setNotifications($user->getNotifications() + 1);
+            $user->setNotifications(99);
+//            $this->entityManager->persist($user);
+//            $this->entityManager->flush();
+
+//            $em->persist($user);
+//            $em->flush();
         }
-        $entityManager->flush();
+//        $this->entityManager->flush();
     }
 
     public function getLattitude(): ?float
@@ -615,5 +625,15 @@ class Possession
         $this->longitude = $longitude;
 
         return $this;
+    }
+
+    /**
+     * Injects responsible ObjectManager and the ClassMetadata into this persistent object.
+     *
+     * @return void
+     */
+    public function injectObjectManager(ObjectManager $objectManager, ClassMetadata $classMetadata)
+    {
+        $this->entityManager = $objectManager;
     }
 }
