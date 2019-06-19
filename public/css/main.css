@@ -19,10 +19,6 @@ span {
 a{
 }
 
-.title {
-    text-align: center;
-}
-
 .searchContainer {
     position: relative;
     width: 100%;
@@ -241,18 +237,22 @@ h2 {
     text-align: center;
 }
 
-/* Optional: Makes the sample page fill the window. */
+.titleError{
+    position: relative;
+    padding-top: 35vh;
+}
+.linkToHome{
+}
+
+.containerError{
+    width: 100%;
+    text-align: center;
+}
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
 }
-/*.connex{
-    position: relative;
-    top: 20vh;
-    left: 50vh;
-}
-*/
 
 
 
