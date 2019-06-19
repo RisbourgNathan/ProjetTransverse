@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\Security;
  * @ORM\Table(name="possession", indexes={@Index(name="title_idx",columns={"title"})})
  * @ORM\HasLifecycleCallbacks()
  */
-class Possession implements ObjectManagerAware
+class Possession
 {
     public static $STATE_SOLD = "SOLD";
     public static $STATE_SELL = "SELL";
@@ -569,7 +569,7 @@ class Possession implements ObjectManagerAware
     /**
      * @ORM\PostPersist()
      */
-    public function sendNotifications()
+    public function sendNotifications(EntityManagerInterface $entityManager)
     {
         $clients = $this->getClientsWithThisPossessionAsFavorite();
 
@@ -579,8 +579,8 @@ class Possession implements ObjectManagerAware
         {
             $user = $client->getUser();
             $userManager->increaseNotification($user);
-            $this->entityManager->persist($user);
+            $entityManager->persist($user);
         }
-        $this->entityManager->flush();
+        $entityManager->flush();
     }
 }
