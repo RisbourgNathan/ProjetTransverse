@@ -191,8 +191,8 @@ input[type=text]:focus {
 #map {
     margin-right: auto;
     margin-left: auto;
-    height: 30%;
-    width: 30%;
+    height: 40%;
+    width: 40%;
 }
 .btnProposition{
     margin-left: auto;
