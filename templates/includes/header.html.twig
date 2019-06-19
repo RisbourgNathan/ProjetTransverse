@@ -24,16 +24,16 @@
         <li><a href="{{ path('backoffice') }}">Backoffice</a></li>
     {% endif %}
     {% if is_granted('ROLE_AGENT') and is_granted('ROLE_ADMIN') == false %}
-        <li><a href="{{ path('possession_manage')}}">Controller les annonces</a></li>
+        <li><a href="{{ path('possession_manage')}}">Contrôler les annonces</a></li>
     {% endif %}
     {% if is_granted('ROLE_AGENT') and is_granted('ROLE_ADMIN') == false %}
     <li><a href="{{ path('possession_app_possession_createpossessionbyagent') }}">Créer une annonce</a></li>
     {% endif %}
     <li><a href="{{ path('possession_list') }}">Recherche</a> </li>
-    {% if app.user and is_granted('ROLE_ADMIN') == false %}
+    {% if app.user and is_granted('ROLE_AGENT') == false %}
         <li><a href="{{ path('account') }}">Profil</a></li>
         <li><a href="{{ path('logout') }}">Se déconnecter</a></li>
-    {% elseif app.user and is_granted('ROLE_ADMIN') == true %}
+    {% elseif app.user and is_granted('ROLE_AGENT') == true %}
         <li><a href="{{ path('logout') }}">Se déconnecter</a></li>
     {% else %}
         <li><a href="{{ path('app_login') }}">Connexion</a></li>

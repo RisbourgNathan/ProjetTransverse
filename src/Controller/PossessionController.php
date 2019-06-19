@@ -274,28 +274,44 @@ class PossessionController extends AbstractController
      */
     public function showPossession($id)
     {
-        $possession = $this->entityManager->getRepository(Possession::class)->find($id);
+        if($this->getUser()->getRoles() == ["ROLE_CLIENT"]) {
+            $possession = $this->entityManager->getRepository(Possession::class)->find($id);
 
-        $client = $this->clientManager->getClientByUser($this->getUser());
+            $client = $this->clientManager->getClientByUser($this->getUser());
 
-        if($this->favoriteManager->getFavorite($possession, $client) == null){
-            $isFavorite = false;
+            if ($this->favoriteManager->getFavorite($possession, $client) == null) {
+                $isFavorite = false;
+            } else {
+                $isFavorite = true;
+            }
+            $possessionOutbuildings = $possession->getOwnOutbuilding();
+
+            $images = $possession->getPossessionImage();
+
+            $agency = $possession->getAgent()->getAgency();
+
+            return $this->render("possession/showPossession.html.twig", array("possession" => $possession,
+                "possOwnOutbuilding" => $possessionOutbuildings,
+                "isFavorite" => $isFavorite,
+                "images" => $images,
+                "agency" => $agency));
         }
         else{
-            $isFavorite = true;
+            $possession = $this->entityManager->getRepository(Possession::class)->find($id);
+            $possessionOutbuildings = $possession->getOwnOutbuilding();
+
+            $images = $possession->getPossessionImage();
+
+            $agency = $possession->getAgent()->getAgency();
+
+            return $this->render("possession/showPossession.html.twig", array("possession" => $possession,
+                "possOwnOutbuilding" => $possessionOutbuildings,
+                "images" => $images,
+                "agency" => $agency));
         }
-        $possessionOutbuildings = $possession->getOwnOutbuilding();
+        }
 
-        $images = $possession->getPossessionImage();
 
-        $agency = $possession->getAgent()->getAgency();
-
-        return $this->render("possession/showPossession.html.twig", array("possession" => $possession,
-            "possOwnOutbuilding" => $possessionOutbuildings,
-            "isFavorite" => $isFavorite,
-            "images" => $images,
-            "agency" => $agency));
-    }
 
     /**
      * @Route("/addToFavorite/{id}", name="addToFavorites")

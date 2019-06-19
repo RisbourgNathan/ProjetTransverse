@@ -20,7 +20,12 @@ class FavoriteManager
     }
 
     public function getFavorite(Possession $possession, Client $client){
-        return $this->em->getRepository(Favorite::class)->findOneBy(array('possession' => $possession, 'client' => $client));
+        if ($this->em->getRepository(Favorite::class)->findOneBy(array('possession' => $possession, 'client' => $client)) == null){
+            return null;
+        }
+        else {
+            return $this->em->getRepository(Favorite::class)->findOneBy(array('possession' => $possession, 'client' => $client));
+            }
     }
 
 
