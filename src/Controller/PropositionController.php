@@ -10,10 +10,12 @@ namespace App\Controller;
 
 
 use App\BL\ClientManager;
+use App\BL\FavoriteManager;
 use App\BL\PossessionManager;
 use App\BL\PropositionManager;
 use App\Entity\Possession;
 use App\Entity\Proposition;
+use App\Entity\User;
 use App\Forms\PropositionForm;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -35,6 +37,7 @@ class PropositionController extends AbstractController
     private $propositionManager;
     private $clientManager;
     private $security;
+    private $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager, RegistryInterface $registry, PaginatorInterface $paginator, Security $security)
     {
@@ -42,6 +45,7 @@ class PropositionController extends AbstractController
         $this->propositionManager = new PropositionManager($entityManager);
         $this->clientManager = new ClientManager($entityManager);
         $this->security = $security;
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -52,6 +56,7 @@ class PropositionController extends AbstractController
      */
     public function createProposition($idPossession, Request $request)
     {
+
         $proposition = new Proposition();
 
         $currentDate = date(DATE_RFC2822);
@@ -59,6 +64,12 @@ class PropositionController extends AbstractController
         $proposition->setDate(new \DateTime($currentDate));
 
         $possession = $this->possessionManager->getPossessionById($idPossession);
+
+        $propositionManager = new PropositionManager($this->entityManager);
+        if ($propositionManager->isPropositionAlreadyOngoing($possession, $this->security->getUser()))
+        {
+            return $this->render("/errors/client/noPropOnOwnProperty.html.twig");
+        }
 
         $currentUserId = $this->clientManager->getClientByUser($this->security->getUser())->getId();
         if ($possession->getSeller()->getId() == $currentUserId)

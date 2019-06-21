@@ -8,6 +8,7 @@
 
 namespace App\Controller;
 use App\BL\ClientManager;
+use App\BL\FavoriteManager;
 use App\DAL\ClientCrud;
 use App\Entity\User;
 use App\Forms\modifyClientForm;
@@ -50,6 +51,10 @@ class ProfileController extends AbstractController
         $clientPossessions = $client->getPossessions();
         $favorites = $client->getFavorites();
         $propositions = $client->getProposition();
+
+        $favoriteManager  = new FavoriteManager($this->em);
+        $user->setNotifications($favoriteManager->getNumberOfNotifications($user));
+        $this->em->persist($user);
 
         $notifications = $client->getUser()->getNotifications();
 
