@@ -1,6 +1,9 @@
 body{
     background-color: whitesmoke;
 }
+.possessionContainer{
+    background: whitesmoke !important;
+}
 .title{
     text-align: center;
 }
@@ -9,8 +12,8 @@ body{
     margin-left: auto;
     margin-right: auto;
     width: 80%;
-    height: 100%;
-    background-color:rgba(255,255,255,0.5);
+    height: auto;
+    background-color:rgba(255,255,255,0.7);
 }
 .searchTitle{
     text-align: center;
@@ -39,7 +42,7 @@ body{
     text-align: center;
     position: relative;
     width: 32%;
-    background-color:rgba(255,255,255,0.4);
+    background-color:rgba(255,255,255,0.7);
     margin-left: 0.5vw;
     margin-top: 1vw;
     background-color: lightgrey;
@@ -198,6 +201,14 @@ input[type=text]:focus {
     margin-left: auto;
     margin-right: auto;
     width: 30vw;
+    position: relative;
+    top: 1vw;
+}
+.streetPossession{
+    position: relative;
+    top: 1vw;
+    font-size: 150%;
+    text-align: center;
 }
 .infosPossession{
     background-color: white;
