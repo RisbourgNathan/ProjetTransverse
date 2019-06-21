@@ -55,4 +55,11 @@ class IndexController extends AbstractController
             return $this->render('index/index.html.twig', ['possessions' => $possessions, 'form' => $form->createView()]);
         }
     }
+
+    /**
+     * @Route("/mentionslegales", name="mentionsLegales")
+     */
+    public function mentionsLegales(){
+        return $this->render('index/mentionsLegales.html.twig');
+    }
 }

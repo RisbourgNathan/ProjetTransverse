@@ -1,5 +1,4 @@
-{% include 'account/infosAccount.html.twig' %}
-
+{% include 'includes/header.html.twig' %}
 {% if possession.proposition.count > 0 %}
     {% for proposition in possession.proposition %}
         <div class="possessionPropositionDiv">
@@ -12,3 +11,4 @@
 {% else %}
     <p>Il n'y a pas de proposition pour cette annonce !</p>
 {% endif %}
+{% include 'includes/footer.html.twig' %}

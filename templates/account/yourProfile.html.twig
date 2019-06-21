@@ -1,5 +1,4 @@
 {% include 'includes/header.html.twig' %}
-<body>
 Infos : <br>
 Nom : {{ app.user.lastname }} <br>
 Prénom : {{ app.user.firstname }} <br>
@@ -82,4 +81,5 @@ Numéro de téléphone : 0{{ app.user.phone }}<br>
         </div>
     {% endif %}
 </div>
-</body>
+{% include 'includes/footer.html.twig' %}
+</html>
