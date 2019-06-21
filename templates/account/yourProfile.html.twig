@@ -1,16 +1,21 @@
 {% include 'includes/header.html.twig' %}
-Infos : <br>
-Nom : {{ app.user.lastname }} <br>
-Prénom : {{ app.user.firstname }} <br>
-E-mail : {{ app.user.email }} <br>
-Ville : {{ app.user.city }} <br>
-Code postal : {{ app.user.zipcode }} <br>
-Numéro de téléphone : 0{{ app.user.phone }}<br>
-<a href="{{ path('modifyProfile') }}"><button class="btn btn-primary">Modifier le profil</button></a>
+<div class="imageContainer">
+    <h1>Mon profil</h1>
+    <hr>
+    <div class="profileInfos profileContainer">
+        <h2>Infos : </h2><br>
+        Nom : {{ app.user.lastname }} <br>
+        Prénom : {{ app.user.firstname }} <br>
+        E-mail : {{ app.user.email }} <br>
+        Ville : {{ app.user.city }} <br>
+        Code postal : {{ app.user.zipcode }} <br>
+        Numéro de téléphone : 0{{ app.user.phone }}<br>
+        <a href="{{ path('modifyProfile') }}"><button class="btn btn-primary">Modifier le profil</button></a>
+    </div>
 <br/>
 <hr>
 <br/>
-<div>
+<div class="profileContainer">
     <h2>Mes annonces</h2>
     {% if clientPossessions.count != 0 %}
         <div class="flexboxPossessionProfile">
@@ -27,8 +32,8 @@ Numéro de téléphone : 0{{ app.user.phone }}<br>
         <p>Vous n'avez publie aucune annonce</p>
     {% endif %}
 </div>
-
-<div>
+<hr>
+<div class="profileContainer">
     <h2>Mes Propositions d'achat</h2>
 
     {% if propositions.count > 0 %}
@@ -67,8 +72,8 @@ Numéro de téléphone : 0{{ app.user.phone }}<br>
         <p>Vous n'avez fait aucune offre !</p>
     {% endif %}
 </div>
-
-<div>
+<hr>
+<div class="profileContainer">
     <h2>Favoris</h2>
     {% if favorites.count != 0 %}
         <div class="flexboxPossessionProfile">
@@ -79,7 +84,10 @@ Numéro de téléphone : 0{{ app.user.phone }}<br>
            </div>
     {% endfor %}
         </div>
+    {% else %}
+        Vous n'avez pas de favori
     {% endif %}
+</div>
 </div>
 {% include 'includes/footer.html.twig' %}
 </html>
