@@ -281,6 +281,10 @@ class PossessionController extends AbstractController
 
             $client = $this->clientManager->getClientByUser($this->getUser());
 
+            //Favorites management
+            $favoriteManager = new FavoriteManager($this->entityManager);
+            $favoriteManager->removeNotificationForUser($possession, $this->getUser());
+
             if ($this->favoriteManager->getFavorite($possession, $client) == null) {
                 $isFavorite = false;
             } else {
@@ -344,14 +348,20 @@ class PossessionController extends AbstractController
         $userManager = new UserManager($this->entityManager, $this->security);
         $clientManager = new ClientManager($this->entityManager);
 
+        $favoriteManager = new FavoriteManager($this->entityManager);
+
         $clients = $clientManager->getClientsWithPossessionAsFavorite($possession);
 
         foreach ($clients as $client) {
             $user = $client->getUser();
-            $userManager->increaseNotification($user);
-            $this->entityManager->persist($user);
-//            $this->entityManager->flush();
+            $favorite = $favoriteManager->getFavorite($possession, $client);
+            $favorite->setHasNotification(true);
 
+            $this->entityManager->persist($favorite);
+            $this->entityManager->flush();
+
+            $user->setNotifications($favoriteManager->getNumberOfNotifications($user));
+            $this->entityManager->persist($user);
         }
         $this->entityManager->flush();
     }

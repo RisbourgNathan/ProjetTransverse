@@ -12,7 +12,7 @@ Numéro de téléphone : 0{{ app.user.phone }}<br>
 <hr>
 <br/>
 <div>
-    <h2>Mes annonces {{ notifications }}</h2>
+    <h2>Mes annonces</h2>
     {% if clientPossessions.count != 0 %}
         <div class="flexboxPossessionProfile">
         {% for possession in clientPossessions %}
@@ -70,13 +70,23 @@ Numéro de téléphone : 0{{ app.user.phone }}<br>
 </div>
 
 <div>
-    <h2>Favoris</h2>
+    {% if notifications > 0 %}
+        <h2>Favoris - {{ notifications }} notifications</h2>
+    {% else %}
+        <h2>Favoris</h2>
+    {% endif %}
+
     {% if favorites.count != 0 %}
         <div class="flexboxPossessionProfile">
      {% for favorite in favorites %}
            <div class="possessionProfile">
                <a href="{{ path('possession_show', {'id': favorite.possession.id} )}}"><img class="imgSearchPossession" src="{{ asset(vich_uploader_asset(favorite.possession.possessionImage.first, 'imageFile', 'App\\Entity\\PossessionImage')) }}">
-               <p>{{ favorite.possession.title }}</p></a>
+               {% if favorite.hasNotification == true %}
+                   <p>{{ favorite.possession.title }} - <span> l'annonce a été modifiée !</span></p>
+               {% else %}
+                   <p>{{ favorite.possession.title }}</p>
+               {% endif %}
+                </a>
            </div>
     {% endfor %}
         </div>
