@@ -1,5 +1,4 @@
-{% include 'account/infosAccount.html.twig' %}
-
+{% include 'includes/header.html.twig' %}
 {% if propositions.count > 0 %}
     {% for proposition in propositions %}
         {% if proposition.state == "PROPOSITION" %}
@@ -32,3 +31,4 @@
 {% else %}
     <p>Vous n'avez fait aucune offre !</p>
 {% endif %}
+{% include 'includes/footer.html.twig' %}
