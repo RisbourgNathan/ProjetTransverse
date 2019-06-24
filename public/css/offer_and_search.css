@@ -6,18 +6,6 @@
     background-color: lightslategray;
     height: 100%;
 }
-.imageContainer{
-    position: relative;
-    height: 100vh;
-    background: url("../images/design/kitchen.jpg") !important;
-    background-repeat: repeat;
-}
-.imageContainerPossession{
-    position: relative;
-    height: auto;
-    background: url("../images/design/kitchen.jpg") !important;
-    background-repeat: repeat;
-}
 .title{
     text-align: center;
     top: 3vw;
@@ -208,7 +196,7 @@ input[type=text]:focus {
     font-size: 0.8vw !important;
 }
 .btn{
-    font-size: 1vw !important;
+    font-size: 1vw;
 }
 .detailsPossessionContainer a{
     color: white !important;
@@ -303,6 +291,7 @@ input[type=text]:focus {
     width: 100%;
     height: fit-content;
     padding-top: 10vw;
+    padding-bottom: 1vw;
     text-align: center;
 }
 .agencyInfos > h3{

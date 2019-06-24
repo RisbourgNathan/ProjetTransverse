@@ -34,9 +34,33 @@ footer{
     height: 10vh;
     line-height: 5vh;
 }
+.imageContainer{
+    position: relative;
+    height: 100vh;
+    background-repeat: repeat;
+}
+.bg{
+    filter: blur(5px);
+    position: absolute;
+    top: 0; left: 0;
+    background: url("../images/design/kitchen.jpg") repeat !important;
+    height: 100%; width:100%;
+}
+.bgdarker{
+    filter: blur(5px) brightness(0.7) !important;
+}
+.bgExpand{
+    height: 250% !important;
+}
+.imageContainerPossession{
+    position: relative;
+    height: auto;
+    background-repeat: repeat;
+}
 .profileInfos{
     position: relative;
     text-align: center;
+    padding-bottom: 1vh;
 }
 .profileContainer{
     margin-left: auto;
