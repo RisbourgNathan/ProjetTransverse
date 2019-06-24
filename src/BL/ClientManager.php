@@ -24,6 +24,19 @@ class ClientManager
         $this->em = $em;
     }
 
+    public function getClientsWithPossessionAsFavorite(Possession $possession)
+    {
+        $clients = array();
+
+        $favorites = $this->em->getRepository(Favorite::class)->findBy(array('possession' => $possession->getId()));
+
+        foreach ($favorites as $favorite)
+        {
+            array_push($clients, ($favorite->getClient()));
+        }
+
+        return $clients;
+    }
 
     public function GetListClient()
     {

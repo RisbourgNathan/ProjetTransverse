@@ -246,6 +246,8 @@ class PossessionController extends AbstractController
                 $possession->addPossessionImage($image);
             }
 
+            $this->notifyFavClients($possession);
+
             $this->entityManager->persist($possession);
             $this->entityManager->flush();
 
@@ -279,6 +281,10 @@ class PossessionController extends AbstractController
 
             $client = $this->clientManager->getClientByUser($this->getUser());
 
+            //Favorites management
+            $favoriteManager = new FavoriteManager($this->entityManager);
+            $favoriteManager->removeNotificationForUser($possession, $this->getUser());
+
             if ($this->favoriteManager->getFavorite($possession, $client) == null) {
                 $isFavorite = false;
             } else {
@@ -309,10 +315,8 @@ class PossessionController extends AbstractController
                 "images" => $images,
                 "agency" => $agency));
         }
-        }
-
-
-
+    }
+    
     /**
      * @Route("/addToFavorite/{id}", name="addToFavorites")
      * @param $id
@@ -335,5 +339,28 @@ class PossessionController extends AbstractController
         $this->clientManager->removeFromFavorites($possession, $this->getUser());
         $this->addFlash('success','Favori supprimé');
         return $this->redirectToRoute('possession_show', array("id" => $id));
+    }
+
+    public function notifyFavClients(Possession $possession)
+    {
+        $userManager = new UserManager($this->entityManager, $this->security);
+        $clientManager = new ClientManager($this->entityManager);
+
+        $favoriteManager = new FavoriteManager($this->entityManager);
+
+        $clients = $clientManager->getClientsWithPossessionAsFavorite($possession);
+
+        foreach ($clients as $client) {
+            $user = $client->getUser();
+            $favorite = $favoriteManager->getFavorite($possession, $client);
+            $favorite->setHasNotification(true);
+
+            $this->entityManager->persist($favorite);
+            $this->entityManager->flush();
+
+            $user->setNotifications($favoriteManager->getNumberOfNotifications($user));
+            $this->entityManager->persist($user);
+        }
+        $this->entityManager->flush();
     }
 }

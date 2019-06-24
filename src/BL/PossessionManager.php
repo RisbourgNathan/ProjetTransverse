@@ -62,7 +62,7 @@ class PossessionManager
     }
 
     public function getLatestPossessions(){
-        return $this->entityManager->getRepository(Possession::class)->findBy(array(), array('createdAt' => 'ASC'), 3);
+        return $this->entityManager->getRepository(Possession::class)->findBy(array("validationState" => 'SELL'), array('createdAt' => 'ASC'), 3);
     }
 
     public function savePossession($possession)

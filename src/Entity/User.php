@@ -105,6 +105,11 @@ class User implements UserInterface
      */
     private $sponsorshipCodeState;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $notifications;
+
     public function __construct()
     {
         $this->agents = new ArrayCollection();
@@ -406,6 +411,18 @@ class User implements UserInterface
     public function setSponsorshipCodeState(?bool $sponsorshipCodeState): self
     {
         $this->sponsorshipCodeState = $sponsorshipCodeState;
+
+        return $this;
+    }
+
+    public function getNotifications(): ?int
+    {
+        return $this->notifications;
+    }
+
+    public function setNotifications(?int $notifications): self
+    {
+        $this->notifications = $notifications;
 
         return $this;
     }

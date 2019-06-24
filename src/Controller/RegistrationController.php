@@ -53,6 +53,7 @@ class RegistrationController extends AbstractController
     {
         // 1) build the form, set the future user and client
         $user = new User();
+        $user->setNotifications(0);
         $client = new Client();
         $client->setSponsor(null);
         $form = $this->createForm(RegisterForm::class, $user);

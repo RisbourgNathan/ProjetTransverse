@@ -8,6 +8,7 @@
 
 namespace App\Controller;
 use App\BL\ClientManager;
+use App\BL\FavoriteManager;
 use App\DAL\ClientCrud;
 use App\Entity\User;
 use App\Forms\modifyClientForm;
@@ -38,7 +39,6 @@ class ProfileController extends AbstractController
         $this->em = $em;
     }
 
-
     /**
      * @Route("/account", name="account")
      * @return Response
@@ -52,10 +52,17 @@ class ProfileController extends AbstractController
         $favorites = $client->getFavorites();
         $propositions = $client->getProposition();
 
+        $favoriteManager  = new FavoriteManager($this->em);
+        $user->setNotifications($favoriteManager->getNumberOfNotifications($user));
+        $this->em->persist($user);
+
+        $notifications = $client->getUser()->getNotifications();
+
         return $this->render('account/yourProfile.html.twig', ['client' => $client,
             'clientPossessions' => $clientPossessions,
             'favorites' => $favorites,
-            'propositions' => $propositions]);
+            'propositions' => $propositions,
+            'notifications' => $notifications]);
     }
 
     /**

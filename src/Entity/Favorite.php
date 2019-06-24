@@ -29,6 +29,11 @@ class Favorite
      */
     private $client;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $hasNotification;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -54,6 +59,18 @@ class Favorite
     public function setClient(?Client $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getHasNotification(): ?bool
+    {
+        return $this->hasNotification;
+    }
+
+    public function setHasNotification(?bool $hasNotification): self
+    {
+        $this->hasNotification = $hasNotification;
 
         return $this;
     }
