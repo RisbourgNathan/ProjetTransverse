@@ -1,8 +1,10 @@
 {% include 'includes/header.html.twig' %}
         {% block body %}
-            <div class="title">
-            <h1>ImmoConceptPlus<br>Une maison, une idée un concept</h1>
-            </div>
+            <div class="imageContainer">
+                <div class="titleIndex">
+                    <h1>ImmoConceptPlus</h1>
+                    <h2>Une idée, un concept</h2>
+                </div>
             <div class="searchContainer">
                 <div class="searchTitle">
                  <h2>Rechercher</h2>
@@ -44,6 +46,7 @@
                     {{ knp_pagination_render(possessions) }}
                     {% endif %}
                 </div>
+            </div>
             </div>
         {% endblock %}
 

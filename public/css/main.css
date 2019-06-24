@@ -17,6 +17,14 @@ span {
 }
 
 a{
+    font-size: 1vw;
+}
+button a{
+    font-size: 1vw;
+}
+.bigText{
+    text-align: center;
+    font-size: 1.5vw;
 }
 footer{
     position: relative;
@@ -25,11 +33,28 @@ footer{
     width: 100%;
     height: 10vh;
     line-height: 5vh;
-    top: 20vw;
+}
+.profileInfos{
+    position: relative;
+    text-align: center;
+}
+.profileContainer{
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 80%;
+    background-color: rgba(255,255,255, 0.7);
+    border-radius: 1%;
+    border: 1px solid grey;
+}
+.titleProfile{
+    position: relative;
+    padding-bottom: 5vw;
+    top: 4vw;
 }
 .titleIndex{
     position: relative;
-    top: 2vw;
+    top: 5vw;
     width: 100%;
     background-color: rgba(255,255,255,0.4);
     border: 1px solid grey;
@@ -135,6 +160,9 @@ body{
     height: 40px;
     text-align: center;
     color: white;
+    position: fixed;
+    z-index: 3;
+    width: 100%;
 }
 
 .navbartest li {
@@ -170,26 +198,33 @@ h1 {
 }
 
 .lastOffer {
-    left: 12vw;
     position: relative;
     display: inline-block;
     text-align: center;
 }
-
+.lastOfferContainer{
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
 
 .principale{
     border-radius: 5px;
  /*   text-align: center;*/
     padding: 5vh 10vh;
     position: relative;
-    top: 15vh;
     margin-left: auto;
     margin-right: auto;
     width: 80%;
+    top: 15vh;
     background-color:rgba(255,255,255,0.7);
     /* height: 40vh;*/
 }
-
+.principaleLogin{
+    top: 25vh !important;
+}
 
 h2 {
     text-align: center;
@@ -237,6 +272,8 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     width: 90%;
+    text-align: center;
+    padding-bottom: 1vh;
     margin-left: auto;
     margin-right: auto;
 }
@@ -257,10 +294,14 @@ h2 {
     width: 100%;
     text-align: center;
 }
+.principaleProposition{
+    top: 20vw !important;
+}
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    font-size: 100%;
 }
 
 

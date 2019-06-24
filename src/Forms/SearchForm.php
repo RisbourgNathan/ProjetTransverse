@@ -49,7 +49,7 @@ class SearchForm extends AbstractType
             ->add('price', RangeType::class,[
                 'attr' => [
                     'min' => 0,
-                    'max' => 500000,
+                    'max' => 5000000,
                     'class' => "priceSlider custom-range"
                 ],
                 'label' => "Prix : "
