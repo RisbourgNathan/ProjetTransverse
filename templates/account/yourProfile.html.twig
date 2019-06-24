@@ -1,6 +1,6 @@
 {% include 'includes/header.html.twig' %}
-<div class="imageContainer">
-    <h1>Mon profil</h1>
+<div class="imageContainerPossession">
+    <h1 class="titleProfile">Mon profil</h1>
     <hr>
     <div class="profileInfos profileContainer">
         <h2>Infos : </h2><br>
@@ -23,7 +23,7 @@
             <div class="possessionProfile">
                 <a href="{{ path('possession_show', {'id': possession.id}) }}"><img class="imgSearchPossession" src="{{ asset(vich_uploader_asset(possession.possessionImage.first, 'imageFile', 'App\\Entity\\PossessionImage')) }}">
                 <p>{{ possession.title }}</p></a>
-                <button><a href="{{ path('proposition_showPropositions', {"idPossession": possession.id})}}">Voir les offres pour cette annonce</a></button>
+                <a href="{{ path('proposition_showPropositions', {"idPossession": possession.id})}}"><button class="btn btn-primary">Voir les offres pour cette annonce</button></a>
             </div>
             <br/>
         {% endfor %}
@@ -43,7 +43,7 @@
                     <p>{{ proposition.possession.title }} : {{ proposition.possession.sellingPrice }} euros.</p>
                     <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
                     <p>Votre proposition actuelle : {{ proposition.price }}
-                    <p>Etat : En attente d'une reponse du proprietaire...</p>
+                    <p>Etat : En attente d'une réponse du proprietaire...</p>
                 </div>
 
             {% elseif proposition.state == "COUNTERPROPOSITION" %}
@@ -58,18 +58,18 @@
                 <div class="myPropositionsDiv">
                     <p>{{ proposition.possession.title }} : {{ proposition.getPrice() }} euros.</p>
                     <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
-                    <p>Proposition Acceptee : {{ proposition.price }}</p>
+                    <p>Proposition Acceptée : {{ proposition.price }}</p>
                 </div>
             {% elseif proposition.state == "DENIED" %}
                 <div class="myPropositionsDiv">
                     <p>{{ proposition.possession.title }} : {{ proposition.getPrice() }} euros.</p>
                     <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
-                    <p>Proposition Refusee : {{ proposition.price }}</p>
+                    <p>Proposition Refusée : {{ proposition.price }}</p>
                 </div>
             {% endif %}
         {% endfor %}
     {% else %}
-        <p>Vous n'avez fait aucune offre !</p>
+        <p class="bigText">Vous n'avez fait aucune offre !</p>
     {% endif %}
 </div>
 <hr>
@@ -85,9 +85,10 @@
     {% endfor %}
         </div>
     {% else %}
-        Vous n'avez pas de favori
+        <p class="bigText">Vous n'avez pas de favori</p>
     {% endif %}
 </div>
-</div>
+<hr>
 {% include 'includes/footer.html.twig' %}
+</div>
 </html>

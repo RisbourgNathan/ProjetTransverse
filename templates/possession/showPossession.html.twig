@@ -1,6 +1,6 @@
 {% include 'includes/header.html.twig' %}
         {% block body %}
-        <div class="title">
+        <div class="title titleShowPossession">
             <h1>{{ possession.title }}</h1>
         </div>
                 <div class="divImgPossession">
@@ -39,9 +39,9 @@
                     </div>
                     {% if app.user and is_granted('ROLE_AGENT') == false and is_granted('ROLE_CLIENT') == true and isFavorite is same as (false) %}
                     <a href="{{ path('possession_addToFavorites', {'id': possession.id}) }}">
-                        <div class="favorite">
+                        <button class="btn btn-success favorite">
                             Ajouter aux favoris
-                        </div>
+                        </button>
                     </a>
                     <button class="btn btn-primary btnProposition"><a href="{{ path('proposition_create', {'idPossession': possession.id}) }}">Faire une proposition</a></button>
                     {% elseif app.user and is_granted('ROLE_AGENT') == false and is_granted('ROLE_CLIENT') == true and isFavorite is same as (true) %}
@@ -50,10 +50,11 @@
                             Favori
                          </div>
                         </a>
-                        <button class="btn btn-primary btnProposition"><a href="{{ path('proposition_create', {'idPossession': possession.id}) }}">Faire une proposition</a></button>
+                        <a href="{{ path('proposition_create', {'idPossession': possession.id}) }}"><button class="btn btn-primary btnProposition">Faire une proposition</button></a>
                     {% endif %}
-                <p class="streetPossession">Adresse : {{ possession.street }}</p><br>
                 </div>
+                        <p class="streetPossession">Prix : {{ possession.sellingPrice }}€</p>
+                        <p class="streetPossession">Adresse : {{ possession.street }}</p>
             <h2>Carte</h2>
             <div id="map"></div>
             <div class="infosPossession">

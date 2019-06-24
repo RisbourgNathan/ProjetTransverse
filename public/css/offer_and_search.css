@@ -20,6 +20,10 @@
 }
 .title{
     text-align: center;
+    top: 3vw;
+}
+.titleShowPossession{
+    padding-bottom: 6vh;
 }
 .searchContainer{
     position: relative;
@@ -27,6 +31,7 @@
     margin-right: auto;
     width: 80%;
     height: auto;
+    top: 7vw;
     background-color:rgba(255,255,255,0.7);
 }
 .searchTitle{
@@ -45,8 +50,8 @@
     left: 1vw;
 }
 .flexbox{
-    top: -9vw;
-    left: 7vw;
+    top: -11vw;
+    left: 4vw;
     position: relative;
     display: inline-flex;
     flex-wrap: wrap;
@@ -200,6 +205,10 @@ input[type=text]:focus {
     line-height: 2vw;
     background-color: green;
     left: 7vw;
+    font-size: 0.8vw !important;
+}
+.btn{
+    font-size: 1vw !important;
 }
 .detailsPossessionContainer a{
     color: white !important;
