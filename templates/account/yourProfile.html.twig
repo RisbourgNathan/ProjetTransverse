@@ -1,17 +1,22 @@
 {% include 'includes/header.html.twig' %}
-Infos : <br>
-Nom : {{ app.user.lastname }} <br>
-Prénom : {{ app.user.firstname }} <br>
-E-mail : {{ app.user.email }} <br>
-Ville : {{ app.user.city }} <br>
-Code postal : {{ app.user.zipcode }} <br>
-Numéro de téléphone : 0{{ app.user.phone }}<br>
-Numéro de parrainage : {{ app.user.sponsorshipCode }}<br>
-<a href="{{ path('modifyProfile') }}"><button class="btn btn-primary">Modifier le profil</button></a>
+<div class="imageContainerPossession">
+    <h1 class="titleProfile">Mon profil</h1>
+    <hr>
+    <div class="profileInfos profileContainer">
+        <h2>Infos : </h2><br>
+        Nom : {{ app.user.lastname }} <br>
+        Prénom : {{ app.user.firstname }} <br>
+        E-mail : {{ app.user.email }} <br>
+        Ville : {{ app.user.city }} <br>
+        Code postal : {{ app.user.zipcode }} <br>
+        Numéro de téléphone : 0{{ app.user.phone }}<br>
+        Numéro de parrainage : {{ app.user.sponsorshipCode }}<br>
+        <a href="{{ path('modifyProfile') }}"><button class="btn btn-primary">Modifier le profil</button></a>
+    </div>
 <br/>
 <hr>
 <br/>
-<div>
+<div class="profileContainer">
     <h2>Mes annonces</h2>
     {% if clientPossessions.count != 0 %}
         <div class="flexboxPossessionProfile">
@@ -19,7 +24,7 @@ Numéro de parrainage : {{ app.user.sponsorshipCode }}<br>
             <div class="possessionProfile">
                 <a href="{{ path('possession_show', {'id': possession.id}) }}"><img class="imgSearchPossession" src="{{ asset(vich_uploader_asset(possession.possessionImage.first, 'imageFile', 'App\\Entity\\PossessionImage')) }}">
                 <p>{{ possession.title }}</p></a>
-                <button><a href="{{ path('proposition_showPropositions', {"idPossession": possession.id})}}">Voir les offres pour cette annonce</a></button>
+                <a href="{{ path('proposition_showPropositions', {"idPossession": possession.id})}}"><button class="btn btn-primary">Voir les offres pour cette annonce</button></a>
             </div>
             <br/>
         {% endfor %}
@@ -28,8 +33,8 @@ Numéro de parrainage : {{ app.user.sponsorshipCode }}<br>
         <p>Vous n'avez publie aucune annonce</p>
     {% endif %}
 </div>
-
-<div>
+<hr>
+<div class="profileContainer">
     <h2>Mes Propositions d'achat</h2>
 
     {% if propositions.count > 0 %}
@@ -39,7 +44,7 @@ Numéro de parrainage : {{ app.user.sponsorshipCode }}<br>
                     <p>{{ proposition.possession.title }} : {{ proposition.possession.sellingPrice }} euros.</p>
                     <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
                     <p>Votre proposition actuelle : {{ proposition.price }}
-                    <p>Etat : En attente d'une reponse du proprietaire...</p>
+                    <p>Etat : En attente d'une réponse du proprietaire...</p>
                 </div>
 
             {% elseif proposition.state == "COUNTERPROPOSITION" %}
@@ -54,28 +59,27 @@ Numéro de parrainage : {{ app.user.sponsorshipCode }}<br>
                 <div class="myPropositionsDiv">
                     <p>{{ proposition.possession.title }} : {{ proposition.getPrice() }} euros.</p>
                     <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
-                    <p>Proposition Acceptee : {{ proposition.price }}</p>
+                    <p>Proposition Acceptée : {{ proposition.price }}</p>
                 </div>
             {% elseif proposition.state == "DENIED" %}
                 <div class="myPropositionsDiv">
                     <p>{{ proposition.possession.title }} : {{ proposition.getPrice() }} euros.</p>
                     <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
-                    <p>Proposition Refusee : {{ proposition.price }}</p>
+                    <p>Proposition Refusée : {{ proposition.price }}</p>
                 </div>
             {% endif %}
         {% endfor %}
     {% else %}
-        <p>Vous n'avez fait aucune offre !</p>
+        <p class="bigText">Vous n'avez fait aucune offre !</p>
     {% endif %}
 </div>
-
-<div>
+<hr>
+<div class="profileContainer">
     {% if notifications > 0 %}
         <h2>Favoris - {{ notifications }} notifications</h2>
     {% else %}
         <h2>Favoris</h2>
     {% endif %}
-
     {% if favorites.count != 0 %}
         <div class="flexboxPossessionProfile">
      {% for favorite in favorites %}
@@ -90,7 +94,11 @@ Numéro de parrainage : {{ app.user.sponsorshipCode }}<br>
            </div>
     {% endfor %}
         </div>
+    {% else %}
+        <p class="bigText">Vous n'avez pas de favori</p>
     {% endif %}
 </div>
+<hr>
 {% include 'includes/footer.html.twig' %}
+</div>
 </html>

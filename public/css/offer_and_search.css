@@ -1,10 +1,29 @@
-body{
-}
 .possessionContainer{
-    background: whitesmoke !important;
+    position: relative;
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: lightslategray;
+    height: 100%;
+}
+.imageContainer{
+    position: relative;
+    height: 100vh;
+    background: url("../images/design/kitchen.jpg") !important;
+    background-repeat: repeat;
+}
+.imageContainerPossession{
+    position: relative;
+    height: auto;
+    background: url("../images/design/kitchen.jpg") !important;
+    background-repeat: repeat;
 }
 .title{
     text-align: center;
+    top: 3vw;
+}
+.titleShowPossession{
+    padding-bottom: 6vh;
 }
 .searchContainer{
     position: relative;
@@ -12,6 +31,7 @@ body{
     margin-right: auto;
     width: 80%;
     height: auto;
+    top: 7vw;
     background-color:rgba(255,255,255,0.7);
 }
 .searchTitle{
@@ -30,8 +50,8 @@ body{
     left: 1vw;
 }
 .flexbox{
-    top: -9vw;
-    left: 7vw;
+    top: -11vw;
+    left: 4vw;
     position: relative;
     display: inline-flex;
     flex-wrap: wrap;
@@ -185,12 +205,17 @@ input[type=text]:focus {
     line-height: 2vw;
     background-color: green;
     left: 7vw;
+    font-size: 0.8vw !important;
+}
+.btn{
+    font-size: 1vw !important;
 }
 .detailsPossessionContainer a{
     color: white !important;
     text-decoration: none !important;
 }
 #map {
+    z-index: 5 !important;
     margin-right: auto;
     margin-left: auto;
     height: 40%;
@@ -277,7 +302,7 @@ input[type=text]:focus {
     position: relative;
     width: 100%;
     height: fit-content;
-    padding-top: 11vw;
+    padding-top: 10vw;
     text-align: center;
 }
 .agencyInfos > h3{
