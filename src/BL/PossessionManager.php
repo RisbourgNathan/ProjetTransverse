@@ -45,9 +45,11 @@ class PossessionManager
     {
         return $this->entityManager->getRepository(Possession::class)->findBy(array('type' => $possessionType));
     }
-    public function getPossessionsByName($city)
+    public function getPossessionsByName($city, Request $request)
     {
-        return $this->entityManager->getRepository(Possession::class)->findBy(array('city' => $city));
+        $repository = new PossessionRepository($this->registry, $this->knp, $this->entityManager);
+        $possessions = $repository->findByCity($request, $city);
+        return $possessions;
     }
     public function getPossessionsBySearch($city, $price, $type_id, Request $request)
     {

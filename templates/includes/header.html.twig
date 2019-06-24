@@ -30,7 +30,7 @@
     {% if is_granted('ROLE_AGENT') and is_granted('ROLE_ADMIN') == false %}
     <li><a href="{{ path('possession_app_possession_createpossessionbyagent') }}">Créer une annonce</a></li>
     {% endif %}
-    <li><a href="{{ path('possession_list') }}">Recherche</a> </li>
+    <li><a href="{{ path('possession_list', {'city': ' '}) }}">Recherche</a> </li>
     {% if app.user and is_granted('ROLE_AGENT') == false %}
         {% if app.user.notifications <= 0 %}
             <li><a href="{{ path('account') }}">Profil</a></li>

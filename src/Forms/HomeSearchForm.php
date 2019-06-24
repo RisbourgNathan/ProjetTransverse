@@ -23,6 +23,7 @@ class HomeSearchForm extends AbstractType
             ->add('Rechercher', SubmitType::class, [
                 'label' => 'Rechercher',
                 'attr' => ['class' => 'btn btn-primary']
-            ]);
+            ])
+            ->setMethod('POST');
     }
 }

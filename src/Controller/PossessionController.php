@@ -70,11 +70,11 @@ class PossessionController extends AbstractController
     }
 
     /**
-     * @Route("/list", name="list")
+     * @Route("/list/{city}", name="list")
      * @param Request $request
      * @return Response
      */
-    public function list(Request $request)
+    public function list(Request $request, $city)
     {
         $form = $this->createForm(SearchForm::class);
         $form->handleRequest($request);
@@ -92,6 +92,16 @@ class PossessionController extends AbstractController
                 array_push($array_id,$type->getId());
             }
             $possessions = $this->possessionManager->getPossessionsBySearch($city, $price, $array_id, $request);
+        }
+        elseif (!empty($city))
+        {
+            if ($city == ' ')
+            {
+                $possessions = $this->possessionManager->getAllPossessions($request);
+            }
+            else {
+                $possessions = $this->possessionManager->getPossessionsByName($city, $request);
+            }
         }
         else{
             $possessions = $this->possessionManager->getAllPossessions($request);

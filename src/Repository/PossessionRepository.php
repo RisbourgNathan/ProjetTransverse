@@ -49,7 +49,8 @@ class PossessionRepository extends ServiceEntityRepository
 
     public function findByCity(Request $request, $city){
         $dql   = "SELECT p FROM App\Entity\Possession p
-                      WHERE p.city LIKE :city";
+                      WHERE p.city LIKE :city
+                      AND p.validationState = 'SELL'";
         $query = $this->em->createQuery($dql)
             ->setParameter('city', "%$city%");
         $possessions = $this->knp->paginate(
