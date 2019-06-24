@@ -316,9 +316,7 @@ class PossessionController extends AbstractController
                 "agency" => $agency));
         }
     }
-
-
-
+    
     /**
      * @Route("/addToFavorite/{id}", name="addToFavorites")
      * @param $id

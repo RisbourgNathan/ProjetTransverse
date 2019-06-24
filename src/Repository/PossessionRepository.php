@@ -32,11 +32,13 @@ class PossessionRepository extends ServiceEntityRepository
         $dql   = "SELECT p FROM App\Entity\Possession p
                       WHERE p.sellingPrice < :price
                       AND p.city LIKE :city
-                      AND p.type IN (:type_id)";
+                      AND p.type IN (:type_id)
+                      AND p.validationState = :validState";
         $query = $this->em->createQuery($dql)
             ->setParameter('price', $price)
             ->setParameter('city', "%$city%")
-            ->setParameter('type_id', $array_id);
+            ->setParameter('type_id', $array_id)
+            ->setParameter('validState', "SELL");
         $possessions = $this->knp->paginate(
             $query, /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/
