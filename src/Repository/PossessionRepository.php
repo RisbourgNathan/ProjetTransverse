@@ -61,7 +61,7 @@ class PossessionRepository extends ServiceEntityRepository
     }
 
     public function findAllPossessions(Request $request){
-        $dql   = "SELECT p FROM App\Entity\Possession p";
+        $dql   = "SELECT p FROM App\Entity\Possession p WHERE p.validationState != 'SOLD'";
         $query = $this->em->createQuery($dql);
         $possessions = $this->knp->paginate(
             $query, /* query NOT result */

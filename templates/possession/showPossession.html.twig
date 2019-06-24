@@ -1,7 +1,11 @@
 {% include 'includes/header.html.twig' %}
         {% block body %}
         <div class="title titleShowPossession">
-            <h1>{{ possession.title }}</h1>
+            {% if possession.validationState == "SELL" %}
+                <h1>{{ possession.title }}</h1>
+            {% else %}
+                <h1>{{ possession.title }} - <span class="validationStateSpanShowPossesion">VENDU</span></h1>
+            {% endif %}
         </div>
                 <div class="divImgPossession">
                     <div class="arrowRight">
