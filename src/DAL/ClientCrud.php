@@ -22,19 +22,33 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ClientCrud
 {
+    /**
+     * @var EntityManagerInterface
+     */
     private $entityManager;
 
+    /**
+     * ClientCrud constructor.
+     * @param EntityManagerInterface $entityManager
+     */
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }
 
+    /**
+     * @param $agent
+     */
     public function getInscriptionData($agent)
     {
         $this->entityManager->persist($agent);
         $this->entityManager->flush();
     }
 
+    /**
+     * @param Client $client
+     * @param User $user
+     */
     public function createClient(Client $client, User $user)
     {
         $client->setUser($user);

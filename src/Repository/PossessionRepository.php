@@ -6,6 +6,7 @@ use App\Entity\Possession;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\DBALException;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,10 +17,28 @@ use Symfony\Component\HttpFoundation\Request;
  * @method Possession[]    findAll()
  * @method Possession[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
+/**
+ * Class PossessionRepository
+ * @package App\Repository
+ */
 class PossessionRepository extends ServiceEntityRepository
 {
+    /**
+     * @var PaginatorInterface
+     */
     private $knp;
+    /**
+     * @var EntityManagerInterface
+     */
     private $em;
+
+    /**
+     * PossessionRepository constructor.
+     * @param RegistryInterface $registry
+     * @param PaginatorInterface $knp
+     * @param EntityManagerInterface $em
+     */
     public function __construct(RegistryInterface $registry, PaginatorInterface $knp, EntityManagerInterface $em)
     {
         parent::__construct($registry, Possession::class);
@@ -27,6 +46,13 @@ class PossessionRepository extends ServiceEntityRepository
         $this->em = $em;
     }
 
+    /**
+     * @param $city
+     * @param $price
+     * @param $array_id
+     * @param Request $request
+     * @return PaginationInterface
+     */
     public function findBySearch($city, $price, $array_id, Request $request)
     {
         $dql   = "SELECT p FROM App\Entity\Possession p
@@ -47,6 +73,11 @@ class PossessionRepository extends ServiceEntityRepository
         return $possessions;
     }
 
+    /**
+     * @param Request $request
+     * @param $city
+     * @return PaginationInterface
+     */
     public function findByCity(Request $request, $city){
         $dql   = "SELECT p FROM App\Entity\Possession p
                       WHERE p.city LIKE :city
@@ -61,6 +92,10 @@ class PossessionRepository extends ServiceEntityRepository
         return $possessions;
     }
 
+    /**
+     * @param Request $request
+     * @return PaginationInterface
+     */
     public function findAllPossessions(Request $request){
         $dql   = "SELECT p FROM App\Entity\Possession p WHERE p.validationState != 'SOLD'";
         $query = $this->em->createQuery($dql);

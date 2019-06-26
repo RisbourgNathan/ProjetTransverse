@@ -12,8 +12,17 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Favorite[]    findAll()
  * @method Favorite[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
+/**
+ * Class FavoriteRepository
+ * @package App\Repository
+ */
 class FavoriteRepository extends ServiceEntityRepository
 {
+    /**
+     * FavoriteRepository constructor.
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Favorite::class);

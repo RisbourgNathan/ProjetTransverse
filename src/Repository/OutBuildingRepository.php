@@ -12,8 +12,17 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method OutBuilding[]    findAll()
  * @method OutBuilding[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
+/**
+ * Class OutBuildingRepository
+ * @package App\Repository
+ */
 class OutBuildingRepository extends ServiceEntityRepository
 {
+    /**
+     * OutBuildingRepository constructor.
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, OutBuilding::class);

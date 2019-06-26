@@ -10,15 +10,29 @@ namespace App\DAL;
 use App\Entity\Possession;
 use Doctrine\ORM\EntityManagerInterface;
 
+/**
+ * Class PossessionCrud
+ * @package App\DAL
+ */
 class PossessionCrud
 {
+    /**
+     * @var EntityManagerInterface
+     */
     private $entityManager;
 
+    /**
+     * PossessionCrud constructor.
+     * @param EntityManagerInterface $entityManager
+     */
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }
 
+    /**
+     * @param Possession $possession
+     */
     public function createPossession(Possession $possession)
     {
         $this->entityManager->persist($possession);

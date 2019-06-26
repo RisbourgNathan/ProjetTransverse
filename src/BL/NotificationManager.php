@@ -11,9 +11,21 @@ namespace App\BL;
 
 use Doctrine\ORM\EntityManagerInterface;
 
+/**
+ * Class NotificationManager
+ * @package App\BL
+ */
 class NotificationManager
 {
+    /**
+     * @var EntityManagerInterface
+     */
     protected $em;
+
+    /**
+     * NotificationManager constructor.
+     * @param EntityManagerInterface $em
+     */
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;

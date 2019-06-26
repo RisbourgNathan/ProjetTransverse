@@ -12,8 +12,17 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Proposition[]    findAll()
  * @method Proposition[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
+/**
+ * Class PropositionRepository
+ * @package App\Repository
+ */
 class PropositionRepository extends ServiceEntityRepository
 {
+    /**
+     * PropositionRepository constructor.
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Proposition::class);

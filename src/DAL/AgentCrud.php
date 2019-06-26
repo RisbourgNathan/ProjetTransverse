@@ -14,27 +14,46 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Agent;
 use Symfony\Component\HttpKernel\Tests\Controller;
 
+/**
+ * Class AgentCrud
+ * @package App\DAL
+ */
 class AgentCrud
 {
     /*** @var EntityManagerInterface l'interface entity manager* nécessaire à la manipulation des opérations en base*/
     protected $em;
+
+    /**
+     * AgentCrud constructor.
+     * @param EntityManagerInterface $em
+     */
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }
 
+    /**
+     * @param $agent
+     */
     public function getInscriptionData($agent)
     {
         $this->em->persist($agent);
         $this->em->flush();
     }
 
+    /**
+     * @param $idAgent
+     * @return User|null
+     */
     public function getUserAgentById($idAgent)
     {
         $user = $this->em->getRepository(Agent::class)->find($idAgent)->getUser();
         return $user;
     }
 
+    /**
+     * @param $idAgent
+     */
     public function removeAgent($idAgent)
     {
         $iduser = $this->em->getRepository(Agent::class)->find($idAgent)->getUser()->getId();
