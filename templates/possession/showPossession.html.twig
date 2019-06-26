@@ -5,6 +5,7 @@
             <h1>{{ possession.title }}</h1>
         </div>
                 <div class="divImgPossession">
+                    {% if possession.possessionImage.count > 1 %}
                     <div class="arrowRight">
                         <img id="carouselArrowRight" src="{{ asset('images/design/arrow_left.png') }}" alt="arrow_right">
                     </div>
@@ -22,9 +23,15 @@
                     <div class="arrowLeft">
                         <img id="carouselArrowLeft" src="{{ asset('images/design/arrow_left.png') }}" alt="arrow_left">
                     </div>
+                   {% else %}
+                    <div class="imgDiv">
+                        <div id="numberOfImg"></div>
+                        <img id="imgPossession" src="{{ asset(vich_uploader_asset(possession.possessionImage.first, 'imageFile', 'App\\Entity\\PossessionImage')) }}" alt="{{ possession.possessionImage.first.imageName }}" /><br>
+                        <div id="imgDescription"></div>
+                    </div>
+                    {% endif %}
                 </div>
                 <div class="detailsPossessionContainer">
-                    <h2>{{ possession.type.name }}</h2>
 
                     {% if possession.type.name is same as ("Terrain") %}
                     {% else %}
@@ -54,8 +61,11 @@
                         <a href="{{ path('proposition_create', {'idPossession': possession.id}) }}"><button class="btn btn-primary btnProposition">Faire une proposition</button></a>
                     {% endif %}
                 </div>
+            <div class="priceAndStreet">
+                <h2>{{ possession.type.name }}</h2>
                         <p class="streetPossession">Prix : {{ possession.sellingPrice }}€</p>
                         <p class="streetPossession">Adresse : {{ possession.street }}</p>
+            </div>
             <h2>Carte</h2>
             <div id="map"></div>
             <div class="infosPossession">
@@ -68,22 +78,30 @@
                 <ul>
                     {% if possession.orientation and possession.orientation is same as ("Sud") or possession.orientation is same as ("sud") %}
                     <li>
-                        Orientation {{ possession.orientation }}
+                        <img src="{{ asset('images/design/sun.png') }}" alt="soleil" class="icon"> Orientation {{ possession.orientation }}
                     </li>
                     {% endif %}
                     {% for ownOutbuilding in possOwnOutbuilding %}
-                       <li>{{ ownOutbuilding.outbuilding.name }} ({{ ownOutbuilding.surface }}m²)</li>
+                        {% if ownOutbuilding.outBuilding.name is same as ("Terrasse") %}
+                            <li><img src="{{ asset('images/design/terrasse.png') }}" alt="terrasse" class="icon"> {{ ownOutbuilding.outbuilding.name }} ({{ ownOutbuilding.surface }}m²)</li>
+                        {% elseif ownOutbuilding.outBuilding.name is same as ("Cave") %}
+                            <li><img src="{{ asset('images/design/basement.png') }}" alt="sous-sol" class="icon"> {{ ownOutbuilding.outbuilding.name }} ({{ ownOutbuilding.surface }}m²)</li>
+                        {% elseif ownOutbuilding.outBuilding.name is same as ("Garage") %}
+                            <li><img src="{{ asset('images/design/garage.png') }}" alt="garage" class="icon"> {{ ownOutbuilding.outbuilding.name }} ({{ ownOutbuilding.surface }}m²)</li>
+                        {% elseif ownOutbuilding.outBuilding.name is same as ("Parking") %}
+                            <li><img src="{{ asset('images/design/parking.svg') }}" alt="parking" class="icon"> {{ ownOutbuilding.outbuilding.name }} ({{ ownOutbuilding.surface }}m²)</li>
+                        {% endif %}
                     {% endfor %}
                 </ul>
                 </div>
                 <div class="infosPossessionGeneral">
                     <h3>Général</h3>
                     <ul>
-                        <li>Surface de {{ possession.surface }} m²</li>
+                        <li><img src="{{ asset('images/design/superficie.png') }}" class="icon" alt="surface"> Surface de {{ possession.surface }} m²</li>
                         {% if possession.type.name is same as ("Terrain") %}
                         {% else %}
-                        <li>Construit en {{ possession.constructionDate }}</li>
-                        <li>{{ possession.roomNumber }} pièces</li>
+                        <li><img src="{{ asset('images/design/construction.png') }}" alt="construction" class="icon"> Construit en {{ possession.constructionDate }}</li>
+                        <li><img src="{{ asset('images/design/surface.png') }}" alt="roomNumber" class="icon"> {{ possession.roomNumber }} pièces</li>
                         {% endif %}
                     </ul>
                 </div>
@@ -98,9 +116,6 @@
             <script>
                 function initMap() {
                     var street = "{{ possession.street }}{{ possession.city }}";
-                    street = street.replace(/\s/g, '');
-                    street = street.replace(',', '');
-                    street = street.replace('é', 'e');
                     const Http = new XMLHttpRequest();
                     const url='https://maps.googleapis.com/maps/api/geocode/json?address='+street+'&key=AIzaSyDhQd_OqySckHoHuLuvXkn0fPfNK8PzZ88';
                     var lat;

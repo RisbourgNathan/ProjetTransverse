@@ -1,8 +1,8 @@
 {% include 'includes/header.html.twig' %}
         <script>
             // setup an "add a tag" link
-            var $addOwnBuilding = $('<a href="#" class="add_tag_link">Add an outbuilding</a>');
-            var $addPossessionImage = $('<a href="#" class="add_possessionImage_link">Add a photo</a>');
+            var $addOwnBuilding = $('<a href="#" class="add_tag_link">Ajouter une dépendance</a>');
+            var $addPossessionImage = $('<a href="#" class="add_possessionImage_link">Ajouter une photo</a>');
             var $newLinkLi = $('<li></li>').append($addOwnBuilding);
             var $newLinkLiPossIm = $('<li></li>').append($addPossessionImage);
 
@@ -86,7 +86,7 @@
             }
 
             function addTagFormDeleteLink($tagFormLi) {
-                var $removeFormButton = $('<button type="button">Delete this tag</button>');
+                var $removeFormButton = $('<button type="button">Supprimer cette dépendance</button>');
                 $tagFormLi.append($removeFormButton);
 
                 $removeFormButton.on('click', function(e) {
@@ -95,8 +95,11 @@
                 });
             }
         </script>
-
-            <h1>Create Possession</h1>
+        <div class="imageContainer">
+            <div class="bg bgdarker"></div>
+            <div class="principale principaleModifyProfile">
+            <h1>Créer une annonce</h1>
+                <div class="form">
             {{ form_start(form) }}
             {# render the task's only field: description #}
 
@@ -115,5 +118,8 @@
                 {% endfor %}
             </ul>
             {{ form_end(form) }}
+                </div>
+            </div>
 {% include 'includes/footer.html.twig' %}
+        </div>
 </html>

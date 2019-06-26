@@ -31,8 +31,8 @@ footer{
     background: lightgray;
     text-align: center;
     width: 100%;
-    height: 10vh;
     line-height: 5vh;
+    height: 5vh;
 }
 .imageContainer{
     position: relative;
@@ -50,7 +50,7 @@ footer{
     filter: blur(5px) brightness(0.7) !important;
 }
 .bgExpand{
-    height: 250% !important;
+    height: 260vh !important;
 }
 .imageContainerPossession{
     position: relative;
@@ -249,7 +249,22 @@ h1 {
 .principaleLogin{
     top: 25vh !important;
 }
-
+.principaleModifyProfile{
+    top: 0 !important;
+    width: 60% !important;
+}
+.principaleProposition{
+    top: 35vh !important;
+}
+form > ul{
+    list-style-type: none;
+    position: relative;
+}
+form > ul > li{
+    position: relative;
+    list-style-type: none;
+    text-align: center;
+}
 h2 {
     text-align: center;
     position: relative;
@@ -317,9 +332,6 @@ h2 {
 .containerError{
     width: 100%;
     text-align: center;
-}
-.principaleProposition{
-    top: 20vw !important;
 }
 html, body {
     height: 100%;
