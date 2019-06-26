@@ -80,7 +80,14 @@ class ProfileController extends AbstractController
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
             $this->ClientCrud->GetInscriptionData($user);
-            return $this->redirectToRoute('index');
+
+            // Flash Message
+            $this->addFlash(
+                'ProfileModificationSuccess',
+                'Vos informations ont été modifiées avec succès'
+            );
+
+            return $this->redirectToRoute('account');
         }
         return $this->render('account/modifyClient.html.twig', [
             'form' => $form->createView()

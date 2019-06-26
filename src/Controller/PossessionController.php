@@ -336,6 +336,13 @@ class PossessionController extends AbstractController
         $possession = $this->possessionManager->getPossessionById($id);
         $this->clientManager->addToFavorites($possession, $this->getUser());
         $this->addFlash('success','Favori ajouté');
+
+        // Flash Message
+        $this->addFlash(
+            'FavoriteAddSuccess',
+            'Cette annonce a bien été ajoutée à vos favoris !'
+        );
+
         return $this->redirectToRoute('possession_show', array("id" => $id));
     }
 
@@ -348,6 +355,13 @@ class PossessionController extends AbstractController
         $possession = $this->possessionManager->getPossessionById($id);
         $this->clientManager->removeFromFavorites($possession, $this->getUser());
         $this->addFlash('success','Favori supprimé');
+
+        // Flash Message
+        $this->addFlash(
+            'FavoriteRemoveSuccess',
+            'Cette annonce a bien été retirée de vos favoris.'
+        );
+
         return $this->redirectToRoute('possession_show', array("id" => $id));
     }
 

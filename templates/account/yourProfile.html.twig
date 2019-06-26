@@ -1,5 +1,19 @@
 {% include 'includes/header.html.twig' %}
 <div class="imageContainerPossession">
+
+    <div class="FlashMessageSuccess">
+        {% for label, messages in app.flashes(['ProfileModificationSuccess',
+            'DenyOfferSuccess',
+            'AcceptOfferSucces',
+            'CounterPropositionSuccess',]) %}
+            {% for message in messages %}
+                <div class="flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+
     <h1 class="titleProfile">Mon profil</h1>
     <hr>
     <div class="profileInfos profileContainer">

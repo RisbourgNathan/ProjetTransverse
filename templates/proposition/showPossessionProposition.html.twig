@@ -3,15 +3,40 @@
     <div class="principale principaleProposition">
 {% if possession.proposition.count > 0 %}
     {% for proposition in possession.proposition %}
-        <div class="possessionPropositionDiv">
-            <p>{{ possession.title }} : {{ proposition.getPrice() }} euros.</p>
-            <button><a href="{{ path('proposition_createCounter', {'id': proposition.id}) }}">Faire une contre-proposition</a></button>
-            <button><a href="{{ path('proposition_accept', {'id': proposition.id}) }}">Accepter cette offre</a></button>
-            <button><a href="{{ path('proposition_deny', {'id': proposition.id}) }}">Refuser</a></button>
-        </div>
+        {% if proposition.state == "PROPOSITION" %}
+            <div class="possessionPropositionDiv">
+                <p>{{ possession.title }} : {{ proposition.getPrice() }} euros.</p>
+                <button><a href="{{ path('proposition_createCounter', {'id': proposition.id}) }}">Faire une contre-proposition</a></button>
+                <button><a href="{{ path('proposition_accept', {'id': proposition.id}) }}">Accepter cette offre</a></button>
+                <button><a href="{{ path('proposition_deny', {'id': proposition.id}) }}">Refuser</a></button>
+            </div>
+
+        {% elseif proposition.state == "COUNTERPROPOSITION" %}
+            <div class="possessionPropositionDiv">
+                <p>{{ possession.title }} : {{ proposition.getPrice() }} euros.</p>
+                <p>En attente d'une reponse.</p>
+            </div>
+
+
+        {% elseif proposition.state == "ACCEPTED" %}
+            <div class="possessionPropositionDiv">
+                <p>{{ possession.title }} : {{ proposition.getPrice() }} euros.</p>
+                <p>Proposition acceptee</p>
+            </div>
+
+
+        {% elseif proposition.state == "DENIED" %}
+            <div class="possessionPropositionDiv">
+                <p>{{ possession.title }} : {{ proposition.getPrice() }} euros.</p>
+                <p>Proposition refusee</p>
+            </div>
+
+        {% endif %}
+
+        <hr/>
     {% endfor %}
 {% else %}
-    <h2 class="noProposition">Il n'y a pas de proposition pour cette annonce !</h2>
+    <h2 class="noProposition">Il n'y a pas encore de proposition pour cette annonce.</h2>
 {% endif %}
     </div>
 </div>

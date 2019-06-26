@@ -1,5 +1,16 @@
 {% include 'includes/header.html.twig' %}
         {% block body %}
+
+            <div class="FlashMessageSuccess">
+                {% for label, messages in app.flashes(['FavoriteAddSuccess', 'FavoriteRemoveSuccess', 'CreatePropositionSuccess' ]) %}
+                    {% for message in messages %}
+                        <div class="flash-{{ label }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+
         <div class="title titleShowPossession">
             {% if possession.validationState == "SELL" %}
                 <h1>{{ possession.title }}</h1>
