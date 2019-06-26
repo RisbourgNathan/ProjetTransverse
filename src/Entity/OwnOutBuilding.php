@@ -39,16 +39,26 @@ class OwnOutBuilding
      */
     private $outBuilding;
 
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @return int|null
+     */
     public function getSurface(): ?int
     {
         return $this->surface;
     }
 
+    /**
+     * @param int|null $surface
+     * @return OwnOutBuilding
+     */
     public function setSurface(?int $surface): self
     {
         $this->surface = $surface;
@@ -56,11 +66,18 @@ class OwnOutBuilding
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    /**
+     * @param null|string $description
+     * @return OwnOutBuilding
+     */
     public function setDescription(?string $description): self
     {
         $this->description = $description;
@@ -68,11 +85,18 @@ class OwnOutBuilding
         return $this;
     }
 
+    /**
+     * @return Possession|null
+     */
     public function getPossession(): ?Possession
     {
         return $this->possession;
     }
 
+    /**
+     * @param Possession|null $possession
+     * @return OwnOutBuilding
+     */
     public function setPossession(?Possession $possession): self
     {
         $this->possession = $possession;
@@ -80,11 +104,18 @@ class OwnOutBuilding
         return $this;
     }
 
+    /**
+     * @return OutBuilding|null
+     */
     public function getOutBuilding(): ?OutBuilding
     {
         return $this->outBuilding;
     }
 
+    /**
+     * @param OutBuilding|null $outBuilding
+     * @return OwnOutBuilding
+     */
     public function setOutBuilding(?OutBuilding $outBuilding): self
     {
         $this->outBuilding = $outBuilding;

@@ -155,6 +155,9 @@ class Possession implements ObjectManagerAware
      */
     private $favorites;
 
+    /**
+     * Possession constructor.
+     */
     public function __construct()
     {
         $this->outBuildings = new ArrayCollection();
@@ -166,16 +169,26 @@ class Possession implements ObjectManagerAware
 
     }
 
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @return int|null
+     */
     public function getSurface(): ?int
     {
         return $this->surface;
     }
 
+    /**
+     * @param int|null $surface
+     * @return Possession
+     */
     public function setSurface(?int $surface): self
     {
         $this->surface = $surface;
@@ -183,11 +196,18 @@ class Possession implements ObjectManagerAware
         return $this;
     }
 
+    /**
+     * @return int|null
+     */
     public function getRoomNumber(): ?int
     {
         return $this->roomNumber;
     }
 
+    /**
+     * @param int|null $roomNumber
+     * @return Possession
+     */
     public function setRoomNumber(?int $roomNumber): self
     {
         $this->roomNumber = $roomNumber;
@@ -195,11 +215,18 @@ class Possession implements ObjectManagerAware
         return $this;
     }
 
+    /**
+     * @return int|null
+     */
     public function getFloorNumber(): ?int
     {
         return $this->floorNumber;
     }
 
+    /**
+     * @param int|null $floorNumber
+     * @return Possession
+     */
     public function setFloorNumber(?int $floorNumber): self
     {
         $this->floorNumber = $floorNumber;
@@ -207,11 +234,18 @@ class Possession implements ObjectManagerAware
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getCity(): ?string
     {
         return $this->city;
     }
 
+    /**
+     * @param string $city
+     * @return Possession
+     */
     public function setCity(string $city): self
     {
         $this->city = $city;
@@ -219,11 +253,18 @@ class Possession implements ObjectManagerAware
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getZipCode(): ?string
     {
         return $this->zip_code;
     }
 
+    /**
+     * @param string $zip_code
+     * @return Possession
+     */
     public function setZipCode(string $zip_code): self
     {
         $this->zip_code = $zip_code;
@@ -231,11 +272,18 @@ class Possession implements ObjectManagerAware
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getStreet(): ?string
     {
         return $this->street;
     }
 
+    /**
+     * @param null|string $street
+     * @return Possession
+     */
     public function setStreet(?string $street): self
     {
         $this->street = $street;
@@ -243,11 +291,18 @@ class Possession implements ObjectManagerAware
         return $this;
     }
 
+    /**
+     * @return int|null
+     */
     public function getMinimumPrice(): ?int
     {
         return $this->minimumPrice;
     }
 
+    /**
+     * @param int|null $minimumPrice
+     * @return Possession
+     */
     public function setMinimumPrice(?int $minimumPrice): self
     {
         $this->minimumPrice = $minimumPrice;
@@ -255,11 +310,18 @@ class Possession implements ObjectManagerAware
         return $this;
     }
 
+    /**
+     * @return int|null
+     */
     public function getSellingPrice(): ?int
     {
         return $this->sellingPrice;
     }
 
+    /**
+     * @param int $sellingPrice
+     * @return Possession
+     */
     public function setSellingPrice(int $sellingPrice): self
     {
         $this->sellingPrice = $sellingPrice;
@@ -267,11 +329,18 @@ class Possession implements ObjectManagerAware
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    /**
+     * @param null|string $description
+     * @return Possession
+     */
     public function setDescription(?string $description): self
     {
         $this->description = $description;
@@ -279,11 +348,18 @@ class Possession implements ObjectManagerAware
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getValidationState(): ?string
     {
         return $this->validationState;
     }
 
+    /**
+     * @param null|string $validationState
+     * @return Possession
+     */
     public function setValidationState(?string $validationState): self
     {
         $this->validationState = $validationState;
@@ -291,11 +367,18 @@ class Possession implements ObjectManagerAware
         return $this;
     }
 
+    /**
+     * @return PossessionType|null
+     */
     public function getType(): ?PossessionType
     {
         return $this->type;
     }
 
+    /**
+     * @param PossessionType|null $type
+     * @return Possession
+     */
     public function setType(?PossessionType $type): self
     {
         $this->type = $type;
@@ -303,11 +386,18 @@ class Possession implements ObjectManagerAware
         return $this;
     }
 
+    /**
+     * @return Client|null
+     */
     public function getSeller(): ?Client
     {
         return $this->seller;
     }
 
+    /**
+     * @param Client|null $seller
+     * @return Possession
+     */
     public function setSeller(?Client $seller): self
     {
         $this->seller = $seller;
@@ -323,6 +413,10 @@ class Possession implements ObjectManagerAware
         return $this->outBuildings;
     }
 
+    /**
+     * @param OutBuilding $outBuilding
+     * @return Possession
+     */
     public function addOutBuilding(OutBuilding $outBuilding): self
     {
         if (!$this->outBuildings->contains($outBuilding)) {
@@ -333,6 +427,10 @@ class Possession implements ObjectManagerAware
         return $this;
     }
 
+    /**
+     * @param OutBuilding $outBuilding
+     * @return Possession
+     */
     public function removeOutBuilding(OutBuilding $outBuilding): self
     {
         if ($this->outBuildings->contains($outBuilding)) {
@@ -351,6 +449,10 @@ class Possession implements ObjectManagerAware
         return $this->ownOutBuilding;
     }
 
+    /**
+     * @param OwnOutBuilding $ownOutBuilding
+     * @return Possession
+     */
     public function addOwnOutBuilding(OwnOutBuilding $ownOutBuilding): self
     {
         if (!$this->ownOutBuilding->contains($ownOutBuilding)) {
@@ -361,6 +463,10 @@ class Possession implements ObjectManagerAware
         return $this;
     }
 
+    /**
+     * @param OwnOutBuilding $ownOutBuilding
+     * @return Possession
+     */
     public function removeOwnOutBuilding(OwnOutBuilding $ownOutBuilding): self
     {
         if ($this->ownOutBuilding->contains($ownOutBuilding)) {
@@ -382,6 +488,10 @@ class Possession implements ObjectManagerAware
         return $this->proposition;
     }
 
+    /**
+     * @param Proposition $proposition
+     * @return Possession
+     */
     public function addProposition(Proposition $proposition): self
     {
         if (!$this->proposition->contains($proposition)) {
@@ -392,6 +502,10 @@ class Possession implements ObjectManagerAware
         return $this;
     }
 
+    /**
+     * @param Proposition $proposition
+     * @return Possession
+     */
     public function removeProposition(Proposition $proposition): self
     {
         if ($this->proposition->contains($proposition)) {
@@ -413,6 +527,10 @@ class Possession implements ObjectManagerAware
         return $this->clientsWithThisPossessionAsFavorite;
     }
 
+    /**
+     * @param Client $clientsWithThisPossessionAsFavorite
+     * @return Possession
+     */
     public function addClientsWithThisPossessionAsFavorite(Client $clientsWithThisPossessionAsFavorite): self
     {
         if (!$this->clientsWithThisPossessionAsFavorite->contains($clientsWithThisPossessionAsFavorite)) {
@@ -423,6 +541,10 @@ class Possession implements ObjectManagerAware
         return $this;
     }
 
+    /**
+     * @param Client $clientsWithThisPossessionAsFavorite
+     * @return Possession
+     */
     public function removeClientsWithThisPossessionAsFavorite(Client $clientsWithThisPossessionAsFavorite): self
     {
         if ($this->clientsWithThisPossessionAsFavorite->contains($clientsWithThisPossessionAsFavorite)) {
@@ -433,11 +555,18 @@ class Possession implements ObjectManagerAware
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
+    /**
+     * @param string $title
+     * @return Possession
+     */
     public function setTitle(string $title): self
     {
         $this->title = $title;
@@ -445,11 +574,18 @@ class Possession implements ObjectManagerAware
         return $this;
     }
 
+    /**
+     * @return Agent|null
+     */
     public function getAgent(): ?Agent
     {
         return $this->agent;
     }
 
+    /**
+     * @param Agent|null $agent
+     * @return Possession
+     */
     public function setAgent(?Agent $agent): self
     {
         $this->agent = $agent;
@@ -465,6 +601,10 @@ class Possession implements ObjectManagerAware
         return $this->possessionImages;
     }
 
+    /**
+     * @param PossessionImage $possessionImage
+     * @return Possession
+     */
     public function addPossessionImage(PossessionImage $possessionImage): self
     {
         if (!$this->possessionImages->contains($possessionImage)) {
@@ -475,6 +615,10 @@ class Possession implements ObjectManagerAware
         return $this;
     }
 
+    /**
+     * @param PossessionImage $possessionImage
+     * @return Possession
+     */
     public function removePossessionImage(PossessionImage $possessionImage): self
     {
         if ($this->possessionImages->contains($possessionImage)) {
@@ -488,6 +632,9 @@ class Possession implements ObjectManagerAware
         return $this;
     }
 
+    /**
+     * @param $value
+     */
     public function setPossessionImages($value)
     {
         $this->possessionImages = $value;
@@ -501,11 +648,18 @@ class Possession implements ObjectManagerAware
         return $this->possessionImages;
     }
 
+    /**
+     * @return null|string
+     */
     public function getOrientation(): ?string
     {
         return $this->orientation;
     }
 
+    /**
+     * @param string $Orientation
+     * @return Possession
+     */
     public function setOrientation(string $Orientation): self
     {
         $this->orientation = $Orientation;
@@ -513,11 +667,18 @@ class Possession implements ObjectManagerAware
         return $this;
     }
 
+    /**
+     * @return int|null
+     */
     public function getConstructionDate(): ?int
     {
         return $this->constructionDate;
     }
 
+    /**
+     * @param int|null $constructionDate
+     * @return Possession
+     */
     public function setConstructionDate(?int $constructionDate): self
     {
         $this->constructionDate = $constructionDate;
@@ -525,11 +686,18 @@ class Possession implements ObjectManagerAware
         return $this;
     }
 
+    /**
+     * @return \DateTimeInterface|null
+     */
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
 
+    /**
+     * @param \DateTimeInterface|null $createdAt
+     * @return Possession
+     */
     public function setCreatedAt(?\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -545,6 +713,10 @@ class Possession implements ObjectManagerAware
         return $this->favorites;
     }
 
+    /**
+     * @param Favorite $favorite
+     * @return Possession
+     */
     public function addFavorite(Favorite $favorite): self
     {
         if (!$this->favorites->contains($favorite)) {
@@ -555,6 +727,10 @@ class Possession implements ObjectManagerAware
         return $this;
     }
 
+    /**
+     * @param Favorite $favorite
+     * @return Possession
+     */
     public function removeFavorite(Favorite $favorite): self
     {
         if ($this->favorites->contains($favorite)) {

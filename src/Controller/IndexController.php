@@ -18,16 +18,48 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 
+/**
+ * Class IndexController
+ * @package App\Controller
+ */
 class IndexController extends AbstractController
 {
+    /**
+     * @var UserCrud
+     */
     private $UserCrud;
+    /**
+     * @var UserManager
+     */
     private $userManager;
+    /**
+     * @var EntityManagerInterface
+     */
     private $em;
+    /**
+     * @var Security
+     */
     private $security;
+    /**
+     * @var PossessionManager
+     */
     private $possessionManager;
+    /**
+     * @var AgentManager
+     */
     private $agentManager;
+    /**
+     * @var PaginatorInterface
+     */
     private $knp;
 
+    /**
+     * IndexController constructor.
+     * @param EntityManagerInterface $em
+     * @param Security $security
+     * @param PaginatorInterface $knp
+     * @param RegistryInterface $registry
+     */
     public function __construct(EntityManagerInterface $em, Security $security, PaginatorInterface $knp, RegistryInterface $registry)
     {
         $this->UserCrud = new UserCrud($em);

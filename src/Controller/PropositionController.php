@@ -34,12 +34,34 @@ use Symfony\Component\Security\Core\Tests\Encoder\PasswordEncoder;
  */
 class PropositionController extends AbstractController
 {
+    /**
+     * @var PossessionManager
+     */
     private $possessionManager;
+    /**
+     * @var PropositionManager
+     */
     private $propositionManager;
+    /**
+     * @var ClientManager
+     */
     private $clientManager;
+    /**
+     * @var Security
+     */
     private $security;
+    /**
+     * @var EntityManagerInterface
+     */
     private $entityManager;
 
+    /**
+     * PropositionController constructor.
+     * @param EntityManagerInterface $entityManager
+     * @param RegistryInterface $registry
+     * @param PaginatorInterface $paginator
+     * @param Security $security
+     */
     public function __construct(EntityManagerInterface $entityManager, RegistryInterface $registry, PaginatorInterface $paginator, Security $security)
     {
         $this->possessionManager = new PossessionManager($entityManager, $registry, $paginator);
@@ -220,21 +242,7 @@ class PropositionController extends AbstractController
      */
     public function showPropositionsForPossession($idPossession)
     {
-//        $usr = $this->getUser();
-//        $client = $this->clientManager->getClientByUser($usr);
-
         $possession = $this->possessionManager->getPossessionById($idPossession);
-
-//        if ($possession->getValidationState() == Possession::$STATE_SOLD)
-//        {
-//            // Flash Message
-//            $this->addFlash(
-//                'ErrorShowPropForSoldPoss',
-//                'Vous avez '
-//            );
-//
-//            return $this->redirectToRoute("account");
-//        }
 
         $propositions = $possession->getProposition();
 
@@ -272,6 +280,10 @@ class PropositionController extends AbstractController
         return $this->redirectToRoute('account');
     }
 
+    /**
+     * @param Proposition $proposition
+     * @return bool
+     */
     private function denyAccessToProposition(Proposition $proposition)
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');

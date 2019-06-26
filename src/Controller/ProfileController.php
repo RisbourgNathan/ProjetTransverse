@@ -26,12 +26,35 @@ use Symfony\Component\HttpFoundation\Request;
 use App\BL\UserManager;
 use Symfony\Component\Security\Core\Security;
 
+/**
+ * Class ProfileController
+ * @package App\Controller
+ */
 class ProfileController extends AbstractController
 {
+    /**
+     * @var UserManager
+     */
     private $UserManager;
+    /**
+     * @var ClientManager
+     */
     private $ClientManager;
+    /**
+     * @var ClientCrud
+     */
     private $ClientCrud;
+    /**
+     * @var EntityManagerInterface
+     */
     private $em;
+
+    /**
+     * ProfileController constructor.
+     * @param EntityManagerInterface $em
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param Security $security
+     */
     public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder, Security $security)
     {
         $this->UserManager = new UserManager($em, $security);

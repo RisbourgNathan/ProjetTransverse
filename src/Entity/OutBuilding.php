@@ -30,21 +30,34 @@ class OutBuilding
     private $ownOutBuilding;
 
 
+    /**
+     * OutBuilding constructor.
+     */
     public function __construct()
     {
         $this->ownOutBuilding = new ArrayCollection();
     }
 
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @return null|string
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * @param string $name
+     * @return OutBuilding
+     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -60,6 +73,10 @@ class OutBuilding
         return $this->ownOutBuilding;
     }
 
+    /**
+     * @param OwnOutBuilding $ownOutBuilding
+     * @return OutBuilding
+     */
     public function addOwnOutBuilding(OwnOutBuilding $ownOutBuilding): self
     {
         if (!$this->ownOutBuilding->contains($ownOutBuilding)) {
@@ -70,6 +87,10 @@ class OutBuilding
         return $this;
     }
 
+    /**
+     * @param OwnOutBuilding $ownOutBuilding
+     * @return OutBuilding
+     */
     public function removeOwnOutBuilding(OwnOutBuilding $ownOutBuilding): self
     {
         if ($this->ownOutBuilding->contains($ownOutBuilding)) {
@@ -82,5 +103,4 @@ class OutBuilding
 
         return $this;
     }
-
 }

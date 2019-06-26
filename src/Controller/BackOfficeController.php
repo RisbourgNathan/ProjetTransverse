@@ -49,19 +49,67 @@ use Symfony\Component\Security\Core\Security;
  */
 class BackOfficeController extends AbstractController
 {
+    /**
+     * @var UserCrud
+     */
     private $UserCrud;
+    /**
+     * @var UserManager
+     */
     private $UserManager;
+    /**
+     * @var AgentCrud
+     */
     private $AgentCrud;
+    /**
+     * @var AgentManager
+     */
     private $AgentManager;
+    /**
+     * @var EntityManagerInterface
+     */
     private $em;
+    /**
+     * @var AgencyCrud
+     */
     private $AgencyCrud;
+    /**
+     * @var AgencyManager
+     */
     private $AgencyManager;
+    /**
+     * @var AgencyDirectorCrud
+     */
     private $AgencyDirectorCrud;
+    /**
+     * @var AgencyDirectorManager
+     */
     private $AgencyDirectorManager;
+    /**
+     * @var AdminCrud
+     */
     private $AdminCrud;
+    /**
+     * @var AdminManager
+     */
     private $AdminManager;
+    /**
+     * @var PossessionManager
+     */
     private $possessionManager;
+    /**
+     * @var RegistryInterface
+     */
     private $registry;
+
+    /**
+     * BackOfficeController constructor.
+     * @param EntityManagerInterface $em
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param Security $security
+     * @param RegistryInterface $registry
+     * @param PaginatorInterface $knp
+     */
     public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder, Security $security, RegistryInterface $registry, PaginatorInterface $knp)
     {
         $this->UserCrud = new UserCrud($em);
@@ -81,6 +129,7 @@ class BackOfficeController extends AbstractController
 
     /**
      * @Route("/", name="backoffice")
+     * @return Response
      */
     public function getHome() {
         return $this->render('backoffice/home.html.twig');
@@ -285,6 +334,7 @@ class BackOfficeController extends AbstractController
 
     /**
      * @Route("/GetListAgent", name="GetListAgent")
+     * @return Response
      */
     public function getAgentList(){
         $list =  $this->AgentManager->getListAgent();
@@ -293,6 +343,7 @@ class BackOfficeController extends AbstractController
 
     /**
      * @Route("/GetListAgencyDirector", name="GetListAgencyDirector")
+     * @return Response
      */
     public function getAgencyDirectorList(){
         $list =  $this->AgencyDirectorManager->getListAgencyDirector();
@@ -302,6 +353,7 @@ class BackOfficeController extends AbstractController
 
     /**
      * @Route("/GetListAgency", name="GetListAgency")
+     * @return Response
      */
     public function getAgencyList(){
         $list =  $this->AgencyManager->getListAgency();
@@ -310,6 +362,7 @@ class BackOfficeController extends AbstractController
 
     /**
      * @Route("/GetListAdmin", name="GetListAdmin")
+     * @return Response
      */
     public function getAdminList(){
         $list =  $this->AdminManager->getListAdmin();
@@ -369,6 +422,4 @@ class BackOfficeController extends AbstractController
         $this->AdminCrud->removeAdmin($idAdmin);
         return $this->redirectToRoute('GetListAdmin');
     }
-
-
 }

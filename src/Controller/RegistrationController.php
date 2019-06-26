@@ -25,11 +25,27 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
+/**
+ * Class RegistrationController
+ * @package App\Controller
+ */
 class RegistrationController extends AbstractController
 {
+    /**
+     * @var EntityManagerInterface
+     */
     private $entityManager;
+    /**
+     * @var UserCrud
+     */
     private $userCrud;
+    /**
+     * @var ClientCrud
+     */
     private $clientCrud;
+    /**
+     * @var UuidService
+     */
     private $uuidService;
 
     /**

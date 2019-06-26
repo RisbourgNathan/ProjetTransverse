@@ -57,6 +57,10 @@ class PossessionImage
      */
     private $description;
 
+    /**
+     * @param null|File $imageFile
+     * @throws \Exception
+     */
     public function setImageFile(?File $imageFile = null)
     {
         $this->imageFile = $imageFile;
@@ -67,21 +71,34 @@ class PossessionImage
         }
     }
 
+    /**
+     * @return null|File
+     */
     public function getImageFile(): ?File
     {
         return $this->imageFile;
     }
 
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @return null|string
+     */
     public function getImageName(): ?string
     {
         return $this->imageName;
     }
 
+    /**
+     * @param string $imageName
+     * @return PossessionImage
+     */
     public function setImageName(string $imageName): self
     {
         $this->imageName = $imageName;
@@ -89,11 +106,18 @@ class PossessionImage
         return $this;
     }
 
+    /**
+     * @return int|null
+     */
     public function getImageSize(): ?int
     {
         return $this->imageSize;
     }
 
+    /**
+     * @param int|null $imageSize
+     * @return PossessionImage
+     */
     public function setImageSize(?int $imageSize): self
     {
         $this->imageSize = $imageSize;
@@ -101,11 +125,18 @@ class PossessionImage
         return $this;
     }
 
+    /**
+     * @return \DateTimeInterface|null
+     */
     public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
     }
 
+    /**
+     * @param \DateTimeInterface|null $updatedAt
+     * @return PossessionImage
+     */
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -113,11 +144,18 @@ class PossessionImage
         return $this;
     }
 
+    /**
+     * @return Possession|null
+     */
     public function getPossession(): ?Possession
     {
         return $this->possession;
     }
 
+    /**
+     * @param Possession|null $possession
+     * @return PossessionImage
+     */
     public function setPossession(?Possession $possession): self
     {
         $this->possession = $possession;
@@ -125,11 +163,18 @@ class PossessionImage
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    /**
+     * @param null|string $description
+     * @return PossessionImage
+     */
     public function setDescription(?string $description): self
     {
         $this->description = $description;

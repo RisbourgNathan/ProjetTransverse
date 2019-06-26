@@ -22,16 +22,26 @@ class Administrator
      */
     private $user;
 
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @return User|null
+     */
     public function getUser(): ?User
     {
         return $this->user;
     }
 
+    /**
+     * @param User|null $user
+     * @return Administrator
+     */
     public function setUser(?User $user): self
     {
         $this->user = $user;

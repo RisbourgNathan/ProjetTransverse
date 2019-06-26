@@ -18,9 +18,19 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class PossessionTypeController extends AbstractController
 {
+    /**
+     * @var PossessionTypeCrud
+     */
     private $possessionTypeCrud;
+    /**
+     * @var PossessionTypeManager
+     */
     private $possessionTypeManager;
 
+    /**
+     * PossessionTypeController constructor.
+     * @param EntityManagerInterface $entityManager
+     */
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->possessionTypeCrud = new PossessionTypeCrud($entityManager);
@@ -30,6 +40,8 @@ class PossessionTypeController extends AbstractController
 
     /**
      * @Route("/create", name="create")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function createPossessionTypeForm(Request $request)
     {
@@ -49,6 +61,7 @@ class PossessionTypeController extends AbstractController
 
     /**
      * @Route("/show", name="show")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showPossessionTypes()
     {

@@ -34,16 +34,49 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
  */
 class PossessionController extends AbstractController
 {
+    /**
+     * @var Security
+     */
     private $security;
+    /**
+     * @var EntityManagerInterface
+     */
     private $entityManager;
+    /**
+     * @var PossessionManager
+     */
     private $possessionManager;
+    /**
+     * @var PossessionTypeManager
+     */
     private $possessionTypeManager;
+    /**
+     * @var ClientManager
+     */
     private $clientManager;
+    /**
+     * @var UserManager
+     */
     private $userManager;
+    /**
+     * @var RegistryInterface
+     */
     private $registry;
+    /**
+     * @var UploaderHelper
+     */
     private $uploaderHelper;
+    /**
+     * @var PaginatorInterface
+     */
     private $knp;
+    /**
+     * @var AgentManager
+     */
     private $agentManager;
+    /**
+     * @var FavoriteManager
+     */
     private $favoriteManager;
 
     /**
@@ -365,6 +398,9 @@ class PossessionController extends AbstractController
         return $this->redirectToRoute('possession_show', array("id" => $id));
     }
 
+    /**
+     * @param Possession $possession
+     */
     public function notifyFavClients(Possession $possession)
     {
         $userManager = new UserManager($this->entityManager, $this->security);

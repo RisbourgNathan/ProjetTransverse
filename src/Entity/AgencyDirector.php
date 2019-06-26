@@ -27,16 +27,26 @@ class AgencyDirector
      */
     private $agency;
 
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @return User|null
+     */
     public function getUser(): ?User
     {
         return $this->user;
     }
 
+    /**
+     * @param User|null $user
+     * @return AgencyDirector
+     */
     public function setUser(?User $user): self
     {
         $this->user = $user;
@@ -44,11 +54,18 @@ class AgencyDirector
         return $this;
     }
 
+    /**
+     * @return Agency|null
+     */
     public function getAgency(): ?Agency
     {
         return $this->agency;
     }
 
+    /**
+     * @param Agency|null $agency
+     * @return AgencyDirector
+     */
     public function setAgency(?Agency $agency): self
     {
         $this->agency = $agency;

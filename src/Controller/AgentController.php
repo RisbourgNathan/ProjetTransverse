@@ -19,6 +19,10 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class AgentController extends AbstractController
 {
+
+    /**
+     * AgentController constructor.
+     */
     public function __construct()
     {
 

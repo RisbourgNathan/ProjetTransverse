@@ -50,6 +50,9 @@ class Client
      */
     private $favorites;
 
+    /**
+     * Client constructor.
+     */
     public function __construct()
     {
         $this->sponsor = new ArrayCollection();
@@ -59,11 +62,18 @@ class Client
         $this->favorites = new ArrayCollection();
     }
 
+    /**
+     * @return User|null
+     */
     public function getUser(): ?User
     {
         return $this->user;
     }
 
+    /**
+     * @param User|null $user
+     * @return Client
+     */
     public function setUser(?User $user): self
     {
         $this->user = $user;
@@ -71,11 +81,18 @@ class Client
         return $this;
     }
 
+    /**
+     * @return Client|null
+     */
     public function getSponsor(): ?self
     {
         return $this->sponsor;
     }
 
+    /**
+     * @param null|self $sponsor
+     * @return Client
+     */
     public function setSponsor(?self $sponsor): self
     {
         $this->sponsor = $sponsor;
@@ -83,6 +100,10 @@ class Client
         return $this;
     }
 
+    /**
+     * @param self $sponsor
+     * @return Client
+     */
     public function addSponsor(self $sponsor): self
     {
         if (!$this->sponsor->contains($sponsor)) {
@@ -93,6 +114,10 @@ class Client
         return $this;
     }
 
+    /**
+     * @param self $sponsor
+     * @return Client
+     */
     public function removeSponsor(self $sponsor): self
     {
         if ($this->sponsor->contains($sponsor)) {
@@ -114,6 +139,10 @@ class Client
         return $this->possessions;
     }
 
+    /**
+     * @param Possession $possession
+     * @return Client
+     */
     public function addPossession(Possession $possession): self
     {
         if (!$this->possessions->contains($possession)) {
@@ -124,6 +153,10 @@ class Client
         return $this;
     }
 
+    /**
+     * @param Possession $possession
+     * @return Client
+     */
     public function removePossession(Possession $possession): self
     {
         if ($this->possessions->contains($possession)) {
@@ -145,6 +178,10 @@ class Client
         return $this->Proposition;
     }
 
+    /**
+     * @param Proposition $proposition
+     * @return Client
+     */
     public function addProposition(Proposition $proposition): self
     {
         if (!$this->Proposition->contains($proposition)) {
@@ -155,6 +192,10 @@ class Client
         return $this;
     }
 
+    /**
+     * @param Proposition $proposition
+     * @return Client
+     */
     public function removeProposition(Proposition $proposition): self
     {
         if ($this->Proposition->contains($proposition)) {
@@ -176,6 +217,10 @@ class Client
         return $this->favoritePossessions;
     }
 
+    /**
+     * @param Possession $favoritePossession
+     * @return Client
+     */
     public function addFavoritePossession(Possession $favoritePossession): self
     {
         if (!$this->favoritePossessions->contains($favoritePossession)) {
@@ -185,6 +230,10 @@ class Client
         return $this;
     }
 
+    /**
+     * @param Possession $favoritePossession
+     * @return Client
+     */
     public function removeFavoritePossession(Possession $favoritePossession): self
     {
         if ($this->favoritePossessions->contains($favoritePossession)) {
@@ -194,6 +243,9 @@ class Client
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
@@ -207,6 +259,10 @@ class Client
         return $this->favorites;
     }
 
+    /**
+     * @param Favorite $favorite
+     * @return Client
+     */
     public function addFavorite(Favorite $favorite): self
     {
         if (!$this->favorites->contains($favorite)) {
@@ -217,6 +273,10 @@ class Client
         return $this;
     }
 
+    /**
+     * @param Favorite $favorite
+     * @return Client
+     */
     public function removeFavorite(Favorite $favorite): self
     {
         if ($this->favorites->contains($favorite)) {

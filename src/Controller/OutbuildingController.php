@@ -22,9 +22,19 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class OutbuildingController extends AbstractController
 {
+    /**
+     * @var OutbuildingManager
+     */
     private $outbuildingManager;
+    /**
+     * @var OutbuildingCrud
+     */
     private $outbuildingCrud;
 
+    /**
+     * OutbuildingController constructor.
+     * @param EntityManagerInterface $entityManager
+     */
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->outbuildingManager = new OutbuildingManager($entityManager);
@@ -53,6 +63,7 @@ class OutbuildingController extends AbstractController
 
     /**
      * @Route("/show", name="show")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showOutbuildings()
     {

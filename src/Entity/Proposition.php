@@ -70,16 +70,26 @@ class Proposition
      */
     private $shouldBeDisplayed;
 
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @return int|null
+     */
     public function getPrice(): ?int
     {
         return $this->price;
     }
 
+    /**
+     * @param int $price
+     * @return Proposition
+     */
     public function setPrice(int $price): self
     {
         $this->price = $price;
@@ -87,11 +97,18 @@ class Proposition
         return $this;
     }
 
+    /**
+     * @return \DateTimeInterface|null
+     */
     public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
     }
 
+    /**
+     * @param \DateTimeInterface $date
+     * @return Proposition
+     */
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
@@ -99,11 +116,18 @@ class Proposition
         return $this;
     }
 
+    /**
+     * @return Possession|null
+     */
     public function getPossession(): ?Possession
     {
         return $this->possession;
     }
 
+    /**
+     * @param Possession|null $possession
+     * @return Proposition
+     */
     public function setPossession(?Possession $possession): self
     {
         $this->possession = $possession;
@@ -111,11 +135,18 @@ class Proposition
         return $this;
     }
 
+    /**
+     * @return Client|null
+     */
     public function getClient(): ?Client
     {
         return $this->client;
     }
 
+    /**
+     * @param Client|null $client
+     * @return Proposition
+     */
     public function setClient(?Client $client): self
     {
         $this->client = $client;
@@ -123,11 +154,18 @@ class Proposition
         return $this;
     }
 
+    /**
+     * @return Proposition|null
+     */
     public function getCounterProposition(): ?self
     {
         return $this->counterProposition;
     }
 
+    /**
+     * @param null|self $counterProposition
+     * @return Proposition
+     */
     public function setCounterProposition(?self $counterProposition): self
     {
         $this->counterProposition = $counterProposition;
@@ -135,11 +173,18 @@ class Proposition
         return $this;
     }
 
+    /**
+     * @return float|null
+     */
     public function getOldPrice(): ?float
     {
         return $this->oldPrice;
     }
 
+    /**
+     * @param float|null $oldPrice
+     * @return Proposition
+     */
     public function setOldPrice(?float $oldPrice): self
     {
         $this->oldPrice = $oldPrice;
@@ -147,11 +192,18 @@ class Proposition
         return $this;
     }
 
+    /**
+     * @return \DateTimeInterface|null
+     */
     public function getOldDate(): ?\DateTimeInterface
     {
         return $this->oldDate;
     }
 
+    /**
+     * @param \DateTimeInterface|null $oldDate
+     * @return Proposition
+     */
     public function setOldDate(?\DateTimeInterface $oldDate): self
     {
         $this->oldDate = $oldDate;
@@ -159,11 +211,18 @@ class Proposition
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getState(): ?string
     {
         return $this->state;
     }
 
+    /**
+     * @param null|string $state
+     * @return Proposition
+     */
     public function setState(?string $state): self
     {
         $this->state = $state;
@@ -171,11 +230,18 @@ class Proposition
         return $this;
     }
 
+    /**
+     * @return bool|null
+     */
     public function getShouldBeDisplayed(): ?bool
     {
         return $this->shouldBeDisplayed;
     }
 
+    /**
+     * @param bool|null $shouldBeDisplayed
+     * @return Proposition
+     */
     public function setShouldBeDisplayed(?bool $shouldBeDisplayed): self
     {
         $this->shouldBeDisplayed = $shouldBeDisplayed;

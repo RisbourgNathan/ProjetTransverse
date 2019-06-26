@@ -29,21 +29,34 @@ class PossessionType
      */
     private $possessions;
 
+    /**
+     * PossessionType constructor.
+     */
     public function __construct()
     {
         $this->possessions = new ArrayCollection();
     }
 
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @return null|string
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * @param string $name
+     * @return PossessionType
+     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -59,6 +72,10 @@ class PossessionType
         return $this->possessions;
     }
 
+    /**
+     * @param Possession $possession
+     * @return PossessionType
+     */
     public function addPossession(Possession $possession): self
     {
         if (!$this->possessions->contains($possession)) {
@@ -69,6 +86,10 @@ class PossessionType
         return $this;
     }
 
+    /**
+     * @param Possession $possession
+     * @return PossessionType
+     */
     public function removePossession(Possession $possession): self
     {
         if ($this->possessions->contains($possession)) {

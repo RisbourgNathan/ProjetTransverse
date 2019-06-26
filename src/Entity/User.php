@@ -110,6 +110,9 @@ class User implements UserInterface
      */
     private $notifications;
 
+    /**
+     * User constructor.
+     */
     public function __construct()
     {
         $this->agents = new ArrayCollection();
@@ -118,16 +121,26 @@ class User implements UserInterface
         $this->agencyDirectors = new ArrayCollection();
     }
 
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @return null|string
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     * @param string $email
+     * @return User
+     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
@@ -145,11 +158,18 @@ class User implements UserInterface
         return (string) $this->email;
     }
 
+    /**
+     * @return array|null
+     */
     public function getRoles(): ?array
     {
         return $this->roles;
     }
 
+    /**
+     * @param array $roles
+     * @return User
+     */
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -157,22 +177,36 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getPassword(): ?string
     {
         return $this->password;
     }
 
+    /**
+     * @param string $password
+     * @return User
+     */
     public function setPassword(string $password): self
     {
         $this->password = $password;
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
     public function getPlainPassword()
     {
         return $this->plainPassword;
     }
 
+    /**
+     * @param $password
+     */
     public function setPlainPassword($password)
     {
         $this->plainPassword = $password;
@@ -195,11 +229,18 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
+    /**
+     * @return null|string
+     */
     public function getFirstname(): ?string
     {
         return $this->firstname;
     }
 
+    /**
+     * @param string $firstname
+     * @return User
+     */
     public function setFirstname(string $firstname): self
     {
         $this->firstname = $firstname;
@@ -207,11 +248,18 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getLastname(): ?string
     {
         return $this->lastname;
     }
 
+    /**
+     * @param string $lastname
+     * @return User
+     */
     public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
@@ -219,11 +267,18 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getCity(): ?string
     {
         return $this->city;
     }
 
+    /**
+     * @param null|string $city
+     * @return User
+     */
     public function setCity(?string $city): self
     {
         $this->city = $city;
@@ -231,11 +286,18 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getZipCode(): ?string
     {
         return $this->zip_code;
     }
 
+    /**
+     * @param null|string $zip_code
+     * @return User
+     */
     public function setZipCode(?string $zip_code): self
     {
         $this->zip_code = $zip_code;
@@ -243,11 +305,18 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getStreet(): ?string
     {
         return $this->street;
     }
 
+    /**
+     * @param null|string $street
+     * @return User
+     */
     public function setStreet(?string $street): self
     {
         $this->street = $street;
@@ -255,11 +324,18 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getPhone(): ?string
     {
         return $this->phone;
     }
 
+    /**
+     * @param null|string $phone
+     * @return User
+     */
     public function setPhone(?string $phone): self
     {
         $this->phone = $phone;
@@ -275,6 +351,10 @@ class User implements UserInterface
         return $this->agents;
     }
 
+    /**
+     * @param Agent $agent
+     * @return User
+     */
     public function addAgent(Agent $agent): self
     {
         if (!$this->agents->contains($agent)) {
@@ -285,6 +365,10 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @param Agent $agent
+     * @return User
+     */
     public function removeAgent(Agent $agent): self
     {
         if ($this->agents->contains($agent)) {
@@ -306,6 +390,10 @@ class User implements UserInterface
         return $this->clients;
     }
 
+    /**
+     * @param Client $client
+     * @return User
+     */
     public function addClient(Client $client): self
     {
         if (!$this->clients->contains($client)) {
@@ -316,6 +404,10 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @param Client $client
+     * @return User
+     */
     public function removeClient(Client $client): self
     {
         if ($this->clients->contains($client)) {
@@ -337,6 +429,10 @@ class User implements UserInterface
         return $this->administrators;
     }
 
+    /**
+     * @param Administrator $administrator
+     * @return User
+     */
     public function addAdministrator(Administrator $administrator): self
     {
         if (!$this->administrators->contains($administrator)) {
@@ -347,6 +443,10 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @param Administrator $administrator
+     * @return User
+     */
     public function removeAdministrator(Administrator $administrator): self
     {
         if ($this->administrators->contains($administrator)) {
@@ -368,6 +468,10 @@ class User implements UserInterface
         return $this->agencyDirectors;
     }
 
+    /**
+     * @param AgencyDirector $agencyDirector
+     * @return User
+     */
     public function addAgencyDirector(AgencyDirector $agencyDirector): self
     {
         if (!$this->agencyDirectors->contains($agencyDirector)) {
@@ -378,6 +482,10 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @param AgencyDirector $agencyDirector
+     * @return User
+     */
     public function removeAgencyDirector(AgencyDirector $agencyDirector): self
     {
         if ($this->agencyDirectors->contains($agencyDirector)) {
@@ -391,11 +499,18 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getSponsorshipCode()
     {
         return $this->sponsorshipCode;
     }
 
+    /**
+     * @param $sponsorshipCode
+     * @return User
+     */
     public function setSponsorshipCode($sponsorshipCode): self
     {
         $this->sponsorshipCode = $sponsorshipCode;
@@ -403,11 +518,18 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return bool|null
+     */
     public function getSponsorshipCodeState(): ?bool
     {
         return $this->sponsorshipCodeState;
     }
 
+    /**
+     * @param bool|null $sponsorshipCodeState
+     * @return User
+     */
     public function setSponsorshipCodeState(?bool $sponsorshipCodeState): self
     {
         $this->sponsorshipCodeState = $sponsorshipCodeState;
@@ -415,11 +537,18 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return int|null
+     */
     public function getNotifications(): ?int
     {
         return $this->notifications;
     }
 
+    /**
+     * @param int|null $notifications
+     * @return User
+     */
     public function setNotifications(?int $notifications): self
     {
         $this->notifications = $notifications;

@@ -11,6 +11,10 @@ namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class ClientController
+ * @package App\Controller
+ */
 class ClientController
 {
 

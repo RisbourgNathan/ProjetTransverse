@@ -36,21 +36,34 @@ class Agent
      */
     private $possessions;
 
+    /**
+     * Agent constructor.
+     */
     public function __construct()
     {
         $this->possessions = new ArrayCollection();
     }
 
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @return Agency|null
+     */
     public function getAgency(): ?Agency
     {
         return $this->agency;
     }
 
+    /**
+     * @param Agency|null $agency
+     * @return Agent
+     */
     public function setAgency(?Agency $agency): self
     {
         $this->agency = $agency;
@@ -58,11 +71,18 @@ class Agent
         return $this;
     }
 
+    /**
+     * @return User|null
+     */
     public function getUser(): ?User
     {
         return $this->user;
     }
 
+    /**
+     * @param User|null $user
+     * @return Agent
+     */
     public function setUser(?User $user): self
     {
         $this->user = $user;
@@ -78,6 +98,10 @@ class Agent
         return $this->possessions;
     }
 
+    /**
+     * @param Possession $possession
+     * @return Agent
+     */
     public function addPossession(Possession $possession): self
     {
         if (!$this->possessions->contains($possession)) {
@@ -88,6 +112,10 @@ class Agent
         return $this;
     }
 
+    /**
+     * @param Possession $possession
+     * @return Agent
+     */
     public function removePossession(Possession $possession): self
     {
         if ($this->possessions->contains($possession)) {

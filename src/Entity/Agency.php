@@ -66,21 +66,34 @@ class Agency
      */
     private $phone;
 
+    /**
+     * Agency constructor.
+     */
     public function __construct()
     {
         $this->agents = new ArrayCollection();
     }
 
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @return null|string
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * @param string $name
+     * @return Agency
+     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -88,11 +101,18 @@ class Agency
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getCity(): ?string
     {
         return $this->city;
     }
 
+    /**
+     * @param string $city
+     * @return Agency
+     */
     public function setCity(string $city): self
     {
         $this->city = $city;
@@ -100,11 +120,18 @@ class Agency
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getZipCode(): ?string
     {
         return $this->zip_code;
     }
 
+    /**
+     * @param string $zip_code
+     * @return Agency
+     */
     public function setZipCode(string $zip_code): self
     {
         $this->zip_code = $zip_code;
@@ -112,11 +139,18 @@ class Agency
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getStreet(): ?string
     {
         return $this->street;
     }
 
+    /**
+     * @param string $street
+     * @return Agency
+     */
     public function setStreet(string $street): self
     {
         $this->street = $street;
@@ -124,11 +158,18 @@ class Agency
         return $this;
     }
 
+    /**
+     * @return bool|null
+     */
     public function getIsMainAgency(): ?bool
     {
         return $this->is_main_agency;
     }
 
+    /**
+     * @param bool|null $is_main_agency
+     * @return Agency
+     */
     public function setIsMainAgency(?bool $is_main_agency): self
     {
         $this->is_main_agency = $is_main_agency;
@@ -136,11 +177,18 @@ class Agency
         return $this;
     }
 
+    /**
+     * @return int|null
+     */
     public function getAgencyCost(): ?int
     {
         return $this->agency_cost;
     }
 
+    /**
+     * @param int $agency_cost
+     * @return Agency
+     */
     public function setAgencyCost(int $agency_cost): self
     {
         $this->agency_cost = $agency_cost;
@@ -156,6 +204,10 @@ class Agency
         return $this->agents;
     }
 
+    /**
+     * @param Agent $agent
+     * @return Agency
+     */
     public function addAgent(Agent $agent): self
     {
         if (!$this->agents->contains($agent)) {
@@ -166,6 +218,10 @@ class Agency
         return $this;
     }
 
+    /**
+     * @param Agent $agent
+     * @return Agency
+     */
     public function removeAgent(Agent $agent): self
     {
         if ($this->agents->contains($agent)) {
@@ -179,11 +235,18 @@ class Agency
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getPicturePath(): ?string
     {
         return $this->picture_path;
     }
 
+    /**
+     * @param null|string $picture_path
+     * @return Agency
+     */
     public function setPicturePath(?string $picture_path): self
     {
         $this->picture_path = $picture_path;
@@ -191,11 +254,18 @@ class Agency
         return $this;
     }
 
+    /**
+     * @return int|null
+     */
     public function getPhone(): ?int
     {
         return $this->phone;
     }
 
+    /**
+     * @param int|null $phone
+     * @return Agency
+     */
     public function setPhone(?int $phone): self
     {
         $this->phone = $phone;

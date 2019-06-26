@@ -22,9 +22,19 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class PossessionImageController extends AbstractController
 {
+    /**
+     * @var PossessionImageCrud
+     */
     private $possessionImageCrud;
+    /**
+     * @var PossessionImageManager
+     */
     private $possessionImageManager;
 
+    /**
+     * PossessionImageController constructor.
+     * @param EntityManagerInterface $entityManager
+     */
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->possessionImageCrud = new PossessionImageCrud($entityManager);
@@ -33,6 +43,8 @@ class PossessionImageController extends AbstractController
 
     /**
      * @Route("/remove/{id}", name="remove")
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function removePossImg($id)
     {
