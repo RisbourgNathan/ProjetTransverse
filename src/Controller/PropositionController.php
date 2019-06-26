@@ -64,6 +64,8 @@ class PropositionController extends AbstractController
 
         $proposition->setDate(new \DateTime($currentDate));
 
+        $proposition->setShouldBeDisplayed(true);
+
         $possession = $this->possessionManager->getPossessionById($idPossession);
 
         $propositionManager = new PropositionManager($this->entityManager);
@@ -249,11 +251,25 @@ class PropositionController extends AbstractController
     public function showMyPropositions()
     {
         $client = $this->clientManager->getClientByUser($this->security->getUser());
-        $propositions = $client->getProposition();
+        $propositions = $this->propositionManager->getVisibleClientPropositions($client);
 
         return $this->render("proposition/showMyPropositions.html.twig", array(
             "propositions" => $propositions
         ));
+    }
+
+    /**
+     * @Route("/hide/{propositionID}", name="hide")
+     * @param $propositionID
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function hideProposition($propositionID)
+    {
+        $proposition = $this->propositionManager->getPropositionById($propositionID);
+        $proposition->setShouldBeDisplayed(false);
+        $this->propositionManager->saveProposition($proposition);
+
+        return $this->redirectToRoute('account');
     }
 
     private function denyAccessToProposition(Proposition $proposition)
