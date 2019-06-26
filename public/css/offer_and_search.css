@@ -35,7 +35,7 @@
     display: inline-block;
     position: relative;
     width: 20%;
-    height: 30vw;
+    height: 50vh;
     text-align: left;
     top: -2vw;
     left: 1vw;
@@ -44,8 +44,8 @@
     left: 1vw;
 }
 .flexbox{
-    top: -11vw;
     left: 4vw;
+    top: -12vw;
     position: relative;
     display: inline-flex;
     flex-wrap: wrap;

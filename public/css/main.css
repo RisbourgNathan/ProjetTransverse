@@ -256,6 +256,31 @@ h1 {
 .principaleProposition{
     top: 35vh !important;
 }
+.myPropositionsDiv{
+    position: relative;
+    width: 30%;
+    text-align: center;
+    display: inline-block;
+}
+.flexboxPropositionProfile{
+    width: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-right: auto;
+    margin-left: auto;
+}
+.waiting{
+    color: darkgoldenrod;
+}
+.success{
+    color: forestgreen;
+}
+.failed{
+    color: darkred;
+}
 form > ul{
     list-style-type: none;
     position: relative;
@@ -307,18 +332,20 @@ h2 {
     border-radius: 5px;
 }
 .flexboxPossessionProfile{
+    justify-content: center;
+    align-items: center;
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    width: 90%;
+    width: 100%;
     text-align: center;
     padding-bottom: 1vh;
     margin-left: auto;
     margin-right: auto;
 }
 .possessionProfile{
+    width: 25%;
     position: relative;
-    margin-left: 5vw;
     text-align: center;
 }
 
