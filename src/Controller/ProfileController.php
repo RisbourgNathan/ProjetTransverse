@@ -9,6 +9,7 @@
 namespace App\Controller;
 use App\BL\ClientManager;
 use App\BL\FavoriteManager;
+use App\BL\PropositionManager;
 use App\DAL\ClientCrud;
 use App\Entity\User;
 use App\Forms\modifyClientForm;
@@ -50,7 +51,9 @@ class ProfileController extends AbstractController
         $client = $this->ClientManager->getClientByUser($user);
         $clientPossessions = $client->getPossessions();
         $favorites = $client->getFavorites();
-        $propositions = $client->getProposition();
+
+        $propositionManager = new PropositionManager($this->em);
+        $propositions = $propositionManager->getVisibleClientPropositions($client);
 
         $favoriteManager  = new FavoriteManager($this->em);
         $user->setNotifications($favoriteManager->getNumberOfNotifications($user));
@@ -80,7 +83,14 @@ class ProfileController extends AbstractController
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
             $this->ClientCrud->GetInscriptionData($user);
-            return $this->redirectToRoute('index');
+
+            // Flash Message
+            $this->addFlash(
+                'ProfileModificationSuccess',
+                'Vos informations ont été modifiées avec succès'
+            );
+
+            return $this->redirectToRoute('account');
         }
         return $this->render('account/modifyClient.html.twig', [
             'form' => $form->createView()

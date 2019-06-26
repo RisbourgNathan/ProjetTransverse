@@ -1,5 +1,17 @@
 {% include 'includes/header.html.twig' %}
 <div class="imageContainerPossession">
+    <div class="FlashMessageSuccess">
+        {% for label, messages in app.flashes(['ProfileModificationSuccess',
+            'DenyOfferSuccess',
+            'AcceptOfferSucces',
+            'CounterPropositionSuccess',]) %}
+            {% for message in messages %}
+                <div class="flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
     <div class="bg"></div>
     <h1 class="titleProfile">Mon profil</h1>
     <hr>
@@ -38,38 +50,41 @@
 <div class="profileContainer">
     <h2>Mes Propositions d'achat</h2>
 
-    {% if propositions.count > 0 %}
+    {% if propositions is not empty %}
         <div class="flexboxPropositionProfile">
         {% for proposition in propositions %}
-            {% if proposition.state == "PROPOSITION" %}
-                <div class="myPropositionsDiv">
-                    <p>{{ proposition.possession.title }} - {{ proposition.possession.city }}</p>
-                    <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
-                    <p>Votre proposition actuelle : {{ proposition.price }}
-                    <p>Etat : <span class="waiting">En attente d'une réponse du proprietaire...</span> </p>
-                </div>
+                {% if proposition.state == "PROPOSITION" %}
+                    <div class="myPropositionsDiv">
+                        <p>{{ proposition.possession.title }} - {{ proposition.possession.city }}</p>
+                        <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
+                        <p>Votre proposition actuelle : {{ proposition.price }}
+                        <p>Etat : <span class="waiting">En attente d'une réponse du proprietaire...</span> </p>
+                    </div>
 
-            {% elseif proposition.state == "COUNTERPROPOSITION" %}
-                <div class="myPropositionsDiv">
-                    <p>{{ proposition.possession.title }} - {{ proposition.possession.city }}</p>
-                    <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
-                    <p>Proposition actuelle : {{ proposition.price }} | Proposition originale : {{ proposition.oldPrice }}</p>
-                    <button class="btn btn-success"><a href="{{ path('proposition_accept', {'id': proposition.id}) }}">Accepter cette offre</a></button>
-                    <button class="btn btn-warning"><a href="{{ path('proposition_deny', {'id': proposition.id}) }}">Refuser</a></button>
-                </div>
-            {% elseif proposition.state == "ACCEPTED" %}
-                <div class="myPropositionsDiv">
-                    <p>{{ proposition.possession.title }} - {{ proposition.possession.city }}</p>
-                    <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
-                    <p><span class="success">Proposition Acceptée : {{ proposition.price }}</span></p>
-                </div>
-            {% elseif proposition.state == "DENIED" %}
-                <div class="myPropositionsDiv">
-                    <p>{{ proposition.possession.title }} - {{ proposition.possession.city }}</p>
-                    <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
-                    <p><span class="failed">Proposition Refusée : {{ proposition.price }}</span></p>
-                </div>
-            {% endif %}
+                {% elseif proposition.state == "COUNTERPROPOSITION" %}
+                    <div class="myPropositionsDiv">
+                        <p>{{ proposition.possession.title }} - {{ proposition.possession.city }}</p>
+                        <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
+                        <p>Proposition actuelle : {{ proposition.price }} | Proposition originale : {{ proposition.oldPrice }}</p>
+                        <button class="btn btn-success"><a href="{{ path('proposition_accept', {'id': proposition.id}) }}">Accepter cette offre</a></button>
+                        <button class="btn btn-warning"><a href="{{ path('proposition_deny', {'id': proposition.id}) }}">Refuser</a></button>
+                    </div>
+                {% elseif proposition.state == "ACCEPTED" %}
+                    <div class="myPropositionsDiv">
+                        <p>{{ proposition.possession.title }} - {{ proposition.possession.city }}</p>
+                        <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
+                        <p><span class="success">Proposition Acceptée : {{ proposition.price }}</span></p>
+                        {#<button class="btn"><a href="{{ path('proposition_hide', {'propositionID': proposition.id}) }}">X</a></button>#}
+                        <a href="{{ path('proposition_hide', {'propositionID': proposition.id}) }}"><button class="btn">X</button></a>
+                    </div>
+                {% elseif proposition.state == "DENIED" %}
+                    <div class="myPropositionsDiv">
+                        <p>{{ proposition.possession.title }} - {{ proposition.possession.city }}</p>
+                        <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
+                        <p><span class="failed">Proposition Refusée : {{ proposition.price }}</span></p>
+                        <a href="{{ path('proposition_hide', {'propositionID': proposition.id}) }}"><button class="btn">X</button></a>
+                    </div>
+                {% endif %}
         {% endfor %}
         </div>
     {% else %}

@@ -9,6 +9,7 @@
 namespace App\BL;
 
 
+use App\Entity\Client;
 use App\Entity\Possession;
 use App\Entity\Proposition;
 use App\Entity\User;
@@ -22,6 +23,11 @@ class PropositionManager
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
+    }
+
+    public function getVisibleClientPropositions(Client $client)
+    {
+        return $this->entityManager->getRepository(Proposition::class)->findBy(array('client' => $client, 'shouldBeDisplayed' => true));
     }
 
     public function saveProposition(Proposition $proposition)

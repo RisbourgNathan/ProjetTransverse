@@ -19,6 +19,7 @@ use App\Entity\User;
 use App\Forms\PropositionForm;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use phpDocumentor\Reflection\Types\This;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -63,6 +64,8 @@ class PropositionController extends AbstractController
 
         $proposition->setDate(new \DateTime($currentDate));
 
+        $proposition->setShouldBeDisplayed(true);
+
         $possession = $this->possessionManager->getPossessionById($idPossession);
 
         $propositionManager = new PropositionManager($this->entityManager);
@@ -89,6 +92,13 @@ class PropositionController extends AbstractController
         {
             $proposition->setState(Proposition::$STATE_PROPOSITION);
             $this->propositionManager->saveProposition($proposition);
+
+            // Flash Message
+            $this->addFlash(
+                'CreatePropositionSuccess',
+                'Votre proposition a bien enregistrée !'
+            );
+
             return $this->redirectToRoute("possession_show", array(
                 "id" => $possession->getId()
             ));
@@ -127,6 +137,12 @@ class PropositionController extends AbstractController
 
             $this->propositionManager->saveProposition($proposition);
 
+            // Flash Message
+            $this->addFlash(
+                'CounterPropositionSuccess',
+                'Votre contre-proposition a bien été enregistrée !'
+            );
+
            return $this->redirectToRoute("account");
         }
         return $this->render("proposition/createProposition.html.twig", array('form'=>$form->createView()));
@@ -150,6 +166,24 @@ class PropositionController extends AbstractController
         $proposition->getPossession()->setValidationState(Possession::$STATE_SOLD);
         $this->propositionManager->saveProposition($proposition);
 
+        $propositionsToDeny = $proposition->getPossession()->getProposition();
+
+        foreach ($propositionsToDeny as $propositionToDeny)
+        {
+            if ($propositionToDeny->getState() != Proposition::$STATE_ACCEPTED)
+            {
+                $propositionToDeny->setState(Proposition::$STATE_DENIED);
+                $this->entityManager->persist($propositionToDeny);
+            }
+        }
+        $this->entityManager->flush();
+
+        // Flash Message
+        $this->addFlash(
+            'AcceptOfferSucces',
+            'L\'offre a été accptée !'
+        );
+
         return $this->redirectToRoute("account");
     }
 
@@ -170,6 +204,12 @@ class PropositionController extends AbstractController
         $proposition->setState(Proposition::$STATE_DENIED);
         $this->propositionManager->saveProposition($proposition);
 
+        // Flash Message
+        $this->addFlash(
+            'DenyOfferSucces',
+            'L\'offre a été refusée.'
+        );
+
         return $this->redirectToRoute("account");
     }
 
@@ -184,6 +224,18 @@ class PropositionController extends AbstractController
 //        $client = $this->clientManager->getClientByUser($usr);
 
         $possession = $this->possessionManager->getPossessionById($idPossession);
+
+//        if ($possession->getValidationState() == Possession::$STATE_SOLD)
+//        {
+//            // Flash Message
+//            $this->addFlash(
+//                'ErrorShowPropForSoldPoss',
+//                'Vous avez '
+//            );
+//
+//            return $this->redirectToRoute("account");
+//        }
+
         $propositions = $possession->getProposition();
 
         return $this->render('proposition/showPossessionProposition.html.twig', array(
@@ -199,11 +251,25 @@ class PropositionController extends AbstractController
     public function showMyPropositions()
     {
         $client = $this->clientManager->getClientByUser($this->security->getUser());
-        $propositions = $client->getProposition();
+        $propositions = $this->propositionManager->getVisibleClientPropositions($client);
 
         return $this->render("proposition/showMyPropositions.html.twig", array(
             "propositions" => $propositions
         ));
+    }
+
+    /**
+     * @Route("/hide/{propositionID}", name="hide")
+     * @param $propositionID
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function hideProposition($propositionID)
+    {
+        $proposition = $this->propositionManager->getPropositionById($propositionID);
+        $proposition->setShouldBeDisplayed(false);
+        $this->propositionManager->saveProposition($proposition);
+
+        return $this->redirectToRoute('account');
     }
 
     private function denyAccessToProposition(Proposition $proposition)

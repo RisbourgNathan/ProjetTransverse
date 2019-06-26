@@ -65,6 +65,11 @@ class Proposition
      */
     private $state;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $shouldBeDisplayed;
+
     public function getId()
     {
         return $this->id;
@@ -162,6 +167,18 @@ class Proposition
     public function setState(?string $state): self
     {
         $this->state = $state;
+
+        return $this;
+    }
+
+    public function getShouldBeDisplayed(): ?bool
+    {
+        return $this->shouldBeDisplayed;
+    }
+
+    public function setShouldBeDisplayed(?bool $shouldBeDisplayed): self
+    {
+        $this->shouldBeDisplayed = $shouldBeDisplayed;
 
         return $this;
     }
