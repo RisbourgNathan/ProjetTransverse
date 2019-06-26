@@ -12,8 +12,17 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Agent[]    findAll()
  * @method Agent[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
+/**
+ * Class AgentRepository
+ * @package App\Repository
+ */
 class AgentRepository extends ServiceEntityRepository
 {
+    /**
+     * AgentRepository constructor.
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Agent::class);

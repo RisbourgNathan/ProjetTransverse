@@ -12,8 +12,17 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method PossessionType[]    findAll()
  * @method PossessionType[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
+/**
+ * Class PossessionTypeRepository
+ * @package App\Repository
+ */
 class PossessionTypeRepository extends ServiceEntityRepository
 {
+    /**
+     * PossessionTypeRepository constructor.
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, PossessionType::class);

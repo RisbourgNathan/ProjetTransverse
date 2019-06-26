@@ -10,15 +10,29 @@ use App\Entity\Possession;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 
+/**
+ * Class FavoriteManager
+ * @package App\BL
+ */
 class FavoriteManager
 {
     /*** @var EntityManagerInterface l'interface entity manager* nécessaire à la manipulation des opérations en base*/
     protected $em;
+
+    /**
+     * FavoriteManager constructor.
+     * @param EntityManagerInterface $em
+     */
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }
 
+    /**
+     * @param Possession $possession
+     * @param Client $client
+     * @return Favorite|object|null
+     */
     public function getFavorite(Possession $possession, Client $client)
     {
         if ($this->em->getRepository(Favorite::class)->findOneBy(array('possession' => $possession, 'client' => $client)) == null){
@@ -29,6 +43,10 @@ class FavoriteManager
         }
     }
 
+    /**
+     * @param Possession $possession
+     * @param User $user
+     */
     public function removeNotificationForUser(Possession $possession, User $user)
     {
         $clientManager = new ClientManager($this->em);
@@ -50,6 +68,10 @@ class FavoriteManager
         }
     }
 
+    /**
+     * @param User $user
+     * @return int
+     */
     public function getNumberOfNotifications(User $user) : int
     {
         $clientManager = new ClientManager($this->em);

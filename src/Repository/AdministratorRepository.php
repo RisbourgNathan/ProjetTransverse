@@ -12,8 +12,17 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Administrator[]    findAll()
  * @method Administrator[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
+/**
+ * Class AdministratorRepository
+ * @package App\Repository
+ */
 class AdministratorRepository extends ServiceEntityRepository
 {
+    /**
+     * AdministratorRepository constructor.
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Administrator::class);

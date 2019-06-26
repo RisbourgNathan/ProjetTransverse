@@ -12,8 +12,17 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method OwnOutBuilding[]    findAll()
  * @method OwnOutBuilding[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
+/**
+ * Class OwnOutBuildingRepository
+ * @package App\Repository
+ */
 class OwnOutBuildingRepository extends ServiceEntityRepository
 {
+    /**
+     * OwnOutBuildingRepository constructor.
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, OwnOutBuilding::class);

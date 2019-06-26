@@ -12,8 +12,17 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method PossessionImage[]    findAll()
  * @method PossessionImage[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
+/**
+ * Class PossessionImageRepository
+ * @package App\Repository
+ */
 class PossessionImageRepository extends ServiceEntityRepository
 {
+    /**
+     * PossessionImageRepository constructor.
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, PossessionImage::class);

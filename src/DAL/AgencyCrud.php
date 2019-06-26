@@ -14,26 +14,46 @@ use App\Entity\User;
 use Symfony\Component\HttpKernel\Tests\Controller;
 use App\Repository\AgencyRepository;
 
+/**
+ * Class AgencyCrud
+ * @package App\DAL
+ */
 class AgencyCrud
 {
     /*** @var EntityManagerInterface l'interface entity manager* nécessaire à la manipulation des opérations en base*/
     protected $em;
+
+    /**
+     * AgencyCrud constructor.
+     * @param EntityManagerInterface $em
+     */
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }
+
+    /**
+     * @param $agency
+     */
     public function GetInscriptionData($agency)
     {
         $this->em->persist($agency);
         $this->em->flush();
     }
 
+    /**
+     * @param $idAgencyDirector
+     * @return Agency|object|null
+     */
     public function getAgencyById($idAgencyDirector)
     {
         $agency = $this->em->getRepository(Agency::class)->find($idAgencyDirector);
         return $agency;
     }
 
+    /**
+     * @param $idAgency
+     */
     public function removeAgency($idAgency)
     {
         $agency = $this->em->getRepository(Agency::class)->find($idAgency);
