@@ -1,3 +1,9 @@
+.icon{
+    min-width: 2vw;
+    min-height: 2vw;
+    max-width: 2vw;
+    max-height: 2vw;
+}
 .possessionContainer{
     position: relative;
     width: 80%;
@@ -5,18 +11,6 @@
     margin-left: auto;
     background-color: lightslategray;
     height: 100%;
-}
-.imageContainer{
-    position: relative;
-    height: 100vh;
-    background: url("../images/design/kitchen.jpg") !important;
-    background-repeat: repeat;
-}
-.imageContainerPossession{
-    position: relative;
-    height: auto;
-    background: url("../images/design/kitchen.jpg") !important;
-    background-repeat: repeat;
 }
 .title{
     text-align: center;
@@ -41,7 +35,7 @@
     display: inline-block;
     position: relative;
     width: 20%;
-    height: 30vw;
+    height: 50vh;
     text-align: left;
     top: -2vw;
     left: 1vw;
@@ -50,8 +44,8 @@
     left: 1vw;
 }
 .flexbox{
-    top: -11vw;
     left: 4vw;
+    top: -12vw;
     position: relative;
     display: inline-flex;
     flex-wrap: wrap;
@@ -208,7 +202,7 @@ input[type=text]:focus {
     font-size: 0.8vw !important;
 }
 .btn{
-    font-size: 1vw !important;
+    font-size: 1vw;
 }
 .detailsPossessionContainer a{
     color: white !important;
@@ -235,9 +229,8 @@ input[type=text]:focus {
     text-align: center;
 }
 .infosPossession{
-    background-color: white;
     position: relative;
-    width: 50%;
+    width: 70%;
     top: 2vw;
     height: fit-content;
     margin-left: auto;
@@ -245,10 +238,23 @@ input[type=text]:focus {
     font-size: 1vw;
 }
 .infosPossessionDescription{
+    background: rgba(255,255,255,0.7);
     position: relative;
     width: 100%;
     height: fit-content;
-    border-bottom: black 1px solid;
+    box-shadow: 3px 5px 5px black;
+}
+.priceAndStreet{
+    background: rgba(255,255,255,0.7);
+    padding-top: 1vw;
+    position: relative;
+    width: 70%;
+    height: fit-content;
+    box-shadow: 3px 5px 5px black;
+    padding-bottom: 2vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2vw;
 }
 .infosPossessionDescription > h3{
     position: relative;
@@ -260,22 +266,24 @@ input[type=text]:focus {
     padding-top: 2vw;
 }
 .infosPossessionPlus{
+    background: rgba(255,255,255,0.7);
     width: 100%;
     position: relative;
-    top: 4vw;
+    margin-top: 3vw;
     height: fit-content;
-    border-bottom: 1px solid black;
+    box-shadow: 3px 5px 5px black;
 }
 .infosPossessionPlus > h3{
     position: relative;
     text-decoration: underline;
 }
 .infosPossessionGeneral{
+    background: rgba(255,255,255,0.7);
     position: relative;
     width: 100%;
-    top: 8vw;
+    margin-top: 3vw;
     height: fit-content;
-    border-bottom: 1px solid black;
+    box-shadow: 3px 5px 5px black;
 }
 .infosPossessionGeneral > h3{
     position: relative;
@@ -299,11 +307,15 @@ input[type=text]:focus {
     list-style-type: none;
 }
 .agencyInfos{
+    background: rgba(255,255,255,0.7);
     position: relative;
     width: 100%;
     height: fit-content;
-    padding-top: 10vw;
+    margin-top: 3vw;
+    margin-bottom: 7vw;
+    padding-top: 2vw;
     text-align: center;
+    box-shadow: 3px 5px 5px black;
 }
 .agencyInfos > h3{
     text-decoration: underline;

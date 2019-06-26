@@ -32,20 +32,46 @@ class addPossessionByAgentForm extends AbstractType
                 'class' => Client::class,
                 'choice_label' => 'user.firstName'
             ))
-            ->add('title', TextType::class)
-            ->add('surface', IntegerType::class)
-            ->add('RoomNumber', IntegerType::class)
-            ->add('floorNumber', IntegerType::class)
-            ->add('description', TextType::class)
-            ->add('selling_price', NumberType::class)
-            ->add('validation_state', TextType::class)
-            ->add('city', TextType::class)
-            ->add('zip_code', TextType::class)
-            ->add('street', TextType::class)
-            ->add('orientation', TextType::class)
-            ->add('constructionDate', NumberType::class)
+            ->add('title', TextType::class, [
+                'label' => 'Titre'
+            ])
+            ->add('surface', IntegerType::class, [
+                'label' => 'Surface'
+            ])
+            ->add('RoomNumber', IntegerType::class, [
+                'label' => 'Nombre de pièces'
+            ])
+            ->add('floorNumber', IntegerType::class, [
+                'label' => 'Nombre d\'étages'
+            ])
+            ->add('description', TextType::class, [
+                'label' => 'Description'
+            ])
+            ->add('selling_price', NumberType::class, [
+                'label' => 'Prix de vente'
+            ])
+            ->add('validation_state', TextType::class, [
+                'label' => 'Etat de l\'annonce'
+            ])
+            ->add('city', TextType::class, [
+                'label' => 'Ville'
+            ])
+            ->add('zip_code', TextType::class, [
+                'label' => 'Code postal'
+            ])
+            ->add('street', TextType::class, [
+                'label' => 'Rue'
+            ])
+            ->add('orientation', TextType::class, [
+                'label' => 'Orientation'
+            ])
+            ->add('constructionDate', NumberType::class, [
+                'label' => 'Date de construction'
+            ])
             ->add('type',EntityType::class, array('class' => PossessionType::class, 'choice_label' => 'name'))
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'label' => 'Valider'
+            ])
             ;
 
         $builder

@@ -1,7 +1,14 @@
 {% include 'includes/header.html.twig' %}
+<div class="imageContainer">
+<div class="bg bgdarker"></div>
+        <div class="principale principaleModifyProfile">
         <h1>Changer ses informations</h1>
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        {{ form_end(form) }}
-{% include 'includes/footer.html.twig' %}
+                <div class="form">
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        {{ form_end(form) }}
+                </div>
+        </div>
+        {% include 'includes/footer.html.twig' %}
+</div>
 </html>
