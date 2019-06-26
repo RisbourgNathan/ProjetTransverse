@@ -29,9 +29,9 @@ class modifyUserForm extends AbstractType
             ->add('firstname', TextType::class)
             ->add('lastname', TextType::class)
             ->add('city', TextType::class)
-            ->add('zipcode', NumberType::class)
+            ->add('zipcode', TextType::class)
             ->add('street', TextType::class)
-            ->add('phone', NumberType::class)
+            ->add('phone', TextType::class)
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'first_options'  => array('label' => 'Password'),

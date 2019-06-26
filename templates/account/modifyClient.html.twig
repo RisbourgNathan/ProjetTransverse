@@ -5,10 +5,56 @@
         <h1>Changer ses informations</h1>
                 <div class="form">
                         {{ form_start(form) }}
-                        {{ form_widget(form) }}
+                        {{ form_row(form.firstname) }}
+                        {{ form_row(form.lastname) }}
+                        {{ form_row(form.email) }}
+                        {{ form_row(form.city) }}
+                        {{ form_row(form.zipcode) }}
+                        {{ form_row(form.street) }}
+                        {{ form_row(form.phone) }}
+                        {{ form_row(form.plainPassword.first) }}
+                        {{ form_row(form.plainPassword.second) }}
+                        <meter min="0" value="0" low="2" high="3" max="4" optimum="4" id="password-strength-meter"></meter>
+                        <p id="password-strength-text"></p>
                         {{ form_end(form) }}
                 </div>
         </div>
         {% include 'includes/footer.html.twig' %}
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
+<script>
+        var strength = {
+                0: "Très faible",
+                1: "Faible",
+                2: "Moyen",
+                3: "Bon",
+                4: "Très bon"
+        };
+        var password = document.getElementById('register_form_plainPassword_first');
+        var meter = document.getElementById('password-strength-meter');
+        var text = document.getElementById('password-strength-text');
+
+        password.addEventListener('input', function() {
+                var val = password.value;
+                var result = zxcvbn(val);
+
+                // Update the password strength meter
+                meter.value = result.score;
+
+                // Update the text indicator
+                if (val !== "") {
+                        text.innerHTML = "Force du mot de passe : " + strength[result.score];
+                } else {
+                        text.innerHTML = "";
+                }
+
+                if(result.score >= 2){
+                        document.getElementsByClassName("btn-primary")[0].disabled = false;
+                }
+                else if(result.score < 2){
+                        document.getElementsByClassName("btn-primary")[0].disabled = true;
+                }
+        });
+
+</script>
 </html>

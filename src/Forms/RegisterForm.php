@@ -44,7 +44,7 @@ class RegisterForm extends AbstractType
                 'label_attr' => ['class' => 'sr-only', 'for' => 'inputCity'],
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Ville', 'id' => 'inputCity'],
             ])
-            ->add('zipcode', NumberType::class, [
+            ->add('zipcode', TextType::class, [
                 'label' => 'Code postal',
                 'label_attr' => ['class' => 'sr-only', 'for' => 'inputPostalCode'],
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Code Postal', 'id' => 'inputPostalCode'],
@@ -54,7 +54,7 @@ class RegisterForm extends AbstractType
                 'label_attr' => ['class' => 'sr-only', 'for' => 'inputStreet'],
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Rue', 'id' => 'inputStreet'],
             ])
-            ->add('phone', NumberType::class,[
+            ->add('phone', TextType::class,[
                 'label' => 'Numéro de téléphone',
                 'label_attr' => ['class' => 'sr-only', 'for' => 'inputPhone'],
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Numéro de téléphone', 'id' => 'inputPhone'],

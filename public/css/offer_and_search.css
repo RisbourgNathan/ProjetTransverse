@@ -183,6 +183,9 @@ input[type=text]:focus {
     top: -2vw;
     font-size: 0.8vw;
 }
+.oneImage{
+    margin-top: 4vw;
+}
 .detailsPossession{
     position: relative;
     display: inline-block;
@@ -212,8 +215,8 @@ input[type=text]:focus {
     z-index: 5 !important;
     margin-right: auto;
     margin-left: auto;
-    height: 40%;
-    width: 40%;
+    height: 35vh;
+    width: 50vw;
 }
 .btnProposition{
     margin-left: auto;
@@ -229,6 +232,7 @@ input[type=text]:focus {
     text-align: center;
 }
 .infosPossession{
+    text-align: center;
     position: relative;
     width: 70%;
     top: 2vw;
@@ -301,7 +305,8 @@ input[type=text]:focus {
     display: inline-block;
 }
 .infosPossessionPlus > ul > li, .infosPossessionGeneral > ul > li{
-    margin-left: 5vw;
+    margin-left: 2.5vw;
+    margin-right: 2.5vw;
     position: relative;
     display: inline-block;
     list-style-type: none;

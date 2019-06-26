@@ -1,6 +1,7 @@
 {% include 'includes/header.html.twig' %}
         {% block body %}
             <div class="bg bgdarker bgExpand"></div>
+            <div class="imageContainer">
         <div class="title titleShowPossession">
             {% if possession.validationState == "SELL" %}
                 <h1>{{ possession.title }}</h1>
@@ -27,15 +28,17 @@
                     <div class="arrowLeft">
                         <img id="carouselArrowLeft" src="{{ asset('images/design/arrow_left.png') }}" alt="arrow_left">
                     </div>
+                </div>
+                <div class="detailsPossessionContainer">
                    {% else %}
                     <div class="imgDiv">
                         <div id="numberOfImg"></div>
                         <img id="imgPossession" src="{{ asset(vich_uploader_asset(possession.possessionImage.first, 'imageFile', 'App\\Entity\\PossessionImage')) }}" alt="{{ possession.possessionImage.first.imageName }}" /><br>
                         <div id="imgDescription"></div>
                     </div>
-                    {% endif %}
                 </div>
-                <div class="detailsPossessionContainer">
+                <div class="detailsPossessionContainer oneImage">
+                    {% endif %}
 
                     {% if possession.type.name is same as ("Terrain") %}
                     {% else %}
@@ -55,14 +58,20 @@
                             Ajouter aux favoris
                         </button>
                     </a>
-                    <button class="btn btn-primary btnProposition"><a href="{{ path('proposition_create', {'idPossession': possession.id}) }}">Faire une proposition</a></button>
+                        {% if possession.validationState == "SOLD" %}
+                        {% else %}
+                            <button class="btn btn-primary btnProposition"><a href="{{ path('proposition_create', {'idPossession': possession.id}) }}">Faire une proposition</a></button>
+                        {% endif %}
                     {% elseif app.user and is_granted('ROLE_AGENT') == false and is_granted('ROLE_CLIENT') == true and isFavorite is same as (true) %}
                         <a href="{{ path('possession_removeFromFavorites', {'id': possession.id}) }}">
                          <div class="favorite">
                             Favori
                          </div>
                         </a>
-                        <a href="{{ path('proposition_create', {'idPossession': possession.id}) }}"><button class="btn btn-primary btnProposition">Faire une proposition</button></a>
+                        {% if possession.validationState == "SOLD" %}
+                        {% else %}
+                            <button class="btn btn-primary btnProposition"><a href="{{ path('proposition_create', {'idPossession': possession.id}) }}">Faire une proposition</a></button>
+                        {% endif %}
                     {% endif %}
                 </div>
             <div class="priceAndStreet">
@@ -117,6 +126,8 @@
                     {{ agency.city }} - {{ agency.zipCode }}<br><br></p>
                 </div>
             </div>
+            </div>
+                {% include 'includes/footer.html.twig' %}
             <script>
                 function initMap() {
                     var street = "{{ possession.street }}{{ possession.city }}";
@@ -208,5 +219,4 @@
 
             </script>
         {% endblock %}
-{% include 'includes/footer.html.twig' %}
 </html>

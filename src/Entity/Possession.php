@@ -155,16 +155,6 @@ class Possession implements ObjectManagerAware
      */
     private $favorites;
 
-    /**
-     * @ORM\Column(type="float", nullable=true)
-     */
-    private $lattitude;
-
-    /**
-     * @ORM\Column(type="float", nullable=true)
-     */
-    private $longitude;
-
     public function __construct()
     {
         $this->outBuildings = new ArrayCollection();
@@ -579,10 +569,7 @@ class Possession implements ObjectManagerAware
     }
 
     /**
-     *
-     *
-     *
-     *
+     * @param PreFlushEventArgs $args
      */
     public function sendNotifications(PreFlushEventArgs $args)
     {
@@ -603,33 +590,11 @@ class Possession implements ObjectManagerAware
 //        $this->entityManager->flush();
     }
 
-    public function getLattitude(): ?float
-    {
-        return $this->lattitude;
-    }
-
-    public function setLattitude(?float $lattitude): self
-    {
-        $this->lattitude = $lattitude;
-
-        return $this;
-    }
-
-    public function getLongitude(): ?float
-    {
-        return $this->longitude;
-    }
-
-    public function setLongitude(?float $longitude): self
-    {
-        $this->longitude = $longitude;
-
-        return $this;
-    }
-
     /**
      * Injects responsible ObjectManager and the ClassMetadata into this persistent object.
      *
+     * @param ObjectManager $objectManager
+     * @param ClassMetadata $classMetadata
      * @return void
      */
     public function injectObjectManager(ObjectManager $objectManager, ClassMetadata $classMetadata)
