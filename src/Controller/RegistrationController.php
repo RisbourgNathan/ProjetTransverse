@@ -13,6 +13,7 @@ use App\DAL\UserCrud;
 use App\Entity\Client;
 use App\Forms\RegisterForm;
 use App\Entity\User;
+use App\Security\LoginFormAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -22,6 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 class RegistrationController extends AbstractController
 {
@@ -49,7 +51,7 @@ class RegistrationController extends AbstractController
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @return RedirectResponse|Response
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function register(LoginFormAuthenticator $authenticator, GuardAuthenticatorHandler $authenticatorHandler, Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         // 1) build the form, set the future user and client
         $user = new User();
@@ -103,8 +105,16 @@ class RegistrationController extends AbstractController
             $session = new Session();
             // $session->start();
             $session->set('username',$user->getUsername());
-            $username = $session->get('username');
-            return $this->redirectToRoute('index');
+//            $username = $session->get('username');
+
+            // In order to connect after registration
+            return $authenticatorHandler->authenticateUserAndHandleSuccess(
+                $user,
+                $request,
+                $authenticator,
+                'main' // Firewall name
+            );
+
         }
 
         return $this->render(
