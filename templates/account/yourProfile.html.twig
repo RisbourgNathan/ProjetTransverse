@@ -1,5 +1,6 @@
 {% include 'includes/header.html.twig' %}
 <div class="imageContainerPossession">
+    <div class="bg"></div>
     <h1 class="titleProfile">Mon profil</h1>
     <hr>
     <div class="profileInfos profileContainer">
@@ -38,37 +39,39 @@
     <h2>Mes Propositions d'achat</h2>
 
     {% if propositions.count > 0 %}
+        <div class="flexboxPropositionProfile">
         {% for proposition in propositions %}
             {% if proposition.state == "PROPOSITION" %}
-                <div class="">
-                    <p>{{ proposition.possession.title }} : {{ proposition.possession.sellingPrice }} euros.</p>
+                <div class="myPropositionsDiv">
+                    <p>{{ proposition.possession.title }} - {{ proposition.possession.city }}</p>
                     <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
                     <p>Votre proposition actuelle : {{ proposition.price }}
-                    <p>Etat : En attente d'une réponse du proprietaire...</p>
+                    <p>Etat : <span class="waiting">En attente d'une réponse du proprietaire...</span> </p>
                 </div>
 
             {% elseif proposition.state == "COUNTERPROPOSITION" %}
                 <div class="myPropositionsDiv">
-                    <p>{{ proposition.possession.title }} : {{ proposition.getPrice() }} euros.</p>
+                    <p>{{ proposition.possession.title }} - {{ proposition.possession.city }}</p>
                     <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
                     <p>Proposition actuelle : {{ proposition.price }} | Proposition originale : {{ proposition.oldPrice }}</p>
-                    <button><a href="{{ path('proposition_accept', {'id': proposition.id}) }}">Accepter cette offre</a></button>
-                    <button><a href="{{ path('proposition_deny', {'id': proposition.id}) }}">Refuser</a></button>
+                    <button class="btn btn-success"><a href="{{ path('proposition_accept', {'id': proposition.id}) }}">Accepter cette offre</a></button>
+                    <button class="btn btn-warning"><a href="{{ path('proposition_deny', {'id': proposition.id}) }}">Refuser</a></button>
                 </div>
             {% elseif proposition.state == "ACCEPTED" %}
                 <div class="myPropositionsDiv">
-                    <p>{{ proposition.possession.title }} : {{ proposition.getPrice() }} euros.</p>
+                    <p>{{ proposition.possession.title }} - {{ proposition.possession.city }}</p>
                     <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
-                    <p>Proposition Acceptée : {{ proposition.price }}</p>
+                    <p><span class="success">Proposition Acceptée : {{ proposition.price }}</span></p>
                 </div>
             {% elseif proposition.state == "DENIED" %}
                 <div class="myPropositionsDiv">
-                    <p>{{ proposition.possession.title }} : {{ proposition.getPrice() }} euros.</p>
+                    <p>{{ proposition.possession.title }} - {{ proposition.possession.city }}</p>
                     <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
-                    <p>Proposition Refusée : {{ proposition.price }}</p>
+                    <p><span class="failed">Proposition Refusée : {{ proposition.price }}</span></p>
                 </div>
             {% endif %}
         {% endfor %}
+        </div>
     {% else %}
         <p class="bigText">Vous n'avez fait aucune offre !</p>
     {% endif %}

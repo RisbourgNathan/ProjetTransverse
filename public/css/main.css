@@ -31,12 +31,36 @@ footer{
     background: lightgray;
     text-align: center;
     width: 100%;
-    height: 10vh;
     line-height: 5vh;
+    height: 5vh;
+}
+.imageContainer{
+    position: relative;
+    height: 100vh;
+    background-repeat: repeat;
+}
+.bg{
+    filter: blur(5px);
+    position: absolute;
+    top: 0; left: 0;
+    background: url("../images/design/kitchen.jpg") repeat !important;
+    height: 100%; width:100%;
+}
+.bgdarker{
+    filter: blur(5px) brightness(0.7) !important;
+}
+.bgExpand{
+    height: 260vh !important;
+}
+.imageContainerPossession{
+    position: relative;
+    height: auto;
+    background-repeat: repeat;
 }
 .profileInfos{
     position: relative;
     text-align: center;
+    padding-bottom: 1vh;
 }
 .profileContainer{
     margin-left: auto;
@@ -225,7 +249,47 @@ h1 {
 .principaleLogin{
     top: 25vh !important;
 }
-
+.principaleModifyProfile{
+    top: 0 !important;
+    width: 60% !important;
+}
+.principaleProposition{
+    top: 35vh !important;
+}
+.myPropositionsDiv{
+    position: relative;
+    width: 30%;
+    text-align: center;
+    display: inline-block;
+}
+.flexboxPropositionProfile{
+    width: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-right: auto;
+    margin-left: auto;
+}
+.waiting{
+    color: darkgoldenrod;
+}
+.success{
+    color: forestgreen;
+}
+.failed{
+    color: darkred;
+}
+form > ul{
+    list-style-type: none;
+    position: relative;
+}
+form > ul > li{
+    position: relative;
+    list-style-type: none;
+    text-align: center;
+}
 h2 {
     text-align: center;
     position: relative;
@@ -268,18 +332,20 @@ h2 {
     border-radius: 5px;
 }
 .flexboxPossessionProfile{
+    justify-content: center;
+    align-items: center;
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    width: 90%;
+    width: 100%;
     text-align: center;
     padding-bottom: 1vh;
     margin-left: auto;
     margin-right: auto;
 }
 .possessionProfile{
+    width: 25%;
     position: relative;
-    margin-left: 5vw;
     text-align: center;
 }
 
@@ -293,9 +359,6 @@ h2 {
 .containerError{
     width: 100%;
     text-align: center;
-}
-.principaleProposition{
-    top: 20vw !important;
 }
 html, body {
     height: 100%;
