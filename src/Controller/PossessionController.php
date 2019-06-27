@@ -14,6 +14,7 @@ use App\Entity\User;
 use App\Forms\addPossessionByAgentForm;
 use App\Forms\SearchForm;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use App\Forms\modifyPossessionType;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -244,6 +245,7 @@ class PossessionController extends AbstractController
      * @param $id
      * @param Request $request
      * @return RedirectResponse|Response
+     * @IsGranted("ROLE_AGENT")
      */
     public function modifyPossession($id, Request $request)
     {
@@ -303,6 +305,7 @@ class PossessionController extends AbstractController
 
     /**
      * @Route("/manage", name="manage")
+     * @IsGranted("ROLE_AGENT")
      * @return Response
      */
     public function managePossession(){

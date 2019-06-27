@@ -7,6 +7,7 @@ use App\DAL\PossessionTypeCrud;
 use App\Entity\PossessionType;
 use App\Forms\addPossessionTypeForm;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,6 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class PossessionTypeController
  * @package App\Controller
  * @Route("/possessionType", name="possessionType_")
+ * @IsGranted("ROLE_ADMIN")
  */
 class PossessionTypeController extends AbstractController
 {
