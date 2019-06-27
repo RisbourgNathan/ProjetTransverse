@@ -93,7 +93,7 @@ class PropositionController extends AbstractController
         $propositionManager = new PropositionManager($this->entityManager);
         if ($propositionManager->isPropositionAlreadyOngoing($possession, $this->security->getUser()))
         {
-            return $this->render("/errors/client/noPropOnOwnProperty.html.twig");
+            return $this->render("/errors/client/transacOngoing.html.twig");
         }
 
         $currentUserId = $this->clientManager->getClientByUser($this->security->getUser())->getId();
