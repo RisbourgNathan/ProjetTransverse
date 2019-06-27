@@ -222,6 +222,26 @@ input[type=text]:focus {
     color: white !important;
     text-decoration: none !important;
 }
+.ownProperty{
+    padding: 1vw 1vw 1vw 1vw;
+    width: 55% !important;
+    position: relative;
+    top: 30vh;
+}
+.btnOwnProperty{
+    position: relative;
+    width: 20vw;
+    margin-right: auto;
+    margin-left: auto;
+}
+.divButton{
+    top: 35vh;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;
+    text-align: center;
+}
 #map {
     z-index: 5 !important;
     margin-right: auto;
