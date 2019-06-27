@@ -12,6 +12,7 @@ namespace App\Controller;
 use App\BL\PossessionImageManager;
 use App\DAL\PossessionImageCrud;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -45,6 +46,7 @@ class PossessionImageController extends AbstractController
      * @Route("/remove/{id}", name="remove")
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @IsGranted("ROLE_AGENT")
      */
     public function removePossImg($id)
     {

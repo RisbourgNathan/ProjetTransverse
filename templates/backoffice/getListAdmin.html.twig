@@ -4,7 +4,7 @@
 Nombre d'admins : {{ ListAdmin | length }}
 <ul>
     {% for admin in ListAdmin %}
-        <li>{{ admin.user.email }} <a href="{{ path('modifyAdmin',{'idAdmin' : admin.id })}}">Modifier</a> | <a href="{{ path('removeAdmin',{'idAdmin' : admin.id })}}">Supprimer</a></li>
+        <li>{{ admin.user.email }} <a href="{{ path('modifyAdmin',{'idAdmin' : admin.id })}}"><button class="btn btn-primary">Modifier</button></a> | <a href="{{ path('removeAdmin',{'idAdmin' : admin.id })}}"><button class="btn btn-primary">Supprimer</button></a></li>
     {% endfor %}
 </ul>
 

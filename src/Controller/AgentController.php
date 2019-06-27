@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -30,6 +31,7 @@ class AgentController extends AbstractController
 
     /**
      * @Route("/noClientError", name="hasNoClientError")
+     * @IsGranted("ROLE_AGENT")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function agentHasNoClientError()
