@@ -120,4 +120,11 @@ class PossessionManager
         $this->entityManager->persist($possession);
         $this->entityManager->flush();
     }
+
+    /**
+     * @return Possession[]|array|object[]
+     */
+    public function getListPossessions(){
+        return $this->entityManager->getRepository(Possession::class)->findAll();
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 use App\BL\AgentManager;
+use App\BL\ClientManager;
 use App\BL\PossessionManager;
 use App\BL\UserManager;
 use App\DAL\UserCrud;
@@ -52,7 +53,10 @@ class IndexController extends AbstractController
      * @var PaginatorInterface
      */
     private $knp;
-
+    /**
+     * @var ClientManager
+     */
+    private $clientManager;
     /**
      * IndexController constructor.
      * @param EntityManagerInterface $em
@@ -69,6 +73,7 @@ class IndexController extends AbstractController
         $this->possessionManager = new PossessionManager($em, $registry ,$knp);
         $this->agentManager = new AgentManager($em);
         $this->knp = $knp;
+        $this->clientManager = new ClientManager($em);
     }
 
     /**
@@ -77,38 +82,25 @@ class IndexController extends AbstractController
      * @return Response
      */
     public function getIndex(Request $request) {
+        $allClients = $this->clientManager->GetListClient();
+        $allPossessions = $this->possessionManager->getListPossessions();
+        $numberOfPossessions = count($allPossessions);
+        $numberOfClients = count($allClients);
         $possessions = $this->possessionManager->getLatestPossessions();
         $form = $this->createForm(HomeSearchForm::class);
-        $form2 = $this->createForm(SearchForm::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
-//           return $this->redirect('http://127.0.0.1:8000/possession/list?search_form%5Bcity%5D='.$form->get('city')->getData().'&search_form%5Btype%5D%5B%5D=babb353d-6b95-412a-a21b-7d88de06e8f6&search_form%5Btype%5D%5B%5D=8e3738ac-48e7-4388-8a2c-269fcd58f238&search_form%5Btype%5D%5B%5D=2028a9f7-3041-41ff-8a72-8855632fb817&search_form%5Btype%5D%5B%5D=89a9e33f-9d48-4871-b67d-749b8bb03274&search_form%5Bprice%5D=500000&search_form%5BValider%5D=');
-
             $city = $form->get('city')->getData();
-            $possessions = $this->possessionManager->getPossessionsByName($city, $request);
-//            $possessions = $this->knp->paginate($this->possessionManager->getPossessionsByName($city),
-//                $request->query->getInt("page", 1),
-//                9);
-
-            $client = null;
-            if ($this->security->getUser() != null)
-            {
-                $client = $this->userManager->GetClientIdbyUser();
-            }
-
             return $this->redirectToRoute('possession_list', array(
-//                "possessions" => $possessions,
                     "city" => $city
-//                "client" => $client
             ));
         }
-
         if($this->security->getUser() != null) {
             $client = $this->userManager->GetClientIdbyUser();
-            return $this->render('index/index.html.twig', ['client' => $client, 'possessions' => $possessions, 'form' => $form->createView()]);
+            return $this->render('index/index.html.twig', ['client' => $client, 'possessions' => $possessions, 'form' => $form->createView(), 'nbOfClients' => $numberOfClients, 'nbOfPossessions' => $numberOfPossessions]);
         }
         else{
-            return $this->render('index/index.html.twig', ['possessions' => $possessions, 'form' => $form->createView()]);
+            return $this->render('index/index.html.twig', ['possessions' => $possessions, 'form' => $form->createView(), 'nbOfClients' => $numberOfClients, 'nbOfPossessions' => $numberOfPossessions]);
         }
     }
 
