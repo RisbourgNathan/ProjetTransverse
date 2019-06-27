@@ -95,8 +95,11 @@
         });
     }
 </script>
-
+<div class="imageContainer">
+    <h1 class="zIndex">Modifier l'annonce</h1>
+    <div class="bg bgdarker bgExpand"></div>
 <h1>Modifier une annonce</h1>
+    <div class="form">
 {{ form_start(form) }}
 {# render the task's only field: description #}
 
@@ -113,17 +116,19 @@
     {% endfor %}
 </ul>
 {{ form_end(form) }}
+    </div>
 
     {% if possessionImages %}
+        <div class="flexboxPossessionProfile flexModifyPossession">
             {% for image in possessionImages %}
-                <div>
-                    <p>{{ image.imageName }}</p>
+                <div class="zIndex">
                     <img src="{{ asset(vich_uploader_asset(image, 'imageFile', 'App\\Entity\\PossessionImage')) }}" alt="{{ image.imageName }}" style="width: 200px;" />
                     <p>Description: {{ image.description }}</p>
                     <a href="{{ path('possImage_remove', {'id': image.id}) }}">Supprimer</a>
                 </div>
             {% endfor %}
+        </div>
     {% endif %}
-
+</div>
 {% include 'includes/footer.html.twig' %}
 </html>

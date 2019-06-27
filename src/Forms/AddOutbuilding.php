@@ -21,7 +21,9 @@ class AddOutbuilding extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
+            ->add('name', TextType::class, [
+                'label' => 'nom'
+            ])
             ->add('submit', SubmitType::class)
         ;
     }

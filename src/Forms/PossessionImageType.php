@@ -33,7 +33,9 @@ class PossessionImageType extends AbstractType
                 'required' => false,
                 'label' => 'Description: '
             ])
-            ->add('imageFile', FileType::class);
+            ->add('imageFile', FileType::class, [
+                'label' => 'Image'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

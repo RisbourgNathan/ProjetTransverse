@@ -227,6 +227,8 @@ input[type=text]:focus {
     width: 55% !important;
     position: relative;
     top: 30vh;
+    text-align: center;
+    padding-bottom: 0 !important;
 }
 .btnOwnProperty{
     position: relative;

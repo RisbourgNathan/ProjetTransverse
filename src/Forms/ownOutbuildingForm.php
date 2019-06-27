@@ -32,7 +32,8 @@ class ownOutbuildingForm extends AbstractType
             ->add('outbuilding', EntityType::class, array(
                 'class' => OutBuilding::class,
                 'choices' => $outbuilding,
-                'choice_label' => 'name'
+                'choice_label' => 'name',
+                'label' => 'Nom'
             ))
             ;
     }

@@ -1,6 +1,12 @@
 {% include 'includes/header.html.twig' %}
+<div class="imageContainer">
+    <h1 class="titleTop">Liste des annonces</h1>
+    <div class="bg bgdarker"></div>
+    <div class="priceAndStreet ownProperty">
 {% for possession in possessions %}
     <a href="{{ path('possession_show',{'id': possession.id}) }}">{{ possession.title }}</a> - Vendeur : {{ possession.seller.user.firstname }} {{ possession.seller.user.lastname }}<a href="{{ path('possession_modify', {'id': possession.id}) }}"><button class="btn btn-primary">Modifier</button></a><br><br>
 {% endfor %}
+    </div>
+</div>
 {% include 'includes/footer.html.twig' %}
 </html>

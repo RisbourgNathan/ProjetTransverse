@@ -30,9 +30,13 @@ class AddOwnOutbuildingForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('outbuilding', EntityType::class, array('class' => OutBuilding::class, 'choice_label' => 'name'))
-            ->add('surface', TextType::class)
-            ->add('description', TextType::class);
+            ->add('outbuilding', EntityType::class, array('class' => OutBuilding::class, 'choice_label' => 'name', 'label' => 'Nom'))
+            ->add('surface', TextType::class, [
+                'label' => 'Surface'
+            ])
+            ->add('description', TextType::class, [
+                'label' => 'Description'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
