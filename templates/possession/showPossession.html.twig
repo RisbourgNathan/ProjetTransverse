@@ -1,10 +1,7 @@
 {% include 'includes/header.html.twig' %}
         {% block body %}
-<<<<<<< HEAD
-            <div class="bg bgdarker bgExpand"></div>
             <div class="imageContainer">
-=======
-            <div class="FlashMessageSuccess">
+            <div class="flashMessageSuccess">
                 {% for label, messages in app.flashes(['FavoriteAddSuccess', 'FavoriteRemoveSuccess', 'CreatePropositionSuccess' ]) %}
                     {% for message in messages %}
                         <div class="flash-{{ label }}">
@@ -13,8 +10,7 @@
                     {% endfor %}
                 {% endfor %}
             </div>
-<div class="bg bgdarker bgExpand"></div>
->>>>>>> e8d22f9c43a86950021470d1a50837acbb744351
+        <div class="bg bgdarker bgExpand"></div>
         <div class="title titleShowPossession">
             {% if possession.validationState == "SELL" %}
                 <h1>{{ possession.title }}</h1>
@@ -73,17 +69,17 @@
                     </a>
                         {% if possession.validationState == "SOLD" %}
                         {% else %}
-                            <button class="btn btn-primary btnProposition"><a href="{{ path('proposition_create', {'idPossession': possession.id}) }}">Faire une proposition</a></button>
+                            <button class="btn btn-light btnProposition"><a href="{{ path('proposition_create', {'idPossession': possession.id}) }}">Faire une proposition</a></button>
                         {% endif %}
                     {% elseif app.user and is_granted('ROLE_AGENT') == false and is_granted('ROLE_CLIENT') == true and isFavorite is same as (true) %}
                         <a href="{{ path('possession_removeFromFavorites', {'id': possession.id}) }}">
-                         <div class="favorite">
-                            Favori
+                         <div class="btn btn-danger favorite">
+                            Retirer des favoris
                          </div>
                         </a>
                         {% if possession.validationState == "SOLD" %}
                         {% else %}
-                            <button class="btn btn-primary btnProposition"><a href="{{ path('proposition_create', {'idPossession': possession.id}) }}">Faire une proposition</a></button>
+                            <button class="btn btn-light btnProposition"><a href="{{ path('proposition_create', {'idPossession': possession.id}) }}">Faire une proposition</a></button>
                         {% endif %}
                     {% endif %}
                 </div>
@@ -92,8 +88,10 @@
                         <p class="streetPossession">Prix : {{ possession.sellingPrice }}€</p>
                         <p class="streetPossession">Adresse : {{ possession.street }}</p>
             </div>
+                <div class="priceAndStreet">
             <h2>Carte</h2>
             <div id="map"></div>
+                </div>
             <div class="infosPossession">
                 <div class="infosPossessionDescription">
                     <h3>Description</h3>
@@ -151,7 +149,6 @@
                     Http.open("GET", url);
                     Http.send();
                     Http.onreadystatechange = (e) => {
-                        console.log(street);
                         var json = JSON.parse(Http.responseText);
                         lat = json.results[0].geometry.location.lat;
                         lng = json.results[0].geometry.location.lng;

@@ -4,6 +4,18 @@
     max-width: 2vw;
     max-height: 2vw;
 }
+.flashMessageSuccess{
+    z-index: 500;
+    background: rgba(34,139,34,0.7);
+    width: 60%;
+    text-align: center;
+    position: relative;
+    top: 3.2vw;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    border-radius: 5px;
+}
 .possessionContainer{
     position: relative;
     width: 80%;
@@ -200,7 +212,6 @@ input[type=text]:focus {
     width: 10vw;
     height: 2vw;
     line-height: 2vw;
-    background-color: green;
     left: 7vw;
     font-size: 0.8vw !important;
 }
@@ -210,6 +221,26 @@ input[type=text]:focus {
 .detailsPossessionContainer a{
     color: white !important;
     text-decoration: none !important;
+}
+.ownProperty{
+    padding: 1vw 1vw 1vw 1vw;
+    width: 55% !important;
+    position: relative;
+    top: 30vh;
+}
+.btnOwnProperty{
+    position: relative;
+    width: 20vw;
+    margin-right: auto;
+    margin-left: auto;
+}
+.divButton{
+    top: 35vh;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;
+    text-align: center;
 }
 #map {
     z-index: 5 !important;
@@ -221,9 +252,16 @@ input[type=text]:focus {
 .btnProposition{
     margin-left: auto;
     margin-right: auto;
+    border: 1px solid dimgrey !important;
+    background-color: lightgrey !important;
     width: 30vw;
     position: relative;
     top: 1vw;
+}
+.btnProposition a{
+    color: black !important;
+    text-decoration: underline !important;
+    font-weight: bold;
 }
 .streetPossession{
     position: relative;
