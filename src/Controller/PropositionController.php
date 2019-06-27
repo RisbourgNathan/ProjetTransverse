@@ -280,6 +280,12 @@ class PropositionController extends AbstractController
         return $this->redirectToRoute('account');
     }
 
+    private function notifyUser()
+    {
+
+    }
+
+
     /**
      * @param Proposition $proposition
      * @return bool
