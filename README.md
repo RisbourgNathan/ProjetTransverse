@@ -1,4 +1,9 @@
-# ProjetTransverse
+# ProjetTransverse B2 - Leblanc Marie, Agostini Raphël, Risbourg Nathan
+
+## Documentation
+La documentation générée à l'aide de doxygen en format HTML est disponible dans le dossier "documentation".
+
+## Installation du projet
 
 **Installer composer**
 
