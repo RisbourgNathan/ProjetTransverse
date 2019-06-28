@@ -1,0 +1,55 @@
+\hypertarget{class_app_1_1_controller_1_1_registration_controller}{}\section{Registration\+Controller Class Reference}
+\label{class_app_1_1_controller_1_1_registration_controller}\index{RegistrationController@{RegistrationController}}
+Inheritance diagram for Registration\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_app_1_1_controller_1_1_registration_controller}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_registration_controller_a8c263aa27458273b8a880e117bc5aca1}{\+\_\+\+\_\+construct}} (Entity\+Manager\+Interface \$entity\+Manager, Security \$security)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_registration_controller_a768fa858afba91bb453ab2140fafda1d}{register}} (\mbox{\hyperlink{class_app_1_1_security_1_1_login_form_authenticator}{Login\+Form\+Authenticator}} \$authenticator, Guard\+Authenticator\+Handler \$authenticator\+Handler, Request \$request, User\+Password\+Encoder\+Interface \$password\+Encoder)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_registration_controller_a8c263aa27458273b8a880e117bc5aca1}\label{class_app_1_1_controller_1_1_registration_controller_a8c263aa27458273b8a880e117bc5aca1}} 
+\index{RegistrationController@{RegistrationController}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!RegistrationController@{RegistrationController}}
+\subsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{Entity\+Manager\+Interface}]{\$entity\+Manager,  }\item[{Security}]{\$security }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{class_app_1_1_controller_1_1_registration_controller}{Registration\+Controller}} constructor. 
+\begin{DoxyParams}[1]{Parameters}
+Entity\+Manager\+Interface & {\em \$entity\+Manager} & \\
+\hline
+Security & {\em \$security} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_registration_controller_a768fa858afba91bb453ab2140fafda1d}\label{class_app_1_1_controller_1_1_registration_controller_a768fa858afba91bb453ab2140fafda1d}} 
+\index{RegistrationController@{RegistrationController}!register@{register}}
+\index{register@{register}!RegistrationController@{RegistrationController}}
+\subsubsection{\texorpdfstring{register()}{register()}}
+{\footnotesize\ttfamily register (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_security_1_1_login_form_authenticator}{Login\+Form\+Authenticator}}}]{\$authenticator,  }\item[{Guard\+Authenticator\+Handler}]{\$authenticator\+Handler,  }\item[{Request}]{\$request,  }\item[{User\+Password\+Encoder\+Interface}]{\$password\+Encoder }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/register\char`\"{}, name=\char`\"{}user\+\_\+registration\char`\"{}) 
+\begin{DoxyParams}[1]{Parameters}
+Request & {\em \$request} & \\
+\hline
+User\+Password\+Encoder\+Interface & {\em \$password\+Encoder} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Redirect\+Response$\vert$\+Response 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Controller/Registration\+Controller.\+php\end{DoxyCompactItemize}

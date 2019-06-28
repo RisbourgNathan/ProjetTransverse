@@ -1,0 +1,164 @@
+\hypertarget{namespace_app}{}\section{App Namespace Reference}
+\label{namespace_app}\index{App@{App}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespace_app_1_1_b_l}{BL}}
+\item 
+ \mbox{\hyperlink{namespace_app_1_1_controller}{Controller}}
+\item 
+ \mbox{\hyperlink{namespace_app_1_1_d_a_l}{D\+AL}}
+\item 
+ \mbox{\hyperlink{namespace_app_1_1_forms}{Forms}}
+\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_app_1_1_kernel}{Kernel}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class Admin\+Manager \textbackslash{}\+BL
+
+Class Agency\+Director\+Manager \textbackslash{}\+BL
+
+Class Agency\+Manager \textbackslash{}\+BL
+
+Class Agent\+Manager \textbackslash{}\+BL
+
+Class Client\+Manager \textbackslash{}\+BL
+
+Class Favorite\+Manager \textbackslash{}\+BL
+
+Class Notification\+Manager \textbackslash{}\+BL
+
+Class Outbuilding\+Manager \textbackslash{}\+BL
+
+Class Possession\+Image\+Manager \textbackslash{}\+BL
+
+Class Possession\+Manager \textbackslash{}\+BL
+
+Class Possession\+Type\+Manager \textbackslash{}\+BL
+
+Class Proposition\+Manager \textbackslash{}\+BL
+
+Class User\+Manager \textbackslash{}\+BL
+
+Class Uuid\+Service \textbackslash{}\+BL
+
+Class Agent\+Controller \textbackslash{}\+Controller @\+Route(\char`\"{}/agent\char`\"{}, name=\char`\"{}agent\+\_\+\char`\"{})
+
+Class Back\+Office\+Controller \textbackslash{}\+Controller @\+Route (\char`\"{}/backoffice\char`\"{})
+
+Class Client\+Controller \textbackslash{}\+Controller
+
+Class Index\+Controller \textbackslash{}\+Controller
+
+Class Outbuilding\+Controller \textbackslash{}\+Controller @\+Route(\char`\"{}/outbuilding\char`\"{}, name=\char`\"{}outbuilding\+\_\+\char`\"{}) @\+Is\+Granted(\char`\"{}\+R\+O\+L\+E\+\_\+\+A\+D\+M\+I\+N\char`\"{})
+
+Class Possession\+Controller \textbackslash{}\+Controller @\+Route(\char`\"{}/possession\char`\"{}, name=\char`\"{}possession\+\_\+\char`\"{})
+
+Class Possession\+Image\+Controller \textbackslash{}\+Controller @\+Route(\char`\"{}/poss\+Image\char`\"{}, name=\char`\"{}poss\+Image\+\_\+\char`\"{})
+
+Class Possession\+Type\+Controller \textbackslash{}\+Controller @\+Route(\char`\"{}/possession\+Type\char`\"{}, name=\char`\"{}possession\+Type\+\_\+\char`\"{}) @\+Is\+Granted(\char`\"{}\+R\+O\+L\+E\+\_\+\+A\+D\+M\+I\+N\char`\"{})
+
+Class Profile\+Controller \textbackslash{}\+Controller
+
+Class Proposition\+Controller \textbackslash{}\+Controller @\+Route(\char`\"{}/proposition\char`\"{}, name=\char`\"{}proposition\+\_\+\char`\"{})
+
+Class Registration\+Controller \textbackslash{}\+Controller
+
+Class Security\+Controller \textbackslash{}\+Controller
+
+Class Admin\+Crud \textbackslash{}\+D\+AL
+
+Class Agency\+Crud \textbackslash{}\+D\+AL
+
+Class Agency\+Director\+Crud \textbackslash{}\+D\+AL
+
+Class Agent\+Crud \textbackslash{}\+D\+AL
+
+Class Client\+Crud \textbackslash{}\+D\+AL @\+Route(\char`\"{}/client\char`\"{}, name=\char`\"{}client\+\_\+\char`\"{})
+
+Class Outbuilding\+Crud \textbackslash{}\+D\+AL
+
+Class Possession\+Crud \textbackslash{}\+D\+AL
+
+Class Possession\+Image\+Crud \textbackslash{}\+D\+AL
+
+Class Possession\+Type\+Crud \textbackslash{}\+D\+AL
+
+Class User\+Crud \textbackslash{}\+D\+AL
+
+Class App\+Fixtures \textbackslash{}\+Data\+Fixtures
+
+Class User\+Fixtures \textbackslash{}\+Data\+Fixtures
+
+Class Add\+Admin\+Form \textbackslash{}\+Forms
+
+Class Add\+Agency\+Form \textbackslash{}\+Forms
+
+Class Add\+Agent\+Form \textbackslash{}\+Forms
+
+Class Add\+Outbuilding \textbackslash{}\+Forms
+
+Class Add\+Own\+Outbuilding\+Form \textbackslash{}\+Forms
+
+Class add\+Possession\+By\+Agent\+Form \textbackslash{}\+Forms
+
+Class add\+Possession\+Type\+Form \textbackslash{}\+Forms
+
+Class Home\+Search\+Form \textbackslash{}\+Forms
+
+Class modify\+Admin\+Form \textbackslash{}\+Forms
+
+Class modify\+Agency\+Director\+Form \textbackslash{}\+Forms
+
+Class modify\+Agency\+Form \textbackslash{}\+Forms
+
+Class modify\+Agent\+Form \textbackslash{}\+Forms
+
+Class modify\+Client\+Form \textbackslash{}\+Forms
+
+Class modify\+Possession\+Type \textbackslash{}\+Forms
+
+Class modify\+User\+Form \textbackslash{}\+Forms
+
+Class own\+Outbuilding\+Form \textbackslash{}\+Forms
+
+Class Possession\+Image\+Type \textbackslash{}\+Forms
+
+Class Proposition\+Form \textbackslash{}\+Forms
+
+Class Register\+Form \textbackslash{}\+Forms
+
+Class Search\+Form \textbackslash{}\+Forms
+
+@method Administrator$\vert$null find(\$id, \$lock\+Mode = null, \$lock\+Version = null) @method Administrator$\vert$null find\+One\+By(array \$criteria, array \$order\+By = null) @method Administrator\mbox{[}\mbox{]} find\+All() @method Administrator\mbox{[}\mbox{]} find\+By(array \$criteria, array \$order\+By = null, \$limit = null, \$offset = null)Class Administrator\+Repository \textbackslash{}\+Repository
+
+@method Agency\+Director$\vert$null find(\$id, \$lock\+Mode = null, \$lock\+Version = null) @method Agency\+Director$\vert$null find\+One\+By(array \$criteria, array \$order\+By = null) @method Agency\+Director\mbox{[}\mbox{]} find\+All() @method Agency\+Director\mbox{[}\mbox{]} find\+By(array \$criteria, array \$order\+By = null, \$limit = null, \$offset = null)Class Agency\+Director\+Repository \textbackslash{}\+Repository
+
+@method Agency$\vert$null find(\$id, \$lock\+Mode = null, \$lock\+Version = null) @method Agency$\vert$null find\+One\+By(array \$criteria, array \$order\+By = null) @method Agency\mbox{[}\mbox{]} find\+All() @method Agency\mbox{[}\mbox{]} find\+By(array \$criteria, array \$order\+By = null, \$limit = null, \$offset = null)Class Agency\+Repository \textbackslash{}\+Repository
+
+@method Agent$\vert$null find(\$id, \$lock\+Mode = null, \$lock\+Version = null) @method Agent$\vert$null find\+One\+By(array \$criteria, array \$order\+By = null) @method Agent\mbox{[}\mbox{]} find\+All() @method Agent\mbox{[}\mbox{]} find\+By(array \$criteria, array \$order\+By = null, \$limit = null, \$offset = null)Class Agent\+Repository \textbackslash{}\+Repository
+
+@method Client$\vert$null find(\$id, \$lock\+Mode = null, \$lock\+Version = null) @method Client$\vert$null find\+One\+By(array \$criteria, array \$order\+By = null) @method Client\mbox{[}\mbox{]} find\+All() @method Client\mbox{[}\mbox{]} find\+By(array \$criteria, array \$order\+By = null, \$limit = null, \$offset = null)Class Client\+Repository \textbackslash{}\+Repository
+
+@method Favorite$\vert$null find(\$id, \$lock\+Mode = null, \$lock\+Version = null) @method Favorite$\vert$null find\+One\+By(array \$criteria, array \$order\+By = null) @method Favorite\mbox{[}\mbox{]} find\+All() @method Favorite\mbox{[}\mbox{]} find\+By(array \$criteria, array \$order\+By = null, \$limit = null, \$offset = null)Class Favorite\+Repository \textbackslash{}\+Repository
+
+@method Out\+Building$\vert$null find(\$id, \$lock\+Mode = null, \$lock\+Version = null) @method Out\+Building$\vert$null find\+One\+By(array \$criteria, array \$order\+By = null) @method Out\+Building\mbox{[}\mbox{]} find\+All() @method Out\+Building\mbox{[}\mbox{]} find\+By(array \$criteria, array \$order\+By = null, \$limit = null, \$offset = null)Class Out\+Building\+Repository \textbackslash{}\+Repository
+
+@method Own\+Out\+Building$\vert$null find(\$id, \$lock\+Mode = null, \$lock\+Version = null) @method Own\+Out\+Building$\vert$null find\+One\+By(array \$criteria, array \$order\+By = null) @method Own\+Out\+Building\mbox{[}\mbox{]} find\+All() @method Own\+Out\+Building\mbox{[}\mbox{]} find\+By(array \$criteria, array \$order\+By = null, \$limit = null, \$offset = null)Class Own\+Out\+Building\+Repository \textbackslash{}\+Repository
+
+@method Possession\+Image$\vert$null find(\$id, \$lock\+Mode = null, \$lock\+Version = null) @method Possession\+Image$\vert$null find\+One\+By(array \$criteria, array \$order\+By = null) @method Possession\+Image\mbox{[}\mbox{]} find\+All() @method Possession\+Image\mbox{[}\mbox{]} find\+By(array \$criteria, array \$order\+By = null, \$limit = null, \$offset = null)Class Possession\+Image\+Repository \textbackslash{}\+Repository
+
+@method Possession$\vert$null find(\$id, \$lock\+Mode = null, \$lock\+Version = null) @method Possession$\vert$null find\+One\+By(array \$criteria, array \$order\+By = null) @method Possession\mbox{[}\mbox{]} find\+All() @method Possession\mbox{[}\mbox{]} find\+By(array \$criteria, array \$order\+By = null, \$limit = null, \$offset = null)Class Possession\+Repository \textbackslash{}\+Repository
+
+@method Possession\+Type$\vert$null find(\$id, \$lock\+Mode = null, \$lock\+Version = null) @method Possession\+Type$\vert$null find\+One\+By(array \$criteria, array \$order\+By = null) @method Possession\+Type\mbox{[}\mbox{]} find\+All() @method Possession\+Type\mbox{[}\mbox{]} find\+By(array \$criteria, array \$order\+By = null, \$limit = null, \$offset = null)Class Possession\+Type\+Repository \textbackslash{}\+Repository
+
+@method Proposition$\vert$null find(\$id, \$lock\+Mode = null, \$lock\+Version = null) @method Proposition$\vert$null find\+One\+By(array \$criteria, array \$order\+By = null) @method Proposition\mbox{[}\mbox{]} find\+All() @method Proposition\mbox{[}\mbox{]} find\+By(array \$criteria, array \$order\+By = null, \$limit = null, \$offset = null)Class Proposition\+Repository \textbackslash{}\+Repository
+
+@method User$\vert$null find(\$id, \$lock\+Mode = null, \$lock\+Version = null) @method User$\vert$null find\+One\+By(array \$criteria, array \$order\+By = null) @method User\mbox{[}\mbox{]} find\+All() @method User\mbox{[}\mbox{]} find\+By(array \$criteria, array \$order\+By = null, \$limit = null, \$offset = null)Class User\+Repository \textbackslash{}\+Repository
+
+Class Login\+Form\+Authenticator \textbackslash{}\+Security 

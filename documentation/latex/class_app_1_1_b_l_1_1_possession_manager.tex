@@ -1,0 +1,156 @@
+\hypertarget{class_app_1_1_b_l_1_1_possession_manager}{}\section{Possession\+Manager Class Reference}
+\label{class_app_1_1_b_l_1_1_possession_manager}\index{PossessionManager@{PossessionManager}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_app_1_1_b_l_1_1_possession_manager_ad73db141aaa66e624ca341d8ad805e75}{\+\_\+\+\_\+construct}} (Entity\+Manager\+Interface \$entity\+Manager, Registry\+Interface \$registry, Paginator\+Interface \$knp)
+\item 
+\mbox{\hyperlink{class_app_1_1_b_l_1_1_possession_manager_ae63d0ba2c09567e642f5bec9cf9bc352}{get\+All\+Possessions}} (Request \$request)
+\item 
+\mbox{\hyperlink{class_app_1_1_b_l_1_1_possession_manager_a060939c25627379c2016d7ec9efda4c1}{get\+Possessions\+From\+Type\+Id}} (\$possession\+Type)
+\item 
+\mbox{\hyperlink{class_app_1_1_b_l_1_1_possession_manager_a779ab2d1dec91b1014ca19aeebefd7bb}{get\+Possessions\+By\+Name}} (\$city, Request \$request)
+\item 
+\mbox{\hyperlink{class_app_1_1_b_l_1_1_possession_manager_acc8fcda735bd6aee13e1855d65ad2c42}{get\+Possessions\+By\+Search}} (\$city, \$price, \$type\+\_\+id, Request \$request)
+\item 
+\mbox{\hyperlink{class_app_1_1_b_l_1_1_possession_manager_ae4ec518ac8f179af6c4bd26427744ee7}{get\+Possession\+By\+Id}} (\$id)
+\item 
+\mbox{\hyperlink{class_app_1_1_b_l_1_1_possession_manager_a0556206f7a185ac6fcb4a038c21efe22}{get\+Latest\+Possessions}} ()
+\item 
+\mbox{\hyperlink{class_app_1_1_b_l_1_1_possession_manager_ae819e57682c3d821eb58dc48c10b0f3d}{save\+Possession}} (\$possession)
+\item 
+\mbox{\hyperlink{class_app_1_1_b_l_1_1_possession_manager_a4f4dfb956c9d78f8a141ed33b9710764}{get\+List\+Possessions}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_app_1_1_b_l_1_1_possession_manager_ad73db141aaa66e624ca341d8ad805e75}\label{class_app_1_1_b_l_1_1_possession_manager_ad73db141aaa66e624ca341d8ad805e75}} 
+\index{PossessionManager@{PossessionManager}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!PossessionManager@{PossessionManager}}
+\subsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{Entity\+Manager\+Interface}]{\$entity\+Manager,  }\item[{Registry\+Interface}]{\$registry,  }\item[{Paginator\+Interface}]{\$knp }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{class_app_1_1_b_l_1_1_possession_manager}{Possession\+Manager}} constructor. 
+\begin{DoxyParams}[1]{Parameters}
+Entity\+Manager\+Interface & {\em \$entity\+Manager} & \\
+\hline
+Registry\+Interface & {\em \$registry} & \\
+\hline
+Paginator\+Interface & {\em \$knp} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_app_1_1_b_l_1_1_possession_manager_ae63d0ba2c09567e642f5bec9cf9bc352}\label{class_app_1_1_b_l_1_1_possession_manager_ae63d0ba2c09567e642f5bec9cf9bc352}} 
+\index{PossessionManager@{PossessionManager}!getAllPossessions@{getAllPossessions}}
+\index{getAllPossessions@{getAllPossessions}!PossessionManager@{PossessionManager}}
+\subsubsection{\texorpdfstring{getAllPossessions()}{getAllPossessions()}}
+{\footnotesize\ttfamily get\+All\+Possessions (\begin{DoxyParamCaption}\item[{Request}]{\$request }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Parameters}
+Request & {\em \$request} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pagination\+Interface 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_b_l_1_1_possession_manager_a0556206f7a185ac6fcb4a038c21efe22}\label{class_app_1_1_b_l_1_1_possession_manager_a0556206f7a185ac6fcb4a038c21efe22}} 
+\index{PossessionManager@{PossessionManager}!getLatestPossessions@{getLatestPossessions}}
+\index{getLatestPossessions@{getLatestPossessions}!PossessionManager@{PossessionManager}}
+\subsubsection{\texorpdfstring{getLatestPossessions()}{getLatestPossessions()}}
+{\footnotesize\ttfamily get\+Latest\+Possessions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+Possession\mbox{[}\mbox{]}$\vert$object\mbox{[}\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_b_l_1_1_possession_manager_a4f4dfb956c9d78f8a141ed33b9710764}\label{class_app_1_1_b_l_1_1_possession_manager_a4f4dfb956c9d78f8a141ed33b9710764}} 
+\index{PossessionManager@{PossessionManager}!getListPossessions@{getListPossessions}}
+\index{getListPossessions@{getListPossessions}!PossessionManager@{PossessionManager}}
+\subsubsection{\texorpdfstring{getListPossessions()}{getListPossessions()}}
+{\footnotesize\ttfamily get\+List\+Possessions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+Possession\mbox{[}\mbox{]}$\vert$array$\vert$object\mbox{[}\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_b_l_1_1_possession_manager_ae4ec518ac8f179af6c4bd26427744ee7}\label{class_app_1_1_b_l_1_1_possession_manager_ae4ec518ac8f179af6c4bd26427744ee7}} 
+\index{PossessionManager@{PossessionManager}!getPossessionById@{getPossessionById}}
+\index{getPossessionById@{getPossessionById}!PossessionManager@{PossessionManager}}
+\subsubsection{\texorpdfstring{getPossessionById()}{getPossessionById()}}
+{\footnotesize\ttfamily get\+Possession\+By\+Id (\begin{DoxyParamCaption}\item[{}]{\$id }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Possession 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_b_l_1_1_possession_manager_a779ab2d1dec91b1014ca19aeebefd7bb}\label{class_app_1_1_b_l_1_1_possession_manager_a779ab2d1dec91b1014ca19aeebefd7bb}} 
+\index{PossessionManager@{PossessionManager}!getPossessionsByName@{getPossessionsByName}}
+\index{getPossessionsByName@{getPossessionsByName}!PossessionManager@{PossessionManager}}
+\subsubsection{\texorpdfstring{getPossessionsByName()}{getPossessionsByName()}}
+{\footnotesize\ttfamily get\+Possessions\+By\+Name (\begin{DoxyParamCaption}\item[{}]{\$city,  }\item[{Request}]{\$request }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em \$city} & \\
+\hline
+Request & {\em \$request} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pagination\+Interface 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_b_l_1_1_possession_manager_acc8fcda735bd6aee13e1855d65ad2c42}\label{class_app_1_1_b_l_1_1_possession_manager_acc8fcda735bd6aee13e1855d65ad2c42}} 
+\index{PossessionManager@{PossessionManager}!getPossessionsBySearch@{getPossessionsBySearch}}
+\index{getPossessionsBySearch@{getPossessionsBySearch}!PossessionManager@{PossessionManager}}
+\subsubsection{\texorpdfstring{getPossessionsBySearch()}{getPossessionsBySearch()}}
+{\footnotesize\ttfamily get\+Possessions\+By\+Search (\begin{DoxyParamCaption}\item[{}]{\$city,  }\item[{}]{\$price,  }\item[{}]{\$type\+\_\+id,  }\item[{Request}]{\$request }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em \$city} & \\
+\hline
+ & {\em \$price} & \\
+\hline
+ & {\em \$type\+\_\+id} & \\
+\hline
+Request & {\em \$request} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pagination\+Interface 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_b_l_1_1_possession_manager_a060939c25627379c2016d7ec9efda4c1}\label{class_app_1_1_b_l_1_1_possession_manager_a060939c25627379c2016d7ec9efda4c1}} 
+\index{PossessionManager@{PossessionManager}!getPossessionsFromTypeId@{getPossessionsFromTypeId}}
+\index{getPossessionsFromTypeId@{getPossessionsFromTypeId}!PossessionManager@{PossessionManager}}
+\subsubsection{\texorpdfstring{getPossessionsFromTypeId()}{getPossessionsFromTypeId()}}
+{\footnotesize\ttfamily get\+Possessions\+From\+Type\+Id (\begin{DoxyParamCaption}\item[{}]{\$possession\+Type }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$possession\+Type} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Possession\mbox{[}\mbox{]}$\vert$object\mbox{[}\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_b_l_1_1_possession_manager_ae819e57682c3d821eb58dc48c10b0f3d}\label{class_app_1_1_b_l_1_1_possession_manager_ae819e57682c3d821eb58dc48c10b0f3d}} 
+\index{PossessionManager@{PossessionManager}!savePossession@{savePossession}}
+\index{savePossession@{savePossession}!PossessionManager@{PossessionManager}}
+\subsubsection{\texorpdfstring{savePossession()}{savePossession()}}
+{\footnotesize\ttfamily save\+Possession (\begin{DoxyParamCaption}\item[{}]{\$possession }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$possession} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+B\+L/Possession\+Manager.\+php\end{DoxyCompactItemize}
