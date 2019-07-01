@@ -35,6 +35,10 @@ Dans le dossier du projet :
 
 `php bin/console server:run`
 
+En cas d'erreur lors du chargement de la page d'accueil : 
+
+`composer update`
+
 **Utilisation**
 
 Consulter le Wiki du Git : https://github.com/RisbourgNathan/ProjetTransverse/wiki
