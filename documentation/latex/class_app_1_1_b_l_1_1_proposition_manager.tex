@@ -1,0 +1,92 @@
+\hypertarget{class_app_1_1_b_l_1_1_proposition_manager}{}\section{Proposition\+Manager Class Reference}
+\label{class_app_1_1_b_l_1_1_proposition_manager}\index{PropositionManager@{PropositionManager}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_app_1_1_b_l_1_1_proposition_manager_abb5fb9a65dd8a81e7482dddbf71c5177}{\+\_\+\+\_\+construct}} (Entity\+Manager\+Interface \$entity\+Manager)
+\item 
+\mbox{\hyperlink{class_app_1_1_b_l_1_1_proposition_manager_aa81d32fba76dd49892b709e948e72ba8}{get\+Visible\+Client\+Propositions}} (\mbox{\hyperlink{class_app_1_1_entity_1_1_client}{Client}} \$client)
+\item 
+\mbox{\hyperlink{class_app_1_1_b_l_1_1_proposition_manager_acd4da639f496d537ba9e1638289e69ac}{save\+Proposition}} (\mbox{\hyperlink{class_app_1_1_entity_1_1_proposition}{Proposition}} \$proposition)
+\item 
+\mbox{\hyperlink{class_app_1_1_b_l_1_1_proposition_manager_a1ca3dd3ecd86e6bebe9dadadd01c8eda}{get\+Proposition\+By\+Id}} (\$id)
+\item 
+\mbox{\hyperlink{class_app_1_1_b_l_1_1_proposition_manager_a91d156c9b416197b35c0ffbbaf78df2c}{is\+Proposition\+Already\+Ongoing}} (\mbox{\hyperlink{class_app_1_1_entity_1_1_possession}{Possession}} \$possession, \mbox{\hyperlink{class_app_1_1_entity_1_1_user}{User}} \$user)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_app_1_1_b_l_1_1_proposition_manager_abb5fb9a65dd8a81e7482dddbf71c5177}\label{class_app_1_1_b_l_1_1_proposition_manager_abb5fb9a65dd8a81e7482dddbf71c5177}} 
+\index{PropositionManager@{PropositionManager}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!PropositionManager@{PropositionManager}}
+\subsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{Entity\+Manager\+Interface}]{\$entity\+Manager }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{class_app_1_1_b_l_1_1_proposition_manager}{Proposition\+Manager}} constructor. 
+\begin{DoxyParams}[1]{Parameters}
+Entity\+Manager\+Interface & {\em \$entity\+Manager} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_app_1_1_b_l_1_1_proposition_manager_a1ca3dd3ecd86e6bebe9dadadd01c8eda}\label{class_app_1_1_b_l_1_1_proposition_manager_a1ca3dd3ecd86e6bebe9dadadd01c8eda}} 
+\index{PropositionManager@{PropositionManager}!getPropositionById@{getPropositionById}}
+\index{getPropositionById@{getPropositionById}!PropositionManager@{PropositionManager}}
+\subsubsection{\texorpdfstring{getPropositionById()}{getPropositionById()}}
+{\footnotesize\ttfamily get\+Proposition\+By\+Id (\begin{DoxyParamCaption}\item[{}]{\$id }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Proposition$\vert$object$\vert$null 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_b_l_1_1_proposition_manager_aa81d32fba76dd49892b709e948e72ba8}\label{class_app_1_1_b_l_1_1_proposition_manager_aa81d32fba76dd49892b709e948e72ba8}} 
+\index{PropositionManager@{PropositionManager}!getVisibleClientPropositions@{getVisibleClientPropositions}}
+\index{getVisibleClientPropositions@{getVisibleClientPropositions}!PropositionManager@{PropositionManager}}
+\subsubsection{\texorpdfstring{getVisibleClientPropositions()}{getVisibleClientPropositions()}}
+{\footnotesize\ttfamily get\+Visible\+Client\+Propositions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_entity_1_1_client}{Client}}}]{\$client }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Parameters}
+Client & {\em \$client} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Proposition\mbox{[}\mbox{]}$\vert$object\mbox{[}\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_b_l_1_1_proposition_manager_a91d156c9b416197b35c0ffbbaf78df2c}\label{class_app_1_1_b_l_1_1_proposition_manager_a91d156c9b416197b35c0ffbbaf78df2c}} 
+\index{PropositionManager@{PropositionManager}!isPropositionAlreadyOngoing@{isPropositionAlreadyOngoing}}
+\index{isPropositionAlreadyOngoing@{isPropositionAlreadyOngoing}!PropositionManager@{PropositionManager}}
+\subsubsection{\texorpdfstring{isPropositionAlreadyOngoing()}{isPropositionAlreadyOngoing()}}
+{\footnotesize\ttfamily is\+Proposition\+Already\+Ongoing (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_entity_1_1_possession}{Possession}}}]{\$possession,  }\item[{\mbox{\hyperlink{class_app_1_1_entity_1_1_user}{User}}}]{\$user }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Parameters}
+Possession & {\em \$possession} & \\
+\hline
+User & {\em \$user} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_b_l_1_1_proposition_manager_acd4da639f496d537ba9e1638289e69ac}\label{class_app_1_1_b_l_1_1_proposition_manager_acd4da639f496d537ba9e1638289e69ac}} 
+\index{PropositionManager@{PropositionManager}!saveProposition@{saveProposition}}
+\index{saveProposition@{saveProposition}!PropositionManager@{PropositionManager}}
+\subsubsection{\texorpdfstring{saveProposition()}{saveProposition()}}
+{\footnotesize\ttfamily save\+Proposition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_entity_1_1_proposition}{Proposition}}}]{\$proposition }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Parameters}
+Proposition & {\em \$proposition} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+B\+L/Proposition\+Manager.\+php\end{DoxyCompactItemize}

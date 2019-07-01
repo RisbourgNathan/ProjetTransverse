@@ -1,0 +1,152 @@
+\hypertarget{class_app_1_1_controller_1_1_proposition_controller}{}\section{Proposition\+Controller Class Reference}
+\label{class_app_1_1_controller_1_1_proposition_controller}\index{PropositionController@{PropositionController}}
+Inheritance diagram for Proposition\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_app_1_1_controller_1_1_proposition_controller}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_proposition_controller_ab68d2d9f0101f4e84cce0e646a7a554e}{\+\_\+\+\_\+construct}} (Entity\+Manager\+Interface \$entity\+Manager, Registry\+Interface \$registry, Paginator\+Interface \$paginator, Security \$security)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_proposition_controller_af7bd506007eaf156b8cf8e9c3a654ba3}{create\+Proposition}} (\$id\+Possession, Request \$request)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_proposition_controller_ab1f8753ff3e9da34db2cfbf14c9b64e4}{create\+Counter\+Proposition}} (\$id, Request \$request)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_proposition_controller_a3ba221ada65d0fdd55986bd759e280cd}{accept\+Proposition}} (\$id)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_proposition_controller_a3615f3f8ef2abe234776e9b537facef8}{deny\+Proposition}} (\$id)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_proposition_controller_a0181c8da3578351864cc96a333cdee91}{show\+Propositions\+For\+Possession}} (\$id\+Possession)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_proposition_controller_ad1b04fa5361ba787d3b028b744107151}{show\+My\+Propositions}} ()
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_proposition_controller_a49e83473438777bf92eed253b93607ea}{hide\+Proposition}} (\$proposition\+ID)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_proposition_controller_ab68d2d9f0101f4e84cce0e646a7a554e}\label{class_app_1_1_controller_1_1_proposition_controller_ab68d2d9f0101f4e84cce0e646a7a554e}} 
+\index{PropositionController@{PropositionController}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!PropositionController@{PropositionController}}
+\subsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{Entity\+Manager\+Interface}]{\$entity\+Manager,  }\item[{Registry\+Interface}]{\$registry,  }\item[{Paginator\+Interface}]{\$paginator,  }\item[{Security}]{\$security }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{class_app_1_1_controller_1_1_proposition_controller}{Proposition\+Controller}} constructor. 
+\begin{DoxyParams}[1]{Parameters}
+Entity\+Manager\+Interface & {\em \$entity\+Manager} & \\
+\hline
+Registry\+Interface & {\em \$registry} & \\
+\hline
+Paginator\+Interface & {\em \$paginator} & \\
+\hline
+Security & {\em \$security} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_proposition_controller_a3ba221ada65d0fdd55986bd759e280cd}\label{class_app_1_1_controller_1_1_proposition_controller_a3ba221ada65d0fdd55986bd759e280cd}} 
+\index{PropositionController@{PropositionController}!acceptProposition@{acceptProposition}}
+\index{acceptProposition@{acceptProposition}!PropositionController@{PropositionController}}
+\subsubsection{\texorpdfstring{acceptProposition()}{acceptProposition()}}
+{\footnotesize\ttfamily accept\+Proposition (\begin{DoxyParamCaption}\item[{}]{\$id }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/accept/\{id\}\char`\"{}, name=\char`\"{}accept\char`\"{}) 
+\begin{DoxyParams}{Parameters}
+{\em \$id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\textbackslash{}\+Symfony\textbackslash{}\+Component\textbackslash{}\+Http\+Foundation\textbackslash{}\+Redirect\+Response 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_proposition_controller_ab1f8753ff3e9da34db2cfbf14c9b64e4}\label{class_app_1_1_controller_1_1_proposition_controller_ab1f8753ff3e9da34db2cfbf14c9b64e4}} 
+\index{PropositionController@{PropositionController}!createCounterProposition@{createCounterProposition}}
+\index{createCounterProposition@{createCounterProposition}!PropositionController@{PropositionController}}
+\subsubsection{\texorpdfstring{createCounterProposition()}{createCounterProposition()}}
+{\footnotesize\ttfamily create\+Counter\+Proposition (\begin{DoxyParamCaption}\item[{}]{\$id,  }\item[{Request}]{\$request }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/create\+Counter/\{id\}\char`\"{}, name=\char`\"{}create\+Counter\char`\"{}) 
+\begin{DoxyParams}[1]{Parameters}
+ & {\em \$id} & \\
+\hline
+Request & {\em \$request} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_proposition_controller_af7bd506007eaf156b8cf8e9c3a654ba3}\label{class_app_1_1_controller_1_1_proposition_controller_af7bd506007eaf156b8cf8e9c3a654ba3}} 
+\index{PropositionController@{PropositionController}!createProposition@{createProposition}}
+\index{createProposition@{createProposition}!PropositionController@{PropositionController}}
+\subsubsection{\texorpdfstring{createProposition()}{createProposition()}}
+{\footnotesize\ttfamily create\+Proposition (\begin{DoxyParamCaption}\item[{}]{\$id\+Possession,  }\item[{Request}]{\$request }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/create/\{id\+Possession\}\char`\"{}, name=\char`\"{}create\char`\"{}) 
+\begin{DoxyParams}[1]{Parameters}
+ & {\em \$id\+Possession} & \\
+\hline
+Request & {\em \$request} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\textbackslash{}\+Symfony\textbackslash{}\+Component\textbackslash{}\+Http\+Foundation\textbackslash{}\+Redirect\+Response$\vert$\textbackslash{}\+Symfony\textbackslash{}\+Component\textbackslash{}\+Http\+Foundation\textbackslash{}\+Response 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_proposition_controller_a3615f3f8ef2abe234776e9b537facef8}\label{class_app_1_1_controller_1_1_proposition_controller_a3615f3f8ef2abe234776e9b537facef8}} 
+\index{PropositionController@{PropositionController}!denyProposition@{denyProposition}}
+\index{denyProposition@{denyProposition}!PropositionController@{PropositionController}}
+\subsubsection{\texorpdfstring{denyProposition()}{denyProposition()}}
+{\footnotesize\ttfamily deny\+Proposition (\begin{DoxyParamCaption}\item[{}]{\$id }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/deny/\{id\}\char`\"{}, name=\char`\"{}deny\char`\"{}) 
+\begin{DoxyParams}{Parameters}
+{\em \$id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\textbackslash{}\+Symfony\textbackslash{}\+Component\textbackslash{}\+Http\+Foundation\textbackslash{}\+Response 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_proposition_controller_a49e83473438777bf92eed253b93607ea}\label{class_app_1_1_controller_1_1_proposition_controller_a49e83473438777bf92eed253b93607ea}} 
+\index{PropositionController@{PropositionController}!hideProposition@{hideProposition}}
+\index{hideProposition@{hideProposition}!PropositionController@{PropositionController}}
+\subsubsection{\texorpdfstring{hideProposition()}{hideProposition()}}
+{\footnotesize\ttfamily hide\+Proposition (\begin{DoxyParamCaption}\item[{}]{\$proposition\+ID }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/hide/\{proposition\+I\+D\}\char`\"{}, name=\char`\"{}hide\char`\"{}) 
+\begin{DoxyParams}{Parameters}
+{\em \$proposition\+ID} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\textbackslash{}\+Symfony\textbackslash{}\+Component\textbackslash{}\+Http\+Foundation\textbackslash{}\+Redirect\+Response 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_proposition_controller_ad1b04fa5361ba787d3b028b744107151}\label{class_app_1_1_controller_1_1_proposition_controller_ad1b04fa5361ba787d3b028b744107151}} 
+\index{PropositionController@{PropositionController}!showMyPropositions@{showMyPropositions}}
+\index{showMyPropositions@{showMyPropositions}!PropositionController@{PropositionController}}
+\subsubsection{\texorpdfstring{showMyPropositions()}{showMyPropositions()}}
+{\footnotesize\ttfamily show\+My\+Propositions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/my\char`\"{}, name=\char`\"{}my\char`\"{}) \begin{DoxyReturn}{Returns}
+\textbackslash{}\+Symfony\textbackslash{}\+Component\textbackslash{}\+Http\+Foundation\textbackslash{}\+Response 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_proposition_controller_a0181c8da3578351864cc96a333cdee91}\label{class_app_1_1_controller_1_1_proposition_controller_a0181c8da3578351864cc96a333cdee91}} 
+\index{PropositionController@{PropositionController}!showPropositionsForPossession@{showPropositionsForPossession}}
+\index{showPropositionsForPossession@{showPropositionsForPossession}!PropositionController@{PropositionController}}
+\subsubsection{\texorpdfstring{showPropositionsForPossession()}{showPropositionsForPossession()}}
+{\footnotesize\ttfamily show\+Propositions\+For\+Possession (\begin{DoxyParamCaption}\item[{}]{\$id\+Possession }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$id\+Possession} & @\+Route(\char`\"{}/show/\{id\+Possession\}\char`\"{}, name=\char`\"{}show\+Propositions\char`\"{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\textbackslash{}\+Symfony\textbackslash{}\+Component\textbackslash{}\+Http\+Foundation\textbackslash{}\+Response 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Controller/Proposition\+Controller.\+php\end{DoxyCompactItemize}

@@ -1,0 +1,46 @@
+\hypertarget{class_app_1_1_controller_1_1_security_controller}{}\section{Security\+Controller Class Reference}
+\label{class_app_1_1_controller_1_1_security_controller}\index{SecurityController@{SecurityController}}
+Inheritance diagram for Security\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_app_1_1_controller_1_1_security_controller}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_security_controller_a0c05ef8ddb2188649a9972a35f3c3512}{login}} (Authentication\+Utils \$authentication\+Utils)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_security_controller_a082405d89acd6835c3a7c7a08a7adbab}{logout}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_security_controller_a0c05ef8ddb2188649a9972a35f3c3512}\label{class_app_1_1_controller_1_1_security_controller_a0c05ef8ddb2188649a9972a35f3c3512}} 
+\index{SecurityController@{SecurityController}!login@{login}}
+\index{login@{login}!SecurityController@{SecurityController}}
+\subsubsection{\texorpdfstring{login()}{login()}}
+{\footnotesize\ttfamily login (\begin{DoxyParamCaption}\item[{Authentication\+Utils}]{\$authentication\+Utils }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/login\char`\"{}, name=\char`\"{}app\+\_\+login\char`\"{}) 
+\begin{DoxyParams}[1]{Parameters}
+Authentication\+Utils & {\em \$authentication\+Utils} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_security_controller_a082405d89acd6835c3a7c7a08a7adbab}\label{class_app_1_1_controller_1_1_security_controller_a082405d89acd6835c3a7c7a08a7adbab}} 
+\index{SecurityController@{SecurityController}!logout@{logout}}
+\index{logout@{logout}!SecurityController@{SecurityController}}
+\subsubsection{\texorpdfstring{logout()}{logout()}}
+{\footnotesize\ttfamily logout (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/logout\char`\"{}, name=\char`\"{}logout\char`\"{}) \begin{DoxyReturn}{Returns}
+\textbackslash{}\+Symfony\textbackslash{}\+Component\textbackslash{}\+Http\+Foundation\textbackslash{}\+Redirect\+Response 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Controller/Security\+Controller.\+php\end{DoxyCompactItemize}

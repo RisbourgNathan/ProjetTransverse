@@ -1,0 +1,170 @@
+\hypertarget{class_app_1_1_controller_1_1_possession_controller}{}\section{Possession\+Controller Class Reference}
+\label{class_app_1_1_controller_1_1_possession_controller}\index{PossessionController@{PossessionController}}
+Inheritance diagram for Possession\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_app_1_1_controller_1_1_possession_controller}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_possession_controller_a4cff64ebdbee26724bcf620ebaaa83b9}{\+\_\+\+\_\+construct}} (Entity\+Manager\+Interface \$entity\+Manager, Security \$security, Registry\+Interface \$registry, Uploader\+Helper \$uploader\+Helper, Paginator\+Interface \$knp)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_possession_controller_a002fbe18bc0d3456d063eb8c8a9adcae}{list}} (Request \$request, \$city)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_possession_controller_a310b843253754fae7923d7b6a4dbb353}{create\+Possession\+By\+Agent}} (Request \$request)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_possession_controller_af77b741fb74001990f0e1f546bf464f0}{modify\+Possession}} (\$id, Request \$request)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_possession_controller_a53e45f0b6b430ae57a986d97d83c8aa1}{manage\+Possession}} ()
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_possession_controller_ab1b51061dc3635ef40e9c5bb0880f519}{show\+Possession}} (\$id)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_possession_controller_aa311b90febc50aedf5f99100e6d5c3d4}{add\+To\+Favorites}} (\$id)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_possession_controller_a41fdb75fdb7315e8c1f703bf3a5ef21d}{remove\+From\+Favorites}} (\$id)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_possession_controller_a8fcc54d734ccc27c3ce276a2e19c03e4}{notify\+Fav\+Clients}} (\mbox{\hyperlink{class_app_1_1_entity_1_1_possession}{Possession}} \$possession)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_possession_controller_a4cff64ebdbee26724bcf620ebaaa83b9}\label{class_app_1_1_controller_1_1_possession_controller_a4cff64ebdbee26724bcf620ebaaa83b9}} 
+\index{PossessionController@{PossessionController}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!PossessionController@{PossessionController}}
+\subsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{Entity\+Manager\+Interface}]{\$entity\+Manager,  }\item[{Security}]{\$security,  }\item[{Registry\+Interface}]{\$registry,  }\item[{Uploader\+Helper}]{\$uploader\+Helper,  }\item[{Paginator\+Interface}]{\$knp }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{class_app_1_1_controller_1_1_possession_controller}{Possession\+Controller}} constructor. 
+\begin{DoxyParams}[1]{Parameters}
+Entity\+Manager\+Interface & {\em \$entity\+Manager} & \\
+\hline
+Security & {\em \$security} & \\
+\hline
+Registry\+Interface & {\em \$registry} & \\
+\hline
+Uploader\+Helper & {\em \$uploader\+Helper} & \\
+\hline
+Paginator\+Interface & {\em \$knp} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_possession_controller_aa311b90febc50aedf5f99100e6d5c3d4}\label{class_app_1_1_controller_1_1_possession_controller_aa311b90febc50aedf5f99100e6d5c3d4}} 
+\index{PossessionController@{PossessionController}!addToFavorites@{addToFavorites}}
+\index{addToFavorites@{addToFavorites}!PossessionController@{PossessionController}}
+\subsubsection{\texorpdfstring{addToFavorites()}{addToFavorites()}}
+{\footnotesize\ttfamily add\+To\+Favorites (\begin{DoxyParamCaption}\item[{}]{\$id }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/add\+To\+Favorite/\{id\}\char`\"{}, name=\char`\"{}add\+To\+Favorites\char`\"{}) 
+\begin{DoxyParams}{Parameters}
+{\em \$id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Redirect\+Response 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_possession_controller_a310b843253754fae7923d7b6a4dbb353}\label{class_app_1_1_controller_1_1_possession_controller_a310b843253754fae7923d7b6a4dbb353}} 
+\index{PossessionController@{PossessionController}!createPossessionByAgent@{createPossessionByAgent}}
+\index{createPossessionByAgent@{createPossessionByAgent}!PossessionController@{PossessionController}}
+\subsubsection{\texorpdfstring{createPossessionByAgent()}{createPossessionByAgent()}}
+{\footnotesize\ttfamily create\+Possession\+By\+Agent (\begin{DoxyParamCaption}\item[{Request}]{\$request }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/create\+By\+Agent\char`\"{}) \textbackslash{}Sensio\textbackslash{}\+Bundle\textbackslash{}\+Framework\+Extra\+Bundle\textbackslash{}\+Configuration\textbackslash{}\+Security(\char`\"{}has\+\_\+role(\textquotesingle{}\+R\+O\+L\+E\+\_\+\+A\+G\+E\+N\+T\textquotesingle{})\char`\"{}) 
+\begin{DoxyParams}[1]{Parameters}
+Request & {\em \$request} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em } & \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_possession_controller_a002fbe18bc0d3456d063eb8c8a9adcae}\label{class_app_1_1_controller_1_1_possession_controller_a002fbe18bc0d3456d063eb8c8a9adcae}} 
+\index{PossessionController@{PossessionController}!list@{list}}
+\index{list@{list}!PossessionController@{PossessionController}}
+\subsubsection{\texorpdfstring{list()}{list()}}
+{\footnotesize\ttfamily list (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{}]{\$city }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/list/\{city\}\char`\"{}, name=\char`\"{}list\char`\"{}) 
+\begin{DoxyParams}[1]{Parameters}
+Request & {\em \$request} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_possession_controller_a53e45f0b6b430ae57a986d97d83c8aa1}\label{class_app_1_1_controller_1_1_possession_controller_a53e45f0b6b430ae57a986d97d83c8aa1}} 
+\index{PossessionController@{PossessionController}!managePossession@{managePossession}}
+\index{managePossession@{managePossession}!PossessionController@{PossessionController}}
+\subsubsection{\texorpdfstring{managePossession()}{managePossession()}}
+{\footnotesize\ttfamily manage\+Possession (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/manage\char`\"{}, name=\char`\"{}manage\char`\"{}) @\+Is\+Granted(\char`\"{}\+R\+O\+L\+E\+\_\+\+A\+G\+E\+N\+T\char`\"{}) \begin{DoxyReturn}{Returns}
+Response 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_possession_controller_af77b741fb74001990f0e1f546bf464f0}\label{class_app_1_1_controller_1_1_possession_controller_af77b741fb74001990f0e1f546bf464f0}} 
+\index{PossessionController@{PossessionController}!modifyPossession@{modifyPossession}}
+\index{modifyPossession@{modifyPossession}!PossessionController@{PossessionController}}
+\subsubsection{\texorpdfstring{modifyPossession()}{modifyPossession()}}
+{\footnotesize\ttfamily modify\+Possession (\begin{DoxyParamCaption}\item[{}]{\$id,  }\item[{Request}]{\$request }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/modify/\{id\}\char`\"{}, name=\char`\"{}modify\char`\"{}) 
+\begin{DoxyParams}[1]{Parameters}
+ & {\em \$id} & \\
+\hline
+Request & {\em \$request} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Redirect\+Response$\vert$\+Response @\+Is\+Granted(\char`\"{}\+R\+O\+L\+E\+\_\+\+A\+G\+E\+N\+T\char`\"{}) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_possession_controller_a8fcc54d734ccc27c3ce276a2e19c03e4}\label{class_app_1_1_controller_1_1_possession_controller_a8fcc54d734ccc27c3ce276a2e19c03e4}} 
+\index{PossessionController@{PossessionController}!notifyFavClients@{notifyFavClients}}
+\index{notifyFavClients@{notifyFavClients}!PossessionController@{PossessionController}}
+\subsubsection{\texorpdfstring{notifyFavClients()}{notifyFavClients()}}
+{\footnotesize\ttfamily notify\+Fav\+Clients (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_entity_1_1_possession}{Possession}}}]{\$possession }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Parameters}
+Possession & {\em \$possession} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_possession_controller_a41fdb75fdb7315e8c1f703bf3a5ef21d}\label{class_app_1_1_controller_1_1_possession_controller_a41fdb75fdb7315e8c1f703bf3a5ef21d}} 
+\index{PossessionController@{PossessionController}!removeFromFavorites@{removeFromFavorites}}
+\index{removeFromFavorites@{removeFromFavorites}!PossessionController@{PossessionController}}
+\subsubsection{\texorpdfstring{removeFromFavorites()}{removeFromFavorites()}}
+{\footnotesize\ttfamily remove\+From\+Favorites (\begin{DoxyParamCaption}\item[{}]{\$id }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/remove\+From\+Favorites/\{id\}\char`\"{}, name=\char`\"{}remove\+From\+Favorites\char`\"{}) 
+\begin{DoxyParams}{Parameters}
+{\em \$id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Redirect\+Response 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_possession_controller_ab1b51061dc3635ef40e9c5bb0880f519}\label{class_app_1_1_controller_1_1_possession_controller_ab1b51061dc3635ef40e9c5bb0880f519}} 
+\index{PossessionController@{PossessionController}!showPossession@{showPossession}}
+\index{showPossession@{showPossession}!PossessionController@{PossessionController}}
+\subsubsection{\texorpdfstring{showPossession()}{showPossession()}}
+{\footnotesize\ttfamily show\+Possession (\begin{DoxyParamCaption}\item[{}]{\$id }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/show/\{id\}\char`\"{}, name=\char`\"{}show\char`\"{}) 
+\begin{DoxyParams}{Parameters}
+{\em \$id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Response 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Controller/Possession\+Controller.\+php\end{DoxyCompactItemize}

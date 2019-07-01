@@ -1,0 +1,143 @@
+\hypertarget{class_app_1_1_security_1_1_login_form_authenticator}{}\section{Login\+Form\+Authenticator Class Reference}
+\label{class_app_1_1_security_1_1_login_form_authenticator}\index{LoginFormAuthenticator@{LoginFormAuthenticator}}
+Inheritance diagram for Login\+Form\+Authenticator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_app_1_1_security_1_1_login_form_authenticator}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_app_1_1_security_1_1_login_form_authenticator_a386db1bcf39d013d1954a9dacdfa7cc9}{\+\_\+\+\_\+construct}} (Entity\+Manager\+Interface \$entity\+Manager, Router\+Interface \$router, Csrf\+Token\+Manager\+Interface \$csrf\+Token\+Manager, User\+Password\+Encoder\+Interface \$password\+Encoder)
+\item 
+\mbox{\hyperlink{class_app_1_1_security_1_1_login_form_authenticator_addb128645c251651eb42448b73169298}{supports}} (Request \$request)
+\item 
+\mbox{\hyperlink{class_app_1_1_security_1_1_login_form_authenticator_ad41b8274f1d3afb081504580eb52c240}{get\+Credentials}} (Request \$request)
+\item 
+\mbox{\hyperlink{class_app_1_1_security_1_1_login_form_authenticator_a9d84a0770cd36499cfe7333405b73cfa}{get\+User}} (\$credentials, User\+Provider\+Interface \$user\+Provider)
+\item 
+\mbox{\hyperlink{class_app_1_1_security_1_1_login_form_authenticator_aa977a3b9e0fa2fe29ff81a53f6debbe4}{check\+Credentials}} (\$credentials, User\+Interface \$user)
+\item 
+\mbox{\hyperlink{class_app_1_1_security_1_1_login_form_authenticator_ad0f18bcab183b06e0bd0172951eca9c8}{on\+Authentication\+Success}} (Request \$request, Token\+Interface \$token, \$provider\+Key)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_app_1_1_security_1_1_login_form_authenticator_a37af09a26efc969d1381851b8c379808}{get\+Login\+Url}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_app_1_1_security_1_1_login_form_authenticator_a386db1bcf39d013d1954a9dacdfa7cc9}\label{class_app_1_1_security_1_1_login_form_authenticator_a386db1bcf39d013d1954a9dacdfa7cc9}} 
+\index{LoginFormAuthenticator@{LoginFormAuthenticator}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!LoginFormAuthenticator@{LoginFormAuthenticator}}
+\subsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{Entity\+Manager\+Interface}]{\$entity\+Manager,  }\item[{Router\+Interface}]{\$router,  }\item[{Csrf\+Token\+Manager\+Interface}]{\$csrf\+Token\+Manager,  }\item[{User\+Password\+Encoder\+Interface}]{\$password\+Encoder }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{class_app_1_1_security_1_1_login_form_authenticator}{Login\+Form\+Authenticator}} constructor. 
+\begin{DoxyParams}[1]{Parameters}
+Entity\+Manager\+Interface & {\em \$entity\+Manager} & \\
+\hline
+Router\+Interface & {\em \$router} & \\
+\hline
+Csrf\+Token\+Manager\+Interface & {\em \$csrf\+Token\+Manager} & \\
+\hline
+User\+Password\+Encoder\+Interface & {\em \$password\+Encoder} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_app_1_1_security_1_1_login_form_authenticator_aa977a3b9e0fa2fe29ff81a53f6debbe4}\label{class_app_1_1_security_1_1_login_form_authenticator_aa977a3b9e0fa2fe29ff81a53f6debbe4}} 
+\index{LoginFormAuthenticator@{LoginFormAuthenticator}!checkCredentials@{checkCredentials}}
+\index{checkCredentials@{checkCredentials}!LoginFormAuthenticator@{LoginFormAuthenticator}}
+\subsubsection{\texorpdfstring{checkCredentials()}{checkCredentials()}}
+{\footnotesize\ttfamily check\+Credentials (\begin{DoxyParamCaption}\item[{}]{\$credentials,  }\item[{User\+Interface}]{\$user }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Parameters}
+mixed & {\em \$credentials} & \\
+\hline
+User\+Interface & {\em \$user} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_security_1_1_login_form_authenticator_ad41b8274f1d3afb081504580eb52c240}\label{class_app_1_1_security_1_1_login_form_authenticator_ad41b8274f1d3afb081504580eb52c240}} 
+\index{LoginFormAuthenticator@{LoginFormAuthenticator}!getCredentials@{getCredentials}}
+\index{getCredentials@{getCredentials}!LoginFormAuthenticator@{LoginFormAuthenticator}}
+\subsubsection{\texorpdfstring{getCredentials()}{getCredentials()}}
+{\footnotesize\ttfamily get\+Credentials (\begin{DoxyParamCaption}\item[{Request}]{\$request }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Parameters}
+Request & {\em \$request} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array$\vert$mixed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_security_1_1_login_form_authenticator_a37af09a26efc969d1381851b8c379808}\label{class_app_1_1_security_1_1_login_form_authenticator_a37af09a26efc969d1381851b8c379808}} 
+\index{LoginFormAuthenticator@{LoginFormAuthenticator}!getLoginUrl@{getLoginUrl}}
+\index{getLoginUrl@{getLoginUrl}!LoginFormAuthenticator@{LoginFormAuthenticator}}
+\subsubsection{\texorpdfstring{getLoginUrl()}{getLoginUrl()}}
+{\footnotesize\ttfamily get\+Login\+Url (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_security_1_1_login_form_authenticator_a9d84a0770cd36499cfe7333405b73cfa}\label{class_app_1_1_security_1_1_login_form_authenticator_a9d84a0770cd36499cfe7333405b73cfa}} 
+\index{LoginFormAuthenticator@{LoginFormAuthenticator}!getUser@{getUser}}
+\index{getUser@{getUser}!LoginFormAuthenticator@{LoginFormAuthenticator}}
+\subsubsection{\texorpdfstring{getUser()}{getUser()}}
+{\footnotesize\ttfamily get\+User (\begin{DoxyParamCaption}\item[{}]{\$credentials,  }\item[{User\+Provider\+Interface}]{\$user\+Provider }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Parameters}
+mixed & {\em \$credentials} & \\
+\hline
+User\+Provider\+Interface & {\em \$user\+Provider} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+User$\vert$object$\vert$\+User\+Interface$\vert$null 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_security_1_1_login_form_authenticator_ad0f18bcab183b06e0bd0172951eca9c8}\label{class_app_1_1_security_1_1_login_form_authenticator_ad0f18bcab183b06e0bd0172951eca9c8}} 
+\index{LoginFormAuthenticator@{LoginFormAuthenticator}!onAuthenticationSuccess@{onAuthenticationSuccess}}
+\index{onAuthenticationSuccess@{onAuthenticationSuccess}!LoginFormAuthenticator@{LoginFormAuthenticator}}
+\subsubsection{\texorpdfstring{onAuthenticationSuccess()}{onAuthenticationSuccess()}}
+{\footnotesize\ttfamily on\+Authentication\+Success (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{Token\+Interface}]{\$token,  }\item[{}]{\$provider\+Key }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Parameters}
+Request & {\em \$request} & \\
+\hline
+Token\+Interface & {\em \$token} & \\
+\hline
+string & {\em \$provider\+Key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Redirect\+Response$\vert$\+Response$\vert$null 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_app_1_1_security_1_1_login_form_authenticator_addb128645c251651eb42448b73169298}\label{class_app_1_1_security_1_1_login_form_authenticator_addb128645c251651eb42448b73169298}} 
+\index{LoginFormAuthenticator@{LoginFormAuthenticator}!supports@{supports}}
+\index{supports@{supports}!LoginFormAuthenticator@{LoginFormAuthenticator}}
+\subsubsection{\texorpdfstring{supports()}{supports()}}
+{\footnotesize\ttfamily supports (\begin{DoxyParamCaption}\item[{Request}]{\$request }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Parameters}
+Request & {\em \$request} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Security/Login\+Form\+Authenticator.\+php\end{DoxyCompactItemize}
