@@ -39,6 +39,21 @@ En cas d'erreur lors du chargement de la page d'accueil :
 
 `composer update`
 
+
+**Passer en mode production**
+
+Pour changer le mode, il est nécéssaire de changer le .env
+
+A la ligne 7 :
+
+`APP_ENV=prod`
+
+`APP_DEBUG=0`
+
+Puis clean le cache
+
+`php bin/console cache:clear`
+
 **Utilisation**
 
 Consulter le Wiki du Git : https://github.com/RisbourgNathan/ProjetTransverse/wiki
