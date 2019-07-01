@@ -5,6 +5,10 @@ La documentation générée à l'aide de doxygen en format HTML est disponible d
 
 ## Installation du projet
 
+**Installer PostgresSQL**
+
+https://www.postgresql.org/download/
+
 **Installer composer**
 
 https://getcomposer.org/
