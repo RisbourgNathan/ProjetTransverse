@@ -66,8 +66,8 @@
                         <p>{{ proposition.possession.title }} - {{ proposition.possession.city }}</p>
                         <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
                         <p>Proposition actuelle : {{ proposition.price }} | Proposition originale : {{ proposition.oldPrice }}</p>
-                        <button class="btn btn-success"><a href="{{ path('proposition_accept', {'id': proposition.id}) }}">Accepter cette offre</a></button>
-                        <button class="btn btn-warning"><a href="{{ path('proposition_deny', {'id': proposition.id}) }}">Refuser</a></button>
+                        <a href="{{ path('proposition_accept', {'id': proposition.id}) }}"><button class="btn btn-success">Accepter cette offre</button></a>
+                        <a href="{{ path('proposition_deny', {'id': proposition.id}) }}"><button class="btn btn-warning">Refuser</button></a>
                     </div>
                 {% elseif proposition.state == "ACCEPTED" %}
                     <div class="myPropositionsDiv">
@@ -75,14 +75,14 @@
                         <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
                         <p><span class="success">Proposition Acceptée : {{ proposition.price }}</span></p>
                         {#<button class="btn"><a href="{{ path('proposition_hide', {'propositionID': proposition.id}) }}">X</a></button>#}
-                        <a href="{{ path('proposition_hide', {'propositionID': proposition.id}) }}"><button class="btn">X</button></a>
+                        <a href="{{ path('proposition_hide', {'propositionID': proposition.id}) }}"><button class="btn btn-danger">X</button></a>
                     </div>
                 {% elseif proposition.state == "DENIED" %}
                     <div class="myPropositionsDiv">
                         <p>{{ proposition.possession.title }} - {{ proposition.possession.city }}</p>
                         <p>Prix sur l'annonce : {{ proposition.possession.sellingPrice }}</p>
                         <p><span class="failed">Proposition Refusée : {{ proposition.price }}</span></p>
-                        <a href="{{ path('proposition_hide', {'propositionID': proposition.id}) }}"><button class="btn">X</button></a>
+                        <a href="{{ path('proposition_hide', {'propositionID': proposition.id}) }}"><button class="btn btn-danger">X</button></a>
                     </div>
                 {% endif %}
         {% endfor %}

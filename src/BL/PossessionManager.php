@@ -109,7 +109,7 @@ class PossessionManager
      * @return Possession[]|object[]
      */
     public function getLatestPossessions(){
-        return $this->entityManager->getRepository(Possession::class)->findBy(array("validationState" => 'SELL'), array('createdAt' => 'ASC'), 3);
+        return $this->entityManager->getRepository(Possession::class)->findBy(array("validationState" => 'SELL'), array('createdAt' => 'DESC'), 3);
     }
 
     /**

@@ -150,7 +150,6 @@ class PossessionController extends AbstractController
         if($this->security->getUser() != null){
             $client = $this->userManager->GetClientIdbyUser();
         }
-        dump($possessions);
         return $this->render("possession/listPossessions.html.twig", array(
             "possessions" => $possessions,
             'form' => $form->createView(),
@@ -242,6 +241,7 @@ class PossessionController extends AbstractController
     /**
      * @Route("/modify/{id}", name="modify")
      * @param $id
+     * @\Sensio\Bundle\FrameworkExtraBundle\Configuration\Security("has_role('ROLE_AGENT')")
      * @param Request $request
      * @return RedirectResponse|Response
      */
@@ -303,6 +303,7 @@ class PossessionController extends AbstractController
 
     /**
      * @Route("/manage", name="manage")
+     * @\Sensio\Bundle\FrameworkExtraBundle\Configuration\Security("has_role('ROLE_AGENT')")
      * @return Response
      */
     public function managePossession(){

@@ -37,7 +37,7 @@
     margin-right: auto;
     width: 80%;
     height: auto;
-    top: 7vw;
+    margin-top: 7vw;
     background-color:rgba(255,255,255,0.7);
 }
 .searchTitle{
@@ -367,6 +367,7 @@ input[type=text]:focus {
     position: relative;
 }
 .navigation{
+    display: block;
     text-align: center;
     position: relative;
     margin-left: auto;
@@ -375,6 +376,9 @@ input[type=text]:focus {
 .pagination{
     position: relative;
     text-align: center;
+}
+.current{
+    background-color: deepskyblue !important;
 }
 .pagination > * > a{
     text-decoration: none;

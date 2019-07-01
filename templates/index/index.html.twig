@@ -2,8 +2,7 @@
 <div class="imageContainer">
     <div class="bg"></div>
 <div class="titleIndex">
-    <h1>ImmoConceptPlus</h1>
-    <h2>Une idée, un concept</h2>
+    <img src="{{ asset('images/design/immo-concept-plus.svg') }}" class="logo" alt="logo">
 </div>
 {% block javascripts %}{% endblock %}
 <div class="principale">
@@ -27,7 +26,7 @@
     {% endif %}
 </div>
     <div class="statsContainer">
-       {{ nbOfClients }} clients inscrits<hr>{{ nbOfPossessions }} annonce créées
+       {{ nbOfClients }} clients inscrits<hr>{{ nbOfPossessions }} annonces créées
     </div>
 </div>
 {% include 'includes/footer.html.twig' %}
