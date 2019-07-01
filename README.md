@@ -42,3 +42,9 @@ En cas d'erreur lors du chargement de la page d'accueil :
 **Utilisation**
 
 Consulter le Wiki du Git : https://github.com/RisbourgNathan/ProjetTransverse/wiki
+
+**Utilisation sans dump de la BDD**
+
+Si vous ne faites pas de dump, vous devez créer manuellement le premier compte administrateur :
+
+https://github.com/RisbourgNathan/ProjetTransverse/wiki/Cr%C3%A9ation-d'un-admin
