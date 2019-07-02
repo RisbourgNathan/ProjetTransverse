@@ -35,6 +35,16 @@ Dans le dossier du projet :
 
 `php bin/console doctrine:migraions:migrate`
 
+**Dump de la base (AVEC PGADMIN SEULEMENT)**
+
+Récupérer le fichier dump_v2 et dans PgAdmin, clic droit sur la base, restaurer.
+
+Passer en yes pre-data, data, post-data, nettoyer avant restauration.
+
+Sélectionner le fichier le fichier de dump.
+
+Restaurer la base.
+
 **Lancer le serveur**
 
 `php bin/console server:run`
